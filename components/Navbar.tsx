@@ -173,6 +173,8 @@ export default function Navbar() {
             </a>
           </div>
 
+
+
           <p className="menu-footer text-center text-[10px] tracking-widest uppercase text-stone-400 pb-10">
             Paradista — A Forest Retreat
           </p>
