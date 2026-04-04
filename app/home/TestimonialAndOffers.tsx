@@ -63,11 +63,21 @@ const QuoteMark = () => (
 function TestimonialsSection() {
   const [active, setActive] = useState(1);
   const [page, setPage] = useState(0);
-  const perPage = 3;
+
+  // Desktop: 3 per page. Mobile: 1 per page.
+  const [isMobile, setIsMobile] = useState(false);
+  useEffect(() => {
+    const check = () => setIsMobile(window.innerWidth < 768);
+    check();
+    window.addEventListener("resize", check);
+    return () => window.removeEventListener("resize", check);
+  }, []);
+
+  const perPage = isMobile ? 1 : 3;
   const totalPages = Math.ceil(testimonials.length / perPage);
   const visible = testimonials.slice(page * perPage, page * perPage + perPage);
 
-  useEffect(() => { setActive(1); }, [page]);
+  useEffect(() => { setActive(isMobile ? 0 : 1); }, [page, isMobile]);
 
   return (
     <section className="bg-[#f0ede4] py-20 px-6 overflow-hidden">
@@ -78,16 +88,14 @@ function TestimonialsSection() {
           <div>
             <p className="text-xs italic text-[#999] font-serif mb-3">Testimonials</p>
             <h2 className="font-serif text-4xl md:text-5xl text-[#1a1a1a] leading-tight max-w-lg">
-              Guests Speak: Discover What Others Loved About Their Stay
+              TESTIMONIALS
             </h2>
           </div>
-          <p className="text-sm text-[#666] leading-relaxed max-w-xs md:text-right">
-            Read their testimonials and let their words inspire your journey with us. Every guest is cherished and every moment is treasured.
-          </p>
+          
         </div>
 
         {/* Cards grid */}
-        <div className="grid grid-cols-3 gap-5 mb-10">
+        <div className="grid grid-cols-1 md:grid-cols-3 gap-5 mb-10">
           {visible.map((t, i) => {
             const isActive = i === active;
             return (

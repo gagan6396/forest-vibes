@@ -1,227 +1,252 @@
 "use client";
 
-import { useState, useEffect, useRef } from "react";
-
-const roomOptions = ["Deluxe Suite", "Ocean View Room", "Family Bungalow", "Presidential Villa"];
+import { useState, useEffect } from "react";
 
 const navLinks = [
-  { label: "HOME", href: "#home" },
-  { label: "ABOUT US", href: "#about" },
-  { label: "CONTACT US", href: "#contact" },
+  { label: "HOME", href: "/" },
+  { label: "ABOUT US", href: "/about-us" },
+  { label: "CONTACT US", href: "/contact-us" },
+  { label: "ROOMS", href: "/rooms" },
 ];
 
 export default function Navbar() {
   const [scrolled, setScrolled] = useState(false);
-  const [roomsOpen, setRoomsOpen] = useState(false);
   const [mobileOpen, setMobileOpen] = useState(false);
-  const [mobileRoomsOpen, setMobileRoomsOpen] = useState(false);
-  const dropdownRef = useRef<HTMLLIElement>(null); // Changed from HTMLDivElement to HTMLLIElement
 
   useEffect(() => {
     const handleScroll = () => setScrolled(window.scrollY > 30);
-    window.addEventListener("scroll", handleScroll);
+    window.addEventListener("scroll", handleScroll, { passive: true });
     return () => window.removeEventListener("scroll", handleScroll);
   }, []);
 
   useEffect(() => {
-    const handleClickOutside = (e: MouseEvent) => {
-      if (dropdownRef.current && !dropdownRef.current.contains(e.target as Node)) {
-        setRoomsOpen(false);
-      }
-    };
-    document.addEventListener("mousedown", handleClickOutside);
-    return () => document.removeEventListener("mousedown", handleClickOutside);
-  }, []);
+    if (mobileOpen) {
+      document.documentElement.style.overflow = "hidden";
+    } else {
+      document.documentElement.style.overflow = "";
+    }
+    return () => { document.documentElement.style.overflow = ""; };
+  }, [mobileOpen]);
 
-  const linkClass = [
-    "font-bold tracking-widest text-[15px] uppercase transition-colors duration-200",
-    scrolled ? " hover:text-[#2d5a3d]" : "text-black hover:text-black/70",
-  ].join(" ");
+  const toggle = () => setMobileOpen((v) => !v);
+  const close = () => setMobileOpen(false);
 
   return (
     <>
-      {/* Navbar */}
+      <style>{`
+        /* iOS Safari requires cursor:pointer for onClick to fire on non-button elements */
+        .nav-tap { cursor: pointer; -webkit-tap-highlight-color: transparent; }
+
+        .mobile-menu {
+          position: fixed;
+          top: 72px;
+          left: 0;
+          right: 0;
+          bottom: 0;
+          z-index: 40;
+          background: #f5f2eb;
+          display: flex;
+          flex-direction: column;
+          padding: 32px;
+          overflow-y: auto;
+          -webkit-overflow-scrolling: touch;
+          /* hardware-accelerate so iOS doesn't composite-lag */
+          transform: translateZ(0);
+          -webkit-transform: translateZ(0);
+        }
+
+        .hamburger-bar {
+          display: block;
+          width: 24px;
+          height: 2px;
+          border-radius: 9999px;
+          transition: transform 0.3s, opacity 0.3s, background-color 0.3s;
+        }
+      `}</style>
+
+      {/* ── Navbar ── */}
       <nav
-        className={[
-          "fixed top-0 left-0 right-0 z-50 flex items-center justify-between px-10 h-[80px] transition-all duration-300",
-          scrolled ? "bg-[#f5f2eb]/90 text-black backdrop-blur-md shadow-sm" : "bg-transparent",
-        ].join(" ")}
+        style={{
+          position: "fixed",
+          top: 0,
+          left: 0,
+          right: 0,
+          zIndex: 50,
+          height: 72,
+          display: "flex",
+          alignItems: "center",
+          justifyContent: "space-between",
+          padding: "0 24px",
+          transition: "background 0.3s",
+          background: scrolled || mobileOpen ? "#f5f2eb" : "transparent",
+          boxShadow: scrolled ? "0 1px 8px rgba(0,0,0,0.08)" : "none",
+        }}
       >
         {/* Logo */}
-        <a href="#home" className="flex items-center gap-2.5 group">
+        <a href="/" className="nav-tap" style={{ display: "flex", alignItems: "center" }}>
           <img
             src="/logo-nobg.webp"
             alt="Paradista"
-            className="w-30 h-20 object-contain transition-transform duration-300 mt-4 group-hover:scale-105"
+            style={{ width: 112, height: 64, objectFit: "contain", marginTop: 12 }}
           />
         </a>
 
         {/* Desktop Links */}
-        <ul className="hidden md:flex items-center gap-9 list-none">
+        <ul
+          style={{
+            display: "none",
+            listStyle: "none",
+            margin: 0,
+            padding: 0,
+            gap: 36,
+          }}
+          className="md:!flex items-center"
+        >
           {navLinks.map((link) => (
             <li key={link.label}>
               <a
                 href={link.href}
-                className={[
-                  linkClass,
-                  "relative",
-                  "after:absolute after:bottom-[-2px] after:left-0 after:h-px after:w-0 after:bg-current",
-                  "after:transition-all after:duration-300 hover:after:w-full",
-                ].join(" ")}
+                style={{
+                  fontWeight: 700,
+                  letterSpacing: "0.15em",
+                  fontSize: 13,
+                  textTransform: "uppercase",
+                  textDecoration: "none",
+                  color: scrolled ? "#292524" : "#fff",
+                  transition: "color 0.2s",
+                }}
               >
                 {link.label}
               </a>
             </li>
           ))}
-
-          {/* Rooms Dropdown */}
-          <li className="relative" ref={dropdownRef}>
-            <button
-              className={`${linkClass} flex items-center gap-1.5`}
-              onMouseEnter={() => setRoomsOpen(true)}
-              onMouseLeave={() => setRoomsOpen(false)}
-              onClick={() => setRoomsOpen(!roomsOpen)}
-            >
-              ROOMS
-              <svg
-                className={`w-2.5 h-2.5 transition-transform duration-200 ${roomsOpen ? "rotate-180" : ""}`}
-                viewBox="0 0 10 10"
-                fill="none"
-                stroke="currentColor"
-                strokeWidth="1.8"
-              >
-                <polyline points="2,3.5 5,6.5 8,3.5" />
-              </svg>
-            </button>
-
-            {/* Dropdown Panel */}
-            <div
-              className={[
-                "absolute top-[calc(100%+14px)] left-1/2 -translate-x-1/2 w-52",
-                "bg-[#f5f2eb] border border-[#2d5a3d]/10 rounded-sm shadow-xl overflow-hidden",
-                "transition-all duration-200",
-                roomsOpen
-                  ? "opacity-100 translate-y-0 pointer-events-auto"
-                  : "opacity-0 -translate-y-2 pointer-events-none",
-              ].join(" ")}
-              onMouseEnter={() => setRoomsOpen(true)}
-              onMouseLeave={() => setRoomsOpen(false)}
-            >
-              {roomOptions.map((room, i) => (
-                <a
-                  key={room}
-                  href="#rooms"
-                  className={[
-                    "block px-5 py-3 text-[11px] font-medium tracking-widest uppercase",
-                    "text-stone-700 hover:bg-[#2d5a3d] hover:text-white transition-colors duration-150",
-                    i !== roomOptions.length - 1 ? "border-b border-[#2d5a3d]/10" : "",
-                  ].join(" ")}
-                >
-                  {room}
-                </a>
-              ))}
-            </div>
-          </li>
         </ul>
 
-        {/* Book Now — Desktop */}
-        <button className="hidden md:block text-[11px] font-semibold tracking-widest uppercase text-white bg-[#2d5a3d] px-7 py-3.5 rounded-sm shadow-lg shadow-[#2d5a3d]/30 hover:bg-[#1e3f2b] hover:-translate-y-px hover:shadow-xl active:translate-y-0 transition-all duration-200">
-          BOOK NOW
+        {/* Inquire Now — Desktop */}
+        <button
+          className="nav-tap hidden md:block"
+          style={{
+            fontSize: 11,
+            fontWeight: 600,
+            letterSpacing: "0.18em",
+            textTransform: "uppercase",
+            color: "#fff",
+            background: "#2d5a3d",
+            padding: "14px 28px",
+            border: "none",
+            borderRadius: 2,
+            cursor: "pointer",
+          }}
+          onMouseEnter={(e) => (e.currentTarget.style.background = "#1e3f2b")}
+          onMouseLeave={(e) => (e.currentTarget.style.background = "#2d5a3d")}
+        >
+          INQUIRE NOW
         </button>
 
-        {/* Hamburger — Mobile */}
+        {/* ── Hamburger button — the real fix is using onTouchEnd + onClick together ── */}
         <button
-          className="md:hidden flex flex-col gap-[5px] p-1.5"
-          onClick={() => setMobileOpen(!mobileOpen)}
-          aria-label="Toggle menu"
+          type="button"
+          aria-label={mobileOpen ? "Close menu" : "Open menu"}
+          aria-expanded={mobileOpen}
+          className="nav-tap md:hidden"
+          onClick={toggle}
+          onTouchEnd={(e) => {
+            e.preventDefault(); // prevent ghost click on iOS
+            toggle();
+          }}
+          style={{
+            background: "none",
+            border: "none",
+            padding: 8,
+            display: "flex",
+            flexDirection: "column",
+            justifyContent: "center",
+            alignItems: "center",
+            gap: 5,
+            cursor: "pointer",
+            minWidth: 44,
+            minHeight: 44,
+          }}
         >
+          {/* Bar 1 */}
           <span
-            className={[
-              "block w-6 h-0.5 rounded transition-all duration-300",
-              scrolled ? "bg-stone-800" : "bg-white",
-              mobileOpen ? "translate-y-[7px] rotate-45" : "",
-            ].join(" ")}
+            className="hamburger-bar"
+            style={{
+              background: scrolled || mobileOpen ? "#292524" : "#fff",
+              transform: mobileOpen ? "translateY(7px) rotate(45deg)" : "none",
+            }}
           />
+          {/* Bar 2 */}
           <span
-            className={[
-              "block w-6 h-0.5 rounded transition-all duration-300",
-              scrolled ? "bg-stone-800" : "bg-white",
-              mobileOpen ? "opacity-0" : "",
-            ].join(" ")}
+            className="hamburger-bar"
+            style={{
+              background: scrolled || mobileOpen ? "#292524" : "#fff",
+              opacity: mobileOpen ? 0 : 1,
+              transform: mobileOpen ? "scaleX(0)" : "none",
+            }}
           />
+          {/* Bar 3 */}
           <span
-            className={[
-              "block w-6 h-0.5 rounded transition-all duration-300",
-              scrolled ? "bg-stone-800" : "bg-white",
-              mobileOpen ? "-translate-y-[7px] -rotate-45" : "",
-            ].join(" ")}
+            className="hamburger-bar"
+            style={{
+              background: scrolled || mobileOpen ? "#292524" : "#fff",
+              transform: mobileOpen ? "translateY(-7px) rotate(-45deg)" : "none",
+            }}
           />
         </button>
       </nav>
 
-      {/* Mobile Menu */}
-      <div
-        className={[
-          "fixed top-[80px] left-0 right-0 z-40 md:hidden",
-          "bg-[#f5f2eb] backdrop-blur-lg border-t border-[#2d5a3d]/10",
-          "px-8 pt-6 pb-8 flex flex-col gap-1",
-          "transition-all duration-300",
-          mobileOpen
-            ? "opacity-100 translate-y-0 pointer-events-auto"
-            : "opacity-0 -translate-y-3 pointer-events-none",
-        ].join(" ")}
-      >
-        {navLinks.map((link) => (
-          <a
-            key={link.label}
-            href={link.href}
-            onClick={() => setMobileOpen(false)}
-            className="text-[12px] font-medium tracking-widest uppercase text-stone-800 py-3.5 border-b border-[#2d5a3d]/10 hover:text-[#2d5a3d] transition-colors"
-          >
-            {link.label}
-          </a>
-        ))}
+      {/* ── Mobile Menu — only in DOM when open ── */}
+      {mobileOpen && (
+        <div className="mobile-menu md:hidden">
 
-        {/* Mobile Rooms Toggle */}
-        <button
-          onClick={() => setMobileRoomsOpen(!mobileRoomsOpen)}
-          className="flex justify-between items-center text-[12px] font-medium tracking-widest uppercase text-stone-800 py-3.5 border-b border-[#2d5a3d]/10 hover:text-[#2d5a3d] transition-colors"
-        >
-          ROOMS
-          <svg
-            className={`w-3 h-3 transition-transform duration-200 ${mobileRoomsOpen ? "rotate-180" : ""}`}
-            viewBox="0 0 10 10"
-            fill="none"
-            stroke="currentColor"
-            strokeWidth="1.8"
-          >
-            <polyline points="2,3.5 5,6.5 8,3.5" />
-          </svg>
-        </button>
-
-        {mobileRoomsOpen && (
-          <div className="pl-4">
-            {roomOptions.map((room) => (
+          <nav style={{ display: "flex", flexDirection: "column" }}>
+            {navLinks.map((link, i) => (
               <a
-                key={room}
-                href="#rooms"
-                onClick={() => setMobileOpen(false)}
-                className="block text-[11px] font-medium tracking-widest uppercase text-stone-500 py-2.5 border-b border-[#2d5a3d]/10 hover:text-[#2d5a3d] transition-colors"
+                key={link.label}
+                href={link.href}
+                className="nav-tap"
+                onClick={close}
+                style={{
+                  fontSize: 13,
+                  fontWeight: 600,
+                  letterSpacing: "0.2em",
+                  textTransform: "uppercase",
+                  textDecoration: "none",
+                  color: "#44403c",
+                  padding: "20px 0",
+                  borderBottom: "1px solid rgba(45,90,61,0.1)",
+                  display: "block",
+                }}
               >
-                {room}
+                {link.label}
               </a>
             ))}
-          </div>
-        )}
+          </nav>
 
-        <a
-          href="#book"
-          onClick={() => setMobileOpen(false)}
-          className="mt-5 text-center text-[11px] font-semibold tracking-widest uppercase text-white bg-[#2d5a3d] py-4 rounded-sm shadow-lg hover:bg-[#1e3f2b] transition-colors"
-        >
-          BOOK NOW
-        </a>
-      </div>
+          <a
+            href="#book"
+            className="nav-tap"
+            onClick={close}
+            style={{
+              marginTop: 40,
+              display: "block",
+              textAlign: "center",
+              fontSize: 11,
+              fontWeight: 600,
+              letterSpacing: "0.2em",
+              textTransform: "uppercase",
+              textDecoration: "none",
+              color: "#fff",
+              background: "#2d5a3d",
+              padding: "16px 0",
+              borderRadius: 2,
+            }}
+          >
+            INQUIRE NOW
+          </a>
+        </div>
+      )}
     </>
   );
 }
