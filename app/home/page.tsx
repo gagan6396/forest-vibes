@@ -5,6 +5,7 @@ import WelcomeSection from './WelcomeSection'
 import HotelSections from './HotelSections'
 import TestimonialsAndOffers from './TestimonialAndOffers'
 import Footer from '@/components/Footer'
+import LocationSection from './LocationSection'
 
 function page() {
   return (
@@ -13,6 +14,7 @@ function page() {
     <HeroSection/>
     <WelcomeSection/>
     <HotelSections/>
+    <LocationSection/>
     <TestimonialsAndOffers/>
     <Footer/>
     </>

@@ -163,11 +163,11 @@ function RoomCard({ room, index }: { room: Room; index: number }) {
 
         {/* CTAs */}
         <div className="flex gap-3">
-          <button className="border border-[#3a6349] text-[#3a6349] text-xs font-bold uppercase tracking-widest px-6 py-3 hover:bg-[#3a6349] hover:text-white transition-colors duration-200">
+          {/* <button className="border border-[#3a6349] text-[#3a6349] text-xs font-bold uppercase tracking-widest px-6 py-3 hover:bg-[#3a6349] hover:text-white transition-colors duration-200">
             Browse Room
-          </button>
+          </button> */}
           <button className="bg-[#3a6349] text-white text-xs font-bold uppercase tracking-widest px-6 py-3 hover:bg-[#2d4f39] transition-colors duration-200">
-            Book Now
+            Inquire Now
           </button>
         </div>
       </div>

@@ -12,13 +12,13 @@ const SITE_TAGLINE =
 const LOGO_IMAGE_URL: string | null = "/logo-nobg.webp"; // e.g. "/logo.png" or "https://..."
 
 const quickLinks = [
-  { label: "Home", href: "#" },
-  { label: "About", href: "#" },
-  { label: "Rooms & Suites", href: "#" },
-  { label: "Restaurant", href: "#" },
+  { label: "Home", href: "/" },
+  { label: "About", href: "/about-us" },
+  { label: "Contact", href: "contact-us" },
   { label: "Gallery", href: "#" },
-  { label: "Blog", href: "#" },
-  { label: "Contact", href: "#" },
+  // { label: "Rooms & Suites", href: "#" },
+  // { label: "Restaurant", href: "#" },
+  // { label: "Blog", href: "#" },
 ];
 
 const contactInfo = {
