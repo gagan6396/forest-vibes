@@ -5,7 +5,7 @@ import { useState, useEffect } from "react";
 const navLinks = [
   { label: "HOME", href: "/" },
   { label: "ABOUT US", href: "/about-us" },
-  { label: "CONTACT US", href: "/contact-us" },
+  { label: "CONTACT US", href: "contact-us" },
   { label: "ROOMS", href: "/rooms" },
 ];
 
@@ -15,106 +15,45 @@ export default function Navbar() {
 
   useEffect(() => {
     const handleScroll = () => setScrolled(window.scrollY > 30);
-    window.addEventListener("scroll", handleScroll, { passive: true });
+    window.addEventListener("scroll", handleScroll);
     return () => window.removeEventListener("scroll", handleScroll);
   }, []);
 
-  useEffect(() => {
-    if (mobileOpen) {
-      document.documentElement.style.overflow = "hidden";
-    } else {
-      document.documentElement.style.overflow = "";
-    }
-    return () => { document.documentElement.style.overflow = ""; };
-  }, [mobileOpen]);
-
-  const toggle = () => setMobileOpen((v) => !v);
-  const close = () => setMobileOpen(false);
+  const linkClass = [
+    "font-bold tracking-widest text-[15px] uppercase transition-colors duration-200",
+    scrolled ? "text-stone-800 hover:text-[#2d5a3d]" : "text-white hover:text-white/70",
+  ].join(" ");
 
   return (
     <>
-      <style>{`
-        /* iOS Safari requires cursor:pointer for onClick to fire on non-button elements */
-        .nav-tap { cursor: pointer; -webkit-tap-highlight-color: transparent; }
-
-        .mobile-menu {
-          position: fixed;
-          top: 72px;
-          left: 0;
-          right: 0;
-          bottom: 0;
-          z-index: 40;
-          background: #f5f2eb;
-          display: flex;
-          flex-direction: column;
-          padding: 32px;
-          overflow-y: auto;
-          -webkit-overflow-scrolling: touch;
-          /* hardware-accelerate so iOS doesn't composite-lag */
-          transform: translateZ(0);
-          -webkit-transform: translateZ(0);
-        }
-
-        .hamburger-bar {
-          display: block;
-          width: 24px;
-          height: 2px;
-          border-radius: 9999px;
-          transition: transform 0.3s, opacity 0.3s, background-color 0.3s;
-        }
-      `}</style>
-
-      {/* ── Navbar ── */}
+      {/* Navbar */}
       <nav
-        style={{
-          position: "fixed",
-          top: 0,
-          left: 0,
-          right: 0,
-          zIndex: 50,
-          height: 72,
-          display: "flex",
-          alignItems: "center",
-          justifyContent: "space-between",
-          padding: "0 24px",
-          transition: "background 0.3s",
-          background: scrolled || mobileOpen ? "#f5f2eb" : "transparent",
-          boxShadow: scrolled ? "0 1px 8px rgba(0,0,0,0.08)" : "none",
-        }}
+        className={[
+          "fixed top-0 left-0 right-0 z-50 flex items-center justify-between px-10 h-[80px] transition-all duration-300",
+          scrolled ? "bg-[#f5f2eb]/90 text-black backdrop-blur-md shadow-sm" : "bg-transparent",
+        ].join(" ")}
       >
         {/* Logo */}
-        <a href="/" className="nav-tap" style={{ display: "flex", alignItems: "center" }}>
+        <a href="#home" className="flex items-center gap-2.5 group">
           <img
             src="/logo-nobg.webp"
             alt="Paradista"
-            style={{ width: 112, height: 64, objectFit: "contain", marginTop: 12 }}
+            className="w-30 h-20 object-contain transition-transform duration-300 mt-4 group-hover:scale-105"
           />
         </a>
 
         {/* Desktop Links */}
-        <ul
-          style={{
-            display: "none",
-            listStyle: "none",
-            margin: 0,
-            padding: 0,
-            gap: 36,
-          }}
-          className="md:!flex items-center"
-        >
+        <ul className="hidden md:flex items-center gap-9 list-none">
           {navLinks.map((link) => (
             <li key={link.label}>
               <a
                 href={link.href}
-                style={{
-                  fontWeight: 700,
-                  letterSpacing: "0.15em",
-                  fontSize: 13,
-                  textTransform: "uppercase",
-                  textDecoration: "none",
-                  color: scrolled ? "#292524" : "#fff",
-                  transition: "color 0.2s",
-                }}
+                className={[
+                  linkClass,
+                  "relative",
+                  "after:absolute after:bottom-[-2px] after:left-0 after:h-px after:w-0 after:bg-current",
+                  "after:transition-all after:duration-300 hover:after:w-full",
+                ].join(" ")}
               >
                 {link.label}
               </a>
@@ -122,131 +61,72 @@ export default function Navbar() {
           ))}
         </ul>
 
-        {/* Inquire Now — Desktop */}
-        <button
-          className="nav-tap hidden md:block"
-          style={{
-            fontSize: 11,
-            fontWeight: 600,
-            letterSpacing: "0.18em",
-            textTransform: "uppercase",
-            color: "#fff",
-            background: "#2d5a3d",
-            padding: "14px 28px",
-            border: "none",
-            borderRadius: 2,
-            cursor: "pointer",
-          }}
-          onMouseEnter={(e) => (e.currentTarget.style.background = "#1e3f2b")}
-          onMouseLeave={(e) => (e.currentTarget.style.background = "#2d5a3d")}
-        >
+        {/* Book Now — Desktop */}
+        <button className="hidden md:block text-[11px] font-semibold tracking-widest uppercase text-white bg-[#2d5a3d] px-7 py-3.5 rounded-sm shadow-lg shadow-[#2d5a3d]/30 hover:bg-[#1e3f2b] hover:-translate-y-px hover:shadow-xl active:translate-y-0 transition-all duration-200">
           INQUIRE NOW
         </button>
 
-        {/* ── Hamburger button — the real fix is using onTouchEnd + onClick together ── */}
+        {/* Hamburger — Mobile */}
         <button
-          type="button"
-          aria-label={mobileOpen ? "Close menu" : "Open menu"}
-          aria-expanded={mobileOpen}
-          className="nav-tap md:hidden"
-          onClick={toggle}
-          onTouchEnd={(e) => {
-            e.preventDefault(); // prevent ghost click on iOS
-            toggle();
-          }}
-          style={{
-            background: "none",
-            border: "none",
-            padding: 8,
-            display: "flex",
-            flexDirection: "column",
-            justifyContent: "center",
-            alignItems: "center",
-            gap: 5,
-            cursor: "pointer",
-            minWidth: 44,
-            minHeight: 44,
-          }}
+          className="md:hidden flex flex-col gap-[5px] p-1.5"
+          onClick={() => setMobileOpen(!mobileOpen)}
+          aria-label="Toggle menu"
         >
-          {/* Bar 1 */}
           <span
-            className="hamburger-bar"
-            style={{
-              background: scrolled || mobileOpen ? "#292524" : "#fff",
-              transform: mobileOpen ? "translateY(7px) rotate(45deg)" : "none",
-            }}
+            className={[
+              "block w-6 h-0.5 rounded transition-all duration-300",
+              scrolled ? "bg-stone-800" : "bg-white",
+              mobileOpen ? "translate-y-[7px] rotate-45" : "",
+            ].join(" ")}
           />
-          {/* Bar 2 */}
           <span
-            className="hamburger-bar"
-            style={{
-              background: scrolled || mobileOpen ? "#292524" : "#fff",
-              opacity: mobileOpen ? 0 : 1,
-              transform: mobileOpen ? "scaleX(0)" : "none",
-            }}
+            className={[
+              "block w-6 h-0.5 rounded transition-all duration-300",
+              scrolled ? "bg-stone-800" : "bg-white",
+              mobileOpen ? "opacity-0" : "",
+            ].join(" ")}
           />
-          {/* Bar 3 */}
           <span
-            className="hamburger-bar"
-            style={{
-              background: scrolled || mobileOpen ? "#292524" : "#fff",
-              transform: mobileOpen ? "translateY(-7px) rotate(-45deg)" : "none",
-            }}
+            className={[
+              "block w-6 h-0.5 rounded transition-all duration-300",
+              scrolled ? "bg-stone-800" : "bg-white",
+              mobileOpen ? "-translate-y-[7px] -rotate-45" : "",
+            ].join(" ")}
           />
         </button>
       </nav>
 
-      {/* ── Mobile Menu — only in DOM when open ── */}
-      {mobileOpen && (
-        <div className="mobile-menu md:hidden">
-
-          <nav style={{ display: "flex", flexDirection: "column" }}>
-            {navLinks.map((link, i) => (
-              <a
-                key={link.label}
-                href={link.href}
-                className="nav-tap"
-                onClick={close}
-                style={{
-                  fontSize: 13,
-                  fontWeight: 600,
-                  letterSpacing: "0.2em",
-                  textTransform: "uppercase",
-                  textDecoration: "none",
-                  color: "#44403c",
-                  padding: "20px 0",
-                  borderBottom: "1px solid rgba(45,90,61,0.1)",
-                  display: "block",
-                }}
-              >
-                {link.label}
-              </a>
-            ))}
-          </nav>
-
+      {/* Mobile Menu */}
+      <div
+        className={[
+          "fixed top-[80px] left-0 right-0 z-40 md:hidden",
+          "bg-[#f5f2eb] backdrop-blur-lg border-t border-[#2d5a3d]/10",
+          "px-8 pt-6 pb-8 flex flex-col gap-1",
+          "transition-all duration-300",
+          mobileOpen
+            ? "opacity-100 translate-y-0 pointer-events-auto"
+            : "opacity-0 -translate-y-3 pointer-events-none",
+        ].join(" ")}
+      >
+        {navLinks.map((link) => (
           <a
-            href="#book"
-            className="nav-tap"
-            onClick={close}
-            style={{
-              marginTop: 40,
-              display: "block",
-              textAlign: "center",
-              fontSize: 11,
-              fontWeight: 600,
-              letterSpacing: "0.2em",
-              textTransform: "uppercase",
-              textDecoration: "none",
-              color: "#fff",
-              background: "#2d5a3d",
-              padding: "16px 0",
-              borderRadius: 2,
-            }}
+            key={link.label}
+            href={link.href}
+            onClick={() => setMobileOpen(false)}
+            className="text-[12px] font-medium tracking-widest uppercase text-stone-800 py-3.5 border-b border-[#2d5a3d]/10 hover:text-[#2d5a3d] transition-colors"
           >
-            INQUIRE NOW
+            {link.label}
           </a>
-        </div>
-      )}
+        ))}
+
+        <a
+          href="#book"
+          onClick={() => setMobileOpen(false)}
+          className="mt-5 text-center text-[11px] font-semibold tracking-widest uppercase text-white bg-[#2d5a3d] py-4 rounded-sm shadow-lg hover:bg-[#1e3f2b] transition-colors"
+        >
+          INQUIRE NOW
+        </a>
+      </div>
     </>
   );
 }
