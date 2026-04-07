@@ -84,6 +84,8 @@ export default function AmenitiesShowcase() {
                   {a.number}
                 </span>
 
+
+
                 {/* Main content */}
                 <div className="flex-1 min-w-0">
                   <div className="flex items-baseline justify-between gap-4 mb-2">
