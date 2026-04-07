@@ -7,12 +7,12 @@ export default function ContactHero() {
       {/* Background image */}
       <img
         src="https://images.unsplash.com/photo-1506744038136-46273834b3fb?w=1600&q=85"
-        alt="Paradista Hotel"
+        alt="Forrest Vibes Hotel"
         className="absolute inset-0 w-full h-full object-cover object-center"
       />
 
       {/* Light overlay — keeps it bright and airy */}
-      <div className="absolute inset-0 bg-white/30" />
+      {/* <div className="absolute inset-0 bg-white/30" /> */}
 
       {/* Centered text */}
       <div className="absolute inset-0 flex flex-col items-center justify-center text-center px-6">
@@ -21,7 +21,7 @@ export default function ContactHero() {
         </p>
         <h1 className="font-serif font-light text-[#1a1a1a] text-[clamp(2.2rem,5vw,3.8rem)] leading-[1.1] tracking-tight">
           Get in Touch<br />
-          with <em className="italic text-[#3a6349]">Paradista</em>
+          with <em className="italic text-white">Forrest Vibes</em>
         </h1>
         <div className="w-8 h-px bg-[#3a6349]/40 mt-6" />
       </div>

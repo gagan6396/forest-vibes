@@ -62,8 +62,8 @@ function AccordionItem({
       >
         {/* Number */}
         <span
-          className="shrink-0 font-serif text-xs tracking-widest text-black pt-1 select-none transition-colors duration-300"
-          style={{ fontFamily: "'Playfair Display', Georgia, serif" }}
+          className="shrink-0 font-serif text-xl tracking-widest text-black pt-1 select-none transition-colors duration-300"
+         
         >
           {String(index + 1).padStart(2, "0")}
         </span>
@@ -71,7 +71,7 @@ function AccordionItem({
         {/* Question */}
         <span
           className="flex-1 font-medium text-black text-base md:text-lg leading-snug transition-colors duration-300"
-          style={{ fontFamily: "'Cormorant Garamond', Georgia, serif", fontWeight: 600 }}
+          
         >
           {faq.q}
         </span>

@@ -348,11 +348,92 @@ export default function RoomsSection() {
     <>
       <style>{`
         @import url('https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,600;1,400;1,600&family=Lato:wght@300;400;700&display=swap');
+        
+        /* Section animations */
+        @keyframes fadeInUp {
+          from {
+            opacity: 0;
+            transform: translateY(30px);
+          }
+          to {
+            opacity: 1;
+            transform: translateY(0);
+          }
+        }
+        
+        @keyframes fadeInLeft {
+          from {
+            opacity: 0;
+            transform: translateX(-30px);
+          }
+          to {
+            opacity: 1;
+            transform: translateX(0);
+          }
+        }
+        
+        @keyframes fadeInRight {
+          from {
+            opacity: 0;
+            transform: translateX(30px);
+          }
+          to {
+            opacity: 1;
+            transform: translateX(0);
+          }
+        }
+        
+        @keyframes scaleIn {
+          from {
+            opacity: 0;
+            transform: scale(0.9);
+          }
+          to {
+            opacity: 1;
+            transform: scale(1);
+          }
+        }
+        
+        @keyframes slideInBottom {
+          from {
+            opacity: 0;
+            transform: translateY(50px);
+          }
+          to {
+            opacity: 1;
+            transform: translateY(0);
+          }
+        }
+        
+        .animate-header {
+          animation: fadeInUp 0.6s ease forwards;
+        }
+        
+        .animate-card {
+          opacity: 0;
+          animation: scaleIn 0.5s cubic-bezier(0.22, 1, 0.36, 1) forwards;
+        }
+        
+        .animate-card:nth-child(1) { animation-delay: 0.1s; }
+        .animate-card:nth-child(2) { animation-delay: 0.2s; }
+        .animate-card:nth-child(3) { animation-delay: 0.3s; }
+        
+        .animate-offer-section {
+          animation: slideInBottom 0.7s cubic-bezier(0.22, 1, 0.36, 1) forwards;
+        }
+        
+        .animate-offer-content {
+          animation: fadeInLeft 0.8s ease forwards;
+        }
+        
+        .animate-image {
+          animation: fadeInRight 0.8s ease forwards;
+        }
       `}</style>
 
       <section className="bg-[#f0ece0] py-16 px-6">
         {/* Header */}
-        <div className="text-center mb-14">
+        <div className="text-center mb-14 animate-header">
           <span
             className="block text-[10px] tracking-[0.22em] uppercase text-[#3b5e45] mb-3"
             style={{ fontFamily: "'Cormorant Garamond', Georgia, serif", fontStyle: "italic" }}
@@ -370,10 +451,11 @@ export default function RoomsSection() {
 
         {/* Grid */}
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 max-w-[1020px] mx-auto">
-          {rooms.map((room) => (
+          {rooms.map((room, index) => (
             <div
               key={room.name}
-              className="bg-white rounded-2xl overflow-hidden border border-[#e0d9cf] flex flex-col group transition-all duration-300 hover:-translate-y-1 hover:shadow-2xl"
+              className="animate-card bg-white rounded-2xl overflow-hidden border border-[#e0d9cf] flex flex-col group transition-all duration-300 hover:-translate-y-1 hover:shadow-2xl"
+              style={{ animationDelay: `${0.1 + index * 0.1}s` }}
             >
               {/* Image */}
               <div className="relative h-64 overflow-hidden">
@@ -462,21 +544,21 @@ export default function RoomsSection() {
       </section>
 
       {/* just above footer */}
-      <section className="relative min-h-[580px] overflow-hidden flex items-center">
+      <section className="relative min-h-[580px] overflow-hidden flex items-center animate-offer-section">
         <img
           src="https://images.unsplash.com/photo-1615874959474-d609969a20ed?w=1600&q=80"
           alt="Luxury hotel lounge"
-          className="absolute inset-0 w-full h-full object-cover"
+          className="absolute inset-0 w-full h-full object-cover animate-image"
         />
         <div className="absolute inset-0 bg-black/30" />
         <div className="relative z-10 w-full px-8 md:px-20 py-16 flex items-end md:items-center min-h-[580px]">
-          <div className="bg-white w-full max-w-[400px] p-10">
+          <div className="bg-white w-full max-w-[400px] p-10 animate-offer-content">
             <p className="text-xs italic text-[#999] font-serif mb-3">Get Yours</p>
             <h2 className="font-serif text-[2.2rem] leading-tight text-[#1a1a1a] mb-5 tracking-tight">
               Discover Special Offers Just For You Today
             </h2>
             <p className="text-[12.5px] text-[#666] leading-relaxed mb-8">
-              Unlock exclusive deals and packages for your next getaway at Paradista. Take advantage of our special offers and make your stay even more memorable.
+              Unlock exclusive deals and packages for your next getaway at Forrest Vibes. Take advantage of our special offers and make your stay even more memorable.
             </p>
             <button className="bg-[#3a6349] text-white text-[11px] font-bold uppercase tracking-widest px-8 py-3 hover:bg-[#2d4f39] transition-colors">
               Inquire Offer

@@ -96,7 +96,7 @@ export default function ContactForm() {
             {/* Map embed */}
             <div className="flex-1" style={{ minHeight: "380px" }}>
               <iframe
-                title="Paradista Location"
+                title="Forrest Vibes Location"
                 src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3113.2!2d-9.1523!3d38.7223!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0xd1933a6e6f6f6f7%3A0x0!2sAvenida+Miguel+Bombarda%2C+Lisboa!5e0!3m2!1sen!2spt!4v1"
                 width="100%"
                 height="100%"
@@ -112,13 +112,13 @@ export default function ContactForm() {
               <p className="font-serif italic text-[12px] text-white/60 mb-7">Find us here</p>
               <div className="space-y-6">
                 {[
-                  { label: "Address", value: "Avenida Miguel Bombarda 89\nPortugal 1600-764" },
-                  { label: "Email", value: "hello@paradista.com" },
-                  { label: "Phone", value: "(123) 456-7890" },
+                  { label: "Address", value: "Moza Bajhet, Khasra no- 51, Bajhet, Raipur PO:Raipur, DIST: Dehradun, Uttarakhand - 248008" },
+                  { label: "Email", value: "hello@Forrest Vibes.com" },
+                  { label: "Phone", value: "+91 7500131319" },
                   { label: "Reception", value: "Open 24 / 7" },
                 ].map((item) => (
                   <div key={item.label} className="flex gap-6 items-start">
-                    <span className="text-[9px] uppercase tracking-[0.2em] text-[#3a6349] font-light pt-0.5 w-20 flex-shrink-0">
+                    <span className="text-[9px] uppercase tracking-[0.2em] text-white font-bold pt-0.5 w-20 flex-shrink-0">
                       {item.label}
                     </span>
                     <span className="text-[13px] font-light text-white/70 leading-relaxed whitespace-pre-line">

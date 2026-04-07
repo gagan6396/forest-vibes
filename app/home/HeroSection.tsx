@@ -134,7 +134,7 @@ export default function HeroSection() {
               className="text-black text-[13.5px] leading-[1.78] max-w-[360px] mb-10 anim-fade-up-3"
               style={{ fontWeight: 300 }}
             >
-              Immerse Yourself in Elegance and Comfort at Paradista. Our
+              Immerse Yourself in Elegance and Comfort at Forrest Vibes. Our
               Exceptional Accommodations, Impeccable Service, and Unrivaled
               Hospitality Await Your Arrival. Your Perfect Getaway Starts Here.
             </p>

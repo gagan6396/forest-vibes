@@ -55,15 +55,15 @@ export default function AmenitiesShowcase() {
 
   return (
     <>
-    <section className="min-h-screen bg-[#f0f7f4] px-6 py-20 md:px-24 md:py-28">
+   <section className="bg-[#f0f7f4] px-6 py-12 md:px-24 md:py-16">
       <div className="max-w-3xl mx-auto">
 
         {/* Header */}
-        <div className={`mb-16 transition-all duration-700 ${visible ? "opacity-100 translate-y-0" : "opacity-0 translate-y-4"}`}>
-          <p className="font-light text-[11px] tracking-[0.22em] uppercase text-[#7a9e90] mb-4">
+        <div className={`mb-10 transition-all duration-700 ${visible ? "opacity-100 translate-y-0" : "opacity-0 translate-y-4"}`}>
+          <p className="font-light text-[10px] tracking-[0.22em] uppercase text-[#7a9e90] mb-3">
             Crafted for You
           </p>
-          <h2 className="font-serif italic font-light text-[#2d4a3e] text-5xl md:text-6xl leading-[1.08]">
+          <h2 className="font-serif italic font-light text-[#2d4a3e] text-4xl md:text-5xl leading-[1.08]">
             Our Amenities
           </h2>
         </div>
@@ -75,39 +75,38 @@ export default function AmenitiesShowcase() {
               key={a.id}
               onMouseEnter={() => setHovered(i)}
               onMouseLeave={() => setHovered(null)}
-              className="group border-t border-[#c2ddd3] py-8 cursor-default"
+              className="group border-t border-[#c2ddd3] py-5 cursor-default"
             >
-              <div className="flex items-start gap-8">
+              <div className="flex items-start gap-6">
 
                 {/* Number */}
-                <span className={`font-light text-[11px] tracking-[0.12em] pt-1 transition-colors duration-300 flex-shrink-0 ${hovered === i ? "text-[#7dbfa0]" : "text-[#b8d4c8]"}`}>
+                <span className={`font-light text-[10px] tracking-[0.12em] pt-0.5 transition-colors duration-300 flex-shrink-0 ${hovered === i ? "text-[#7dbfa0]" : "text-[#b8d4c8]"}`}>
                   {a.number}
                 </span>
 
                 {/* Main content */}
                 <div className="flex-1 min-w-0">
-                  <div className="flex items-baseline justify-between gap-4 mb-3">
+                  <div className="flex items-baseline justify-between gap-4 mb-2">
                     <div>
-
-                      <span className={`font-serif italic font-light text-2xl md:text-3xl transition-colors duration-300 ${hovered === i ? "text-[#2d4a3e]" : "text-[#4a7060]"}`}>
+                      <span className={`font-serif italic font-light text-xl md:text-2xl transition-colors duration-300 ${hovered === i ? "text-[#2d4a3e]" : "text-[#4a7060]"}`}>
                         {a.label}
                       </span>
                     </div>
                     {/* Arrow */}
-                    <span className={`font-light text-sm transition-all duration-300 flex-shrink-0 ${hovered === i ? "text-[#7dbfa0] translate-x-1" : "text-[#c2ddd3] translate-x-0"}`}>
+                    <span className={`font-light text-xs transition-all duration-300 flex-shrink-0 ${hovered === i ? "text-[#7dbfa0] translate-x-1" : "text-[#c2ddd3] translate-x-0"}`}>
                       →
                     </span>
                   </div>
 
                   {/* Description — reveals on hover */}
-                  <div className={`overflow-hidden transition-all duration-500 ease-in-out ${hovered === i ? "max-h-40 opacity-100" : "max-h-0 opacity-0"}`}>
-                    <p className="font-light text-sm leading-[1.9] text-[#7a9e90] mb-4">
+                  <div className={`overflow-hidden transition-all duration-500 ease-in-out ${hovered === i ? "max-h-32 opacity-100" : "max-h-0 opacity-0"}`}>
+                    <p className="font-light text-xs leading-[1.8] text-[#7a9e90] mb-3">
                       {a.description}
                     </p>
-                    <div className="flex flex-wrap gap-x-6 gap-y-1">
+                    <div className="flex flex-wrap gap-x-5 gap-y-1">
                       {a.details.map((d) => (
-                        <span key={d} className="flex items-center gap-2 font-light text-[11px] text-[#7a9e90]">
-                          <span className="w-[3px] h-[3px] rounded-full bg-[#7dbfa0] flex-shrink-0" />
+                        <span key={d} className="flex items-center gap-1.5 font-light text-[10px] text-[#7a9e90]">
+                          <span className="w-[2px] h-[2px] rounded-full bg-[#7dbfa0] flex-shrink-0" />
                           {d}
                         </span>
                       ))}
@@ -122,13 +121,13 @@ export default function AmenitiesShowcase() {
         </div>
 
         {/* Footer */}
-        <div className={`mt-14 flex items-center justify-between transition-all duration-700 delay-500 ${visible ? "opacity-100" : "opacity-0"}`}>
-          <span className="font-light text-[10px] tracking-[0.22em] uppercase text-[#a8c4b8]">
-            Paradista Hotel
+        <div className={`mt-10 flex items-center justify-between transition-all duration-700 delay-500 ${visible ? "opacity-100" : "opacity-0"}`}>
+          <span className="font-light text-[9px] tracking-[0.22em] uppercase text-[#a8c4b8]">
+            Forrest Vibes Hotel
           </span>
-          <button className="group flex items-center gap-3 font-light text-[10px] tracking-[0.2em] uppercase text-[#2d4a3e] hover:text-[#7dbfa0] transition-colors duration-300">
+          <button className="group flex items-center gap-3 font-light text-[9px] tracking-[0.2em] uppercase text-[#2d4a3e] hover:text-[#7dbfa0] transition-colors duration-300">
             Reserve a Stay
-            <span className="w-6 h-px bg-current group-hover:w-10 transition-all duration-500" />
+            <span className="w-5 h-px bg-current group-hover:w-8 transition-all duration-500" />
           </button>
         </div>
 
@@ -166,7 +165,7 @@ export default function AmenitiesShowcase() {
  
           {/* Body */}
           <p className="text-[12px] text-[#888] leading-[1.85] mb-8 font-light">
-            Unlock exclusive deals and packages for your next getaway at Paradista.
+            Unlock exclusive deals and packages for your next getaway at Forrest Vibes.
             Take advantage of our special offers and make your stay even more memorable.
           </p>
  

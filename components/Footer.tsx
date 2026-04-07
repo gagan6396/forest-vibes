@@ -22,10 +22,9 @@ const quickLinks = [
 ];
 
 const contactInfo = {
-  address: "14 Whispering Pines Road, Mussoorie, Uttarakhand 248179, India",
-  phone: "+91 98765 43210",
+  address: "Moza Bajhet, Khasra no- 51, Bajhet, Raipur PO:Raipur, DIST: Dehradun, Uttarakhand - 248008",
+  phone: "+91 7500131319",
   email: "stay@forestvibes.in",
-  hours: "Reception open 24 / 7",
 };
 
 const socials = [
@@ -102,18 +101,18 @@ export default function Footer() {
       {/* Top divider */}
       <div className="h-px bg-[#d8d4c8] mx-8" />
 
-      <div className="max-w-6xl mx-auto px-6 py-16">
+      <div className="max-w-6xl mx-auto px-6 py-14">
         <div className="grid grid-cols-1 md:grid-cols-12 gap-12">
 
           {/* ── Col 1: Brand (5 cols) ── */}
           <div className="md:col-span-5">
             <Logo />
-            <p className="text-[13px] text-[#666] leading-relaxed mb-8 max-w-sm">
+            <p className="text-[13px] text-black leading-relaxed mb-8 max-w-sm">
               {SITE_TAGLINE}
             </p>
 
             {/* Newsletter */}
-            <p className="text-[10px] uppercase tracking-widest text-[#888] font-semibold mb-3">
+            <p className="text-[10px] uppercase tracking-widest text-black font-semibold mb-3">
               Subscribe to our newsletter
             </p>
             {submitted ? (
@@ -156,7 +155,7 @@ export default function Footer() {
 
           {/* ── Col 2: Quick Links (3 cols) ── */}
           <div className="md:col-span-3">
-            <p className="text-[10px] uppercase tracking-widest text-[#888] font-semibold mb-6">
+            <p className="text-[20px] uppercase tracking-widest text-black font-bold mb-6">
               Quick Links
             </p>
             <ul className="flex flex-col gap-3">
@@ -164,7 +163,7 @@ export default function Footer() {
                 <li key={link.label}>
                   <a
                     href={link.href}
-                    className="text-[13px] text-[#444] hover:text-[#3a6349] transition-colors flex items-center gap-2 group"
+                    className="text-[13px] text-black hover:text-[#3a6349] transition-colors flex items-center gap-2 group"
                   >
                     <span className="w-3 h-px bg-[#cbc7bc] group-hover:bg-[#3a6349] group-hover:w-4 transition-all duration-200 inline-block" />
                     {link.label}
@@ -176,7 +175,7 @@ export default function Footer() {
 
           {/* ── Col 3: Contact (4 cols) ── */}
           <div className="md:col-span-4">
-            <p className="text-[10px] uppercase tracking-widest text-[#888] font-semibold mb-6">
+            <p className="text-[20px] uppercase tracking-widest text-black font-semibold mb-6">
               Contact Us
             </p>
 
@@ -189,7 +188,7 @@ export default function Footer() {
                     <path strokeLinecap="round" strokeLinejoin="round" d="M19.5 10.5c0 7.142-7.5 11.25-7.5 11.25S4.5 17.642 4.5 10.5a7.5 7.5 0 1115 0z" />
                   </svg>
                 </div>
-                <p className="text-[13px] text-[#555] leading-relaxed">{contactInfo.address}</p>
+                <p className="text-[13px] text-black leading-relaxed">{contactInfo.address}</p>
               </div>
 
               {/* Phone */}
@@ -199,7 +198,7 @@ export default function Footer() {
                     <path strokeLinecap="round" strokeLinejoin="round" d="M2.25 6.75c0 8.284 6.716 15 15 15h2.25a2.25 2.25 0 002.25-2.25v-1.372c0-.516-.351-.966-.852-1.091l-4.423-1.106c-.44-.11-.902.055-1.173.417l-.97 1.293c-.282.376-.769.542-1.21.38a12.035 12.035 0 01-7.143-7.143c-.162-.441.004-.928.38-1.21l1.293-.97c.363-.271.527-.734.417-1.173L6.963 3.102a1.125 1.125 0 00-1.091-.852H4.5A2.25 2.25 0 002.25 4.5v2.25z" />
                   </svg>
                 </div>
-                <a href={`tel:${contactInfo.phone}`} className="text-[13px] text-[#555] hover:text-[#3a6349] transition-colors">
+                <a href={`tel:${contactInfo.phone}`} className="text-[13px] text-black hover:text-[#3a6349] transition-colors">
                   {contactInfo.phone}
                 </a>
               </div>
@@ -211,20 +210,20 @@ export default function Footer() {
                     <path strokeLinecap="round" strokeLinejoin="round" d="M21.75 6.75v10.5a2.25 2.25 0 01-2.25 2.25h-15a2.25 2.25 0 01-2.25-2.25V6.75m19.5 0A2.25 2.25 0 0019.5 4.5h-15a2.25 2.25 0 00-2.25 2.25m19.5 0v.243a2.25 2.25 0 01-1.07 1.916l-7.5 4.615a2.25 2.25 0 01-2.36 0L3.32 8.91a2.25 2.25 0 01-1.07-1.916V6.75" />
                   </svg>
                 </div>
-                <a href={`mailto:${contactInfo.email}`} className="text-[13px] text-[#555] hover:text-[#3a6349] transition-colors">
+                <a href={`mailto:${contactInfo.email}`} className="text-[13px] text-black hover:text-[#3a6349] transition-colors">
                   {contactInfo.email}
                 </a>
               </div>
 
               {/* Hours */}
-              <div className="flex gap-3 items-center">
+              {/* <div className="flex gap-3 items-center">
                 <div className="w-8 h-8 border border-[#cbc7bc] flex items-center justify-center flex-shrink-0 text-[#3a6349]">
                   <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth={1.5} className="w-4 h-4">
                     <path strokeLinecap="round" strokeLinejoin="round" d="M12 6v6h4.5m4.5 0a9 9 0 11-18 0 9 9 0 0118 0z" />
                   </svg>
                 </div>
                 <p className="text-[13px] text-[#555]">{contactInfo.hours}</p>
-              </div>
+              </div> */}
             </div>
           </div>
 

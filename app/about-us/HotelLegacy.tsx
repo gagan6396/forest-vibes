@@ -5,11 +5,11 @@ import { useEffect, useRef } from "react";
 const milestones = [
   {
     title: "Founding Vision",
-    body: "Founded in 2003, Paradista began with a vision to redefine luxury hospitality. Our founders envisioned a sanctuary where discerning travelers could immerse themselves in elegance, comfort, and personalized service.",
+    body: "Founded in 2003, Forrest Vibes began with a vision to redefine luxury hospitality. Our founders envisioned a sanctuary where discerning travelers could immerse themselves in elegance, comfort, and personalized service.",
   },
   {
     title: "Growth and Evolution",
-    body: "Over the years, Paradista has evolved into a beacon of sophistication and hospitality, earning accolades and recognition for our commitment to excellence.",
+    body: "Over the years, Forrest Vibes has evolved into a beacon of sophistication and hospitality, earning accolades and recognition for our commitment to excellence.",
   },
   {
     title: "Timeless Elegance, Modern Luxury",

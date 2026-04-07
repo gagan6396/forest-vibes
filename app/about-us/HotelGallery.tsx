@@ -124,7 +124,7 @@ export default function HotelGallery() {
             >
               <div className="w-12 h-px bg-[#b89a6a]" />
               <span className="font-sans font-light text-sm text-[#7a756c] tracking-widest uppercase">
-                Paradista Hotel
+                Forrest Vibes Hotel
               </span>
             </div>
           </div>

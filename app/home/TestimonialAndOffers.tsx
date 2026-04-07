@@ -19,14 +19,14 @@ const testimonials: Testimonial[] = [
   },
   {
     id: 2,
-    quote: "Our stay at Paradista exceeded all expectations, every moment was memorable.",
+    quote: "Our stay at Forrest Vibes exceeded all expectations, every moment was memorable.",
     name: "Thomas Stone",
     role: "Businessman",
     imageUrl: "https://images.unsplash.com/photo-1500648767791-00dcc994a43e?w=600&q=80",
   },
   {
     id: 3,
-    quote: "Our stay at Paradista exceeded all expectations, every moment was memorable.",
+    quote: "Our stay at Forrest Vibes exceeded all expectations, every moment was memorable.",
     name: "Polina Kranz",
     role: "Dentist",
     imageUrl: "https://images.unsplash.com/photo-1529626455594-4ff0802cfb7e?w=600&q=80",
@@ -47,7 +47,7 @@ const testimonials: Testimonial[] = [
   },
   {
     id: 6,
-    quote: "Impeccable service and exquisite cuisine. Paradista has set a new benchmark for luxury.",
+    quote: "Impeccable service and exquisite cuisine. Forrest Vibes has set a new benchmark for luxury.",
     name: "Daniel Park",
     role: "Chef",
     imageUrl: "https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?w=600&q=80",
@@ -205,7 +205,7 @@ function SpecialOffersSection() {
             Discover Special Offers Just For You Today
           </h2>
           <p className="text-[12.5px] text-[#666] leading-relaxed mb-8">
-            Unlock exclusive deals and packages for your next getaway at Paradista. Take advantage of our special offers and make your stay even more memorable.
+            Unlock exclusive deals and packages for your next getaway at Forrest Vibes. Take advantage of our special offers and make your stay even more memorable.
           </p>
           <button className="bg-[#3a6349] text-white text-[11px] font-bold uppercase tracking-widest px-8 py-3 hover:bg-[#2d4f39] transition-colors">
             Inquire Now

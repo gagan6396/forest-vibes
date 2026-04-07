@@ -9,23 +9,7 @@ const navLinks = [
   { label: "ROOMS", href: "/rooms" },
 ];
 
-/**
- * HOW THIS WORKS
- * ──────────────
- * 1. Scrolled state  → solid warm background + dark text (always safe).
- * 2. Unscrolled state → text is always WHITE with a strong drop-shadow for
- *    legibility on dark hero images, AND a subtle top-to-transparent gradient
- *    scrim behind the navbar so text pops even on medium-tone images.
- *
- * If your hero is light (white/cream/pale), add  data-navbar-theme="dark"
- * to that section's root element and this component will switch to dark text
- * automatically via IntersectionObserver — no color sampling needed.
- *
- * Usage in a light hero section:
- *   <section data-navbar-theme="dark"> ... </section>
- *
- * Default (no attribute) = assume dark hero → white text.
- */
+
 
 export default function Navbar() {
   const [scrolled, setScrolled] = useState(false);
@@ -196,7 +180,7 @@ export default function Navbar() {
         <a href="#home" className="relative flex items-center gap-2.5 group z-10">
           <img
             src="/logo-nobg.webp"
-            alt="Paradista"
+            alt="Forrest Vibes"
             className="w-30 h-20 object-contain transition-transform duration-300 mt-4 group-hover:scale-105"
           />
         </a>
@@ -217,7 +201,7 @@ export default function Navbar() {
         </ul>
 
         {/* Inquire Now — Desktop */}
-        <button className="relative z-10 hidden md:block text-[11px] font-semibold tracking-widest uppercase text-white bg-[#2d5a3d] px-7 py-3.5 rounded-sm shadow-lg shadow-[#2d5a3d]/30 hover:bg-[#1e3f2b] hover:-translate-y-px hover:shadow-xl active:translate-y-0 transition-all duration-200">
+        <button className="relative z-10 hidden md:block text-[11px] font-semibold tracking-widest uppercase text-white bg-[#2d5a3d] px-7 py-3.5 rounded-sm shadow-lg shadow-[#2d5a3d]/30 hover:bg-[#1e3f2b] hover:-translate-y-px hover:shadow-xl active:translate-y-0 transition-all duration-200 cursor-pointer">
           INQUIRE NOW
         </button>
 
@@ -286,7 +270,7 @@ export default function Navbar() {
           </div>
 
           <p className="menu-footer text-center text-[10px] tracking-widest uppercase text-stone-400 pb-10">
-            Paradista — A Forest Retreat
+            Forrest Vibes — A Forest Retreat
           </p>
         </div>
       )}
