@@ -92,13 +92,13 @@ export default function WelcomeSection() {
           <div className="w-12 h-px bg-[#2d5a3d] opacity-30 mb-7" />
 
           {/* Body */}
-          <p className="font-jost text-[15px] font-light leading-[1.9] text-[#6b6357] mb-5">
+          <p className="font-jost text-md font-light leading-[1.9] text-black mb-5">
             At Paradista, the forest isn't just a backdrop — it's the whole experience.
             Wake up to birdsong filtering through pine, breathe air rich with cedar
             and earth, and feel the stillness that only ancient trees can offer.
           </p>
 
-          <p className="font-jost text-[15px] font-light leading-[1.9] text-[#6b6357] mb-12">
+          <p className="font-jost text-md font-light leading-[1.9] text-black mb-12">
             From the moment you arrive, the canopy wraps around you. Every pathway,
             every room, every view is woven into the living green that surrounds us —
             because we believe nature is the finest luxury of all.

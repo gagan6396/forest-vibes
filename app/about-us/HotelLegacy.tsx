@@ -121,7 +121,7 @@ export default function HotelLegacy() {
                   <h3 className="font-sans font-medium text-sm text-[#1c1a17] tracking-[0.06em] uppercase mb-2">
                     {m.title}
                   </h3>
-                  <p className="font-sans font-light text-sm text-[#7a756c] leading-relaxed">
+                  <p className="font-sans font-light text-sm text-black leading-relaxed">
                     {m.body}
                   </p>
                 </div>

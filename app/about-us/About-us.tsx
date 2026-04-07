@@ -182,15 +182,15 @@ export default function AboutUs() {
               </h2>
 
               <div className={`rv d2 ${s1.inView ? "on" : ""} flex flex-col gap-5 mb-12`}>
-                <p className="text-[#4a4540] text-xl font-[300] leading-[1.85]"
-                  style={{ fontFamily: "'Cormorant', serif" }}>
+                <p className="text-black text-xl font-[300] leading-[1.85]"
+                  >
                   Aryan Mehta was twenty-six when he turned his family guesthouse
                   into something guests kept returning to — not for the amenities,
                   but for the feeling. The feeling that someone had thought carefully
                   about where the morning light would land on your pillow.
                 </p>
-                <p className="text-[#4a4540] text-xl font-[300] leading-[1.85]"
-                  style={{ fontFamily: "'Cormorant', serif" }}>
+                <p className="text-black text-xl font-[300] leading-[1.85]"
+                  >
                   Today Comfy Place is a team of eleven people who share one
                   unreasonable standard: every property should feel like it was
                   designed for you specifically. That means slower growth,

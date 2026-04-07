@@ -5,25 +5,84 @@ import { useState, useEffect } from "react";
 const navLinks = [
   { label: "HOME", href: "/" },
   { label: "ABOUT US", href: "/about-us" },
-  { label: "CONTACT US", href: "contact-us" },
+  { label: "CONTACT US", href: "/contact-us" },
   { label: "ROOMS", href: "/rooms" },
 ];
+
+/**
+ * HOW THIS WORKS
+ * ──────────────
+ * 1. Scrolled state  → solid warm background + dark text (always safe).
+ * 2. Unscrolled state → text is always WHITE with a strong drop-shadow for
+ *    legibility on dark hero images, AND a subtle top-to-transparent gradient
+ *    scrim behind the navbar so text pops even on medium-tone images.
+ *
+ * If your hero is light (white/cream/pale), add  data-navbar-theme="dark"
+ * to that section's root element and this component will switch to dark text
+ * automatically via IntersectionObserver — no color sampling needed.
+ *
+ * Usage in a light hero section:
+ *   <section data-navbar-theme="dark"> ... </section>
+ *
+ * Default (no attribute) = assume dark hero → white text.
+ */
 
 export default function Navbar() {
   const [scrolled, setScrolled] = useState(false);
   const [mobileOpen, setMobileOpen] = useState(false);
   const [visible, setVisible] = useState(false);
+  // "light" = white text on dark bg | "dark" = dark text on light bg
+  const [theme, setTheme] = useState<"light" | "dark">("light");
 
+  /* ── Scroll detection ── */
   useEffect(() => {
-    const handleScroll = () => setScrolled(window.scrollY > 30);
-    window.addEventListener("scroll", handleScroll);
-    return () => window.removeEventListener("scroll", handleScroll);
+    const onScroll = () => setScrolled(window.scrollY > 30);
+    window.addEventListener("scroll", onScroll, { passive: true });
+    return () => window.removeEventListener("scroll", onScroll);
   }, []);
 
-  // Trigger enter animation after mount
+  /* ── Section theme detection via IntersectionObserver ── */
+  useEffect(() => {
+    const navbarHeight = 80;
+
+    const observe = () => {
+      // Watch every section / div that has data-navbar-theme attribute
+      const sections = document.querySelectorAll("[data-navbar-theme]");
+
+      if (sections.length === 0) {
+        // No attributes found — default to light text (assumes dark hero)
+        setTheme("light");
+        return;
+      }
+
+      const observer = new IntersectionObserver(
+        (entries) => {
+          entries.forEach((entry) => {
+            if (entry.isIntersecting) {
+              const sectionTheme = (entry.target as HTMLElement).dataset
+                .navbarTheme as "light" | "dark";
+              setTheme(sectionTheme ?? "light");
+            }
+          });
+        },
+        {
+          // Fire when the section's top edge crosses the navbar bottom
+          rootMargin: `-${navbarHeight}px 0px -${window.innerHeight - navbarHeight - 2}px 0px`,
+          threshold: 0,
+        }
+      );
+
+      sections.forEach((s) => observer.observe(s));
+      return () => observer.disconnect();
+    };
+
+    const cleanup = observe();
+    return cleanup;
+  }, []);
+
+  /* ── Mobile menu animations ── */
   useEffect(() => {
     if (mobileOpen) {
-      // tiny delay so the element is in DOM before animating
       const t = setTimeout(() => setVisible(true), 10);
       return () => clearTimeout(t);
     } else {
@@ -33,17 +92,67 @@ export default function Navbar() {
 
   useEffect(() => {
     document.body.style.overflow = mobileOpen ? "hidden" : "";
-    return () => { document.body.style.overflow = ""; };
+    return () => {
+      document.body.style.overflow = "";
+    };
   }, [mobileOpen]);
 
+  /* ── Derived values ── */
+  // When scrolled the navbar has a solid bg → always dark text
+  const effectiveTheme = scrolled ? "dark" : theme;
+  const isLight = effectiveTheme === "light"; // white text mode
+
   const linkClass = [
-    "font-bold tracking-widest text-[15px] uppercase transition-colors duration-200",
-    scrolled ? "text-stone-800 hover:text-[#2d5a3d]" : "text-white hover:text-white/70",
+    "font-bold tracking-widest text-[15px] uppercase transition-colors duration-200 relative nav-link",
+    isLight ? "text-white hover:text-white/70" : "text-stone-800 hover:text-[#2d5a3d]",
   ].join(" ");
+
+  // Strong shadow on dark hero, none when scrolled (solid navbar handles contrast)
+  const linkShadow = scrolled
+    ? "none"
+    : isLight
+    ? "0 1px 6px rgba(0,0,0,0.7), 0 0 2px rgba(0,0,0,0.5)"
+    : "none";
+
+  const hamburgerColor = mobileOpen || scrolled
+    ? "#1c1917"
+    : isLight
+    ? "#ffffff"
+    : "#1c1917";
 
   return (
     <>
       <style>{`
+        /* Gradient scrim — sits behind navbar content, only on dark-hero unscrolled state */
+        .navbar-scrim {
+          position: absolute;
+          inset: 0;
+          background: linear-gradient(
+            to bottom,
+            rgba(0, 0, 0, 0.45) 0%,
+            rgba(0, 0, 0, 0.0) 100%
+          );
+          pointer-events: none;
+          transition: opacity 0.3s ease;
+        }
+        .navbar-scrim.hidden-scrim {
+          opacity: 0;
+        }
+
+        /* Underline hover */
+        .nav-link::after {
+          content: '';
+          position: absolute;
+          bottom: -2px;
+          left: 0;
+          height: 1px;
+          width: 0;
+          background: currentColor;
+          transition: width 0.3s ease;
+        }
+        .nav-link:hover::after { width: 100%; }
+
+        /* Mobile menu animations */
         @keyframes slideDown {
           from { opacity: 0; transform: translateY(-8px); }
           to   { opacity: 1; transform: translateY(0); }
@@ -68,15 +177,23 @@ export default function Navbar() {
         }
       `}</style>
 
-      {/* Navbar */}
+      {/* ── Navbar ── */}
       <nav
         className={[
-          "fixed top-0 left-0 right-0 z-50 flex items-center justify-between px-10 h-[80px] transition-all duration-300",
-          scrolled ? "bg-[#f5f2eb]/90 text-black backdrop-blur-md shadow-sm" : "bg-transparent",
+          "fixed top-0 left-0 right-0 z-50 flex items-center justify-between px-4 sm:px-10 h-[80px] transition-all duration-300",
+          scrolled ? "bg-[#f5f2eb]/90 backdrop-blur-md shadow-sm" : "bg-transparent",
         ].join(" ")}
       >
+        {/* Gradient scrim — hidden when scrolled or on light backgrounds */}
+        <div
+          className={[
+            "navbar-scrim",
+            scrolled || !isLight ? "hidden-scrim" : "",
+          ].join(" ")}
+        />
+
         {/* Logo */}
-        <a href="#home" className="flex items-center gap-2.5 group">
+        <a href="#home" className="relative flex items-center gap-2.5 group z-10">
           <img
             src="/logo-nobg.webp"
             alt="Paradista"
@@ -85,17 +202,13 @@ export default function Navbar() {
         </a>
 
         {/* Desktop Links */}
-        <ul className="hidden md:flex items-center gap-9 list-none">
+        <ul className="relative z-10 hidden md:flex items-center gap-9 list-none">
           {navLinks.map((link) => (
             <li key={link.label}>
               <a
                 href={link.href}
-                className={[
-                  linkClass,
-                  "relative",
-                  "after:absolute after:bottom-[-2px] after:left-0 after:h-px after:w-0 after:bg-current",
-                  "after:transition-all after:duration-300 hover:after:w-full",
-                ].join(" ")}
+                className={linkClass}
+                style={{ textShadow: linkShadow }}
               >
                 {link.label}
               </a>
@@ -103,40 +216,41 @@ export default function Navbar() {
           ))}
         </ul>
 
-        {/* Book Now — Desktop */}
-        <button className="hidden md:block text-[11px] font-semibold tracking-widest uppercase text-white bg-[#2d5a3d] px-7 py-3.5 rounded-sm shadow-lg shadow-[#2d5a3d]/30 hover:bg-[#1e3f2b] hover:-translate-y-px hover:shadow-xl active:translate-y-0 transition-all duration-200">
+        {/* Inquire Now — Desktop */}
+        <button className="relative z-10 hidden md:block text-[11px] font-semibold tracking-widest uppercase text-white bg-[#2d5a3d] px-7 py-3.5 rounded-sm shadow-lg shadow-[#2d5a3d]/30 hover:bg-[#1e3f2b] hover:-translate-y-px hover:shadow-xl active:translate-y-0 transition-all duration-200">
           INQUIRE NOW
         </button>
 
         {/* Hamburger — Mobile */}
         <button
-          className="md:hidden flex flex-col justify-center gap-[5px] w-11 h-11 p-1.5"
+          className="relative z-10 md:hidden flex flex-col justify-center gap-[5px] w-11 h-11 p-1.5"
           onClick={() => setMobileOpen(!mobileOpen)}
           aria-label="Toggle menu"
           style={{ WebkitTapHighlightColor: "transparent" }}
         >
-          <span style={{
-            display: "block", width: 24, height: 2, borderRadius: 9999,
-            background: scrolled || mobileOpen ? "#1c1917" : "#fff",
-            transition: "transform 0.3s, background 0.3s",
-            transform: mobileOpen ? "translateY(7px) rotate(45deg)" : "none",
-          }} />
-          <span style={{
-            display: "block", width: 24, height: 2, borderRadius: 9999,
-            background: scrolled || mobileOpen ? "#1c1917" : "#fff",
-            transition: "opacity 0.3s, background 0.3s",
-            opacity: mobileOpen ? 0 : 1,
-          }} />
-          <span style={{
-            display: "block", width: 24, height: 2, borderRadius: 9999,
-            background: scrolled || mobileOpen ? "#1c1917" : "#fff",
-            transition: "transform 0.3s, background 0.3s",
-            transform: mobileOpen ? "translateY(-7px) rotate(-45deg)" : "none",
-          }} />
+          {[
+            mobileOpen ? "translateY(7px) rotate(45deg)" : "none",
+            undefined,
+            mobileOpen ? "translateY(-7px) rotate(-45deg)" : "none",
+          ].map((transform, i) => (
+            <span
+              key={i}
+              style={{
+                display: "block",
+                width: 24,
+                height: 2,
+                borderRadius: 9999,
+                background: hamburgerColor,
+                transition: "transform 0.3s, opacity 0.3s, background 0.3s",
+                transform: transform ?? "none",
+                opacity: i === 1 && mobileOpen ? 0 : 1,
+              }}
+            />
+          ))}
         </button>
       </nav>
 
-      {/* Fullscreen Mobile Menu */}
+      {/* ── Fullscreen Mobile Menu ── */}
       {mobileOpen && (
         <div
           className="fixed inset-0 z-40 md:hidden bg-[#f5f2eb] flex flex-col overflow-hidden"
@@ -146,10 +260,8 @@ export default function Navbar() {
             WebkitOverflowScrolling: "touch",
           }}
         >
-          {/* Clear navbar height */}
           <div className="h-[80px] shrink-0" />
 
-          {/* Links */}
           <div className="flex-1 flex flex-col justify-center px-10 gap-1">
             {navLinks.map((link) => (
               <a
@@ -172,8 +284,6 @@ export default function Navbar() {
               INQUIRE NOW
             </a>
           </div>
-
-
 
           <p className="menu-footer text-center text-[10px] tracking-widest uppercase text-stone-400 pb-10">
             Paradista — A Forest Retreat

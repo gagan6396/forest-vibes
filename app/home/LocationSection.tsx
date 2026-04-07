@@ -170,7 +170,7 @@ export default function LocationSection() {
                 fontFamily: "'Jost', sans-serif",
                 fontSize: 13,
                 fontWeight: 300,
-                color: "#9a8f84",
+                color: "#000000",
                 lineHeight: 1.6,
               }}>
                 {card.sub}
