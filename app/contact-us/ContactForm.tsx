@@ -52,25 +52,25 @@ export default function ContactForm() {
                 <div className="grid grid-cols-2 gap-8">
                   <div>
                     <label className="text-[10px] uppercase tracking-[0.2em] text-black font-light block mb-1">First Name</label>
-                    <input type="text" placeholder="James" className={field("first")}
+                    <input type="text" placeholder="First Name" className={field("first")}
                       onFocus={() => setFocused("first")} onBlur={() => setFocused(null)} />
                   </div>
                   <div>
                     <label className="text-[10px] uppercase tracking-[0.2em] text-black font-light block mb-1">Last Name</label>
-                    <input type="text" placeholder="Anderson" className={field("last")}
+                    <input type="text" placeholder="Last Name" className={field("last")}
                       onFocus={() => setFocused("last")} onBlur={() => setFocused(null)} />
                   </div>
                 </div>
 
                 <div>
                   <label className="text-[10px] uppercase tracking-[0.2em] text-black font-light block mb-1">Email Address</label>
-                  <input type="email" placeholder="james@email.com" className={field("email")}
+                  <input type="email" placeholder="username@gmail.com" className={field("email")}
                     onFocus={() => setFocused("email")} onBlur={() => setFocused(null)} />
                 </div>
 
                 <div>
                   <label className="text-[10px] uppercase tracking-[0.2em] text-black font-light block mb-1">Phone Number</label>
-                  <input type="tel" placeholder="+1 (123) 456-7890" className={field("phone")}
+                  <input type="tel" placeholder="Your number here..." className={field("phone")}
                     onFocus={() => setFocused("phone")} onBlur={() => setFocused(null)} />
                 </div>
 
@@ -113,9 +113,9 @@ export default function ContactForm() {
               <div className="space-y-6">
                 {[
                   { label: "Address", value: "Moza Bajhet, Khasra no- 51, Bajhet, Raipur PO:Raipur, DIST: Dehradun, Uttarakhand - 248008" },
-                  { label: "Email", value: "hello@Forrest Vibes.com" },
+                  { label: "Email", value: "username@gmail.com" },
                   { label: "Phone", value: "+91 7500131319" },
-                  { label: "Reception", value: "Open 24 / 7" },
+                  // { label: "Reception", value: "Open 24 / 7" },
                 ].map((item) => (
                   <div key={item.label} className="flex gap-6 items-start">
                     <span className="text-[9px] uppercase tracking-[0.2em] text-white font-bold pt-0.5 w-20 flex-shrink-0">

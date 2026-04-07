@@ -1,7 +1,7 @@
 "use client";
 
 import { useState } from "react";
-import { motion, AnimatePresence, Variants, Easing } from "framer-motion";
+import { motion, AnimatePresence, Variants } from "framer-motion";
 
 const attractions = [
   {
@@ -66,313 +66,196 @@ const attractions = [
   },
 ];
 
-// Properly typed variants
+const panelVariants: Variants = {
+  hidden: { opacity: 0, y: 10 },
+  visible: { opacity: 1, y: 0, transition: { duration: 0.3, ease: "easeOut" } },
+  exit: { opacity: 0, y: -8, transition: { duration: 0.2 } },
+};
+
 const dropdownVariants: Variants = {
-  hidden: { opacity: 0, height: 0, y: -10 },
-  visible: {
-    opacity: 1,
-    height: "auto",
-    y: 0,
-    transition: { duration: 0.3, ease: "easeOut" as const },
-  },
-  exit: {
-    opacity: 0,
-    height: 0,
-    y: -10,
-    transition: { duration: 0.25, ease: "easeIn" as const },
-  },
-};
-
-const desktopPanelVariants: Variants = {
-  hidden: { opacity: 0, x: 20 },
-  visible: {
-    opacity: 1,
-    x: 0,
-    transition: { duration: 0.3, ease: "easeOut" as const },
-  },
-  exit: {
-    opacity: 0,
-    x: -20,
-    transition: { duration: 0.2, ease: "easeIn" as const },
-  },
-};
-
-const highlightVariants: Variants = {
-  hidden: { opacity: 0, scale: 0.8 },
-  visible: (i: number) => ({
-    opacity: 1,
-    scale: 1,
-    transition: { delay: i * 0.03, duration: 0.2 },
-  }),
+  hidden: { opacity: 0, height: 0 },
+  visible: { opacity: 1, height: "auto", transition: { duration: 0.3, ease: "easeOut" } },
+  exit: { opacity: 0, height: 0, transition: { duration: 0.2 } },
 };
 
 export default function NearbyAttractions() {
-  const [openId, setOpenId] = useState<number | null>(1);
-
-  const toggleDropdown = (id: number) => {
-    setOpenId(openId === id ? null : id);
-  };
+  const [activeId, setActiveId] = useState<number>(1);
+  const [openMobileId, setOpenMobileId] = useState<number | null>(1);
+  const selected = attractions.find((a) => a.id === activeId) || attractions[0];
 
   return (
-    <section className="w-full py-16 px-4 bg-stone-50">
+    <section className="w-full py-16 px-4 bg-[#f5f2ed]">
       <div className="max-w-6xl mx-auto">
+
         {/* Header */}
-        <motion.div
-          className="text-center mb-10"
-          initial={{ opacity: 0, y: -20 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true }}
-          transition={{ duration: 0.5 }}
-        >
-          <span className="text-xs tracking-[0.2em] uppercase text-stone-400 mb-2 block">
-            Explore the Region
-          </span>
-          <h2 className="text-3xl md:text-4xl font-serif text-stone-700 mb-3">
-            Beyond Our Gates
-          </h2>
-          <motion.div
-            className="w-12 h-px bg-amber-400/60 mx-auto"
-            initial={{ width: 0 }}
-            whileInView={{ width: 48 }}
-            viewport={{ once: true }}
-            transition={{ duration: 0.6, delay: 0.2 }}
-          />
-        </motion.div>
-
-        {/* Mobile: Accordion */}
-        <div className="lg:hidden space-y-3">
-          {attractions.map((item, idx) => (
-            <motion.div
-              key={item.id}
-              initial={{ opacity: 0, y: 20 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true }}
-              transition={{ delay: idx * 0.05, duration: 0.3 }}
-              className="bg-white rounded-xl border border-stone-100 shadow-sm overflow-hidden"
-            >
-              <button
-                onClick={() => toggleDropdown(item.id)}
-                className="w-full px-5 py-4 flex justify-between items-center text-left"
-              >
-                <div>
-                  <h3 className="font-serif text-lg text-stone-800">{item.name}</h3>
-                  <p className="text-xs text-stone-400 mt-0.5">{item.tagline}</p>
-                </div>
-                <div className="flex items-center gap-4">
-                  <div className="text-right">
-                    <p className="text-sm font-medium text-stone-600">{item.distance}</p>
-                    <p className="text-xs text-stone-400">{item.time}</p>
-                  </div>
-                  <motion.svg
-                    className="w-5 h-5 text-stone-400"
-                    fill="none"
-                    stroke="currentColor"
-                    viewBox="0 0 24 24"
-                    animate={{ rotate: openId === item.id ? 180 : 0 }}
-                    transition={{ duration: 0.2 }}
-                  >
-                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.5} d="M19 9l-7 7-7-7" />
-                  </motion.svg>
-                </div>
-              </button>
-
-              <AnimatePresence mode="wait">
-                {openId === item.id && (
-                  <motion.div
-                    variants={dropdownVariants}
-                    initial="hidden"
-                    animate="visible"
-                    exit="exit"
-                    className="px-5 pb-5 pt-0"
-                  >
-                    <motion.div
-                      className="h-32 bg-gradient-to-br from-stone-700 to-stone-500 rounded-lg mb-4 flex items-end p-4"
-                      initial={{ opacity: 0, scale: 0.95 }}
-                      animate={{ opacity: 1, scale: 1 }}
-                      transition={{ duration: 0.3 }}
-                    >
-                      <div>
-                        <p className="text-white/70 text-xs">{item.tagline}</p>
-                      </div>
-                    </motion.div>
-                    <motion.p
-                      className="text-stone-600 text-sm leading-relaxed mb-4"
-                      initial={{ opacity: 0 }}
-                      animate={{ opacity: 1 }}
-                      transition={{ delay: 0.1 }}
-                    >
-                      {item.description}
-                    </motion.p>
-                    <div className="mb-4">
-                      <p className="text-xs uppercase tracking-wide text-stone-400 mb-2">
-                        Highlights
-                      </p>
-                      <div className="flex flex-wrap gap-2">
-                        {item.highlights.map((h, i) => (
-                          <motion.span
-                            key={h}
-                            custom={i}
-                            variants={highlightVariants}
-                            initial="hidden"
-                            animate="visible"
-                            className="text-xs px-3 py-1.5 rounded-full bg-stone-100 text-stone-600"
-                          >
-                            {h}
-                          </motion.span>
-                        ))}
-                      </div>
-                    </div>
-                    <motion.div
-                      className="flex gap-3"
-                      initial={{ opacity: 0, y: 10 }}
-                      animate={{ opacity: 1, y: 0 }}
-                      transition={{ delay: 0.2 }}
-                    >
-                      <button className="flex-1 py-2.5 rounded-lg bg-stone-800 text-white text-sm hover:bg-stone-700 transition">
-                        Plan Your Visit
-                      </button>
-                      <button className="px-5 py-2.5 rounded-lg border border-stone-200 text-stone-600 text-sm hover:border-stone-300 transition">
-                        Ask Concierge
-                      </button>
-                    </motion.div>
-                  </motion.div>
-                )}
-              </AnimatePresence>
-            </motion.div>
-          ))}
+        <div className="text-center mb-10">
+          <p className="text-xs uppercase tracking-widest text-[#7a6e5f] mb-2">Explore the Region</p>
+          <h2 className="text-3xl font-semibold text-[#2a3424] mb-3">Beyond Our Gates</h2>
+          <div className="w-10 h-0.5 bg-[#4a6741] mx-auto" />
         </div>
 
-        {/* Desktop: Side-by-side */}
-        <div className="hidden lg:grid lg:grid-cols-5 gap-8">
-          {/* Left: List */}
-          <div className="lg:col-span-2 space-y-2">
-            {attractions.map((item) => (
-              <motion.button
+        {/* Mobile: Accordion */}
+        <div className="lg:hidden space-y-2">
+          {attractions.map((item) => {
+            const isOpen = openMobileId === item.id;
+            return (
+              <div
                 key={item.id}
-                onClick={() => setOpenId(item.id)}
-                className={`w-full text-left px-5 py-4 rounded-xl transition-all duration-200 border ${
-                  openId === item.id
-                    ? "bg-white border-stone-200 shadow-sm"
-                    : "bg-transparent border-transparent hover:bg-white/50 hover:border-stone-100"
+                className={`bg-white rounded-xl overflow-hidden border transition-all duration-200 ${
+                  isOpen ? "border-[#4a6741]/30 shadow-sm" : "border-[#e8e2d9]"
                 }`}
-                whileHover={{ x: 4 }}
-                transition={{ duration: 0.2 }}
               >
-                <div className="flex justify-between items-start">
+                <button
+                  onClick={() => setOpenMobileId(isOpen ? null : item.id)}
+                  className="w-full px-5 py-4 flex justify-between items-center text-left"
+                >
                   <div>
-                    <h3
-                      className={`font-serif text-lg ${
-                        openId === item.id ? "text-stone-800" : "text-stone-500"
-                      }`}
+                    <p className="font-semibold text-[#2a3424]">{item.name}</p>
+                    <p className="text-xs text-[#9a8e7f] mt-0.5">{item.tagline}</p>
+                  </div>
+                  <div className="flex items-center gap-4">
+                    <div className="text-right">
+                      <p className="text-sm font-medium text-[#4a6741]">{item.distance}</p>
+                      <p className="text-xs text-[#9a8e7f]">{item.time}</p>
+                    </div>
+                    <motion.svg
+                      className="w-4 h-4 text-[#9a8e7f]"
+                      fill="none"
+                      stroke="currentColor"
+                      viewBox="0 0 24 24"
+                      animate={{ rotate: isOpen ? 180 : 0 }}
+                      transition={{ duration: 0.2 }}
                     >
-                      {item.name}
-                    </h3>
-                    <p className="text-xs text-stone-400 mt-0.5">{item.tagline}</p>
+                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 9l-7 7-7-7" />
+                    </motion.svg>
                   </div>
-                  <div className="text-right">
-                    <p className="text-sm font-medium text-stone-600">{item.distance}</p>
-                    <p className="text-xs text-stone-400">{item.time}</p>
-                  </div>
-                </div>
-              </motion.button>
-            ))}
-          </div>
+                </button>
 
-          {/* Right: Detail Panel */}
-          <div className="lg:col-span-3">
-            <AnimatePresence mode="wait">
-              {(() => {
-                const selected = attractions.find((a) => a.id === openId) || attractions[0];
-                return (
-                  <motion.div
-                    key={selected.id}
-                    variants={desktopPanelVariants}
-                    initial="hidden"
-                    animate="visible"
-                    exit="exit"
-                    className="bg-white rounded-2xl border border-stone-100 shadow-sm overflow-hidden"
-                  >
+                <AnimatePresence>
+                  {isOpen && (
                     <motion.div
-                      className="h-48 bg-gradient-to-br from-stone-700 to-stone-500 relative flex items-end p-6"
-                      initial={{ opacity: 0 }}
-                      animate={{ opacity: 1 }}
-                      transition={{ duration: 0.3 }}
+                      variants={dropdownVariants}
+                      initial="hidden"
+                      animate="visible"
+                      exit="exit"
+                      className="overflow-hidden"
                     >
-                      <div>
-                        <motion.h3
-                          className="text-2xl font-serif text-white mb-1"
-                          initial={{ y: 10, opacity: 0 }}
-                          animate={{ y: 0, opacity: 1 }}
-                          transition={{ delay: 0.1 }}
-                        >
-                          {selected.name}
-                        </motion.h3>
-                        <motion.p
-                          className="text-white/70 text-sm italic"
-                          initial={{ y: 10, opacity: 0 }}
-                          animate={{ y: 0, opacity: 1 }}
-                          transition={{ delay: 0.15 }}
-                        >
-                          {selected.tagline}
-                        </motion.p>
-                      </div>
-                      <motion.div
-                        className="absolute bottom-4 right-4 text-right"
-                        initial={{ scale: 0.8, opacity: 0 }}
-                        animate={{ scale: 1, opacity: 1 }}
-                        transition={{ delay: 0.2 }}
-                      >
-                        <p className="text-white text-lg font-semibold">{selected.distance}</p>
-                        <p className="text-white/60 text-xs">{selected.time} drive</p>
-                      </motion.div>
-                    </motion.div>
-                    <div className="p-6">
-                      <motion.p
-                        className="text-stone-600 text-sm leading-relaxed mb-6"
-                        initial={{ opacity: 0, y: 10 }}
-                        animate={{ opacity: 1, y: 0 }}
-                        transition={{ delay: 0.25 }}
-                      >
-                        {selected.description}
-                      </motion.p>
-                      <div className="mb-6">
-                        <p className="text-xs uppercase tracking-wide text-stone-400 mb-3">
-                          Highlights
-                        </p>
-                        <div className="flex flex-wrap gap-2">
-                          {selected.highlights.map((h, i) => (
-                            <motion.span
-                              key={h}
-                              custom={i}
-                              variants={highlightVariants}
-                              initial="hidden"
-                              animate="visible"
-                              className="text-xs px-3 py-1.5 rounded-full bg-stone-100 text-stone-600"
-                            >
+                      <div className="px-5 pb-5 pt-1">
+                        <p className="text-sm text-[#5c5040] leading-relaxed mb-4">{item.description}</p>
+                        <div className="flex flex-wrap gap-1.5 mb-4">
+                          {item.highlights.map((h) => (
+                            <span key={h} className="text-xs px-3 py-1.5 rounded-full bg-[#edf0ea] text-[#4a6741]">
                               {h}
-                            </motion.span>
+                            </span>
                           ))}
                         </div>
+                        <div className="flex gap-2">
+                          <button className="flex-1 py-2.5 rounded-lg bg-[#2a3424] text-white text-sm hover:bg-[#3a4a34] transition">
+                            Plan Your Visit
+                          </button>
+                          {/* <button className="px-4 py-2.5 rounded-lg border border-[#d5cfc5] text-[#5c5040] text-sm hover:border-[#b0a898] transition">
+                            Ask Concierge
+                          </button> */}
+                        </div>
                       </div>
-                      <motion.div
-                        className="flex gap-3"
-                        initial={{ opacity: 0, y: 10 }}
-                        animate={{ opacity: 1, y: 0 }}
-                        transition={{ delay: 0.4 }}
-                      >
-                        <button className="flex-1 py-2.5 rounded-lg bg-stone-800 text-white text-sm hover:bg-stone-700 transition">
-                          Plan Your Visit
-                        </button>
-                        <button className="px-5 py-2.5 rounded-lg border border-stone-200 text-stone-600 text-sm hover:border-stone-300 transition">
-                          Ask Concierge
-                        </button>
-                      </motion.div>
+                    </motion.div>
+                  )}
+                </AnimatePresence>
+              </div>
+            );
+          })}
+        </div>
+
+        {/* Desktop: Split */}
+        <div className="hidden lg:grid lg:grid-cols-5 gap-8">
+
+          {/* Left list */}
+          <div className="lg:col-span-2 space-y-1">
+            {attractions.map((item) => {
+              const isActive = activeId === item.id;
+              return (
+                <button
+                  key={item.id}
+                  onClick={() => setActiveId(item.id)}
+                  className={`w-full text-left px-5 py-4 rounded-xl transition-all duration-200 border ${
+                    isActive
+                      ? "bg-white border-[#d5cfc5] shadow-sm"
+                      : "bg-transparent border-transparent hover:bg-white/60 hover:border-[#e8e2d9]"
+                  }`}
+                >
+                  <div className="flex justify-between items-center">
+                    <div>
+                      <p className={`font-semibold ${isActive ? "text-[#2a3424]" : "text-[#7a6e5f]"}`}>
+                        {item.name}
+                      </p>
+                      <p className="text-xs text-[#9a8e7f] mt-0.5">{item.tagline}</p>
                     </div>
-                  </motion.div>
-                );
-              })()}
+                    <div className="text-right">
+                      <p className={`text-sm font-medium ${isActive ? "text-[#4a6741]" : "text-[#9a8e7f]"}`}>
+                        {item.distance}
+                      </p>
+                      <p className="text-xs text-[#9a8e7f]">{item.time}</p>
+                    </div>
+                  </div>
+                </button>
+              );
+            })}
+          </div>
+
+          {/* Right detail */}
+          <div className="lg:col-span-3">
+            <AnimatePresence mode="wait">
+              <motion.div
+                key={selected.id}
+                variants={panelVariants}
+                initial="hidden"
+                animate="visible"
+                exit="exit"
+                className="bg-white rounded-2xl border border-[#e8e2d9] shadow-sm overflow-hidden"
+              >
+                {/* Banner */}
+                <div
+                  className="h-44 flex items-end p-6"
+                  style={{ background: "linear-gradient(135deg, #2a3424 0%, #4a6741 100%)" }}
+                >
+                  <div className="flex justify-between items-end w-full">
+                    <div>
+                      <p className="text-white text-xl font-semibold">{selected.name}</p>
+                      <p className="text-white/60 text-sm mt-0.5 italic">{selected.tagline}</p>
+                    </div>
+                    <div className="text-right bg-white/10 rounded-lg px-3 py-2">
+                      <p className="text-white font-semibold">{selected.distance}</p>
+                      <p className="text-white/60 text-xs">{selected.time} drive</p>
+                    </div>
+                  </div>
+                </div>
+
+                {/* Body */}
+                <div className="p-6">
+                  <p className="text-sm text-[#5c5040] leading-relaxed mb-5">{selected.description}</p>
+
+                  <p className="text-xs uppercase tracking-widest text-[#9a8e7f] mb-2.5">Highlights</p>
+                  <div className="flex flex-wrap gap-2 mb-6">
+                    {selected.highlights.map((h) => (
+                      <span key={h} className="text-xs px-3 py-1.5 rounded-full bg-[#edf0ea] text-[#4a6741]">
+                        {h}
+                      </span>
+                    ))}
+                  </div>
+
+                  <div className="flex gap-3">
+                    <button className="flex-1 py-2.5 rounded-lg bg-[#2a3424] text-white text-sm hover:bg-[#3a4a34] transition">
+                      Plan Your Visit
+                    </button>
+                    {/* <button className="px-5 py-2.5 rounded-lg border border-[#d5cfc5] text-[#5c5040] text-sm hover:border-[#b0a898] transition">
+                      Ask Concierge
+                    </button> */}
+                  </div>
+                </div>
+              </motion.div>
             </AnimatePresence>
           </div>
+
         </div>
       </div>
     </section>

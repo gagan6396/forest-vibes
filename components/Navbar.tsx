@@ -1,6 +1,7 @@
 "use client";
 
 import { useState, useEffect } from "react";
+import Link from "next/link";
 
 const navLinks = [
   { label: "HOME", href: "/" },
@@ -177,7 +178,7 @@ export default function Navbar() {
         />
 
         {/* Logo */}
-        <a href="#home" className="relative flex items-center gap-2.5 group z-10">
+        <a href="/" className="relative flex items-center gap-2.5 group z-10">
           <img
             src="/logo-nobg.webp"
             alt="Forrest Vibes"
