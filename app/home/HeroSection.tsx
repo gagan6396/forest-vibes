@@ -252,21 +252,21 @@ export default function HeroSection() {
           z-index: 1;
         }
 
-        .anim-fade-up-1 { opacity: 0; animation: fadeUp 0.7s 0.10s forwards; }
-        .anim-fade-up-2 { opacity: 0; animation: fadeUp 0.7s 0.22s forwards; }
-        .anim-fade-up-3 { opacity: 0; animation: fadeUp 0.7s 0.34s forwards; }
-        .anim-fade-up-4 { opacity: 0; animation: fadeUp 0.7s 0.46s forwards; }
-        .anim-fade-up-5 { opacity: 0; animation: fadeUp 0.7s 0.62s forwards; }
+        .anim-fade-up-1 { opacity: 0; animation: fadeUp 0.5s 0.10s forwards; }
+        .anim-fade-up-2 { opacity: 0; animation: fadeUp 0.5s 0.20s forwards; }
+        .anim-fade-up-3 { opacity: 0; animation: fadeUp 0.5s 0.30s forwards; }
+        .anim-fade-up-4 { opacity: 0; animation: fadeUp 0.5s 0.40s forwards; }
+
+        @keyframes fadeUp {
+          from { opacity: 0; transform: translateY(15px); }
+          to   { opacity: 1; transform: translateY(0); }
+        }
 
         .hero-img-zoom {
           transform: scale(1.07);
-          animation: zoomIn 1.6s 0.05s cubic-bezier(0.25, 0.46, 0.45, 0.94) forwards;
+          animation: zoomIn 1.4s 0.05s cubic-bezier(0.25, 0.46, 0.45, 0.94) forwards;
         }
 
-        @keyframes fadeUp {
-          from { opacity: 0; transform: translateY(20px); }
-          to   { opacity: 1; transform: translateY(0); }
-        }
         @keyframes zoomIn {
           from { transform: scale(1.07); }
           to   { transform: scale(1); }
@@ -304,14 +304,14 @@ export default function HeroSection() {
           to { opacity: 1; }
         }
         @keyframes modalSlideUp {
-          from { opacity: 0; transform: translateY(40px) scale(0.96); }
+          from { opacity: 0; transform: translateY(30px) scale(0.96); }
           to { opacity: 1; transform: translateY(0) scale(1); }
         }
         .modal-backdrop {
-          animation: modalFadeIn 0.25s ease forwards;
+          animation: modalFadeIn 0.2s ease forwards;
         }
         .modal-content {
-          animation: modalSlideUp 0.35s cubic-bezier(0.22, 1, 0.36, 1) forwards;
+          animation: modalSlideUp 0.3s cubic-bezier(0.22, 1, 0.36, 1) forwards;
         }
 
         /* Room card hover effect */
@@ -329,29 +329,11 @@ export default function HeroSection() {
         /* Error shake animation */
         @keyframes shake {
           0%, 100% { transform: translateX(0); }
-          25% { transform: translateX(-5px); }
-          75% { transform: translateX(5px); }
+          25% { transform: translateX(-4px); }
+          75% { transform: translateX(4px); }
         }
         .error-shake {
-          animation: shake 0.3s ease-in-out;
-        }
-
-        /* Slider transitions */
-        .slide-enter {
-          opacity: 0;
-          transform: scale(1.05);
-        }
-        .slide-enter-active {
-          opacity: 1;
-          transform: scale(1);
-          transition: opacity 0.7s ease-out, transform 0.7s ease-out;
-        }
-        .slide-exit {
-          opacity: 1;
-        }
-        .slide-exit-active {
-          opacity: 0;
-          transition: opacity 0.5s ease;
+          animation: shake 0.25s ease-in-out;
         }
 
         /* Slider dot active animation */
@@ -378,10 +360,10 @@ export default function HeroSection() {
         className="relative w-full bg-[#f5f0e8] hero-grain overflow-hidden"
         style={{ fontFamily: "'Outfit', sans-serif" }}
       >
-        {/* SLIDER CONTAINER */}
-        <div className="relative min-h-screen flex flex-col">
+        {/* COMPACT SLIDER CONTAINER */}
+        <div className="relative h-[500px] md:h-[560px] flex flex-col">
           {/* Slides */}
-          <div className="relative flex-1">
+          <div className="relative h-full">
             {slides.map((slide, index) => (
               <div
                 key={slide.id}
@@ -402,16 +384,14 @@ export default function HeroSection() {
                 />
                 <div className="absolute inset-0 bg-black/30" />
 
-                {/* TEXT CONTENT */}
-                <div className="relative z-20 flex flex-col justify-center min-h-screen px-7 md:px-16 lg:px-[72px] pt-32 pb-40">
-                  <div className="max-w-2xl">
-                    <div className="flex items-center gap-3 mb-6 anim-fade-up-1" />
-
+                {/* TEXT CONTENT - Compact */}
+                <div className="relative z-20 flex flex-col justify-center h-full px-6 md:px-12 lg:px-16">
+                  <div className="max-w-xl">
                     <h1
-                      className="text-white leading-[1.06] mb-4 anim-fade-up-2"
+                      className="text-white leading-[1.1] mb-3 anim-fade-up-2"
                       style={{
                         fontFamily: "'Playfair Display', serif",
-                        fontSize: "clamp(2rem, 4.2vw, 3.8rem)",
+                        fontSize: "clamp(1.75rem, 3.5vw, 2.5rem)",
                         fontWeight: 400,
                       }}
                     >
@@ -423,20 +403,20 @@ export default function HeroSection() {
                     </h1>
 
                     <p
-                      className="text-white/90 text-[13.5px] leading-[1.78] max-w-[460px] mb-10 anim-fade-up-3"
+                      className="text-white/90 text-[12px] leading-[1.6] max-w-[400px] mb-6 anim-fade-up-3"
                       style={{ fontWeight: 300 }}
                     >
                       {slide.description}
                     </p>
 
-                    <div className="flex items-center gap-6 anim-fade-up-4">
+                    <div className="flex items-center gap-5 anim-fade-up-4">
                       <button
-                        className="btn-primary-hero inline-flex items-center gap-2.5 px-8 py-3.5 bg-[#2d5a3d] text-[#f5f0e8] text-[10px] tracking-[0.18em] uppercase font-[400] border-none cursor-pointer transition-colors duration-200 hover:bg-[#1e3f2b]"
+                        className="btn-primary-hero inline-flex items-center gap-2 px-6 py-2.5 bg-[#2d5a3d] text-[#f5f0e8] text-[9px] tracking-[0.18em] uppercase font-[400] border-none cursor-pointer transition-colors duration-200 hover:bg-[#1e3f2b]"
                         style={{ fontFamily: "'Outfit', sans-serif" }}
                       >
                         Explore Stays
                         <svg
-                          className="cta-arrow w-4 h-4"
+                          className="cta-arrow w-3.5 h-3.5"
                           fill="none"
                           viewBox="0 0 24 24"
                           stroke="currentColor"
@@ -452,14 +432,14 @@ export default function HeroSection() {
             ))}
           </div>
 
-          {/* Slider Navigation Arrows */}
+          {/* Slider Navigation Arrows - Smaller */}
           <button
             onClick={goToPrevSlide}
-            className="slider-nav-btn absolute left-4 md:left-8 top-1/2 -translate-y-1/2 z-30 w-10 h-10 md:w-12 md:h-12 rounded-full bg-white/20 backdrop-blur-sm border border-white/30 flex items-center justify-center text-white hover:bg-[#2d5a3d] hover:border-[#2d5a3d] transition-all duration-300"
+            className="slider-nav-btn absolute left-3 md:left-5 top-1/2 -translate-y-1/2 z-30 w-8 h-8 md:w-9 md:h-9 rounded-full bg-white/20 backdrop-blur-sm border border-white/30 flex items-center justify-center text-white hover:bg-[#2d5a3d] hover:border-[#2d5a3d] transition-all duration-300"
             aria-label="Previous slide"
           >
             <svg
-              className="w-5 h-5 md:w-6 md:h-6"
+              className="w-4 h-4 md:w-5 md:h-5"
               fill="none"
               viewBox="0 0 24 24"
               stroke="currentColor"
@@ -471,11 +451,11 @@ export default function HeroSection() {
 
           <button
             onClick={goToNextSlide}
-            className="slider-nav-btn absolute right-4 md:right-8 top-1/2 -translate-y-1/2 z-30 w-10 h-10 md:w-12 md:h-12 rounded-full bg-white/20 backdrop-blur-sm border border-white/30 flex items-center justify-center text-white hover:bg-[#2d5a3d] hover:border-[#2d5a3d] transition-all duration-300"
+            className="slider-nav-btn absolute right-3 md:right-5 top-1/2 -translate-y-1/2 z-30 w-8 h-8 md:w-9 md:h-9 rounded-full bg-white/20 backdrop-blur-sm border border-white/30 flex items-center justify-center text-white hover:bg-[#2d5a3d] hover:border-[#2d5a3d] transition-all duration-300"
             aria-label="Next slide"
           >
             <svg
-              className="w-5 h-5 md:w-6 md:h-6"
+              className="w-4 h-4 md:w-5 md:h-5"
               fill="none"
               viewBox="0 0 24 24"
               stroke="currentColor"
@@ -485,15 +465,15 @@ export default function HeroSection() {
             </svg>
           </button>
 
-          {/* Slider Dots */}
-          <div className="absolute bottom-32 left-0 right-0 z-30 flex justify-center gap-3">
+          {/* Slider Dots - Compact */}
+          <div className="absolute bottom-4 left-0 right-0 z-30 flex justify-center gap-2">
             {slides.map((_, index) => (
               <button
                 key={index}
                 onClick={() => goToSlide(index)}
-                className={`slider-dot w-2 h-2 rounded-full transition-all duration-300 ${
+                className={`slider-dot w-1.5 h-1.5 rounded-full transition-all duration-300 ${
                   index === currentSlide
-                    ? "w-8 bg-[#2d5a3d] slider-dot-active"
+                    ? "w-5 bg-[#2d5a3d] slider-dot-active"
                     : "bg-white/50 hover:bg-white/80"
                 }`}
                 aria-label={`Go to slide ${index + 1}`}
@@ -501,12 +481,12 @@ export default function HeroSection() {
             ))}
           </div>
 
-          {/* Rating Badge */}
-          <div className="absolute bottom-32 left-4 md:left-8 z-30 hidden md:flex items-center gap-3.5 bg-white/70 backdrop-blur-sm border border-[#2d5a3d]/[0.15] px-5 py-3 rounded-lg">
-            <div className="w-9 h-9 rounded-full bg-[#2d5a3d] flex items-center justify-center flex-shrink-0">
+          {/* Rating Badge - Compact */}
+          <div className="absolute bottom-4 left-4 md:left-6 z-30 hidden md:flex items-center gap-2.5 bg-white/70 backdrop-blur-sm border border-[#2d5a3d]/[0.15] px-3 py-1.5 rounded-md">
+            <div className="w-6 h-6 rounded-full bg-[#2d5a3d] flex items-center justify-center flex-shrink-0">
               <svg
-                width="14"
-                height="14"
+                width="11"
+                height="11"
                 viewBox="0 0 24 24"
                 fill="none"
                 stroke="#f5f0e8"
@@ -515,27 +495,27 @@ export default function HeroSection() {
                 <path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z" />
               </svg>
             </div>
-            <div className="flex flex-col gap-0.5">
-              <span className="text-[14px] font-[500] text-[#191914]">4.98 / 5.0</span>
-              <span className="text-[11px] font-[300] text-[#8a8176] tracking-[0.04em]">
+            <div className="flex flex-col gap-0">
+              <span className="text-[12px] font-[500] text-[#191914]">4.98 / 5.0</span>
+              <span className="text-[9px] font-[300] text-[#8a8176] tracking-[0.04em]">
                 1,200+ Guest Reviews
               </span>
             </div>
           </div>
         </div>
 
-        {/* BOOKING BAR - Overlapping the slider */}
-        <div className="relative z-20 mx-4 md:mx-12 lg:mx-[72px] -mt-20 pb-14">
+        {/* BOOKING BAR - Compact, overlapping slider */}
+        <div className="relative z-20 mx-4 md:mx-8 lg:mx-12 -mt-12 pb-8">
           <div
             className={`bg-white border border-[#2d5a3d]/[0.12] overflow-hidden grid grid-cols-1 md:grid-cols-[1fr_1fr_1fr_auto] ${
               bookingError ? "error-shake" : ""
             }`}
-            style={{ boxShadow: "0 20px 60px rgba(30,50,30,0.09)" }}
+            style={{ boxShadow: "0 12px 40px rgba(30,50,30,0.08)" }}
           >
             {/* Arrival Date */}
-            <label className="flex items-center gap-3.5 px-7 py-5 cursor-pointer hover:bg-[#f9f7f3] focus-within:bg-[#f2efe6] transition-colors border-b md:border-b-0 md:border-r border-[#2d5a3d]/[0.1] relative">
+            <label className="flex items-center gap-3 px-5 py-3.5 cursor-pointer hover:bg-[#f9f7f3] focus-within:bg-[#f2efe6] transition-colors border-b md:border-b-0 md:border-r border-[#2d5a3d]/[0.1]">
               <svg
-                className="w-[18px] h-[18px] text-[#2d5a3d] opacity-80 flex-shrink-0"
+                className="w-4 h-4 text-[#2d5a3d] opacity-80 flex-shrink-0"
                 fill="none"
                 viewBox="0 0 24 24"
                 stroke="currentColor"
@@ -544,8 +524,8 @@ export default function HeroSection() {
                 <rect x="3" y="4" width="18" height="18" rx="2" />
                 <path d="M16 2v4M8 2v4M3 10h18" />
               </svg>
-              <div className="flex flex-col gap-1 flex-1">
-                <span className="text-[9px] font-[500] tracking-[0.2em] uppercase text-[#a09888]">
+              <div className="flex flex-col gap-0.5 flex-1">
+                <span className="text-[8px] font-[500] tracking-[0.2em] uppercase text-[#a09888]">
                   Arrival Date
                 </span>
                 <input
@@ -553,16 +533,16 @@ export default function HeroSection() {
                   value={arrivalDate}
                   onChange={handleArrivalDateChange}
                   min={getMinArrivalDate()}
-                  className="text-[13px] font-[300] text-[#2d2d28] bg-transparent border-none outline-none cursor-pointer w-full"
+                  className="text-[11px] font-[300] text-[#2d2d28] bg-transparent border-none outline-none cursor-pointer w-full"
                   style={{ fontFamily: "'Outfit', sans-serif" }}
                 />
               </div>
             </label>
 
             {/* Departure Date */}
-            <label className="flex items-center gap-3.5 px-7 py-5 cursor-pointer hover:bg-[#f9f7f3] focus-within:bg-[#f2efe6] transition-colors border-b md:border-b-0 md:border-r border-[#2d5a3d]/[0.1]">
+            <label className="flex items-center gap-3 px-5 py-3.5 cursor-pointer hover:bg-[#f9f7f3] focus-within:bg-[#f2efe6] transition-colors border-b md:border-b-0 md:border-r border-[#2d5a3d]/[0.1]">
               <svg
-                className="w-[18px] h-[18px] text-[#2d5a3d] opacity-80 flex-shrink-0"
+                className="w-4 h-4 text-[#2d5a3d] opacity-80 flex-shrink-0"
                 fill="none"
                 viewBox="0 0 24 24"
                 stroke="currentColor"
@@ -571,8 +551,8 @@ export default function HeroSection() {
                 <rect x="3" y="4" width="18" height="18" rx="2" />
                 <path d="M16 2v4M8 2v4M3 10h18" />
               </svg>
-              <div className="flex flex-col gap-1 flex-1">
-                <span className="text-[9px] font-[500] tracking-[0.2em] uppercase text-[#a09888]">
+              <div className="flex flex-col gap-0.5 flex-1">
+                <span className="text-[8px] font-[500] tracking-[0.2em] uppercase text-[#a09888]">
                   Departure Date
                 </span>
                 <input
@@ -580,16 +560,16 @@ export default function HeroSection() {
                   value={departureDate}
                   onChange={handleDepartureDateChange}
                   min={getMinDepartureDate()}
-                  className="text-[13px] font-[300] text-[#2d2d28] bg-transparent border-none outline-none cursor-pointer w-full"
+                  className="text-[11px] font-[300] text-[#2d2d28] bg-transparent border-none outline-none cursor-pointer w-full"
                   style={{ fontFamily: "'Outfit', sans-serif" }}
                 />
               </div>
             </label>
 
             {/* Number of People */}
-            <label className="flex items-center gap-3.5 px-7 py-5 cursor-pointer hover:bg-[#f9f7f3] focus-within:bg-[#f2efe6] transition-colors border-b md:border-b-0 border-[#2d5a3d]/[0.1]">
+            <label className="flex items-center gap-3 px-5 py-3.5 cursor-pointer hover:bg-[#f9f7f3] focus-within:bg-[#f2efe6] transition-colors border-b md:border-b-0 border-[#2d5a3d]/[0.1]">
               <svg
-                className="w-[18px] h-[18px] text-[#2d5a3d] opacity-80 flex-shrink-0"
+                className="w-4 h-4 text-[#2d5a3d] opacity-80 flex-shrink-0"
                 fill="none"
                 viewBox="0 0 24 24"
                 stroke="currentColor"
@@ -599,9 +579,9 @@ export default function HeroSection() {
                 <circle cx="9" cy="7" r="4" />
                 <path d="M23 21v-2a4 4 0 0 0-3-3.87M16 3.13a4 4 0 0 1 0 7.75" />
               </svg>
-              <div className="flex flex-col gap-1 flex-1">
-                <span className="text-[9px] font-[500] tracking-[0.2em] uppercase text-[#a09888]">
-                  Number of People
+              <div className="flex flex-col gap-0.5 flex-1">
+                <span className="text-[8px] font-[500] tracking-[0.2em] uppercase text-[#a09888]">
+                  Guests
                 </span>
                 <input
                   type="number"
@@ -609,8 +589,8 @@ export default function HeroSection() {
                   max={10}
                   value={people}
                   onChange={(e) => setPeople(e.target.value)}
-                  placeholder="How many guests?"
-                  className="text-[13px] font-[300] text-[#2d2d28] placeholder-[#c5bfb4] bg-transparent border-none outline-none w-full"
+                  placeholder="How many?"
+                  className="text-[11px] font-[300] text-[#2d2d28] placeholder-[#c5bfb4] bg-transparent border-none outline-none w-full"
                   style={{ fontFamily: "'Outfit', sans-serif" }}
                 />
               </div>
@@ -619,16 +599,16 @@ export default function HeroSection() {
             {/* CTA */}
             <button
               onClick={handleBook}
-              className={`booking-btn-sweep flex flex-col items-center justify-center gap-1 px-10 py-3 border-none cursor-pointer transition-colors duration-200 ${
+              className={`booking-btn-sweep flex flex-col items-center justify-center gap-0.5 px-6 py-3 border-none cursor-pointer transition-colors duration-200 ${
                 bookingError ? "bg-[#7a3020]" : "bg-[#2d5a3d]"
               }`}
               style={{ fontFamily: "'Outfit', sans-serif" }}
             >
-              <span className="text-[9px] font-[500] tracking-[0.22em] uppercase text-[#f5f0e8]/70 relative z-[1]">
+              <span className="text-[8px] font-[500] tracking-[0.22em] uppercase text-[#f5f0e8]/70 relative z-[1]">
                 Reserve Now
               </span>
               <span
-                className="text-[18px] italic text-[#f5f0e8] relative z-[1]"
+                className="text-[14px] italic text-[#f5f0e8] relative z-[1]"
                 style={{
                   fontFamily: "'Playfair Display', serif",
                   fontWeight: 400,
@@ -640,8 +620,8 @@ export default function HeroSection() {
           </div>
 
           {dateError && (
-            <div className="mt-3 text-center">
-              <p className="text-[11px] text-[#7a3020] bg-white/90 inline-block px-4 py-2 rounded-full">
+            <div className="mt-2 text-center">
+              <p className="text-[10px] text-[#7a3020] bg-white/90 inline-block px-3 py-1.5 rounded-full">
                 {dateError}
               </p>
             </div>
@@ -656,30 +636,30 @@ export default function HeroSection() {
           onClick={handleCloseModal}
         >
           <div
-            className="modal-content bg-white rounded-2xl max-w-2xl w-full overflow-hidden shadow-2xl max-h-[90vh] overflow-y-auto"
+            className="modal-content bg-white rounded-xl max-w-lg w-full overflow-hidden shadow-2xl max-h-[85vh] overflow-y-auto"
             onClick={(e) => e.stopPropagation()}
           >
-            <div className="bg-[#2d5a3d] px-6 py-5 sticky top-0 z-10">
+            <div className="bg-[#2d5a3d] px-5 py-4 sticky top-0 z-10">
               <h3
-                className="text-white text-2xl font-normal italic"
+                className="text-white text-xl font-normal italic"
                 style={{ fontFamily: "'Playfair Display', serif" }}
               >
                 Complete Your Booking
               </h3>
-              <p className="text-white/70 text-xs mt-1 font-light">
+              <p className="text-white/70 text-[11px] mt-0.5 font-light">
                 Please review your dates and select a room
               </p>
             </div>
 
-            <div className="p-6">
-              <div className="bg-[#f5f0e8] rounded-lg p-4 mb-6">
-                <h4 className="text-[11px] font-[500] tracking-[0.2em] uppercase text-[#a09888] mb-3">
+            <div className="p-5">
+              <div className="bg-[#f5f0e8] rounded-lg p-3 mb-5">
+                <h4 className="text-[10px] font-[500] tracking-[0.2em] uppercase text-[#a09888] mb-2">
                   Your Stay Details
                 </h4>
-                <div className="grid grid-cols-2 gap-4">
+                <div className="grid grid-cols-2 gap-3">
                   <div>
-                    <p className="text-[10px] text-[#a09888] mb-1">Arrival</p>
-                    <p className="text-[14px] font-[500] text-[#2d2d28]">
+                    <p className="text-[9px] text-[#a09888] mb-0.5">Arrival</p>
+                    <p className="text-[12px] font-[500] text-[#2d2d28]">
                       {new Date(arrivalDate).toLocaleDateString("en-US", {
                         weekday: "short",
                         month: "short",
@@ -688,8 +668,8 @@ export default function HeroSection() {
                     </p>
                   </div>
                   <div>
-                    <p className="text-[10px] text-[#a09888] mb-1">Departure</p>
-                    <p className="text-[14px] font-[500] text-[#2d2d28]">
+                    <p className="text-[9px] text-[#a09888] mb-0.5">Departure</p>
+                    <p className="text-[12px] font-[500] text-[#2d2d28]">
                       {new Date(departureDate).toLocaleDateString("en-US", {
                         weekday: "short",
                         month: "short",
@@ -698,56 +678,55 @@ export default function HeroSection() {
                     </p>
                   </div>
                   <div>
-                    <p className="text-[10px] text-[#a09888] mb-1">Total Nights</p>
-                    <p className="text-[14px] font-[500] text-[#2d5a3d]">
+                    <p className="text-[9px] text-[#a09888] mb-0.5">Total Nights</p>
+                    <p className="text-[12px] font-[500] text-[#2d5a3d]">
                       {calculateNights} nights
                     </p>
                   </div>
                   <div>
-                    <p className="text-[10px] text-[#a09888] mb-1">Guests</p>
-                    <p className="text-[14px] font-[500] text-[#2d2d28]">
+                    <p className="text-[9px] text-[#a09888] mb-0.5">Guests</p>
+                    <p className="text-[12px] font-[500] text-[#2d2d28]">
                       {people} {parseInt(people) === 1 ? "Guest" : "Guests"}
                     </p>
                   </div>
                 </div>
               </div>
 
-              <div className="mb-6">
-                <label className="block text-[11px] font-[500] tracking-[0.2em] uppercase text-[#a09888] mb-3">
+              <div className="mb-5">
+                <label className="block text-[10px] font-[500] tracking-[0.2em] uppercase text-[#a09888] mb-2">
                   Select Room Type
                 </label>
-                <div className="space-y-3">
+                <div className="space-y-2">
                   {roomTypes.map((room) => (
                     <div
                       key={room.id}
                       onClick={() => setSelectedRoom(room.id)}
-                      className={`room-card cursor-pointer border-2 rounded-lg p-4 ${
+                      className={`room-card cursor-pointer border-2 rounded-lg p-3 ${
                         selectedRoom === room.id
                           ? "border-[#2d5a3d] bg-[#f5f0e8]"
                           : "border-[#e8e4dc] hover:border-[#2d5a3d]/50"
                       }`}
                     >
-                      <div className="flex justify-between items-start mb-2">
+                      <div className="flex justify-between items-start">
                         <div>
-                          <h4 className="font-semibold text-[#1a1a1a] text-base">
+                          <h4 className="font-semibold text-[#1a1a1a] text-sm">
                             {room.name}
                           </h4>
-                          <p className="text-[11px] text-[#a09888] mt-1">
+                          <p className="text-[10px] text-[#a09888] mt-0.5">
                             Max {room.maxGuests} guests
                           </p>
                         </div>
                         <div className="text-right">
-                          <p className="text-[20px] font-semibold text-[#2d5a3d]">
+                          <p className="text-[18px] font-semibold text-[#2d5a3d]">
                             ₹{room.price}
                           </p>
-                          <p className="text-[10px] text-[#a09888]">per night</p>
+                          <p className="text-[9px] text-[#a09888]">per night</p>
                         </div>
                       </div>
                       {selectedRoom === room.id && calculateNights > 0 && (
                         <div className="mt-2 pt-2 border-t border-[#2d5a3d]/20">
-                          <p className="text-[11px] text-[#2d5a3d]">
-                            ✓ Selected for {calculateNights} nights — Total: ₹
-                            {room.price * calculateNights}
+                          <p className="text-[10px] text-[#2d5a3d]">
+                            ✓ Selected for {calculateNights} nights — Total: ₹{room.price * calculateNights}
                           </p>
                         </div>
                       )}
@@ -756,38 +735,37 @@ export default function HeroSection() {
                 </div>
               </div>
 
-              <div className="mb-6">
-                <label className="block text-[11px] font-[500] tracking-[0.2em] uppercase text-[#a09888] mb-3">
+              <div className="mb-5">
+                <label className="block text-[10px] font-[500] tracking-[0.2em] uppercase text-[#a09888] mb-2">
                   Special Requests (Optional)
                 </label>
                 <textarea
                   value={specialRequests}
                   onChange={(e) => setSpecialRequests(e.target.value)}
-                  rows={3}
-                  placeholder="Any special requests or preferences? (e.g., dietary restrictions, room preferences, etc.)"
-                  className="w-full px-4 py-3 text-[13px] text-[#2d2d28] border border-[#e8e4dc] rounded-lg focus:outline-none focus:border-[#2d5a3d] transition-colors resize-none"
+                  rows={2}
+                  placeholder="Any special requests or preferences?"
+                  className="w-full px-3 py-2 text-[12px] text-[#2d2d28] border border-[#e8e4dc] rounded-lg focus:outline-none focus:border-[#2d5a3d] transition-colors resize-none"
                   style={{ fontFamily: "'Outfit', sans-serif" }}
                 />
               </div>
 
               {selectedRoom && calculateNights > 0 && (
-                <div className="bg-[#f5f0e8] rounded-lg p-4 mb-6">
-                  <div className="space-y-2">
-                    <div className="flex justify-between text-[13px]">
+                <div className="bg-[#f5f0e8] rounded-lg p-3 mb-5">
+                  <div className="space-y-1.5">
+                    <div className="flex justify-between text-[12px]">
                       <span className="text-[#a09888]">Room rate</span>
                       <span className="text-[#2d2d28]">
-                        ₹{roomTypes.find((r) => r.id === selectedRoom)?.price} ×{" "}
-                        {calculateNights} nights
+                        ₹{roomTypes.find((r) => r.id === selectedRoom)?.price} × {calculateNights} nights
                       </span>
                     </div>
-                    <div className="flex justify-between text-[13px]">
+                    <div className="flex justify-between text-[12px]">
                       <span className="text-[#a09888]">Taxes & fees</span>
                       <span className="text-[#2d2d28]">Included</span>
                     </div>
-                    <div className="border-t border-[#d4cfc4] pt-2 mt-2">
+                    <div className="border-t border-[#d4cfc4] pt-2 mt-1.5">
                       <div className="flex justify-between font-semibold">
                         <span className="text-[#2d2d28]">Total Amount</span>
-                        <span className="text-[20px] text-[#2d5a3d] font-bold">
+                        <span className="text-[18px] text-[#2d5a3d] font-bold">
                           ₹{getTotalPrice}
                         </span>
                       </div>
@@ -796,16 +774,16 @@ export default function HeroSection() {
                 </div>
               )}
 
-              <div className="flex gap-3 mt-6">
+              <div className="flex gap-3 mt-5">
                 <button
                   onClick={handleCloseModal}
-                  className="flex-1 px-4 py-3 border border-[#2d5a3d] text-[#2d5a3d] text-[11px] font-[500] tracking-[0.18em] uppercase hover:bg-[#f5f0e8] transition-colors rounded-lg"
+                  className="flex-1 px-3 py-2.5 border border-[#2d5a3d] text-[#2d5a3d] text-[10px] font-[500] tracking-[0.18em] uppercase hover:bg-[#f5f0e8] transition-colors rounded-lg"
                 >
                   Cancel
                 </button>
                 <button
                   onClick={handleConfirmBooking}
-                  className="flex-1 px-4 py-3 bg-[#2d5a3d] text-white text-[11px] font-[500] tracking-[0.18em] uppercase hover:bg-[#1e3f2b] transition-colors rounded-lg"
+                  className="flex-1 px-3 py-2.5 bg-[#2d5a3d] text-white text-[10px] font-[500] tracking-[0.18em] uppercase hover:bg-[#1e3f2b] transition-colors rounded-lg"
                 >
                   Confirm Booking
                 </button>
