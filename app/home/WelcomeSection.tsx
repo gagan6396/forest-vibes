@@ -4,7 +4,7 @@ import { useEffect, useRef } from "react";
 
 export default function WelcomeSection() {
   const forestImageRef = useRef<HTMLImageElement>(null);
-  const bannerBgRef = useRef<HTMLImageElement>(null);
+  const bannerVideoRef = useRef<HTMLVideoElement>(null);
   const section1Ref = useRef<HTMLElement>(null);
   const section2Ref = useRef<HTMLElement>(null);
 
@@ -31,13 +31,13 @@ export default function WelcomeSection() {
           forestImageRef.current.style.transform = `translateY(${translateY * 0.3}px) scale(1.04)`;
         }
       }
-      if (bannerBgRef.current && section2Ref.current) {
+      if (bannerVideoRef.current && section2Ref.current) {
         const rect = section2Ref.current.getBoundingClientRect();
         const scrollPercent =
           (window.innerHeight - rect.top) / (window.innerHeight + rect.height);
         const translateY = scrollPercent * 80;
         if (rect.top < window.innerHeight && rect.bottom > 0) {
-          bannerBgRef.current.style.transform = `translateY(${translateY * 0.2}px) scale(1.04)`;
+          bannerVideoRef.current.style.transform = `translateY(${translateY * 0.2}px) scale(1.04)`;
         }
       }
     };
@@ -90,6 +90,16 @@ export default function WelcomeSection() {
     return () => observer.disconnect();
   }, []);
 
+  // Function to handle video load errors
+  const handleVideoError = (e: React.SyntheticEvent<HTMLVideoElement>) => {
+    const video = e.currentTarget;
+    console.log("Video failed to load, trying fallback...");
+    // Try fallback video URL
+    if (video.src === "https://commondatastorage.googleapis.com/gtv-videos-bucket/sample/ForBiggerFunflies.mp4") {
+      video.src = "https://sample-videos.com/video123/mp4/720/big_buck_bunny_720p_1mb.mp4";
+    }
+  };
+
   return (
     <>
       <style>{`
@@ -98,8 +108,8 @@ export default function WelcomeSection() {
         .font-jost { font-family: 'Jost', sans-serif; }
         .welcome-img-wrap:hover .welcome-img { transform: scale(1.04); }
         .welcome-img { transition: transform 0.3s ease; }
-        .banner-bg { transition: transform 0.3s ease; }
-        .banner-section:hover .banner-bg { transform: scale(1.04); }
+        .banner-video { transition: transform 0.3s ease; }
+        .banner-section:hover .banner-video { transform: scale(1.04); }
         html { scroll-behavior: smooth; }
         @media (max-width: 900px) {
           .section1-grid { grid-template-columns: 1fr !important; padding: 4rem 2rem !important; gap: 3rem !important; }
@@ -164,12 +174,20 @@ export default function WelcomeSection() {
         ref={section2Ref}
         className="banner-section relative w-full h-[680px] overflow-hidden"
       >
-        <img
-          ref={bannerBgRef}
-          className="banner-bg absolute inset-0 w-full h-full object-cover will-change-transform"
-          src="https://images.unsplash.com/photo-1520250497591-112f2f40a3f4?w=1600&q=85"
-          alt="Forest cabin at Forrest Vibes"
-        />
+        <video
+          ref={bannerVideoRef}
+          className="banner-video absolute inset-0 w-full h-full object-cover will-change-transform"
+          autoPlay
+          loop
+          muted
+          playsInline
+          poster="https://images.unsplash.com/photo-1520250497591-112f2f40a3f4?w=1600&q=85"
+          onError={handleVideoError}
+        >
+          <source src="/vid.mp4" type="video/mp4" />
+          <source src="https://sample-videos.com/video123/mp4/720/big_buck_bunny_720p_1mb.mp4" type="video/mp4" />
+          Your browser does not support the video tag.
+        </video>
 
         <div className="absolute inset-0" style={{ background: bannerGradient }} />
 

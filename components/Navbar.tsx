@@ -202,9 +202,9 @@ export default function Navbar() {
         </ul>
 
         {/* Inquire Now — Desktop */}
-        <button className="relative z-10 hidden md:block text-[11px] font-semibold tracking-widest uppercase text-white bg-[#2d5a3d] px-7 py-3.5 rounded-sm shadow-lg shadow-[#2d5a3d]/30 hover:bg-[#1e3f2b] hover:-translate-y-px hover:shadow-xl active:translate-y-0 transition-all duration-200 cursor-pointer">
+        <a href="/contact-us" className="relative z-10 hidden md:block text-[11px] font-semibold tracking-widest uppercase text-white bg-[#2d5a3d] px-7 py-3.5 rounded-sm shadow-lg shadow-[#2d5a3d]/30 hover:bg-[#1e3f2b] hover:-translate-y-px hover:shadow-xl active:translate-y-0 transition-all duration-200 cursor-pointer">
           INQUIRE NOW
-        </button>
+        </a>
 
         {/* Hamburger — Mobile */}
         <button
@@ -261,7 +261,7 @@ export default function Navbar() {
             ))}
 
             <a
-              href="#book"
+              href="/contact-us"
               onClick={() => setMobileOpen(false)}
               className="menu-btn mt-8 text-center text-[11px] font-semibold tracking-widest uppercase text-white bg-[#2d5a3d] py-4 rounded-sm hover:bg-[#1e3f2b] transition-colors"
               style={{ WebkitTapHighlightColor: "transparent" }}

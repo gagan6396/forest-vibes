@@ -278,7 +278,7 @@ export default function HeroSection() {
             style={{ minHeight: "280px" }}
           >
             <img
-              src="https://images.unsplash.com/photo-1566073771259-6a8506099945?w=1400&q=85"
+              src="home.png"
               alt="Forest Vibes pool"
               className="hero-img-zoom absolute inset-0 w-full h-full object-cover"
             />

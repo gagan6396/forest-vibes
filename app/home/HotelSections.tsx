@@ -382,7 +382,7 @@ function RoomModal({ room, onClose }: { room: Room; onClose: () => void }) {
                 </div>
               </div>
 
-              <button className="flex items-center gap-2 bg-[#3a6349] hover:bg-[#2e4a36] text-white text-[11px] tracking-[0.18em] uppercase font-bold px-7 py-4 rounded-lg transition-all duration-200 hover:-translate-y-0.5 active:translate-y-0">
+              <button className="flex items-center gap-2 bg-[#3a6349] hover:bg-[#2e4a36] text-white text-[11px] tracking-[0.16em] uppercase font-bold px-7 py-4 rounded-lg transition-all duration-200 hover:-translate-y-0.5 active:translate-y-0">
                 Book This Room
                 <ChevronRight size={14} />
               </button>

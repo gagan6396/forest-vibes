@@ -13,6 +13,7 @@ const attractions = [
     description:
       "One of Hinduism's seven sacred cities, where the Ganga descends to the plains. Witness the mesmerizing Ganga Aarti at Har Ki Pauri.",
     highlights: ["Har Ki Pauri", "Ganga Aarti", "Chandi Devi Temple"],
+    backgroundImage: "https://images.unsplash.com/photo-1602619268551-0fde8cf2d2a0?w=1200&h=400&fit=crop",
   },
   {
     id: 2,
@@ -23,6 +24,7 @@ const attractions = [
     description:
       "Nestled in a valley where three mountain ranges meet — from white-water rafting to sunrise yoga, it speaks every language of the soul.",
     highlights: ["Laxman Jhula", "White-water Rafting", "Beatles Ashram"],
+    backgroundImage: "/rish2.jpg",
   },
   {
     id: 3,
@@ -33,6 +35,7 @@ const attractions = [
     description:
       "Perched at 2,000 metres, walk the mall road as mist rolls in from the valleys — time slows here.",
     highlights: ["Kempty Falls", "Gun Hill", "Camel's Back Road"],
+    backgroundImage: "https://images.unsplash.com/photo-1626621341517-bbf3d9990a23?w=1200&h=400&fit=crop",
   },
   {
     id: 4,
@@ -43,6 +46,7 @@ const attractions = [
     description:
       "A quiet forest hamlet on the edge of Rajaji National Park — spot elephants, leopards, and hundreds of bird species.",
     highlights: ["Rajaji National Park", "Elephant Safari", "Bird Watching"],
+    backgroundImage: "https://images.unsplash.com/photo-1542406775-ade58c52d2e4?w=1200&h=400&fit=crop",
   },
   {
     id: 5,
@@ -53,6 +57,7 @@ const attractions = [
     description:
       "A UNESCO corridor home to Asian elephants, tigers, leopards, and 400+ bird species.",
     highlights: ["Jeep Safari", "Elephant Sightings", "Chilla Range"],
+    backgroundImage: "https://images.unsplash.com/photo-1499363536502-87642509e31b?w=1200&h=400&fit=crop",
   },
   {
     id: 6,
@@ -63,6 +68,7 @@ const attractions = [
     description:
       "The capital of Uttarakhand, cradled between the Ganges and Yamuna tributaries.",
     highlights: ["Robber's Cave", "Sahastradhara", "Tapkeshwar Temple"],
+    backgroundImage: "https://images.unsplash.com/photo-1584549783410-cd52f8e74973?w=1200&h=400&fit=crop",
   },
 ];
 
@@ -150,9 +156,9 @@ export default function NearbyAttractions() {
                           ))}
                         </div>
                         <div className="flex gap-2">
-                          <button className="flex-1 py-2.5 rounded-lg bg-[#2a3424] text-white text-sm hover:bg-[#3a4a34] transition">
+                          <a href="#" className="flex-1 px-2 py-2.5 rounded-lg bg-[#2a3424] text-white text-sm hover:bg-[#3a4a34] transition">
                             Plan Your Visit
-                          </button>
+                          </a>
                           {/* <button className="px-4 py-2.5 rounded-lg border border-[#d5cfc5] text-[#5c5040] text-sm hover:border-[#b0a898] transition">
                             Ask Concierge
                           </button> */}
@@ -213,19 +219,22 @@ export default function NearbyAttractions() {
                 exit="exit"
                 className="bg-white rounded-2xl border border-[#e8e2d9] shadow-sm overflow-hidden"
               >
-                {/* Banner */}
+                {/* Banner with background image */}
                 <div
-                  className="h-44 flex items-end p-6"
-                  style={{ background: "linear-gradient(135deg, #2a3424 0%, #4a6741 100%)" }}
+                  className="h-44 flex items-end p-6 relative overflow-hidden bg-cover bg-center"
+                  style={{ backgroundImage: `url(${selected.backgroundImage})` }}
                 >
-                  <div className="flex justify-between items-end w-full">
+                  {/* Dark overlay for text readability */}
+                  <div className="absolute inset-0 bg-black/40" />
+                  
+                  <div className="flex justify-between items-end w-full relative z-10">
                     <div>
                       <p className="text-white text-xl font-semibold">{selected.name}</p>
-                      <p className="text-white/60 text-sm mt-0.5 italic">{selected.tagline}</p>
+                      <p className="text-white/80 text-sm mt-0.5 italic">{selected.tagline}</p>
                     </div>
-                    <div className="text-right bg-white/10 rounded-lg px-3 py-2">
+                    <div className="text-right bg-black/30 backdrop-blur-sm rounded-lg px-3 py-2">
                       <p className="text-white font-semibold">{selected.distance}</p>
-                      <p className="text-white/60 text-xs">{selected.time} drive</p>
+                      <p className="text-white/80 text-xs">{selected.time} drive</p>
                     </div>
                   </div>
                 </div>
@@ -244,9 +253,9 @@ export default function NearbyAttractions() {
                   </div>
 
                   <div className="flex gap-3">
-                    <button className="flex-1 py-2.5 rounded-lg bg-[#2a3424] text-white text-sm hover:bg-[#3a4a34] transition">
+                    <a href="#" className="flex-1 px-2 py-2.5 rounded-lg bg-[#2a3424] text-white text-sm hover:bg-[#3a4a34] transition">
                       Plan Your Visit
-                    </button>
+                    </a>
                     {/* <button className="px-5 py-2.5 rounded-lg border border-[#d5cfc5] text-[#5c5040] text-sm hover:border-[#b0a898] transition">
                       Ask Concierge
                     </button> */}
