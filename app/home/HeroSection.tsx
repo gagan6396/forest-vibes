@@ -252,19 +252,19 @@ export default function HeroSection() {
           z-index: 1;
         }
 
-        .anim-fade-up-1 { opacity: 0; animation: fadeUp 0.5s 0.10s forwards; }
-        .anim-fade-up-2 { opacity: 0; animation: fadeUp 0.5s 0.20s forwards; }
-        .anim-fade-up-3 { opacity: 0; animation: fadeUp 0.5s 0.30s forwards; }
-        .anim-fade-up-4 { opacity: 0; animation: fadeUp 0.5s 0.40s forwards; }
+        .anim-fade-up-1 { opacity: 0; animation: fadeUp 0.6s 0.10s forwards; }
+        .anim-fade-up-2 { opacity: 0; animation: fadeUp 0.6s 0.22s forwards; }
+        .anim-fade-up-3 { opacity: 0; animation: fadeUp 0.6s 0.34s forwards; }
+        .anim-fade-up-4 { opacity: 0; animation: fadeUp 0.6s 0.46s forwards; }
 
         @keyframes fadeUp {
-          from { opacity: 0; transform: translateY(15px); }
+          from { opacity: 0; transform: translateY(18px); }
           to   { opacity: 1; transform: translateY(0); }
         }
 
         .hero-img-zoom {
           transform: scale(1.07);
-          animation: zoomIn 1.4s 0.05s cubic-bezier(0.25, 0.46, 0.45, 0.94) forwards;
+          animation: zoomIn 1.5s 0.05s cubic-bezier(0.25, 0.46, 0.45, 0.94) forwards;
         }
 
         @keyframes zoomIn {
@@ -304,14 +304,14 @@ export default function HeroSection() {
           to { opacity: 1; }
         }
         @keyframes modalSlideUp {
-          from { opacity: 0; transform: translateY(30px) scale(0.96); }
+          from { opacity: 0; transform: translateY(35px) scale(0.96); }
           to { opacity: 1; transform: translateY(0) scale(1); }
         }
         .modal-backdrop {
-          animation: modalFadeIn 0.2s ease forwards;
+          animation: modalFadeIn 0.25s ease forwards;
         }
         .modal-content {
-          animation: modalSlideUp 0.3s cubic-bezier(0.22, 1, 0.36, 1) forwards;
+          animation: modalSlideUp 0.35s cubic-bezier(0.22, 1, 0.36, 1) forwards;
         }
 
         /* Room card hover effect */
@@ -329,11 +329,11 @@ export default function HeroSection() {
         /* Error shake animation */
         @keyframes shake {
           0%, 100% { transform: translateX(0); }
-          25% { transform: translateX(-4px); }
-          75% { transform: translateX(4px); }
+          25% { transform: translateX(-5px); }
+          75% { transform: translateX(5px); }
         }
         .error-shake {
-          animation: shake 0.25s ease-in-out;
+          animation: shake 0.3s ease-in-out;
         }
 
         /* Slider dot active animation */
@@ -360,8 +360,8 @@ export default function HeroSection() {
         className="relative w-full bg-[#f5f0e8] hero-grain overflow-hidden"
         style={{ fontFamily: "'Outfit', sans-serif" }}
       >
-        {/* COMPACT SLIDER CONTAINER */}
-        <div className="relative h-[500px] md:h-[560px] flex flex-col">
+        {/* MID-SIZED SLIDER CONTAINER */}
+        <div className="relative h-[620px] md:h-[680px] flex flex-col">
           {/* Slides */}
           <div className="relative h-full">
             {slides.map((slide, index) => (
@@ -384,14 +384,14 @@ export default function HeroSection() {
                 />
                 <div className="absolute inset-0 bg-black/30" />
 
-                {/* TEXT CONTENT - Compact */}
+                {/* TEXT CONTENT */}
                 <div className="relative z-20 flex flex-col justify-center h-full px-6 md:px-12 lg:px-16">
                   <div className="max-w-xl">
                     <h1
-                      className="text-white leading-[1.1] mb-3 anim-fade-up-2"
+                      className="text-white leading-[1.08] mb-4 anim-fade-up-2"
                       style={{
                         fontFamily: "'Playfair Display', serif",
-                        fontSize: "clamp(1.75rem, 3.5vw, 2.5rem)",
+                        fontSize: "clamp(2rem, 3.8vw, 3.2rem)",
                         fontWeight: 400,
                       }}
                     >
@@ -403,7 +403,7 @@ export default function HeroSection() {
                     </h1>
 
                     <p
-                      className="text-white/90 text-[12px] leading-[1.6] max-w-[400px] mb-6 anim-fade-up-3"
+                      className="text-white/90 text-[13px] leading-[1.65] max-w-[440px] mb-7 anim-fade-up-3"
                       style={{ fontWeight: 300 }}
                     >
                       {slide.description}
@@ -411,12 +411,12 @@ export default function HeroSection() {
 
                     <div className="flex items-center gap-5 anim-fade-up-4">
                       <button
-                        className="btn-primary-hero inline-flex items-center gap-2 px-6 py-2.5 bg-[#2d5a3d] text-[#f5f0e8] text-[9px] tracking-[0.18em] uppercase font-[400] border-none cursor-pointer transition-colors duration-200 hover:bg-[#1e3f2b]"
+                        className="btn-primary-hero inline-flex items-center gap-2.5 px-7 py-3 bg-[#2d5a3d] text-[#f5f0e8] text-[10px] tracking-[0.18em] uppercase font-[400] border-none cursor-pointer transition-colors duration-200 hover:bg-[#1e3f2b]"
                         style={{ fontFamily: "'Outfit', sans-serif" }}
                       >
                         Explore Stays
                         <svg
-                          className="cta-arrow w-3.5 h-3.5"
+                          className="cta-arrow w-4 h-4"
                           fill="none"
                           viewBox="0 0 24 24"
                           stroke="currentColor"
@@ -432,14 +432,14 @@ export default function HeroSection() {
             ))}
           </div>
 
-          {/* Slider Navigation Arrows - Smaller */}
+          {/* Slider Navigation Arrows */}
           <button
             onClick={goToPrevSlide}
-            className="slider-nav-btn absolute left-3 md:left-5 top-1/2 -translate-y-1/2 z-30 w-8 h-8 md:w-9 md:h-9 rounded-full bg-white/20 backdrop-blur-sm border border-white/30 flex items-center justify-center text-white hover:bg-[#2d5a3d] hover:border-[#2d5a3d] transition-all duration-300"
+            className="slider-nav-btn absolute left-4 md:left-6 top-1/2 -translate-y-1/2 z-30 w-9 h-9 md:w-10 md:h-10 rounded-full bg-white/20 backdrop-blur-sm border border-white/30 flex items-center justify-center text-white hover:bg-[#2d5a3d] hover:border-[#2d5a3d] transition-all duration-300"
             aria-label="Previous slide"
           >
             <svg
-              className="w-4 h-4 md:w-5 md:h-5"
+              className="w-4.5 h-4.5 md:w-5 md:h-5"
               fill="none"
               viewBox="0 0 24 24"
               stroke="currentColor"
@@ -451,11 +451,11 @@ export default function HeroSection() {
 
           <button
             onClick={goToNextSlide}
-            className="slider-nav-btn absolute right-3 md:right-5 top-1/2 -translate-y-1/2 z-30 w-8 h-8 md:w-9 md:h-9 rounded-full bg-white/20 backdrop-blur-sm border border-white/30 flex items-center justify-center text-white hover:bg-[#2d5a3d] hover:border-[#2d5a3d] transition-all duration-300"
+            className="slider-nav-btn absolute right-4 md:right-6 top-1/2 -translate-y-1/2 z-30 w-9 h-9 md:w-10 md:h-10 rounded-full bg-white/20 backdrop-blur-sm border border-white/30 flex items-center justify-center text-white hover:bg-[#2d5a3d] hover:border-[#2d5a3d] transition-all duration-300"
             aria-label="Next slide"
           >
             <svg
-              className="w-4 h-4 md:w-5 md:h-5"
+              className="w-4.5 h-4.5 md:w-5 md:h-5"
               fill="none"
               viewBox="0 0 24 24"
               stroke="currentColor"
@@ -465,15 +465,15 @@ export default function HeroSection() {
             </svg>
           </button>
 
-          {/* Slider Dots - Compact */}
-          <div className="absolute bottom-4 left-0 right-0 z-30 flex justify-center gap-2">
+          {/* Slider Dots */}
+          <div className="absolute bottom-6 left-0 right-0 z-30 flex justify-center gap-2.5">
             {slides.map((_, index) => (
               <button
                 key={index}
                 onClick={() => goToSlide(index)}
-                className={`slider-dot w-1.5 h-1.5 rounded-full transition-all duration-300 ${
+                className={`slider-dot w-2 h-2 rounded-full transition-all duration-300 ${
                   index === currentSlide
-                    ? "w-5 bg-[#2d5a3d] slider-dot-active"
+                    ? "w-6 bg-[#2d5a3d] slider-dot-active"
                     : "bg-white/50 hover:bg-white/80"
                 }`}
                 aria-label={`Go to slide ${index + 1}`}
@@ -481,12 +481,12 @@ export default function HeroSection() {
             ))}
           </div>
 
-          {/* Rating Badge - Compact */}
-          <div className="absolute bottom-4 left-4 md:left-6 z-30 hidden md:flex items-center gap-2.5 bg-white/70 backdrop-blur-sm border border-[#2d5a3d]/[0.15] px-3 py-1.5 rounded-md">
-            <div className="w-6 h-6 rounded-full bg-[#2d5a3d] flex items-center justify-center flex-shrink-0">
+          {/* Rating Badge */}
+          <div className="absolute bottom-6 left-4 md:left-6 z-30 hidden md:flex items-center gap-3 bg-white/70 backdrop-blur-sm border border-[#2d5a3d]/[0.15] px-4 py-2 rounded-md">
+            <div className="w-7 h-7 rounded-full bg-[#2d5a3d] flex items-center justify-center flex-shrink-0">
               <svg
-                width="11"
-                height="11"
+                width="12"
+                height="12"
                 viewBox="0 0 24 24"
                 fill="none"
                 stroke="#f5f0e8"
@@ -496,26 +496,26 @@ export default function HeroSection() {
               </svg>
             </div>
             <div className="flex flex-col gap-0">
-              <span className="text-[12px] font-[500] text-[#191914]">4.98 / 5.0</span>
-              <span className="text-[9px] font-[300] text-[#8a8176] tracking-[0.04em]">
+              <span className="text-[13px] font-[500] text-[#191914]">4.98 / 5.0</span>
+              <span className="text-[10px] font-[300] text-[#8a8176] tracking-[0.04em]">
                 1,200+ Guest Reviews
               </span>
             </div>
           </div>
         </div>
 
-        {/* BOOKING BAR - Compact, overlapping slider */}
-        <div className="relative z-20 mx-4 md:mx-8 lg:mx-12 -mt-12 pb-8">
+        {/* BOOKING BAR - Mid-sized, overlapping slider */}
+        <div className="relative z-20 mx-4 md:mx-8 lg:mx-12 -mt-14 pb-10">
           <div
             className={`bg-white border border-[#2d5a3d]/[0.12] overflow-hidden grid grid-cols-1 md:grid-cols-[1fr_1fr_1fr_auto] ${
               bookingError ? "error-shake" : ""
             }`}
-            style={{ boxShadow: "0 12px 40px rgba(30,50,30,0.08)" }}
+            style={{ boxShadow: "0 16px 50px rgba(30,50,30,0.09)" }}
           >
             {/* Arrival Date */}
-            <label className="flex items-center gap-3 px-5 py-3.5 cursor-pointer hover:bg-[#f9f7f3] focus-within:bg-[#f2efe6] transition-colors border-b md:border-b-0 md:border-r border-[#2d5a3d]/[0.1]">
+            <label className="flex items-center gap-3.5 px-6 py-4 cursor-pointer hover:bg-[#f9f7f3] focus-within:bg-[#f2efe6] transition-colors border-b md:border-b-0 md:border-r border-[#2d5a3d]/[0.1]">
               <svg
-                className="w-4 h-4 text-[#2d5a3d] opacity-80 flex-shrink-0"
+                className="w-[17px] h-[17px] text-[#2d5a3d] opacity-80 flex-shrink-0"
                 fill="none"
                 viewBox="0 0 24 24"
                 stroke="currentColor"
@@ -524,8 +524,8 @@ export default function HeroSection() {
                 <rect x="3" y="4" width="18" height="18" rx="2" />
                 <path d="M16 2v4M8 2v4M3 10h18" />
               </svg>
-              <div className="flex flex-col gap-0.5 flex-1">
-                <span className="text-[8px] font-[500] tracking-[0.2em] uppercase text-[#a09888]">
+              <div className="flex flex-col gap-1 flex-1">
+                <span className="text-[9px] font-[500] tracking-[0.2em] uppercase text-[#a09888]">
                   Arrival Date
                 </span>
                 <input
@@ -533,16 +533,16 @@ export default function HeroSection() {
                   value={arrivalDate}
                   onChange={handleArrivalDateChange}
                   min={getMinArrivalDate()}
-                  className="text-[11px] font-[300] text-[#2d2d28] bg-transparent border-none outline-none cursor-pointer w-full"
+                  className="text-[12px] font-[300] text-[#2d2d28] bg-transparent border-none outline-none cursor-pointer w-full"
                   style={{ fontFamily: "'Outfit', sans-serif" }}
                 />
               </div>
             </label>
 
             {/* Departure Date */}
-            <label className="flex items-center gap-3 px-5 py-3.5 cursor-pointer hover:bg-[#f9f7f3] focus-within:bg-[#f2efe6] transition-colors border-b md:border-b-0 md:border-r border-[#2d5a3d]/[0.1]">
+            <label className="flex items-center gap-3.5 px-6 py-4 cursor-pointer hover:bg-[#f9f7f3] focus-within:bg-[#f2efe6] transition-colors border-b md:border-b-0 md:border-r border-[#2d5a3d]/[0.1]">
               <svg
-                className="w-4 h-4 text-[#2d5a3d] opacity-80 flex-shrink-0"
+                className="w-[17px] h-[17px] text-[#2d5a3d] opacity-80 flex-shrink-0"
                 fill="none"
                 viewBox="0 0 24 24"
                 stroke="currentColor"
@@ -551,8 +551,8 @@ export default function HeroSection() {
                 <rect x="3" y="4" width="18" height="18" rx="2" />
                 <path d="M16 2v4M8 2v4M3 10h18" />
               </svg>
-              <div className="flex flex-col gap-0.5 flex-1">
-                <span className="text-[8px] font-[500] tracking-[0.2em] uppercase text-[#a09888]">
+              <div className="flex flex-col gap-1 flex-1">
+                <span className="text-[9px] font-[500] tracking-[0.2em] uppercase text-[#a09888]">
                   Departure Date
                 </span>
                 <input
@@ -560,16 +560,16 @@ export default function HeroSection() {
                   value={departureDate}
                   onChange={handleDepartureDateChange}
                   min={getMinDepartureDate()}
-                  className="text-[11px] font-[300] text-[#2d2d28] bg-transparent border-none outline-none cursor-pointer w-full"
+                  className="text-[12px] font-[300] text-[#2d2d28] bg-transparent border-none outline-none cursor-pointer w-full"
                   style={{ fontFamily: "'Outfit', sans-serif" }}
                 />
               </div>
             </label>
 
             {/* Number of People */}
-            <label className="flex items-center gap-3 px-5 py-3.5 cursor-pointer hover:bg-[#f9f7f3] focus-within:bg-[#f2efe6] transition-colors border-b md:border-b-0 border-[#2d5a3d]/[0.1]">
+            <label className="flex items-center gap-3.5 px-6 py-4 cursor-pointer hover:bg-[#f9f7f3] focus-within:bg-[#f2efe6] transition-colors border-b md:border-b-0 border-[#2d5a3d]/[0.1]">
               <svg
-                className="w-4 h-4 text-[#2d5a3d] opacity-80 flex-shrink-0"
+                className="w-[17px] h-[17px] text-[#2d5a3d] opacity-80 flex-shrink-0"
                 fill="none"
                 viewBox="0 0 24 24"
                 stroke="currentColor"
@@ -579,9 +579,9 @@ export default function HeroSection() {
                 <circle cx="9" cy="7" r="4" />
                 <path d="M23 21v-2a4 4 0 0 0-3-3.87M16 3.13a4 4 0 0 1 0 7.75" />
               </svg>
-              <div className="flex flex-col gap-0.5 flex-1">
-                <span className="text-[8px] font-[500] tracking-[0.2em] uppercase text-[#a09888]">
-                  Guests
+              <div className="flex flex-col gap-1 flex-1">
+                <span className="text-[9px] font-[500] tracking-[0.2em] uppercase text-[#a09888]">
+                  Number of People
                 </span>
                 <input
                   type="number"
@@ -589,8 +589,8 @@ export default function HeroSection() {
                   max={10}
                   value={people}
                   onChange={(e) => setPeople(e.target.value)}
-                  placeholder="How many?"
-                  className="text-[11px] font-[300] text-[#2d2d28] placeholder-[#c5bfb4] bg-transparent border-none outline-none w-full"
+                  placeholder="How many guests?"
+                  className="text-[12px] font-[300] text-[#2d2d28] placeholder-[#c5bfb4] bg-transparent border-none outline-none w-full"
                   style={{ fontFamily: "'Outfit', sans-serif" }}
                 />
               </div>
@@ -599,16 +599,16 @@ export default function HeroSection() {
             {/* CTA */}
             <button
               onClick={handleBook}
-              className={`booking-btn-sweep flex flex-col items-center justify-center gap-0.5 px-6 py-3 border-none cursor-pointer transition-colors duration-200 ${
+              className={`booking-btn-sweep flex flex-col items-center justify-center gap-1 px-8 py-3.5 border-none cursor-pointer transition-colors duration-200 ${
                 bookingError ? "bg-[#7a3020]" : "bg-[#2d5a3d]"
               }`}
               style={{ fontFamily: "'Outfit', sans-serif" }}
             >
-              <span className="text-[8px] font-[500] tracking-[0.22em] uppercase text-[#f5f0e8]/70 relative z-[1]">
+              <span className="text-[9px] font-[500] tracking-[0.22em] uppercase text-[#f5f0e8]/70 relative z-[1]">
                 Reserve Now
               </span>
               <span
-                className="text-[14px] italic text-[#f5f0e8] relative z-[1]"
+                className="text-[16px] italic text-[#f5f0e8] relative z-[1]"
                 style={{
                   fontFamily: "'Playfair Display', serif",
                   fontWeight: 400,
@@ -620,8 +620,8 @@ export default function HeroSection() {
           </div>
 
           {dateError && (
-            <div className="mt-2 text-center">
-              <p className="text-[10px] text-[#7a3020] bg-white/90 inline-block px-3 py-1.5 rounded-full">
+            <div className="mt-2.5 text-center">
+              <p className="text-[10.5px] text-[#7a3020] bg-white/90 inline-block px-3.5 py-1.5 rounded-full">
                 {dateError}
               </p>
             </div>
@@ -743,7 +743,7 @@ export default function HeroSection() {
                   value={specialRequests}
                   onChange={(e) => setSpecialRequests(e.target.value)}
                   rows={2}
-                  placeholder="Any special requests or preferences?"
+                  placeholder="Any special requests or preferences? (e.g., dietary restrictions, room preferences, etc.)"
                   className="w-full px-3 py-2 text-[12px] text-[#2d2d28] border border-[#e8e4dc] rounded-lg focus:outline-none focus:border-[#2d5a3d] transition-colors resize-none"
                   style={{ fontFamily: "'Outfit', sans-serif" }}
                 />
