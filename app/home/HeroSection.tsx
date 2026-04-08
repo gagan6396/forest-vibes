@@ -1,6 +1,37 @@
 "use client";
 
-import { useState, useCallback, useMemo } from "react";
+import { useState, useCallback, useMemo, useEffect } from "react";
+
+// Slide data
+const slides = [
+  {
+    id: 1,
+    image: "home.png",
+    title: "Your Home Away,",
+    emphasis: "Reimagined",
+    subtitle: "for the Extraordinary",
+    description:
+      "Immerse Yourself in Elegance and Comfort at Forrest Vibes. Our Exceptional Accommodations, Impeccable Service, and Unrivaled Hospitality Await Your Arrival. Your Perfect Getaway Starts Here.",
+  },
+  {
+    id: 2,
+    image: "https://images.pexels.com/photos/258154/pexels-photo-258154.jpeg?auto=compress&cs=tinysrgb&w=1600",
+    title: "Where Nature Meets",
+    emphasis: "Luxury",
+    subtitle: "in Perfect Harmony",
+    description:
+      "Wake up to the sounds of nature and experience unparalleled comfort in our eco-friendly luxury suites. Designed for those who seek tranquility without compromising on modern amenities.",
+  },
+  {
+    id: 3,
+    image: "https://images.pexels.com/photos/261102/pexels-photo-261102.jpeg?auto=compress&cs=tinysrgb&w=1600",
+    title: "Create Unforgettable",
+    emphasis: "Memories",
+    subtitle: "with Your Loved Ones",
+    description:
+      "Whether it's a romantic getaway or a family vacation, our curated experiences and world-class service ensure every moment becomes a cherished memory.",
+  },
+];
 
 export default function HeroSection() {
   const [arrivalDate, setArrivalDate] = useState("");
@@ -11,12 +42,43 @@ export default function HeroSection() {
   const [selectedRoom, setSelectedRoom] = useState("");
   const [specialRequests, setSpecialRequests] = useState("");
   const [dateError, setDateError] = useState("");
+  const [currentSlide, setCurrentSlide] = useState(0);
+  const [isTransitioning, setIsTransitioning] = useState(false);
 
   const roomTypes = [
     { id: "deluxe", name: "Deluxe Room", price: 320, maxGuests: 2 },
     { id: "junior", name: "Junior Suite", price: 520, maxGuests: 2 },
     { id: "presidential", name: "Presidential Suite", price: 1200, maxGuests: 4 },
   ];
+
+  // Auto-rotate slides
+  useEffect(() => {
+    const interval = setInterval(() => {
+      goToNextSlide();
+    }, 6000);
+    return () => clearInterval(interval);
+  }, [currentSlide]);
+
+  const goToNextSlide = () => {
+    if (isTransitioning) return;
+    setIsTransitioning(true);
+    setCurrentSlide((prev) => (prev + 1) % slides.length);
+    setTimeout(() => setIsTransitioning(false), 700);
+  };
+
+  const goToPrevSlide = () => {
+    if (isTransitioning) return;
+    setIsTransitioning(true);
+    setCurrentSlide((prev) => (prev - 1 + slides.length) % slides.length);
+    setTimeout(() => setIsTransitioning(false), 700);
+  };
+
+  const goToSlide = (index: number) => {
+    if (isTransitioning || index === currentSlide) return;
+    setIsTransitioning(true);
+    setCurrentSlide(index);
+    setTimeout(() => setIsTransitioning(false), 700);
+  };
 
   // Pure validation function - doesn't set state
   const isValidDateRange = useCallback((arrival: string, departure: string) => {
@@ -29,14 +91,16 @@ export default function HeroSection() {
 
     if (arrivalDateObj < today) return false;
     if (departureDateObj <= arrivalDateObj) return false;
-    
-    const nights = Math.ceil((departureDateObj.getTime() - arrivalDateObj.getTime()) / (1000 * 60 * 60 * 24));
+
+    const nights = Math.ceil(
+      (departureDateObj.getTime() - arrivalDateObj.getTime()) / (1000 * 60 * 60 * 24)
+    );
     if (nights > 30) return false;
-    
+
     const oneYearFromNow = new Date();
     oneYearFromNow.setFullYear(oneYearFromNow.getFullYear() + 1);
     if (arrivalDateObj > oneYearFromNow) return false;
-    
+
     return true;
   }, []);
 
@@ -62,7 +126,9 @@ export default function HeroSection() {
       return false;
     }
 
-    const nights = Math.ceil((departureDateObj.getTime() - arrivalDateObj.getTime()) / (1000 * 60 * 60 * 24));
+    const nights = Math.ceil(
+      (departureDateObj.getTime() - arrivalDateObj.getTime()) / (1000 * 60 * 60 * 24)
+    );
     if (nights > 30) {
       setDateError("Maximum stay is 30 nights");
       return false;
@@ -126,8 +192,10 @@ export default function HeroSection() {
       alert("Please select a room type");
       return;
     }
-    const selectedRoomData = roomTypes.find(room => room.id === selectedRoom);
-    alert(`Booking Confirmed!\n\nRoom: ${selectedRoomData?.name}\nArrival: ${arrivalDate}\nDeparture: ${departureDate}\nGuests: ${people}\nSpecial Requests: ${specialRequests || "None"}`);
+    const selectedRoomData = roomTypes.find((room) => room.id === selectedRoom);
+    alert(
+      `Booking Confirmed!\n\nRoom: ${selectedRoomData?.name}\nArrival: ${arrivalDate}\nDeparture: ${departureDate}\nGuests: ${people}\nSpecial Requests: ${specialRequests || "None"}`
+    );
     setIsModalOpen(false);
     setArrivalDate("");
     setDepartureDate("");
@@ -140,13 +208,16 @@ export default function HeroSection() {
   // Calculate nights - pure computation without state updates
   const calculateNights = useMemo(() => {
     if (arrivalDate && departureDate && isValidDateRange(arrivalDate, departureDate)) {
-      return Math.ceil((new Date(departureDate).getTime() - new Date(arrivalDate).getTime()) / (1000 * 60 * 60 * 24));
+      return Math.ceil(
+        (new Date(departureDate).getTime() - new Date(arrivalDate).getTime()) /
+          (1000 * 60 * 60 * 24)
+      );
     }
     return 0;
   }, [arrivalDate, departureDate, isValidDateRange]);
 
   const getTotalPrice = useMemo(() => {
-    const selectedRoomData = roomTypes.find(room => room.id === selectedRoom);
+    const selectedRoomData = roomTypes.find((room) => room.id === selectedRoom);
     if (selectedRoomData && calculateNights > 0) {
       return selectedRoomData.price * calculateNights;
     }
@@ -155,14 +226,14 @@ export default function HeroSection() {
 
   const getMinArrivalDate = () => {
     const today = new Date();
-    return today.toISOString().split('T')[0];
+    return today.toISOString().split("T")[0];
   };
 
   const getMinDepartureDate = () => {
     if (arrivalDate) {
       const nextDay = new Date(arrivalDate);
       nextDay.setDate(nextDay.getDate() + 1);
-      return nextDay.toISOString().split('T')[0];
+      return nextDay.toISOString().split("T")[0];
     }
     return getMinArrivalDate();
   };
@@ -264,102 +335,197 @@ export default function HeroSection() {
         .error-shake {
           animation: shake 0.3s ease-in-out;
         }
+
+        /* Slider transitions */
+        .slide-enter {
+          opacity: 0;
+          transform: scale(1.05);
+        }
+        .slide-enter-active {
+          opacity: 1;
+          transform: scale(1);
+          transition: opacity 0.7s ease-out, transform 0.7s ease-out;
+        }
+        .slide-exit {
+          opacity: 1;
+        }
+        .slide-exit-active {
+          opacity: 0;
+          transition: opacity 0.5s ease;
+        }
+
+        /* Slider dot active animation */
+        .slider-dot {
+          transition: all 0.3s ease;
+        }
+        .slider-dot-active {
+          background-color: #2d5a3d;
+          transform: scale(1.2);
+        }
+
+        /* Navigation buttons hover effect */
+        .slider-nav-btn {
+          transition: all 0.3s ease;
+        }
+        .slider-nav-btn:hover {
+          background-color: #2d5a3d;
+          color: white;
+          border-color: #2d5a3d;
+        }
       `}</style>
 
       <section
         className="relative w-full bg-[#f5f0e8] hero-grain overflow-hidden"
         style={{ fontFamily: "'Outfit', sans-serif" }}
       >
-        {/* ── MAIN SPLIT ── */}
-        <div className="flex flex-col md:flex-row relative z-[2]">
-          {/* IMAGE */}
-          <div
-            className="w-full md:w-[48%] md:order-2 relative overflow-hidden"
-            style={{ minHeight: "280px" }}
-          >
-            <img
-              src="home.png"
-              alt="Forest Vibes pool"
-              className="hero-img-zoom absolute inset-0 w-full h-full object-cover"
-            />
-            <div className="hidden md:block absolute top-0 bottom-0 left-0 w-20 bg-gradient-to-r from-[#f5f0e8] to-transparent z-[2]" />
-            <div className="md:hidden absolute bottom-0 left-0 right-0 h-16 bg-gradient-to-t from-[#f5f0e8] to-transparent z-[2]" />
-            <div className="absolute top-0 left-0 right-0 h-[72px] bg-gradient-to-b from-black/20 to-transparent z-[2]" />
+        {/* SLIDER CONTAINER */}
+        <div className="relative min-h-screen flex flex-col">
+          {/* Slides */}
+          <div className="relative flex-1">
+            {slides.map((slide, index) => (
+              <div
+                key={slide.id}
+                className={`absolute inset-0 transition-opacity duration-700 ease-in-out ${
+                  index === currentSlide ? "opacity-100 z-10" : "opacity-0 z-0"
+                }`}
+              >
+                {/* IMAGE */}
+                <div
+                  className="absolute inset-0 w-full h-full"
+                  style={{
+                    backgroundImage: `url(${slide.image})`,
+                    backgroundSize: "cover",
+                    backgroundPosition: "center",
+                    transform: index === currentSlide ? "scale(1)" : "scale(1.05)",
+                    transition: "transform 7s ease-out",
+                  }}
+                />
+                <div className="absolute inset-0 bg-black/30" />
+
+                {/* TEXT CONTENT */}
+                <div className="relative z-20 flex flex-col justify-center min-h-screen px-7 md:px-16 lg:px-[72px] pt-32 pb-40">
+                  <div className="max-w-2xl">
+                    <div className="flex items-center gap-3 mb-6 anim-fade-up-1" />
+
+                    <h1
+                      className="text-white leading-[1.06] mb-4 anim-fade-up-2"
+                      style={{
+                        fontFamily: "'Playfair Display', serif",
+                        fontSize: "clamp(2rem, 4.2vw, 3.8rem)",
+                        fontWeight: 400,
+                      }}
+                    >
+                      {slide.title}
+                      <br />
+                      <em className="italic text-[#c8e6d9]">{slide.emphasis}</em>
+                      <br />
+                      {slide.subtitle}
+                    </h1>
+
+                    <p
+                      className="text-white/90 text-[13.5px] leading-[1.78] max-w-[460px] mb-10 anim-fade-up-3"
+                      style={{ fontWeight: 300 }}
+                    >
+                      {slide.description}
+                    </p>
+
+                    <div className="flex items-center gap-6 anim-fade-up-4">
+                      <button
+                        className="btn-primary-hero inline-flex items-center gap-2.5 px-8 py-3.5 bg-[#2d5a3d] text-[#f5f0e8] text-[10px] tracking-[0.18em] uppercase font-[400] border-none cursor-pointer transition-colors duration-200 hover:bg-[#1e3f2b]"
+                        style={{ fontFamily: "'Outfit', sans-serif" }}
+                      >
+                        Explore Stays
+                        <svg
+                          className="cta-arrow w-4 h-4"
+                          fill="none"
+                          viewBox="0 0 24 24"
+                          stroke="currentColor"
+                          strokeWidth={1.5}
+                        >
+                          <path d="M5 12h14M12 5l7 7-7 7" />
+                        </svg>
+                      </button>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            ))}
           </div>
 
-          {/* TEXT */}
-          <div className="w-full md:w-[52%] md:order-1 flex flex-col justify-center px-7 md:px-16 lg:px-[72px] pt-8 md:pt-[130px] pb-10 md:pb-20 relative">
-            <div className="flex items-center gap-3 mb-6 anim-fade-up-1" />
-
-            <h1
-              className="text-[#191914] leading-[1.06] mb-6 anim-fade-up-2"
-              style={{
-                fontFamily: "'Playfair Display', serif",
-                fontSize: "clamp(2rem, 4.2vw, 3.8rem)",
-                fontWeight: 400,
-              }}
+          {/* Slider Navigation Arrows */}
+          <button
+            onClick={goToPrevSlide}
+            className="slider-nav-btn absolute left-4 md:left-8 top-1/2 -translate-y-1/2 z-30 w-10 h-10 md:w-12 md:h-12 rounded-full bg-white/20 backdrop-blur-sm border border-white/30 flex items-center justify-center text-white hover:bg-[#2d5a3d] hover:border-[#2d5a3d] transition-all duration-300"
+            aria-label="Previous slide"
+          >
+            <svg
+              className="w-5 h-5 md:w-6 md:h-6"
+              fill="none"
+              viewBox="0 0 24 24"
+              stroke="currentColor"
+              strokeWidth={2}
             >
-              Your Home Away,
-              <br />
-              <em className="italic text-[#2d5a3d]">Reimagined</em>
-              <br />
-              for the Extraordinary
-            </h1>
+              <path d="M15 19l-7-7 7-7" />
+            </svg>
+          </button>
 
-            <p
-              className="text-black text-[13.5px] leading-[1.78] max-w-[360px] mb-10 anim-fade-up-3"
-              style={{ fontWeight: 300 }}
+          <button
+            onClick={goToNextSlide}
+            className="slider-nav-btn absolute right-4 md:right-8 top-1/2 -translate-y-1/2 z-30 w-10 h-10 md:w-12 md:h-12 rounded-full bg-white/20 backdrop-blur-sm border border-white/30 flex items-center justify-center text-white hover:bg-[#2d5a3d] hover:border-[#2d5a3d] transition-all duration-300"
+            aria-label="Next slide"
+          >
+            <svg
+              className="w-5 h-5 md:w-6 md:h-6"
+              fill="none"
+              viewBox="0 0 24 24"
+              stroke="currentColor"
+              strokeWidth={2}
             >
-              Immerse Yourself in Elegance and Comfort at Forrest Vibes. Our
-              Exceptional Accommodations, Impeccable Service, and Unrivaled
-              Hospitality Await Your Arrival. Your Perfect Getaway Starts Here.
-            </p>
+              <path d="M9 5l7 7-7 7" />
+            </svg>
+          </button>
 
-            <div className="flex items-center gap-6 anim-fade-up-4">
+          {/* Slider Dots */}
+          <div className="absolute bottom-32 left-0 right-0 z-30 flex justify-center gap-3">
+            {slides.map((_, index) => (
               <button
-                className="btn-primary-hero inline-flex items-center gap-2.5 px-8 py-3.5 bg-[#2d5a3d] text-[#f5f0e8] text-[10px] tracking-[0.18em] uppercase font-[400] border-none cursor-pointer transition-colors duration-200 hover:bg-[#1e3f2b]"
-                style={{ fontFamily: "'Outfit', sans-serif" }}
-              >
-                Explore Stays
-                <svg
-                  className="cta-arrow w-4 h-4"
-                  fill="none"
-                  viewBox="0 0 24 24"
-                  stroke="currentColor"
-                  strokeWidth={1.5}
-                >
-                  <path d="M5 12h14M12 5l7 7-7 7" />
-                </svg>
-              </button>
-            </div>
+                key={index}
+                onClick={() => goToSlide(index)}
+                className={`slider-dot w-2 h-2 rounded-full transition-all duration-300 ${
+                  index === currentSlide
+                    ? "w-8 bg-[#2d5a3d] slider-dot-active"
+                    : "bg-white/50 hover:bg-white/80"
+                }`}
+                aria-label={`Go to slide ${index + 1}`}
+              />
+            ))}
+          </div>
 
-            <div className="anim-fade-up-5 hidden md:flex absolute bottom-16 left-[72px] items-center gap-3.5 bg-white/70 backdrop-blur-sm border border-[#2d5a3d]/[0.15] px-5 py-3">
-              <div className="w-9 h-9 rounded-full bg-[#2d5a3d] flex items-center justify-center flex-shrink-0">
-                <svg
-                  width="14"
-                  height="14"
-                  viewBox="0 0 24 24"
-                  fill="none"
-                  stroke="#f5f0e8"
-                  strokeWidth="1.5"
-                >
-                  <path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z" />
-                </svg>
-              </div>
-              <div className="flex flex-col gap-0.5">
-                <span className="text-[14px] font-[500] text-[#191914]">
-                  4.98 / 5.0
-                </span>
-                <span className="text-[11px] font-[300] text-[#8a8176] tracking-[0.04em]">
-                  1,200+ Guest Reviews
-                </span>
-              </div>
+          {/* Rating Badge */}
+          <div className="absolute bottom-32 left-4 md:left-8 z-30 hidden md:flex items-center gap-3.5 bg-white/70 backdrop-blur-sm border border-[#2d5a3d]/[0.15] px-5 py-3 rounded-lg">
+            <div className="w-9 h-9 rounded-full bg-[#2d5a3d] flex items-center justify-center flex-shrink-0">
+              <svg
+                width="14"
+                height="14"
+                viewBox="0 0 24 24"
+                fill="none"
+                stroke="#f5f0e8"
+                strokeWidth="1.5"
+              >
+                <path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z" />
+              </svg>
+            </div>
+            <div className="flex flex-col gap-0.5">
+              <span className="text-[14px] font-[500] text-[#191914]">4.98 / 5.0</span>
+              <span className="text-[11px] font-[300] text-[#8a8176] tracking-[0.04em]">
+                1,200+ Guest Reviews
+              </span>
             </div>
           </div>
         </div>
 
-        {/* BOOKING BAR */}
-        <div className="relative z-10 mx-4 md:mx-12 lg:mx-[72px] md:-mt-7 pb-14">
+        {/* BOOKING BAR - Overlapping the slider */}
+        <div className="relative z-20 mx-4 md:mx-12 lg:mx-[72px] -mt-20 pb-14">
           <div
             className={`bg-white border border-[#2d5a3d]/[0.12] overflow-hidden grid grid-cols-1 md:grid-cols-[1fr_1fr_1fr_auto] ${
               bookingError ? "error-shake" : ""
@@ -472,7 +638,7 @@ export default function HeroSection() {
               </span>
             </button>
           </div>
-          
+
           {dateError && (
             <div className="mt-3 text-center">
               <p className="text-[11px] text-[#7a3020] bg-white/90 inline-block px-4 py-2 rounded-full">
@@ -514,20 +680,20 @@ export default function HeroSection() {
                   <div>
                     <p className="text-[10px] text-[#a09888] mb-1">Arrival</p>
                     <p className="text-[14px] font-[500] text-[#2d2d28]">
-                      {new Date(arrivalDate).toLocaleDateString('en-US', { 
-                        weekday: 'short', 
-                        month: 'short', 
-                        day: 'numeric'
+                      {new Date(arrivalDate).toLocaleDateString("en-US", {
+                        weekday: "short",
+                        month: "short",
+                        day: "numeric",
                       })}
                     </p>
                   </div>
                   <div>
                     <p className="text-[10px] text-[#a09888] mb-1">Departure</p>
                     <p className="text-[14px] font-[500] text-[#2d2d28]">
-                      {new Date(departureDate).toLocaleDateString('en-US', { 
-                        weekday: 'short', 
-                        month: 'short', 
-                        day: 'numeric'
+                      {new Date(departureDate).toLocaleDateString("en-US", {
+                        weekday: "short",
+                        month: "short",
+                        day: "numeric",
                       })}
                     </p>
                   </div>
@@ -540,7 +706,7 @@ export default function HeroSection() {
                   <div>
                     <p className="text-[10px] text-[#a09888] mb-1">Guests</p>
                     <p className="text-[14px] font-[500] text-[#2d2d28]">
-                      {people} {parseInt(people) === 1 ? 'Guest' : 'Guests'}
+                      {people} {parseInt(people) === 1 ? "Guest" : "Guests"}
                     </p>
                   </div>
                 </div>
@@ -580,7 +746,8 @@ export default function HeroSection() {
                       {selectedRoom === room.id && calculateNights > 0 && (
                         <div className="mt-2 pt-2 border-t border-[#2d5a3d]/20">
                           <p className="text-[11px] text-[#2d5a3d]">
-                            ✓ Selected for {calculateNights} nights — Total: ₹{room.price * calculateNights}
+                            ✓ Selected for {calculateNights} nights — Total: ₹
+                            {room.price * calculateNights}
                           </p>
                         </div>
                       )}
@@ -609,7 +776,8 @@ export default function HeroSection() {
                     <div className="flex justify-between text-[13px]">
                       <span className="text-[#a09888]">Room rate</span>
                       <span className="text-[#2d2d28]">
-                        ₹{roomTypes.find(r => r.id === selectedRoom)?.price} × {calculateNights} nights
+                        ₹{roomTypes.find((r) => r.id === selectedRoom)?.price} ×{" "}
+                        {calculateNights} nights
                       </span>
                     </div>
                     <div className="flex justify-between text-[13px]">
