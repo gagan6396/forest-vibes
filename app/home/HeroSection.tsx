@@ -27,7 +27,7 @@ const slides = [
   {
     id: 3,
     imageDesktop: "ban4.webp",
-    imageMobile: "https://images.pexels.com/photos/261102/pexels-photo-261102.jpeg?auto=compress&cs=tinysrgb&w=800",
+    imageMobile: "ban4.webp",
     title: "Create Unforgettable",
     emphasis: "Memories",
     subtitle: "with Your Loved Ones",
@@ -451,7 +451,7 @@ export default function HeroSection() {
                 {/* <div className="absolute inset-0 bg-gradient-to-t from-black/50 via-black/20 to-black/10 md:bg-black/30" /> */}
 
                 {/* TEXT CONTENT - Responsive padding and sizing */}
-                <div className="relative z-20 flex flex-col justify-center h-full px-5 md:px-12 lg:px-16">
+                <div className="relative z-20 flex flex-col justify-center h-full px-5 md:px-12 lg:px-20">
                   <div className="max-w-3xl">
                     <h1
                       className="text-white leading-[1.2] md:leading-[1.08] mb-3 md:mb-4 anim-fade-up-2 hero-title-mobile"

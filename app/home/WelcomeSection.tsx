@@ -126,7 +126,7 @@ export default function WelcomeSection() {
           <img
             ref={forestImageRef}
             className="welcome-img w-full h-[580px] object-cover rounded-sm will-change-transform"
-            src="https://images.unsplash.com/photo-1448375240586-882707db888b?w=1200&q=85"
+            src="hero.webp"
             alt="Ancient forest at Forrest Vibes"
           />
         </div>

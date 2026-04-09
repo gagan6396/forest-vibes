@@ -144,6 +144,17 @@ const rooms: Room[] = [
 
 function RoomModal({ room, onClose }: { room: Room; onClose: () => void }) {
   const [activeImg, setActiveImg] = useState(0);
+  const [isMobile, setIsMobile] = useState(false);
+
+  // Check if mobile on mount and on resize
+  useEffect(() => {
+    const checkMobile = () => {
+      setIsMobile(window.innerWidth < 768);
+    };
+    checkMobile();
+    window.addEventListener("resize", checkMobile);
+    return () => window.removeEventListener("resize", checkMobile);
+  }, []);
 
   // Close on escape key
   useEffect(() => {
@@ -164,6 +175,180 @@ function RoomModal({ room, onClose }: { room: Room; onClose: () => void }) {
     onClose();
   };
 
+  // Mobile version - Full screen bottom sheet
+  if (isMobile) {
+    return (
+      <>
+        <style>{`
+          @keyframes slideUp {
+            from { transform: translateY(100%); }
+            to { transform: translateY(0); }
+          }
+          @keyframes fadeIn {
+            from { opacity: 0; }
+            to { opacity: 1; }
+          }
+          .mobile-modal-backdrop {
+            animation: fadeIn 0.25s ease forwards;
+          }
+          .mobile-modal-sheet {
+            animation: slideUp 0.3s cubic-bezier(0.22, 1, 0.36, 1) forwards;
+          }
+        `}</style>
+
+        {/* Backdrop */}
+        <div
+          className="mobile-modal-backdrop fixed inset-0 z-[100] bg-black/60 backdrop-blur-sm"
+          onClick={handleClose}
+        >
+          {/* Bottom Sheet */}
+          <div
+            className="mobile-modal-sheet absolute bottom-0 left-0 right-0 bg-[#faf8f3] rounded-t-3xl max-h-[90vh] overflow-hidden flex flex-col"
+            onClick={(e) => e.stopPropagation()}
+          >
+            {/* Drag indicator */}
+            <div className="flex justify-center pt-3 pb-2">
+              <div className="w-12 h-1 bg-[#d0c8be] rounded-full"></div>
+            </div>
+
+            {/* Close button */}
+            <button
+              onClick={handleClose}
+              className="absolute top-3 right-4 z-20 w-8 h-8 flex items-center justify-center rounded-full bg-black/10 backdrop-blur-sm transition-colors text-white cursor-pointer"
+              aria-label="Close modal"
+              type="button"
+            >
+              <X size={16} />
+            </button>
+
+            {/* Scrollable content */}
+            <div className="flex-1 overflow-y-auto">
+              {/* Image section */}
+              <div className="relative">
+                <div className="h-80 overflow-hidden">
+                  <img
+                    key={activeImg}
+                    src={room.images[activeImg]}
+                    alt={room.name}
+                    className="w-full h-full object-cover"
+                  />
+                </div>
+                
+                {/* Badge */}
+                <span
+                  className={`absolute top-4 left-4 bg-white/90 backdrop-blur-sm px-3 py-1 rounded-full text-[11px] tracking-wide font-bold uppercase ${room.badgeStyle}`}
+                >
+                  {room.badge}
+                </span>
+
+                {/* Thumbnails */}
+                <div className="absolute bottom-3 left-0 right-0 flex justify-center gap-2 px-4">
+                  {room.images.map((img, i) => (
+                    <button
+                      key={i}
+                      onClick={() => setActiveImg(i)}
+                      className={`rounded-lg overflow-hidden w-14 h-14 transition-all ${
+                        activeImg === i ? "ring-2 ring-[#3b5e45] ring-offset-2" : "opacity-70"
+                      }`}
+                    >
+                      <img src={img} alt="" className="w-full h-full object-cover" />
+                    </button>
+                  ))}
+                </div>
+              </div>
+
+              {/* Content */}
+              <div className="p-6 pb-8">
+                {/* Rating */}
+                <div className="flex items-center gap-1.5 mb-3">
+                  {Array.from({ length: 5 }).map((_, i) => (
+                    <Star
+                      key={i}
+                      size={14}
+                      className={i < Math.floor(room.rating) ? "text-[#c9a84c] fill-[#c9a84c]" : "text-[#d5cfc7]"}
+                    />
+                  ))}
+                  <span className="text-[12px] text-[#a09890] ml-1">{room.rating} · {room.reviews} reviews</span>
+                </div>
+
+                {/* Name */}
+                <h2
+                  className="text-[1.8rem] text-[#1e1c19] leading-tight mb-2 pr-8"
+                  style={{ fontFamily: "'Cormorant Garamond', Georgia, serif", fontWeight: 400 }}
+                >
+                  {room.name}
+                </h2>
+                <p className="text-[11px] text-[#a09890] tracking-widest uppercase mb-5">{room.size}</p>
+
+                {/* Details grid */}
+                <div className="grid grid-cols-2 gap-3 mb-6">
+                  {room.details.map((d) => (
+                    <div key={d.label} className="bg-[#f0ece0] rounded-lg px-4 py-3">
+                      <p className="text-[10px] text-[#a09890] tracking-widest uppercase mb-0.5">{d.label}</p>
+                      <p className="text-[13px] text-[#1e1c19] font-semibold">{d.value}</p>
+                    </div>
+                  ))}
+                </div>
+
+                {/* Description */}
+                <p className="text-[13.5px] text-[#4a4642] leading-[1.8] mb-7" style={{ fontWeight: 300 }}>
+                  {room.longDescription}
+                </p>
+
+                {/* Features */}
+                <p className="text-[10px] text-[#a09890] tracking-[0.18em] uppercase mb-3">What's Included</p>
+                <div className="flex flex-wrap gap-2 mb-8">
+                  {room.features.map((f) => (
+                    <span
+                      key={f}
+                      className="text-[11.5px] text-[#3b5e45] border border-[#3b5e45]/30 bg-[#3b5e45]/5 px-3 py-1.5 rounded-full"
+                    >
+                      {f}
+                    </span>
+                  ))}
+                </div>
+
+                {/* Amenities */}
+                <div className="grid grid-cols-5 gap-4 mb-8 py-5 border-y border-[#e8e2d8]">
+                  {[
+                    { icon: <Wifi size={18} strokeWidth={1.5} />, label: "Wi-Fi" },
+                    { icon: <Bath size={18} strokeWidth={1.5} />, label: "Shower" },
+                    { icon: <Tv size={18} strokeWidth={1.5} />, label: "Smart TV" },
+                    { icon: <Coffee size={18} strokeWidth={1.5} />, label: "Coffee" },
+                    { icon: <Wind size={18} strokeWidth={1.5} />, label: "AC" },
+                  ].map((a) => (
+                    <div key={a.label} className="flex flex-col items-center gap-1.5 text-[#3b5e45]">
+                      {a.icon}
+                      <span className="text-[9px] text-[#a09890] tracking-wide text-center leading-tight">{a.label}</span>
+                    </div>
+                  ))}
+                </div>
+
+                {/* Price + CTA */}
+                <div className="flex items-center justify-between gap-4">
+                  <div style={{ fontFamily: "'Cormorant Garamond', Georgia, serif" }}>
+                    <p className="text-[11px] text-[#a09890] tracking-wide mb-0.5" style={{ fontFamily: "'Lato', sans-serif" }}>From</p>
+                    <div className="flex items-baseline gap-0.5 text-[#1e1c19]">
+                      <sup className="text-lg font-normal">₹</sup>
+                      <span className="text-[2.4rem] font-semibold leading-none">{room.price}</span>
+                      <span className="text-[12px] text-[#a09890] ml-1" style={{ fontFamily: "'Lato', sans-serif", fontWeight: 300 }}>/night</span>
+                    </div>
+                  </div>
+
+                  <button className="flex items-center gap-2 bg-[#3b5e45] hover:bg-[#2e4a36] text-white text-[11px] tracking-[0.18em] uppercase font-bold px-6 py-3.5 rounded-lg transition-all duration-200">
+                    Book This Room
+                    <ChevronRight size={14} />
+                  </button>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </>
+    );
+  }
+
+  // Desktop version - Original side-by-side modal
   return (
     <>
       <style>{`
