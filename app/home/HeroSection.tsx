@@ -7,7 +7,7 @@ const slides = [
   {
     id: 1,
     imageDesktop: "bann1.webp",
-    imageMobile: "bann1-mobile.webp",
+    imageMobile: "bann1.webp",
     title: "Your Home Away,",
     emphasis: "Reimagined",
     subtitle: "for the Extraordinary",
@@ -17,7 +17,7 @@ const slides = [
   {
     id: 2,
     imageDesktop: "ban3.webp",
-    imageMobile: "https://images.pexels.com/photos/258154/pexels-photo-258154.jpeg?auto=compress&cs=tinysrgb&w=800",
+    imageMobile: "ban3.webp",
     title: "Where Nature Meets",
     emphasis: "Luxury",
     subtitle: "in Perfect Harmony",
@@ -26,7 +26,7 @@ const slides = [
   },
   {
     id: 3,
-    imageDesktop: "https://images.pexels.com/photos/261102/pexels-photo-261102.jpeg?auto=compress&cs=tinysrgb&w=1600",
+    imageDesktop: "ban4.webp",
     imageMobile: "https://images.pexels.com/photos/261102/pexels-photo-261102.jpeg?auto=compress&cs=tinysrgb&w=800",
     title: "Create Unforgettable",
     emphasis: "Memories",
@@ -560,7 +560,7 @@ export default function HeroSection() {
         </div>
 
         {/* BOOKING BAR - Responsive, overlapping slider */}
-        <div className="relative z-50 mx-3 md:mx-4 lg:mx-12 -mt-10 md:-mt-14 pb-8 md:pb-10 booking-bar-mobile">
+        <div className="relative z-30 mx-3 md:mx-4 lg:mx-12 -mt-10 md:-mt-14 pb-8 md:pb-10 booking-bar-mobile">
           <div
             className={`bg-white border border-[#2d5a3d]/[0.12] overflow-hidden grid grid-cols-1 md:grid-cols-[1fr_1fr_1fr_auto] ${
               bookingError ? "error-shake" : ""
