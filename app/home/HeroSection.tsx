@@ -6,7 +6,7 @@ import { useState, useCallback, useMemo, useEffect } from "react";
 const slides = [
   {
     id: 1,
-    image: "ban1.webp",
+    image: "bann1.webp",
     title: "Your Home Away,",
     emphasis: "Reimagined",
     subtitle: "for the Extraordinary",
