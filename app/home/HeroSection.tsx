@@ -382,7 +382,7 @@ export default function HeroSection() {
                     transition: "transform 7s ease-out",
                   }}
                 />
-                <div className="absolute inset-0 bg-black/30" />
+                {/* <div className="absolute inset-0 bg-black/30" /> */}
 
                 {/* TEXT CONTENT - Wider */}
                 <div className="relative z-20 flex flex-col justify-center h-full px-6 md:px-12 lg:px-16">
