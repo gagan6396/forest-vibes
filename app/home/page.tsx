@@ -7,6 +7,8 @@ import TestimonialsAndOffers from './TestimonialAndOffers'
 import Footer from '@/components/Footer'
 import LocationSection from './LocationSection'
 import NearbyAttractions from './NearbyAttraction'
+import PoolSection from './PoolSection'
+import BannerVideo from './VideoSection'
 
 function page() {
   return (
@@ -14,6 +16,8 @@ function page() {
     <Navbar/>
     <HeroSection/>
     <WelcomeSection/>
+    <PoolSection/>
+    <BannerVideo/>
     <HotelSections/>
     <LocationSection/>
     <NearbyAttractions/>

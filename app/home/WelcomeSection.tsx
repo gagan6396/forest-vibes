@@ -170,62 +170,7 @@ export default function WelcomeSection() {
       </section>
 
       {/* Section 2 */}
-      <section
-        ref={section2Ref}
-        className="banner-section relative w-full h-[680px] overflow-hidden"
-      >
-        <video
-          ref={bannerVideoRef}
-          className="banner-video absolute inset-0 w-full h-full object-cover will-change-transform"
-          autoPlay
-          loop
-          muted
-          playsInline
-          poster="https://images.unsplash.com/photo-1520250497591-112f2f40a3f4?w=1600&q=85"
-          onError={handleVideoError}
-        >
-          <source src="/vid.mp4" type="video/mp4" />
-          <source src="https://sample-videos.com/video123/mp4/720/big_buck_bunny_720p_1mb.mp4" type="video/mp4" />
-          Your browser does not support the video tag.
-        </video>
-
-        <div className="absolute inset-0" style={{ background: bannerGradient }} />
-
-        <div
-          ref={s2ContentRef}
-          className="banner-content relative z-10 h-full flex flex-col justify-center px-24 py-20 max-w-[680px]"
-        >
-          <div className="flex items-center gap-3 mb-8">
-            <span className="block w-9 h-px bg-white opacity-50" />
-            <span className="font-jost text-[10px] font-semibold tracking-[0.24em] uppercase text-white/60">
-              Explore Our Rooms
-            </span>
-          </div>
-
-          <h2
-            className="font-playfair font-bold text-white leading-[1.1] mb-7"
-            style={{ fontSize: "clamp(2.4rem, 4.5vw, 3.8rem)" }}
-          >
-            Rooms Wrapped
-            <br />
-            {"in "}
-            <em className="font-normal text-white/70">Living Green.</em>
-          </h2>
-
-          <div className="w-12 h-px bg-white opacity-30 mb-7" />
-
-          <p className="font-jost text-xl font-light leading-[1.9] text-white mb-14 max-w-[440px]">
-            {"Each space is thoughtfully set into the woodland \u2014 natural timber, warm stone, and floor-to-ceiling views that make every morning feel like a quiet discovery."}
-          </p>
-
-          <a
-            href="/rooms"
-            className="font-jost self-start text-[11px] font-semibold tracking-[0.2em] uppercase text-[#2d5a3d] bg-[#f0ece0] px-9 py-4 rounded-sm hover:bg-white transition-colors duration-200"
-          >
-            Inquire Now
-          </a>
-        </div>
-      </section>
+      
     </>
   );
 }
