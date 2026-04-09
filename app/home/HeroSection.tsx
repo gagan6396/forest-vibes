@@ -6,7 +6,7 @@ import { useState, useCallback, useMemo, useEffect } from "react";
 const slides = [
   {
     id: 1,
-    image: "home.png",
+    image: "ban1.webp",
     title: "Your Home Away,",
     emphasis: "Reimagined",
     subtitle: "for the Extraordinary",
@@ -384,14 +384,14 @@ export default function HeroSection() {
                 />
                 <div className="absolute inset-0 bg-black/30" />
 
-                {/* TEXT CONTENT */}
+                {/* TEXT CONTENT - Wider */}
                 <div className="relative z-20 flex flex-col justify-center h-full px-6 md:px-12 lg:px-16">
-                  <div className="max-w-xl">
+                  <div className="max-w-3xl">
                     <h1
                       className="text-white leading-[1.08] mb-4 anim-fade-up-2"
                       style={{
                         fontFamily: "'Playfair Display', serif",
-                        fontSize: "clamp(2rem, 3.8vw, 3.2rem)",
+                        fontSize: "clamp(2rem, 4vw, 3.5rem)",
                         fontWeight: 400,
                       }}
                     >
@@ -403,7 +403,7 @@ export default function HeroSection() {
                     </h1>
 
                     <p
-                      className="text-white/90 text-[13px] leading-[1.65] max-w-[440px] mb-7 anim-fade-up-3"
+                      className="text-white/90 text-[14px] leading-[1.7] max-w-2xl mb-7 anim-fade-up-3"
                       style={{ fontWeight: 300 }}
                     >
                       {slide.description}
@@ -431,7 +431,7 @@ export default function HeroSection() {
               </div>
             ))}
           </div>
-
+       
           {/* Slider Navigation Arrows */}
           <button
             onClick={goToPrevSlide}
@@ -466,7 +466,7 @@ export default function HeroSection() {
           </button>
 
           {/* Slider Dots */}
-          <div className="absolute bottom-6 left-0 right-0 z-30 flex justify-center gap-2.5">
+          {/* <div className="absolute bottom-6 left-0 right-0 z-30 flex justify-center gap-2.5">
             {slides.map((_, index) => (
               <button
                 key={index}
@@ -479,10 +479,10 @@ export default function HeroSection() {
                 aria-label={`Go to slide ${index + 1}`}
               />
             ))}
-          </div>
+          </div> */}
 
           {/* Rating Badge */}
-          <div className="absolute bottom-6 left-4 md:left-6 z-30 hidden md:flex items-center gap-3 bg-white/70 backdrop-blur-sm border border-[#2d5a3d]/[0.15] px-4 py-2 rounded-md">
+          {/* <div className="absolute bottom-6 left-4 md:left-6 z-30 hidden md:flex items-center gap-3 bg-white/70 backdrop-blur-sm border border-[#2d5a3d]/[0.15] px-4 py-2 rounded-md">
             <div className="w-7 h-7 rounded-full bg-[#2d5a3d] flex items-center justify-center flex-shrink-0">
               <svg
                 width="12"
@@ -501,7 +501,7 @@ export default function HeroSection() {
                 1,200+ Guest Reviews
               </span>
             </div>
-          </div>
+          </div> */}
         </div>
 
         {/* BOOKING BAR - Mid-sized, overlapping slider */}
