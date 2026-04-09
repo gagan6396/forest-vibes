@@ -448,7 +448,7 @@ export default function HeroSection() {
                   }}
                 />
                 {/* Gradient overlay for better text readability on mobile */}
-                <div className="absolute inset-0 bg-gradient-to-t from-black/50 via-black/20 to-black/10 md:bg-black/30" />
+                {/* <div className="absolute inset-0 bg-gradient-to-t from-black/50 via-black/20 to-black/10 md:bg-black/30" /> */}
 
                 {/* TEXT CONTENT - Responsive padding and sizing */}
                 <div className="relative z-20 flex flex-col justify-center h-full px-5 md:px-12 lg:px-16">
