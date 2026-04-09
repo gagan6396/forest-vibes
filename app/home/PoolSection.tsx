@@ -208,7 +208,7 @@ export default function PoolSection() {
               </div>
 
               {/* CTA */}
-              <button
+              {/* <button
                 className="w-full flex items-center justify-center gap-2.5 py-3.5 bg-[#2d5a3d] text-[#f5f0e8] text-[10px] tracking-[0.2em] uppercase font-[400] border-none cursor-pointer hover:bg-[#1e3f2b] transition-colors duration-200 group"
                 style={{ fontFamily: "'Outfit', sans-serif", borderRadius: "2px" }}
               >
@@ -219,7 +219,7 @@ export default function PoolSection() {
                 >
                   <path d="M5 12h14M12 5l7 7-7 7" />
                 </svg>
-              </button>
+              </button> */}
             </div>
           </div>
         </div>

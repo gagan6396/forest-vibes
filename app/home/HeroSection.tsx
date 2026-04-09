@@ -1,12 +1,13 @@
 "use client";
 
-import { useState, useCallback, useMemo, useEffect } from "react";
+import { useState, useCallback, useMemo, useEffect, useRef } from "react";
 
-// Slide data
+// Slide data with mobile and desktop images
 const slides = [
   {
     id: 1,
-    image: "bann1.webp",
+    imageDesktop: "bann1.webp",
+    imageMobile: "bann1-mobile.webp",
     title: "Your Home Away,",
     emphasis: "Reimagined",
     subtitle: "for the Extraordinary",
@@ -15,7 +16,8 @@ const slides = [
   },
   {
     id: 2,
-    image: "https://images.pexels.com/photos/258154/pexels-photo-258154.jpeg?auto=compress&cs=tinysrgb&w=1600",
+    imageDesktop: "ban3.webp",
+    imageMobile: "https://images.pexels.com/photos/258154/pexels-photo-258154.jpeg?auto=compress&cs=tinysrgb&w=800",
     title: "Where Nature Meets",
     emphasis: "Luxury",
     subtitle: "in Perfect Harmony",
@@ -24,7 +26,8 @@ const slides = [
   },
   {
     id: 3,
-    image: "https://images.pexels.com/photos/261102/pexels-photo-261102.jpeg?auto=compress&cs=tinysrgb&w=1600",
+    imageDesktop: "https://images.pexels.com/photos/261102/pexels-photo-261102.jpeg?auto=compress&cs=tinysrgb&w=1600",
+    imageMobile: "https://images.pexels.com/photos/261102/pexels-photo-261102.jpeg?auto=compress&cs=tinysrgb&w=800",
     title: "Create Unforgettable",
     emphasis: "Memories",
     subtitle: "with Your Loved Ones",
@@ -44,6 +47,9 @@ export default function HeroSection() {
   const [dateError, setDateError] = useState("");
   const [currentSlide, setCurrentSlide] = useState(0);
   const [isTransitioning, setIsTransitioning] = useState(false);
+  const [isMobile, setIsMobile] = useState(false);
+  const [isAutoPlaying, setIsAutoPlaying] = useState(true);
+  const intervalRef = useRef<NodeJS.Timeout | null>(null);
 
   const roomTypes = [
     { id: "deluxe", name: "Deluxe Room", price: 320, maxGuests: 2 },
@@ -51,13 +57,41 @@ export default function HeroSection() {
     { id: "presidential", name: "Presidential Suite", price: 1200, maxGuests: 4 },
   ];
 
-  // Auto-rotate slides
+  // Check for mobile viewport
   useEffect(() => {
-    const interval = setInterval(() => {
-      goToNextSlide();
+    const checkMobile = () => {
+      setIsMobile(window.innerWidth < 768);
+    };
+    checkMobile();
+    window.addEventListener("resize", checkMobile);
+    return () => window.removeEventListener("resize", checkMobile);
+  }, []);
+
+  // Auto-rotate slides with improved handling
+  const startAutoplay = useCallback(() => {
+    if (intervalRef.current) {
+      clearInterval(intervalRef.current);
+    }
+    intervalRef.current = setInterval(() => {
+      if (isAutoPlaying && !isTransitioning) {
+        goToNextSlide();
+      }
     }, 6000);
-    return () => clearInterval(interval);
-  }, [currentSlide]);
+  }, [isAutoPlaying, isTransitioning]);
+
+  const stopAutoplay = useCallback(() => {
+    if (intervalRef.current) {
+      clearInterval(intervalRef.current);
+      intervalRef.current = null;
+    }
+  }, []);
+
+  useEffect(() => {
+    if (isAutoPlaying) {
+      startAutoplay();
+    }
+    return () => stopAutoplay();
+  }, [isAutoPlaying, currentSlide, startAutoplay, stopAutoplay]);
 
   const goToNextSlide = () => {
     if (isTransitioning) return;
@@ -78,6 +112,17 @@ export default function HeroSection() {
     setIsTransitioning(true);
     setCurrentSlide(index);
     setTimeout(() => setIsTransitioning(false), 700);
+  };
+
+  // Pause autoplay on hover
+  const handleMouseEnter = () => {
+    setIsAutoPlaying(false);
+    stopAutoplay();
+  };
+
+  const handleMouseLeave = () => {
+    setIsAutoPlaying(true);
+    startAutoplay();
   };
 
   // Pure validation function - doesn't set state
@@ -354,14 +399,34 @@ export default function HeroSection() {
           color: white;
           border-color: #2d5a3d;
         }
+
+        /* Mobile optimizations */
+        @media (max-width: 768px) {
+          .hero-title-mobile {
+            font-size: clamp(1.75rem, 5vw, 2.5rem) !important;
+          }
+          .hero-desc-mobile {
+            font-size: 12px !important;
+            line-height: 1.6 !important;
+          }
+          .booking-bar-mobile {
+            margin-left: 1rem !important;
+            margin-right: 1rem !important;
+          }
+          .booking-btn-mobile span:last-child {
+            font-size: 13px !important;
+          }
+        }
       `}</style>
 
       <section
         className="relative w-full bg-[#f5f0e8] hero-grain overflow-hidden"
         style={{ fontFamily: "'Outfit', sans-serif" }}
+        onMouseEnter={handleMouseEnter}
+        onMouseLeave={handleMouseLeave}
       >
-        {/* MID-SIZED SLIDER CONTAINER */}
-        <div className="relative h-[620px] md:h-[680px] flex flex-col">
+        {/* SLIDER CONTAINER */}
+        <div className="relative h-[550px] md:h-[680px] flex flex-col">
           {/* Slides */}
           <div className="relative h-full">
             {slides.map((slide, index) => (
@@ -371,27 +436,28 @@ export default function HeroSection() {
                   index === currentSlide ? "opacity-100 z-10" : "opacity-0 z-0"
                 }`}
               >
-                {/* IMAGE */}
+                {/* IMAGE - Responsive with mobile support */}
                 <div
                   className="absolute inset-0 w-full h-full"
                   style={{
-                    backgroundImage: `url(${slide.image})`,
+                    backgroundImage: `url(${isMobile ? slide.imageMobile : slide.imageDesktop})`,
                     backgroundSize: "cover",
-                    backgroundPosition: "center",
+                    backgroundPosition: isMobile ? "center 30%" : "center",
                     transform: index === currentSlide ? "scale(1)" : "scale(1.05)",
                     transition: "transform 7s ease-out",
                   }}
                 />
-                {/* <div className="absolute inset-0 bg-black/30" /> */}
+                {/* Gradient overlay for better text readability on mobile */}
+                <div className="absolute inset-0 bg-gradient-to-t from-black/50 via-black/20 to-black/10 md:bg-black/30" />
 
-                {/* TEXT CONTENT - Wider */}
-                <div className="relative z-20 flex flex-col justify-center h-full px-6 md:px-12 lg:px-16">
+                {/* TEXT CONTENT - Responsive padding and sizing */}
+                <div className="relative z-20 flex flex-col justify-center h-full px-5 md:px-12 lg:px-16">
                   <div className="max-w-3xl">
                     <h1
-                      className="text-white leading-[1.08] mb-4 anim-fade-up-2"
+                      className="text-white leading-[1.2] md:leading-[1.08] mb-3 md:mb-4 anim-fade-up-2 hero-title-mobile"
                       style={{
                         fontFamily: "'Playfair Display', serif",
-                        fontSize: "clamp(2rem, 4vw, 3.5rem)",
+                        fontSize: "clamp(1.8rem, 4vw, 3.5rem)",
                         fontWeight: 400,
                       }}
                     >
@@ -402,21 +468,32 @@ export default function HeroSection() {
                       {slide.subtitle}
                     </h1>
 
+                    {/* Description - Hide on very small screens or show shorter version */}
                     <p
-                      className="text-white/90 text-[14px] leading-[1.7] max-w-2xl mb-7 anim-fade-up-3"
+                      className="text-white/90 text-[12px] md:text-[14px] leading-[1.6] md:leading-[1.7] max-w-2xl mb-5 md:mb-7 anim-fade-up-3 hero-desc-mobile hidden sm:block"
                       style={{ fontWeight: 300 }}
                     >
                       {slide.description}
                     </p>
+                    
+                    {/* Shorter description for mobile */}
+                    <p
+                      className="text-white/90 text-[12px] leading-[1.6] max-w-2xl mb-5 md:mb-7 anim-fade-up-3 block sm:hidden"
+                      style={{ fontWeight: 300 }}
+                    >
+                      {slide.description.length > 120 
+                        ? slide.description.substring(0, 120) + "..." 
+                        : slide.description}
+                    </p>
 
-                    <div className="flex items-center gap-5 anim-fade-up-4">
+                    <div className="flex items-center gap-4 md:gap-5 anim-fade-up-4">
                       <button
-                        className="btn-primary-hero inline-flex items-center gap-2.5 px-7 py-3 bg-[#2d5a3d] text-[#f5f0e8] text-[10px] tracking-[0.18em] uppercase font-[400] border-none cursor-pointer transition-colors duration-200 hover:bg-[#1e3f2b]"
+                        className="btn-primary-hero inline-flex items-center gap-2 px-5 py-2.5 md:px-7 md:py-3 bg-[#2d5a3d] text-[#f5f0e8] text-[9px] md:text-[10px] tracking-[0.18em] uppercase font-[400] border-none cursor-pointer transition-colors duration-200 hover:bg-[#1e3f2b]"
                         style={{ fontFamily: "'Outfit', sans-serif" }}
                       >
                         Explore Stays
                         <svg
-                          className="cta-arrow w-4 h-4"
+                          className="cta-arrow w-3 h-3 md:w-4 md:h-4"
                           fill="none"
                           viewBox="0 0 24 24"
                           stroke="currentColor"
@@ -432,14 +509,14 @@ export default function HeroSection() {
             ))}
           </div>
        
-          {/* Slider Navigation Arrows */}
+          {/* Slider Navigation Arrows - Hide on very small screens? */}
           <button
             onClick={goToPrevSlide}
-            className="slider-nav-btn absolute left-4 md:left-6 top-1/2 -translate-y-1/2 z-30 w-9 h-9 md:w-10 md:h-10 rounded-full bg-white/20 backdrop-blur-sm border border-white/30 flex items-center justify-center text-white hover:bg-[#2d5a3d] hover:border-[#2d5a3d] transition-all duration-300"
+            className="slider-nav-btn absolute left-2 md:left-6 top-1/2 -translate-y-1/2 z-30 w-8 h-8 md:w-10 md:h-10 rounded-full bg-white/20 backdrop-blur-sm border border-white/30 flex items-center justify-center text-white hover:bg-[#2d5a3d] hover:border-[#2d5a3d] transition-all duration-300"
             aria-label="Previous slide"
           >
             <svg
-              className="w-4.5 h-4.5 md:w-5 md:h-5"
+              className="w-4 h-4 md:w-5 md:h-5"
               fill="none"
               viewBox="0 0 24 24"
               stroke="currentColor"
@@ -451,11 +528,11 @@ export default function HeroSection() {
 
           <button
             onClick={goToNextSlide}
-            className="slider-nav-btn absolute right-4 md:right-6 top-1/2 -translate-y-1/2 z-30 w-9 h-9 md:w-10 md:h-10 rounded-full bg-white/20 backdrop-blur-sm border border-white/30 flex items-center justify-center text-white hover:bg-[#2d5a3d] hover:border-[#2d5a3d] transition-all duration-300"
+            className="slider-nav-btn absolute right-2 md:right-6 top-1/2 -translate-y-1/2 z-30 w-8 h-8 md:w-10 md:h-10 rounded-full bg-white/20 backdrop-blur-sm border border-white/30 flex items-center justify-center text-white hover:bg-[#2d5a3d] hover:border-[#2d5a3d] transition-all duration-300"
             aria-label="Next slide"
           >
             <svg
-              className="w-4.5 h-4.5 md:w-5 md:h-5"
+              className="w-4 h-4 md:w-5 md:h-5"
               fill="none"
               viewBox="0 0 24 24"
               stroke="currentColor"
@@ -465,47 +542,25 @@ export default function HeroSection() {
             </svg>
           </button>
 
-          {/* Slider Dots */}
-          {/* <div className="absolute bottom-6 left-0 right-0 z-30 flex justify-center gap-2.5">
+          {/* Slider Dots - Mobile friendly */}
+          <div className="absolute bottom-3 md:bottom-6 left-0 right-0 z-30 flex justify-center gap-2">
             {slides.map((_, index) => (
               <button
                 key={index}
                 onClick={() => goToSlide(index)}
-                className={`slider-dot w-2 h-2 rounded-full transition-all duration-300 ${
+                className={`slider-dot transition-all duration-300 ${
                   index === currentSlide
-                    ? "w-6 bg-[#2d5a3d] slider-dot-active"
-                    : "bg-white/50 hover:bg-white/80"
+                    ? "w-4 md:w-6 h-1.5 md:h-2 bg-[#2d5a3d] slider-dot-active"
+                    : "w-1.5 h-1.5 md:w-2 md:h-2 bg-white/50 hover:bg-white/80 rounded-full"
                 }`}
                 aria-label={`Go to slide ${index + 1}`}
               />
             ))}
-          </div> */}
-
-          {/* Rating Badge */}
-          {/* <div className="absolute bottom-6 left-4 md:left-6 z-30 hidden md:flex items-center gap-3 bg-white/70 backdrop-blur-sm border border-[#2d5a3d]/[0.15] px-4 py-2 rounded-md">
-            <div className="w-7 h-7 rounded-full bg-[#2d5a3d] flex items-center justify-center flex-shrink-0">
-              <svg
-                width="12"
-                height="12"
-                viewBox="0 0 24 24"
-                fill="none"
-                stroke="#f5f0e8"
-                strokeWidth="1.5"
-              >
-                <path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z" />
-              </svg>
-            </div>
-            <div className="flex flex-col gap-0">
-              <span className="text-[13px] font-[500] text-[#191914]">4.98 / 5.0</span>
-              <span className="text-[10px] font-[300] text-[#8a8176] tracking-[0.04em]">
-                1,200+ Guest Reviews
-              </span>
-            </div>
-          </div> */}
+          </div>
         </div>
 
-        {/* BOOKING BAR - Mid-sized, overlapping slider */}
-        <div className="relative z-20 mx-4 md:mx-8 lg:mx-12 -mt-14 pb-10">
+        {/* BOOKING BAR - Responsive, overlapping slider */}
+        <div className="relative z-50 mx-3 md:mx-4 lg:mx-12 -mt-10 md:-mt-14 pb-8 md:pb-10 booking-bar-mobile">
           <div
             className={`bg-white border border-[#2d5a3d]/[0.12] overflow-hidden grid grid-cols-1 md:grid-cols-[1fr_1fr_1fr_auto] ${
               bookingError ? "error-shake" : ""
@@ -513,9 +568,9 @@ export default function HeroSection() {
             style={{ boxShadow: "0 16px 50px rgba(30,50,30,0.09)" }}
           >
             {/* Arrival Date */}
-            <label className="flex items-center gap-3.5 px-6 py-4 cursor-pointer hover:bg-[#f9f7f3] focus-within:bg-[#f2efe6] transition-colors border-b md:border-b-0 md:border-r border-[#2d5a3d]/[0.1]">
+            <label className="flex items-center gap-2.5 md:gap-3.5 px-4 md:px-6 py-3 md:py-4 cursor-pointer hover:bg-[#f9f7f3] focus-within:bg-[#f2efe6] transition-colors border-b md:border-b-0 md:border-r border-[#2d5a3d]/[0.1]">
               <svg
-                className="w-[17px] h-[17px] text-[#2d5a3d] opacity-80 flex-shrink-0"
+                className="w-[14px] h-[14px] md:w-[17px] md:h-[17px] text-[#2d5a3d] opacity-80 flex-shrink-0"
                 fill="none"
                 viewBox="0 0 24 24"
                 stroke="currentColor"
@@ -524,25 +579,25 @@ export default function HeroSection() {
                 <rect x="3" y="4" width="18" height="18" rx="2" />
                 <path d="M16 2v4M8 2v4M3 10h18" />
               </svg>
-              <div className="flex flex-col gap-1 flex-1">
-                <span className="text-[9px] font-[500] tracking-[0.2em] uppercase text-[#a09888]">
-                  Arrival Date
+              <div className="flex flex-col gap-0.5 md:gap-1 flex-1">
+                <span className="text-[8px] md:text-[9px] font-[500] tracking-[0.2em] uppercase text-[#a09888]">
+                  Arrival
                 </span>
                 <input
                   type="date"
                   value={arrivalDate}
                   onChange={handleArrivalDateChange}
                   min={getMinArrivalDate()}
-                  className="text-[12px] font-[300] text-[#2d2d28] bg-transparent border-none outline-none cursor-pointer w-full"
+                  className="text-[11px] md:text-[12px] font-[300] text-[#2d2d28] bg-transparent border-none outline-none cursor-pointer w-full"
                   style={{ fontFamily: "'Outfit', sans-serif" }}
                 />
               </div>
             </label>
 
             {/* Departure Date */}
-            <label className="flex items-center gap-3.5 px-6 py-4 cursor-pointer hover:bg-[#f9f7f3] focus-within:bg-[#f2efe6] transition-colors border-b md:border-b-0 md:border-r border-[#2d5a3d]/[0.1]">
+            <label className="flex items-center gap-2.5 md:gap-3.5 px-4 md:px-6 py-3 md:py-4 cursor-pointer hover:bg-[#f9f7f3] focus-within:bg-[#f2efe6] transition-colors border-b md:border-b-0 md:border-r border-[#2d5a3d]/[0.1]">
               <svg
-                className="w-[17px] h-[17px] text-[#2d5a3d] opacity-80 flex-shrink-0"
+                className="w-[14px] h-[14px] md:w-[17px] md:h-[17px] text-[#2d5a3d] opacity-80 flex-shrink-0"
                 fill="none"
                 viewBox="0 0 24 24"
                 stroke="currentColor"
@@ -551,25 +606,25 @@ export default function HeroSection() {
                 <rect x="3" y="4" width="18" height="18" rx="2" />
                 <path d="M16 2v4M8 2v4M3 10h18" />
               </svg>
-              <div className="flex flex-col gap-1 flex-1">
-                <span className="text-[9px] font-[500] tracking-[0.2em] uppercase text-[#a09888]">
-                  Departure Date
+              <div className="flex flex-col gap-0.5 md:gap-1 flex-1">
+                <span className="text-[8px] md:text-[9px] font-[500] tracking-[0.2em] uppercase text-[#a09888]">
+                  Departure
                 </span>
                 <input
                   type="date"
                   value={departureDate}
                   onChange={handleDepartureDateChange}
                   min={getMinDepartureDate()}
-                  className="text-[12px] font-[300] text-[#2d2d28] bg-transparent border-none outline-none cursor-pointer w-full"
+                  className="text-[11px] md:text-[12px] font-[300] text-[#2d2d28] bg-transparent border-none outline-none cursor-pointer w-full"
                   style={{ fontFamily: "'Outfit', sans-serif" }}
                 />
               </div>
             </label>
 
             {/* Number of People */}
-            <label className="flex items-center gap-3.5 px-6 py-4 cursor-pointer hover:bg-[#f9f7f3] focus-within:bg-[#f2efe6] transition-colors border-b md:border-b-0 border-[#2d5a3d]/[0.1]">
+            <label className="flex items-center gap-2.5 md:gap-3.5 px-4 md:px-6 py-3 md:py-4 cursor-pointer hover:bg-[#f9f7f3] focus-within:bg-[#f2efe6] transition-colors border-b md:border-b-0 border-[#2d5a3d]/[0.1]">
               <svg
-                className="w-[17px] h-[17px] text-[#2d5a3d] opacity-80 flex-shrink-0"
+                className="w-[14px] h-[14px] md:w-[17px] md:h-[17px] text-[#2d5a3d] opacity-80 flex-shrink-0"
                 fill="none"
                 viewBox="0 0 24 24"
                 stroke="currentColor"
@@ -579,9 +634,9 @@ export default function HeroSection() {
                 <circle cx="9" cy="7" r="4" />
                 <path d="M23 21v-2a4 4 0 0 0-3-3.87M16 3.13a4 4 0 0 1 0 7.75" />
               </svg>
-              <div className="flex flex-col gap-1 flex-1">
-                <span className="text-[9px] font-[500] tracking-[0.2em] uppercase text-[#a09888]">
-                  Number of People
+              <div className="flex flex-col gap-0.5 md:gap-1 flex-1">
+                <span className="text-[8px] md:text-[9px] font-[500] tracking-[0.2em] uppercase text-[#a09888]">
+                  Guests
                 </span>
                 <input
                   type="number"
@@ -589,8 +644,8 @@ export default function HeroSection() {
                   max={10}
                   value={people}
                   onChange={(e) => setPeople(e.target.value)}
-                  placeholder="How many guests?"
-                  className="text-[12px] font-[300] text-[#2d2d28] placeholder-[#c5bfb4] bg-transparent border-none outline-none w-full"
+                  placeholder="How many?"
+                  className="text-[11px] md:text-[12px] font-[300] text-[#2d2d28] placeholder-[#c5bfb4] bg-transparent border-none outline-none w-full"
                   style={{ fontFamily: "'Outfit', sans-serif" }}
                 />
               </div>
@@ -599,16 +654,16 @@ export default function HeroSection() {
             {/* CTA */}
             <button
               onClick={handleBook}
-              className={`booking-btn-sweep flex flex-col items-center justify-center gap-1 px-8 py-3.5 border-none cursor-pointer transition-colors duration-200 ${
+              className={`booking-btn-sweep flex flex-col items-center justify-center gap-0.5 md:gap-1 px-5 md:px-8 py-3 md:py-3.5 border-none cursor-pointer transition-colors duration-200 ${
                 bookingError ? "bg-[#7a3020]" : "bg-[#2d5a3d]"
               }`}
               style={{ fontFamily: "'Outfit', sans-serif" }}
             >
-              <span className="text-[9px] font-[500] tracking-[0.22em] uppercase text-[#f5f0e8]/70 relative z-[1]">
+              <span className="text-[8px] md:text-[9px] font-[500] tracking-[0.22em] uppercase text-[#f5f0e8]/70 relative z-[1]">
                 Reserve Now
               </span>
               <span
-                className="text-[16px] italic text-[#f5f0e8] relative z-[1]"
+                className="text-[13px] md:text-[16px] italic text-[#f5f0e8] relative z-[1]"
                 style={{
                   fontFamily: "'Playfair Display', serif",
                   fontWeight: 400,
@@ -620,8 +675,8 @@ export default function HeroSection() {
           </div>
 
           {dateError && (
-            <div className="mt-2.5 text-center">
-              <p className="text-[10.5px] text-[#7a3020] bg-white/90 inline-block px-3.5 py-1.5 rounded-full">
+            <div className="mt-2 text-center">
+              <p className="text-[9px] md:text-[10.5px] text-[#7a3020] bg-white/90 inline-block px-2.5 md:px-3.5 py-1 md:py-1.5 rounded-full">
                 {dateError}
               </p>
             </div>
@@ -629,7 +684,7 @@ export default function HeroSection() {
         </div>
       </section>
 
-      {/* Booking Modal */}
+      {/* Booking Modal - Already responsive, keeping as is */}
       {isModalOpen && (
         <div
           className="modal-backdrop fixed inset-0 z-[100] bg-black/60 backdrop-blur-sm flex items-center justify-center p-4 overflow-y-auto"
