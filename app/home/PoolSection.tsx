@@ -5,8 +5,8 @@ import { useState, useEffect, useRef } from "react";
 // 🔁 Replace these with your actual pool image paths
 const poolImages = [
   { src: "/pool1.webp", label: "The Pool" },
-  { src: "/pool2.jpg", label: "Poolside" },
-  { src: "/pool3.jpg", label: "Evening View" },
+  { src: "/pool3.webp", label: "Poolside" },
+  { src: "/pool4.png", label: "Evening View" },
 ];
 
 const perks = [
