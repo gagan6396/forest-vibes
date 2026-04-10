@@ -27,11 +27,11 @@ type Room = {
 
 const rooms: Room[] = [
   {
-    image: "https://images.unsplash.com/photo-1631049307264-da0ec9d70304?w=800&q=80",
+    image: "5.png",
     images: [
-      "https://images.unsplash.com/photo-1631049307264-da0ec9d70304?w=800&q=80",
-      "https://images.unsplash.com/photo-1631049421450-348ccd7f8949?w=800&q=80",
-      "https://images.unsplash.com/photo-1629140727571-9b5c6f6267b4?w=800&q=80",
+      "5.png",
+      "4.png",
+      "6.png",
     ],
     badge: "Most Popular",
     badgeStyle: "text-[#3b5e45]",
@@ -65,11 +65,11 @@ const rooms: Room[] = [
     ],
   },
   {
-    image: "https://images.unsplash.com/photo-1566665797739-1674de7a421a?w=800&q=80",
+    image: "8.png",
     images: [
-      "https://images.unsplash.com/photo-1566665797739-1674de7a421a?w=800&q=80",
-      "https://images.unsplash.com/photo-1590490360182-c33d57733427?w=800&q=80",
-      "https://images.unsplash.com/photo-1592229505726-ca121723b8ef?w=800&q=80",
+      "8.png",
+      "9.png",
+      "7.png",
     ],
     badge: "Business",
     badgeStyle: "text-[#8a6a1f]",
@@ -103,11 +103,11 @@ const rooms: Room[] = [
     ],
   },
   {
-    image: "https://images.unsplash.com/photo-1582719478250-c89cae4dc85b?w=800&q=80",
+    image: "11.png",
     images: [
-      "https://images.unsplash.com/photo-1582719478250-c89cae4dc85b?w=800&q=80",
-      "https://images.unsplash.com/photo-1578683010236-d716f9a3f461?w=800&q=80",
-      "https://images.unsplash.com/photo-1560185008-a33f5c7b1844?w=800&q=80",
+      "11.png",
+      "12.png",
+      "10.png",
     ],
     badge: "Suite",
     badgeStyle: "bg-[#3b5e45]/90 text-white",

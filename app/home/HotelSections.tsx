@@ -1,60 +1,58 @@
-"use client";
+"use client"
 
-import { useState, useEffect } from "react";
-import { Users, BedDouble, Wifi, Monitor, Award, Home, X, ChevronRight, Star, Bath, Coffee, Tv, Wind } from "lucide-react";
+import { ReactNode, useState, useEffect } from 'react';
+import { X, ChevronRight, Star, Users, Bed, Wifi, Coffee, Bath, Tv, Wind } from 'lucide-react';
 
-type Amenity = {
-  icon: React.ReactNode;
-  label: string;
-};
+// ─── Types ────────────────────────────────────────────────────────────────────
 
-type Room = {
-  image: string;
-  images: string[];
-  badge: string;
-  badgeStyle?: string;
+interface Room {
+  id: number;
   name: string;
   description: string;
-  longDescription: string;
-  price: number;
-  amenities: Amenity[];
-  details: { label: string; value: string }[];
-  features: string[];
-  size: string;
-  rating: number;
-  reviews: number;
-};
+  longDescription?: string;
+  pricePerNight: number;
+  maxGuests: number;
+  maxBeds: number;
+  imageUrl: string;
+  imageAlt: string;
+  images?: string[];
+  size?: string;
+  rating?: number;
+  reviews?: number;
+  features?: string[];
+  details?: { label: string; value: string }[];
+}
+
+interface DiningFeature {
+  icon: ReactNode;
+  title: string;
+  description: string;
+}
+
+// ─── Data ─────────────────────────────────────────────────────────────────────
 
 const rooms: Room[] = [
   {
-    image: "https://images.unsplash.com/photo-1631049307264-da0ec9d70304?w=800&q=80",
-    images: [
-      "https://images.unsplash.com/photo-1631049307264-da0ec9d70304?w=800&q=80",
-      "https://images.unsplash.com/photo-1631049421450-348ccd7f8949?w=800&q=80",
-      "https://images.unsplash.com/photo-1629140727571-9b5c6f6267b4?w=800&q=80",
-    ],
-    badge: "Most Popular",
-    badgeStyle: "text-[#3b5e45]",
+    id: 1,
     name: "Deluxe Room",
     description:
-      "Stay connected with complimentary Wi-Fi and unwind with your favourite shows on the flat-screen TV, including our king-sized bed, luxurious bathrobes, designer toiletries, and a rejuvenating rainfall shower.",
+      "Stay connected with complimentary high-speed Wi-Fi and unwind with your favorite shows on the flat-screen TV, including our king-sized bed, luxurious bathrobes, designer toiletries, and a rejuvenating rainfall shower.",
     longDescription:
       "Experience the pinnacle of comfort in our Deluxe Room — a carefully curated sanctuary where every detail has been considered for your pleasure. Sink into our cloud-like king-sized bed dressed in 600-thread-count Egyptian cotton, wake to a rainfall shower that melts the world away, and step into plush monogrammed bathrobes. With floor-to-ceiling windows that flood the room in natural light and a curated minibar stocked with local artisan treats, this is your home away from home — elevated.",
-    price: 320,
+    pricePerNight: 320,
+    maxGuests: 2,
+    maxBeds: 4,
+    imageUrl:
+      "5.png",
+    imageAlt: "Deluxe Room",
+    images: [
+      "5.png",
+      "4.png",
+      "6.png",
+    ],
     size: "42 m²",
     rating: 4.9,
     reviews: 184,
-    amenities: [
-      { icon: <Users size={20} strokeWidth={1.5} />, label: "4 guest" },
-      { icon: <BedDouble size={20} strokeWidth={1.5} />, label: "King bed" },
-      { icon: <Wifi size={20} strokeWidth={1.5} />, label: "Wi-Fi" },
-    ],
-    details: [
-      { label: "Room Size", value: "42 m²" },
-      { label: "Bed Type", value: "King" },
-      { label: "Floor", value: "4th – 8th" },
-      { label: "View", value: "Garden / Pool" },
-    ],
     features: [
       "Rainfall shower & deep soaking tub",
       "Nespresso machine & minibar",
@@ -63,74 +61,70 @@ const rooms: Room[] = [
       "Designer toiletries",
       "Twice-daily housekeeping",
     ],
+    details: [
+      { label: "Room Size", value: "42 m²" },
+      { label: "Bed Type", value: "King" },
+      { label: "Floor", value: "4th – 8th" },
+      { label: "View", value: "Garden / Pool" },
+    ],
   },
   {
-    image: "https://images.unsplash.com/photo-1566665797739-1674de7a421a?w=800&q=80",
-    images: [
-      "https://images.unsplash.com/photo-1566665797739-1674de7a421a?w=800&q=80",
-      "https://images.unsplash.com/photo-1590490360182-c33d57733427?w=800&q=80",
-      "https://images.unsplash.com/photo-1592229505726-ca121723b8ef?w=800&q=80",
-    ],
-    badge: "Business",
-    badgeStyle: "text-[#8a6a1f]",
-    name: "Executive Room",
+    id: 2,
+    name: "Junior Suite",
     description:
-      "Executive rooms are designed for business travellers or guests seeking added convenience and luxury. They offer work desks, ergonomic chairs, and exclusive access to our executive lounge and services.",
+      "Experience elevated luxury in our Junior Suite, featuring a separate living area, panoramic city views, premium Nespresso machine, marble bathroom with soaking tub, and exclusive access to our executive lounge.",
     longDescription:
-      "Crafted for the modern professional, our Executive Room merges productivity with indulgence seamlessly. Your dedicated workspace features an ergonomic chair, dual-monitor setup, and ultra-fast fibre connectivity — so you can work at your peak. When the day wraps up, unwind in the lounge chair with a curated local spirit from the complimentary honour bar, or take advantage of your exclusive Executive Lounge access for evening cocktails and canapés. Business travel, reimagined.",
-    price: 280,
-    size: "38 m²",
+      "Crafted for the discerning traveler, our Junior Suite offers the perfect blend of comfort and sophistication. The separate living area provides ample space to entertain or relax, while floor-to-ceiling windows frame breathtaking city views. Indulge in the marble bathroom's deep soaking tub, savor a morning espresso from your Nespresso machine, and enjoy exclusive access to our executive lounge with complimentary evening cocktails and canapés.",
+    pricePerNight: 520,
+    maxGuests: 2,
+    maxBeds: 2,
+    imageUrl:
+      "8.png",
+    imageAlt: "Junior Suite",
+    images: [
+      "8.png",
+      "9.png",
+      "7.png",
+    ],
+    size: "55 m²",
     rating: 4.8,
     reviews: 97,
-    amenities: [
-      { icon: <Users size={20} strokeWidth={1.5} />, label: "4 guest" },
-      { icon: <BedDouble size={20} strokeWidth={1.5} />, label: "King bed" },
-      { icon: <Monitor size={20} strokeWidth={1.5} />, label: "Work desk" },
+    features: [
+      "Separate living area",
+      "Executive Lounge access",
+      "Marble bathroom with soaking tub",
+      "Nespresso machine",
+      "Complimentary minibar (non-alcoholic)",
+      "Panoramic city views",
     ],
     details: [
-      { label: "Room Size", value: "38 m²" },
-      { label: "Bed Type", value: "King" },
-      { label: "Floor", value: "9th – 12th" },
-      { label: "View", value: "City Skyline" },
-    ],
-    features: [
-      "Ergonomic workstation & dual monitors",
-      "Executive Lounge access (6–10pm)",
-      "Complimentary pressing of 2 garments",
-      "Fibre optic Wi-Fi (500 Mbps)",
-      "Honour bar with local spirits",
-      "Late checkout on request",
+      { label: "Room Size", value: "55 m²" },
+      { label: "Bed Type", value: "Queen" },
+      { label: "Floor", value: "9th – 15th" },
+      { label: "View", value: "City Panoramic" },
     ],
   },
   {
-    image: "https://images.unsplash.com/photo-1582719478250-c89cae4dc85b?w=800&q=80",
-    images: [
-      "https://images.unsplash.com/photo-1582719478250-c89cae4dc85b?w=800&q=80",
-      "https://images.unsplash.com/photo-1578683010236-d716f9a3f461?w=800&q=80",
-      "https://images.unsplash.com/photo-1560185008-a33f5c7b1844?w=800&q=80",
-    ],
-    badge: "Suite",
-    badgeStyle: "bg-[#3b5e45]/90 text-white",
+    id: 3,
     name: "Presidential Suite",
     description:
-      "Our crown jewel. A sprawling retreat with a private terrace, personal butler service, bespoke décor, and panoramic city views — every detail curated for the most discerning guest.",
+      "The pinnacle of indulgence. A sprawling private retreat with a butler, grand piano, private terrace with plunge pool, personalised minibar, and curated art collection — everything arranged to your exact preference before arrival.",
     longDescription:
       "Welcome to the zenith of hospitality. The Presidential Suite is not merely a room — it is an experience woven from exceptional craftsmanship, personal service, and panoramic grandeur. Your dedicated butler is available around the clock, anticipating every need before it arises. The private terrace offers sweeping city views best enjoyed with a glass of Champagne at sunset. Inside, hand-selected artworks, a bespoke grand piano, and a private dining room for eight make this the natural choice for heads of state, cultural luminaries, and those who simply refuse to settle.",
-    price: 890,
+    pricePerNight: 1200,
+    maxGuests: 4,
+    maxBeds: 4,
+    imageUrl:
+      "11.png",
+    imageAlt: "Presidential Suite",
+    images: [
+      "11.png",
+      "12.png",
+      "10.png",
+    ],
     size: "120 m²",
     rating: 5.0,
     reviews: 42,
-    amenities: [
-      { icon: <Users size={20} strokeWidth={1.5} />, label: "6 guest" },
-      { icon: <Home size={20} strokeWidth={1.5} />, label: "Terrace" },
-      { icon: <Award size={20} strokeWidth={1.5} />, label: "Butler" },
-    ],
-    details: [
-      { label: "Room Size", value: "120 m²" },
-      { label: "Bed Type", value: "Emperor (2×King)" },
-      { label: "Floor", value: "Penthouse" },
-      { label: "View", value: "360° Panoramic" },
-    ],
     features: [
       "Private wraparound terrace",
       "24-hour personal butler",
@@ -139,22 +133,67 @@ const rooms: Room[] = [
       "Champagne on arrival",
       "Airport transfer included",
     ],
+    details: [
+      { label: "Room Size", value: "120 m²" },
+      { label: "Bed Type", value: "Emperor (2×King)" },
+      { label: "Floor", value: "Penthouse" },
+      { label: "View", value: "360° Panoramic" },
+    ],
   },
 ];
 
+const diningFeatures: DiningFeature[] = [
+  {
+    icon: (
+      <svg key="icon1" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth={1.5} className="w-7 h-7">
+        <path strokeLinecap="round" strokeLinejoin="round" d="M12 3v2m0 14v2M5.636 5.636l1.414 1.414M16.95 16.95l1.414 1.414M3 12h2m14 0h2M5.636 18.364l1.414-1.414M16.95 7.05l1.414-1.414" />
+        <circle cx="12" cy="12" r="4" />
+      </svg>
+    ),
+    title: "Fresh, Local Ingredients",
+    description:
+      "Highlight your commitment to using locally sourced, seasonal ingredients, promoting sustainability and supporting local producers.",
+  },
+  {
+    icon: (
+      <svg key="icon2" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth={1.5} className="w-7 h-7">
+        <path strokeLinecap="round" strokeLinejoin="round" d="M9.75 3.104v5.714a2.25 2.25 0 01-.659 1.591L5 14.5M9.75 3.104c-.251.023-.501.05-.75.082m.75-.082a24.301 24.301 0 014.5 0m0 0v5.714c0 .597.237 1.17.659 1.591L19.8 15M14.25 3.104c.251.023.501.05.75.082M19.8 15a2.25 2.25 0 01.75 1.715v.045c0 .549-.18 1.082-.504 1.517L18.75 21H5.25l-1.296-2.723A2.25 2.25 0 013.45 16.76v-.045c0-.663.27-1.298.75-1.715m15.6 0H4.2" />
+      </svg>
+    ),
+    title: "Culinary Excellence",
+    description:
+      "Emphasize the quality and expertise of your chefs, showcasing the culinary skills and creativity that go into every dish.",
+  },
+  {
+    icon: (
+      <svg key="icon3" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth={1.5} className="w-7 h-7">
+        <path strokeLinecap="round" strokeLinejoin="round" d="M3.75 6A2.25 2.25 0 016 3.75h2.25A2.25 2.25 0 0110.5 6v2.25a2.25 2.25 0 01-2.25 2.25H6a2.25 2.25 0 01-2.25-2.25V6zM3.75 15.75A2.25 2.25 0 016 13.5h2.25a2.25 2.25 0 012.25 2.25V18a2.25 2.25 0 01-2.25 2.25H6A2.25 2.25 0 013.75 18v-2.25zM13.5 6a2.25 2.25 0 012.25-2.25H18A2.25 2.25 0 0120.25 6v2.25A2.25 2.25 0 0118 10.5h-2.25a2.25 2.25 0 01-2.25-2.25V6zM13.5 15.75a2.25 2.25 0 012.25-2.25H18a2.25 2.25 0 012.25 2.25V18A2.25 2.25 0 0118 20.25h-2.25A2.25 2.25 0 0113.5 18v-2.25z" />
+      </svg>
+    ),
+    title: "Diverse Menu Options",
+    description:
+      "Showcase the variety of dishes available, catering to different tastes, dietary preferences, and cultural palates.",
+  },
+];
+
+// ─── Icons ────────────────────────────────────────────────────────────────────
+
+const GuestIcon = () => (
+  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth={1.5} className="w-5 h-5">
+    <path strokeLinecap="round" strokeLinejoin="round" d="M15.75 6a3.75 3.75 0 11-7.5 0 3.75 3.75 0 017.5 0zM4.501 20.118a7.5 7.5 0 0114.998 0A17.933 17.933 0 0112 21.75c-2.676 0-5.216-.584-7.499-1.632z" />
+  </svg>
+);
+
+const BedIcon = () => (
+  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth={1.5} className="w-5 h-5">
+    <path strokeLinecap="round" strokeLinejoin="round" d="M3 13.5V19a1 1 0 001 1h16a1 1 0 001-1v-5.5M3 13.5V8a1 1 0 011-1h16a1 1 0 011 1v5.5M3 13.5h18M7 7V5a1 1 0 011-1h8a1 1 0 011 1v2" />
+  </svg>
+);
+
+// ─── Modal Component ───────────────────────────────────────────────────────────
+
 function RoomModal({ room, onClose }: { room: Room; onClose: () => void }) {
   const [activeImg, setActiveImg] = useState(0);
-  const [isMobile, setIsMobile] = useState(false);
-
-  // Check if mobile on mount and on resize
-  useEffect(() => {
-    const checkMobile = () => {
-      setIsMobile(window.innerWidth < 768);
-    };
-    checkMobile();
-    window.addEventListener("resize", checkMobile);
-    return () => window.removeEventListener("resize", checkMobile);
-  }, []);
 
   // Close on escape key
   useEffect(() => {
@@ -171,184 +210,12 @@ function RoomModal({ room, onClose }: { room: Room; onClose: () => void }) {
     return () => { document.body.style.overflow = ""; };
   }, []);
 
+  const roomImages = room.images || [room.imageUrl];
+
   const handleClose = () => {
     onClose();
   };
 
-  // Mobile version - Full screen bottom sheet
-  if (isMobile) {
-    return (
-      <>
-        <style>{`
-          @keyframes slideUp {
-            from { transform: translateY(100%); }
-            to { transform: translateY(0); }
-          }
-          @keyframes fadeIn {
-            from { opacity: 0; }
-            to { opacity: 1; }
-          }
-          .mobile-modal-backdrop {
-            animation: fadeIn 0.25s ease forwards;
-          }
-          .mobile-modal-sheet {
-            animation: slideUp 0.3s cubic-bezier(0.22, 1, 0.36, 1) forwards;
-          }
-        `}</style>
-
-        {/* Backdrop */}
-        <div
-          className="mobile-modal-backdrop fixed inset-0 z-[100] bg-black/60 backdrop-blur-sm"
-          onClick={handleClose}
-        >
-          {/* Bottom Sheet */}
-          <div
-            className="mobile-modal-sheet absolute bottom-0 left-0 right-0 bg-[#faf8f3] rounded-t-3xl max-h-[90vh] overflow-hidden flex flex-col"
-            onClick={(e) => e.stopPropagation()}
-          >
-            {/* Drag indicator */}
-            <div className="flex justify-center pt-3 pb-2">
-              <div className="w-12 h-1 bg-[#d0c8be] rounded-full"></div>
-            </div>
-
-            {/* Close button */}
-            <button
-              onClick={handleClose}
-              className="absolute top-3 right-4 z-20 w-8 h-8 flex items-center justify-center rounded-full bg-black/10 backdrop-blur-sm transition-colors text-white cursor-pointer"
-              aria-label="Close modal"
-              type="button"
-            >
-              <X size={16} />
-            </button>
-
-            {/* Scrollable content */}
-            <div className="flex-1 overflow-y-auto">
-              {/* Image section */}
-              <div className="relative">
-                <div className="h-80 overflow-hidden">
-                  <img
-                    key={activeImg}
-                    src={room.images[activeImg]}
-                    alt={room.name}
-                    className="w-full h-full object-cover"
-                  />
-                </div>
-                
-                {/* Badge */}
-                <span
-                  className={`absolute top-4 left-4 bg-white/90 backdrop-blur-sm px-3 py-1 rounded-full text-[11px] tracking-wide font-bold uppercase ${room.badgeStyle}`}
-                >
-                  {room.badge}
-                </span>
-
-                {/* Thumbnails */}
-                <div className="absolute bottom-3 left-0 right-0 flex justify-center gap-2 px-4">
-                  {room.images.map((img, i) => (
-                    <button
-                      key={i}
-                      onClick={() => setActiveImg(i)}
-                      className={`rounded-lg overflow-hidden w-14 h-14 transition-all ${
-                        activeImg === i ? "ring-2 ring-[#3b5e45] ring-offset-2" : "opacity-70"
-                      }`}
-                    >
-                      <img src={img} alt="" className="w-full h-full object-cover" />
-                    </button>
-                  ))}
-                </div>
-              </div>
-
-              {/* Content */}
-              <div className="p-6 pb-8">
-                {/* Rating */}
-                <div className="flex items-center gap-1.5 mb-3">
-                  {Array.from({ length: 5 }).map((_, i) => (
-                    <Star
-                      key={i}
-                      size={14}
-                      className={i < Math.floor(room.rating) ? "text-[#c9a84c] fill-[#c9a84c]" : "text-[#d5cfc7]"}
-                    />
-                  ))}
-                  <span className="text-[12px] text-[#a09890] ml-1">{room.rating} · {room.reviews} reviews</span>
-                </div>
-
-                {/* Name */}
-                <h2
-                  className="text-[1.8rem] text-[#1e1c19] leading-tight mb-2 pr-8"
-                  style={{ fontFamily: "'Cormorant Garamond', Georgia, serif", fontWeight: 400 }}
-                >
-                  {room.name}
-                </h2>
-                <p className="text-[11px] text-[#a09890] tracking-widest uppercase mb-5">{room.size}</p>
-
-                {/* Details grid */}
-                <div className="grid grid-cols-2 gap-3 mb-6">
-                  {room.details.map((d) => (
-                    <div key={d.label} className="bg-[#f0ece0] rounded-lg px-4 py-3">
-                      <p className="text-[10px] text-[#a09890] tracking-widest uppercase mb-0.5">{d.label}</p>
-                      <p className="text-[13px] text-[#1e1c19] font-semibold">{d.value}</p>
-                    </div>
-                  ))}
-                </div>
-
-                {/* Description */}
-                <p className="text-[13.5px] text-[#4a4642] leading-[1.8] mb-7" style={{ fontWeight: 300 }}>
-                  {room.longDescription}
-                </p>
-
-                {/* Features */}
-                <p className="text-[10px] text-[#a09890] tracking-[0.18em] uppercase mb-3">What's Included</p>
-                <div className="flex flex-wrap gap-2 mb-8">
-                  {room.features.map((f) => (
-                    <span
-                      key={f}
-                      className="text-[11.5px] text-[#3b5e45] border border-[#3b5e45]/30 bg-[#3b5e45]/5 px-3 py-1.5 rounded-full"
-                    >
-                      {f}
-                    </span>
-                  ))}
-                </div>
-
-                {/* Amenities */}
-                <div className="grid grid-cols-5 gap-4 mb-8 py-5 border-y border-[#e8e2d8]">
-                  {[
-                    { icon: <Wifi size={18} strokeWidth={1.5} />, label: "Wi-Fi" },
-                    { icon: <Bath size={18} strokeWidth={1.5} />, label: "Shower" },
-                    { icon: <Tv size={18} strokeWidth={1.5} />, label: "Smart TV" },
-                    { icon: <Coffee size={18} strokeWidth={1.5} />, label: "Coffee" },
-                    { icon: <Wind size={18} strokeWidth={1.5} />, label: "AC" },
-                  ].map((a) => (
-                    <div key={a.label} className="flex flex-col items-center gap-1.5 text-[#3b5e45]">
-                      {a.icon}
-                      <span className="text-[9px] text-[#a09890] tracking-wide text-center leading-tight">{a.label}</span>
-                    </div>
-                  ))}
-                </div>
-
-                {/* Price + CTA */}
-                <div className="flex items-center justify-between gap-4">
-                  <div style={{ fontFamily: "'Cormorant Garamond', Georgia, serif" }}>
-                    <p className="text-[11px] text-[#a09890] tracking-wide mb-0.5" style={{ fontFamily: "'Lato', sans-serif" }}>From</p>
-                    <div className="flex items-baseline gap-0.5 text-[#1e1c19]">
-                      <sup className="text-lg font-normal">₹</sup>
-                      <span className="text-[2.4rem] font-semibold leading-none">{room.price}</span>
-                      <span className="text-[12px] text-[#a09890] ml-1" style={{ fontFamily: "'Lato', sans-serif", fontWeight: 300 }}>/night</span>
-                    </div>
-                  </div>
-
-                  <button className="flex items-center gap-2 bg-[#3b5e45] hover:bg-[#2e4a36] text-white text-[11px] tracking-[0.18em] uppercase font-bold px-6 py-3.5 rounded-lg transition-all duration-200">
-                    Book This Room
-                    <ChevronRight size={14} />
-                  </button>
-                </div>
-              </div>
-            </div>
-          </div>
-        </div>
-      </>
-    );
-  }
-
-  // Desktop version - Original side-by-side modal
   return (
     <>
       <style>{`
@@ -371,12 +238,12 @@ function RoomModal({ room, onClose }: { room: Room; onClose: () => void }) {
         }
         .thumb-btn:not(.active) { opacity: 0.55; }
         .thumb-btn:not(.active):hover { opacity: 0.8; transform: scale(1.03); }
-        .thumb-btn.active { opacity: 1; outline: 2px solid #3b5e45; outline-offset: 2px; }
+        .thumb-btn.active { opacity: 1; outline: 2px solid #3a6349; outline-offset: 2px; }
         .feature-pill {
           transition: background 0.2s, color 0.2s;
         }
         .feature-pill:hover {
-          background: #3b5e45;
+          background: #3a6349;
           color: white;
         }
       `}</style>
@@ -390,7 +257,6 @@ function RoomModal({ room, onClose }: { room: Room; onClose: () => void }) {
         <div
           className="modal-panel bg-[#faf8f3] w-full max-w-4xl max-h-[92vh] overflow-y-auto rounded-2xl shadow-2xl flex flex-col md:flex-row"
           onClick={(e) => e.stopPropagation()}
-          style={{ fontFamily: "'Lato', sans-serif" }}
         >
           {/* ── Left: Images ── */}
           <div className="md:w-[42%] flex-shrink-0 flex flex-col">
@@ -398,22 +264,16 @@ function RoomModal({ room, onClose }: { room: Room; onClose: () => void }) {
             <div className="relative h-64 md:h-[320px] overflow-hidden rounded-tl-2xl rounded-tr-2xl md:rounded-tr-none">
               <img
                 key={activeImg}
-                src={room.images[activeImg]}
+                src={roomImages[activeImg]}
                 alt={room.name}
                 className="w-full h-full object-cover"
                 style={{ animation: "modalFadeIn 0.3s ease" }}
               />
-              {/* Badge */}
-              <span
-                className={`absolute top-4 left-4 bg-white/90 backdrop-blur-sm px-3 py-1 rounded-full text-[11px] tracking-wide font-bold uppercase ${room.badgeStyle}`}
-              >
-                {room.badge}
-              </span>
             </div>
 
             {/* Thumbnails */}
             <div className="flex gap-2 p-3 md:p-4">
-              {room.images.map((img, i) => (
+              {roomImages.map((img, i) => (
                 <button
                   key={i}
                   onClick={() => setActiveImg(i)}
@@ -426,7 +286,12 @@ function RoomModal({ room, onClose }: { room: Room; onClose: () => void }) {
 
             {/* Details grid */}
             <div className="grid grid-cols-2 gap-px bg-[#e8e2d8] border-t border-[#e8e2d8] mt-auto">
-              {room.details.map((d) => (
+              {(room.details || [
+                { label: "Room Size", value: room.size || "Standard" },
+                { label: "Max Guests", value: `${room.maxGuests} guests` },
+                { label: "Bed Type", value: `${room.maxBeds} beds` },
+                { label: "View", value: "Scenic" },
+              ]).map((d) => (
                 <div key={d.label} className="bg-[#faf8f3] px-4 py-3">
                   <p className="text-[10px] text-[#a09890] tracking-widest uppercase mb-0.5">{d.label}</p>
                   <p className="text-[13px] text-[#1e1c19] font-semibold">{d.value}</p>
@@ -436,56 +301,59 @@ function RoomModal({ room, onClose }: { room: Room; onClose: () => void }) {
           </div>
 
           {/* ── Right: Info ── */}
-          <div className="flex-1 flex flex-col p-7 md:p-9 overflow-y-auto relative">
-            {/* Close button - moved to top right corner with higher z-index */}
+          <div className="flex-1 flex flex-col p-7 md:p-9 overflow-y-auto">
+            {/* Close button */}
             <button
               onClick={handleClose}
-              className="absolute top-4 right-4 z-20 w-9 h-9 flex items-center justify-center rounded-full bg-[#f0ece0] hover:bg-[#e8e2d8] transition-colors text-[#5a5450] cursor-pointer"
+              className="self-end -mt-1 -mr-1 w-9 h-9 flex items-center justify-center rounded-full bg-[#f0ece0] hover:bg-[#e8e2d8] transition-colors text-[#5a5450] cursor-pointer z-10"
               aria-label="Close modal"
-              type="button"
             >
               <X size={18} />
             </button>
 
             {/* Rating */}
-            <div className="flex items-center gap-1.5 mb-3 mt-2">
-              {Array.from({ length: 5 }).map((_, i) => (
-                <Star
-                  key={i}
-                  size={13}
-                  className={i < Math.floor(room.rating) ? "text-[#c9a84c] fill-[#c9a84c]" : "text-[#d5cfc7]"}
-                />
-              ))}
-              <span className="text-[11px] text-[#a09890] ml-1">{room.rating} · {room.reviews} reviews</span>
-            </div>
+            {room.rating && (
+              <div className="flex items-center gap-1.5 mb-3 -mt-2">
+                {Array.from({ length: 5 }).map((_, i) => (
+                  <Star
+                    key={i}
+                    size={13}
+                    className={i < Math.floor(room.rating!) ? "text-[#c9a84c] fill-[#c9a84c]" : "text-[#d5cfc7]"}
+                  />
+                ))}
+                <span className="text-[11px] text-[#a09890] ml-1">{room.rating} · {room.reviews} reviews</span>
+              </div>
+            )}
 
             {/* Name & size */}
             <h2
-              className="text-[2rem] md:text-[2.4rem] text-[#1e1c19] leading-tight mb-1 pr-8"
-              style={{ fontFamily: "'Cormorant Garamond', Georgia, serif", fontWeight: 400 }}
+              className="text-[2rem] md:text-[2.4rem] text-[#1e1c19] leading-tight mb-1 font-serif"
             >
               {room.name}
             </h2>
-            <p className="text-[11px] text-[#a09890] tracking-widest uppercase mb-5">{room.size}</p>
+            <p className="text-[11px] text-[#a09890] tracking-widest uppercase mb-5">{room.size || "Luxury Suite"}</p>
 
             {/* Long description */}
-            <p className="text-[13.5px] text-[#4a4642] leading-[1.8] mb-7" style={{ fontWeight: 300 }}>
-              {room.longDescription}
+            <p className="text-[13.5px] text-[#4a4642] leading-[1.8] mb-7">
+              {room.longDescription || room.description}
             </p>
 
             {/* Features */}
-            <p className="text-[10px] text-[#a09890] tracking-[0.18em] uppercase mb-3">What's Included</p>
-            <div className="flex flex-wrap gap-2 mb-8">
-              {room.features.map((f) => (
-                <span
-                  key={f}
-                  className="feature-pill text-[11.5px] text-[#3b5e45] border border-[#3b5e45]/30 bg-[#3b5e45]/5 px-3 py-1.5 rounded-full cursor-default"
-                  style={{ fontFamily: "'Lato', sans-serif" }}
-                >
-                  {f}
-                </span>
-              ))}
-            </div>
+            {room.features && (
+              <>
+                <p className="text-[10px] text-[#a09890] tracking-[0.18em] uppercase mb-3">What's Included</p>
+                <div className="flex flex-wrap gap-2 mb-8">
+                  {room.features.map((f) => (
+                    <span
+                      key={f}
+                      className="feature-pill text-[11.5px] text-[#3a6349] border border-[#3a6349]/30 bg-[#3a6349]/5 px-3 py-1.5 rounded-full cursor-default"
+                    >
+                      {f}
+                    </span>
+                  ))}
+                </div>
+              </>
+            )}
 
             {/* Amenity icons */}
             <div className="flex gap-6 mb-8 py-4 border-y border-[#e8e2d8]">
@@ -496,7 +364,7 @@ function RoomModal({ room, onClose }: { room: Room; onClose: () => void }) {
                 { icon: <Coffee size={18} strokeWidth={1.5} />, label: "Nespresso" },
                 { icon: <Wind size={18} strokeWidth={1.5} />, label: "Climate ctrl" },
               ].map((a) => (
-                <div key={a.label} className="flex flex-col items-center gap-1.5 text-[#3b5e45]">
+                <div key={a.label} className="flex flex-col items-center gap-1.5 text-[#3a6349]">
                   {a.icon}
                   <span className="text-[9.5px] text-[#a09890] tracking-wide text-center leading-tight">{a.label}</span>
                 </div>
@@ -505,16 +373,16 @@ function RoomModal({ room, onClose }: { room: Room; onClose: () => void }) {
 
             {/* Price + CTA */}
             <div className="flex items-center justify-between gap-4 mt-auto">
-              <div style={{ fontFamily: "'Cormorant Garamond', Georgia, serif" }}>
-                <p className="text-[11px] text-[#a09890] tracking-wide mb-0.5" style={{ fontFamily: "'Lato', sans-serif" }}>From</p>
+              <div className="font-serif">
+                <p className="text-[11px] text-[#a09890] tracking-wide mb-0.5">From</p>
                 <div className="flex items-baseline gap-0.5 text-[#1e1c19]">
                   <sup className="text-lg font-normal">₹</sup>
-                  <span className="text-[2.6rem] font-semibold leading-none">{room.price}</span>
-                  <span className="text-[13px] text-[#a09890] ml-1" style={{ fontFamily: "'Lato', sans-serif", fontWeight: 300 }}>/night</span>
+                  <span className="text-[2.6rem] font-semibold leading-none">{room.pricePerNight}</span>
+                  <span className="text-[13px] text-[#a09890] ml-1">/night</span>
                 </div>
               </div>
 
-              <button className="flex items-center gap-2 bg-[#3b5e45] hover:bg-[#2e4a36] text-white text-[11px] tracking-[0.18em] uppercase font-bold px-7 py-4 rounded-lg transition-all duration-200 hover:-translate-y-0.5 active:translate-y-0">
+              <button className="flex items-center gap-2 bg-[#3a6349] hover:bg-[#2e4a36] text-white text-[11px] tracking-[0.16em] uppercase font-bold px-7 py-4 rounded-lg transition-all duration-200 hover:-translate-y-0.5 active:translate-y-0">
                 Book This Room
                 <ChevronRight size={14} />
               </button>
@@ -526,236 +394,169 @@ function RoomModal({ room, onClose }: { room: Room; onClose: () => void }) {
   );
 }
 
-export default function RoomsSection() {
-  const [activeRoom, setActiveRoom] = useState<Room | null>(null);
+// ─── Sub-components ───────────────────────────────────────────────────────────
+
+function RoomCard({ room, index, onInquire }: { room: Room; index: number; onInquire: () => void }) {
+  const isEven = index % 2 === 0;
 
   return (
-    <>
-      <style>{`
-        @import url('https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,600;1,400;1,600&family=Lato:wght@300;400;700&display=swap');
-        
-        /* Section animations */
-        @keyframes fadeInUp {
-          from {
-            opacity: 0;
-            transform: translateY(30px);
-          }
-          to {
-            opacity: 1;
-            transform: translateY(0);
-          }
-        }
-        
-        @keyframes fadeInLeft {
-          from {
-            opacity: 0;
-            transform: translateX(-30px);
-          }
-          to {
-            opacity: 1;
-            transform: translateX(0);
-          }
-        }
-        
-        @keyframes fadeInRight {
-          from {
-            opacity: 0;
-            transform: translateX(30px);
-          }
-          to {
-            opacity: 1;
-            transform: translateX(0);
-          }
-        }
-        
-        @keyframes scaleIn {
-          from {
-            opacity: 0;
-            transform: scale(0.9);
-          }
-          to {
-            opacity: 1;
-            transform: scale(1);
-          }
-        }
-        
-        @keyframes slideInBottom {
-          from {
-            opacity: 0;
-            transform: translateY(50px);
-          }
-          to {
-            opacity: 1;
-            transform: translateY(0);
-          }
-        }
-        
-        .animate-header {
-          animation: fadeInUp 0.6s ease forwards;
-        }
-        
-        .animate-card {
-          opacity: 0;
-          animation: scaleIn 0.5s cubic-bezier(0.22, 1, 0.36, 1) forwards;
-        }
-        
-        .animate-card:nth-child(1) { animation-delay: 0.1s; }
-        .animate-card:nth-child(2) { animation-delay: 0.2s; }
-        .animate-card:nth-child(3) { animation-delay: 0.3s; }
-        
-        .animate-offer-section {
-          animation: slideInBottom 0.7s cubic-bezier(0.22, 1, 0.36, 1) forwards;
-        }
-        
-        .animate-offer-content {
-          animation: fadeInLeft 0.8s ease forwards;
-        }
-        
-        .animate-image {
-          animation: fadeInRight 0.8s ease forwards;
-        }
-      `}</style>
+    <div
+      key={room.id}
+      className={`flex flex-col md:flex-row ${
+        isEven ? "" : "md:flex-row-reverse"
+      } gap-0 items-stretch mb-4`}
+    >
+      {/* Image Side - Now on top for mobile */}
+      <div className="flex-1 min-h-[340px] md:min-h-0 overflow-hidden order-first md:order-none">
+        <img
+          src={room.imageUrl}
+          alt={room.imageAlt}
+          className="w-full h-full object-cover"
+          style={{ minHeight: 340 }}
+        />
+      </div>
 
-      <section className="bg-[#f0ece0] py-16 px-6">
-        {/* Header */}
-        <div className="text-center mb-14 animate-header">
-          <span
-            className="block text-[10px] tracking-[0.22em] uppercase text-[#3b5e45] mb-3"
-            style={{ fontFamily: "'Cormorant Garamond', Georgia, serif", fontStyle: "italic" }}
-          >
-            Rooms
-          </span>
-          <h2
-            className="text-4xl md:text-[54px] text-[#1e1c19] leading-[1.1] max-w-2xl mx-auto"
-            style={{ fontFamily: "'Cormorant Garamond', Georgia, serif", fontWeight: 400 }}
-          >
-            Luxury Redefined: Unwind in Our
-            <br />Exquisite Rooms and Suites
-          </h2>
+      {/* Text Side */}
+      <div className="flex-1 flex flex-col justify-center px-10 py-14 bg-[#f5f3ec]">
+        <h3 className="font-serif text-3xl text-[#1a1a1a] mb-4 tracking-tight">
+          {room.name}
+        </h3>
+        <p className="text-sm text-black leading-relaxed mb-8 max-w-md">
+          {room.description}
+        </p>
+
+        <hr className="border-[#d4cfc4] mb-8" />
+
+        {/* Price & Capacity */}
+        <div className="flex items-end justify-between mb-8">
+          <div>
+            <p className="text-xs font-semibold text-[#7a7a6a] uppercase tracking-widest mb-1">
+              From
+            </p>
+            <div className="flex items-baseline gap-1">
+              <span className="text-4xl font-bold text-[#1a1a1a] font-serif">
+                ₹ {room.pricePerNight}
+              </span>
+              <span className="text-xs text-[#888]">/night</span>
+            </div>
+          </div>
+
+          <div className="flex gap-5">
+            <div className="flex flex-col items-center gap-1 text-[#555]">
+              <GuestIcon />
+              <span className="text-[10px] leading-none">{room.maxGuests}</span>
+              <span className="text-[10px] text-[#888]">guests</span>
+            </div>
+            <div className="flex flex-col items-center gap-1 text-[#555]">
+              <BedIcon />
+              <span className="text-[10px] leading-none">{room.maxBeds}</span>
+              <span className="text-[10px] text-[#888]">beds</span>
+            </div>
+          </div>
         </div>
 
-        {/* Grid */}
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 max-w-[1020px] mx-auto">
-          {rooms.map((room, index) => (
-            <div
-              key={room.name}
-              className="animate-card bg-white rounded-2xl overflow-hidden border border-[#e0d9cf] flex flex-col group transition-all duration-300 hover:-translate-y-1 hover:shadow-2xl"
-              style={{ animationDelay: `${0.1 + index * 0.1}s` }}
-            >
-              {/* Image */}
-              <div className="relative h-64 overflow-hidden">
-                <img
-                  src={room.image}
-                  alt={room.name}
-                  className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105"
-                />
-                <span
-                  className={`absolute top-4 left-4 bg-white/90 backdrop-blur-sm px-3 py-1 rounded-full text-[11px] tracking-wide font-bold uppercase ${room.badgeStyle}`}
-                  style={{ fontFamily: "'Lato', sans-serif" }}
-                >
-                  {room.badge}
-                </span>
-              </div>
+        {/* CTAs */}
+        <div className="flex gap-3">
+          <button 
+            onClick={onInquire}
+            className="bg-[#3a6349] text-white text-xs font-bold uppercase tracking-widest px-6 py-3 hover:bg-[#2d4f39] transition-colors duration-200"
+          >
+            Inquire Now
+          </button>
+        </div>
+      </div>
+    </div>
+  );
+}
 
-              {/* Body */}
-              <div className="px-6 pt-6 flex-1">
-                <h3
-                  className="text-2xl text-[#1e1c19] mb-2"
-                  style={{ fontFamily: "'Cormorant Garamond', Georgia, serif", fontWeight: 600 }}
-                >
-                  {room.name}
-                </h3>
-                <p
-                  className="text-[13.5px] text-black leading-relaxed"
-                  style={{ fontFamily: "'Lato', sans-serif", fontWeight: 300 }}
-                >
-                  {room.description}
+function DiningSection() {
+  return (
+    <div className="flex flex-col md:flex-row items-stretch bg-[#f5f3ec]">
+      {/* Image */}
+      <div className="flex-1 min-h-[400px] md:min-h-0 overflow-hidden">
+        <img
+          src="https://images.unsplash.com/photo-1559339352-11d035aa65de?w=900&q=80"
+          alt="Fine dining dish"
+          className="w-full h-full object-cover"
+          style={{ minHeight: 400 }}
+        />
+      </div>
+
+      {/* Content */}
+      <div className="flex-1 px-10 py-14 flex flex-col justify-center">
+        <p className="text-xs italic text-[#888] mb-2 font-serif">Restaurant</p>
+        <h2 className="font-serif text-4xl md:text-5xl text-[#1a1a1a] leading-tight mb-6 tracking-tight">
+          Culinary Bliss Awaits: Explore Our Dining Delights
+        </h2>
+        <p className="text-sm text-[#555] leading-relaxed mb-10 max-w-sm">
+          At Paradista, dining is more than just a meal – it's an unforgettable
+          experience. Join us and discover the perfect fusion of flavors,
+          ambiance, and impeccable service that sets us apart as a culinary
+          destination of choice.
+        </p>
+
+        <div className="flex flex-col gap-7">
+          {diningFeatures.map((feature, i) => (
+            <div key={i} className="flex items-start gap-5">
+              <div className="flex-shrink-0 w-14 h-14 border border-[#d4cfc4] flex items-center justify-center text-[#3a6349] bg-white">
+                {feature.icon}
+              </div>
+              <div>
+                <h4 className="font-semibold text-[#1a1a1a] text-sm mb-1 tracking-wide">
+                  {feature.title}
+                </h4>
+                <p className="text-xs text-black leading-relaxed">
+                  {feature.description}
                 </p>
               </div>
-
-              {/* Divider */}
-              <div className="h-px bg-[#e8e2d8] mx-6 my-5" />
-
-              {/* Footer */}
-              <div className="px-6 flex items-end justify-between gap-3">
-                <div>
-                  <p
-                    className="text-[11px] text-[#a09890] tracking-wide mb-0.5"
-                    style={{ fontFamily: "'Lato', sans-serif" }}
-                  >
-                    From
-                  </p>
-                  <div
-                    className="flex items-baseline gap-0.5 text-[#1e1c19]"
-                    style={{ fontFamily: "'Cormorant Garamond', Georgia, serif" }}
-                  >
-                    <sup className="text-xl font-normal">₹</sup>
-                    <span className="text-4xl font-semibold leading-none">{room.price}</span>
-                    <span
-                      className="text-[13px] text-[#a09890] ml-1"
-                      style={{ fontFamily: "'Lato', sans-serif", fontWeight: 300 }}
-                    >
-                      /day
-                    </span>
-                  </div>
-                </div>
-
-                <div className="flex gap-4">
-                  {room.amenities.map((a) => (
-                    <div key={a.label} className="flex flex-col items-center gap-1">
-                      <span className="text-[#3b5e45]">{a.icon}</span>
-                      <span
-                        className="text-[10px] text-[#a09890] tracking-wide text-center leading-tight"
-                        style={{ fontFamily: "'Lato', sans-serif" }}
-                      >
-                        {a.label}
-                      </span>
-                    </div>
-                  ))}
-                </div>
-              </div>
-
-              {/* CTA — opens modal */}
-              <button
-                onClick={() => setActiveRoom(room)}
-                className="mx-6 mb-6 mt-5 py-3.5 bg-[#3b5e45] hover:bg-[#2e4a36] text-white text-[11px] tracking-[0.18em] uppercase font-bold rounded-lg transition-all duration-200 hover:-translate-y-0.5 active:translate-y-0"
-                style={{ fontFamily: "'Lato', sans-serif" }}
-              >
-                More Information
-              </button>
             </div>
           ))}
         </div>
-      </section>
+      </div>
+    </div>
+  );
+}
 
-      {/* just above footer */}
-      <section className="relative min-h-[580px] overflow-hidden flex items-center animate-offer-section">
-        <img
-          src="https://images.unsplash.com/photo-1615874959474-d609969a20ed?w=1600&q=80"
-          alt="Luxury hotel lounge"
-          className="absolute inset-0 w-full h-full object-cover animate-image"
-        />
-        <div className="absolute inset-0 bg-black/30" />
-        <div className="relative z-10 w-full px-8 md:px-20 py-16 flex items-end md:items-center min-h-[580px]">
-          <div className="bg-white w-full max-w-[400px] p-10 animate-offer-content">
-            <p className="text-xs italic text-[#999] font-serif mb-3">Get Yours</p>
-            <h2 className="font-serif text-[2.2rem] leading-tight text-[#1a1a1a] mb-5 tracking-tight">
-              Discover Special Offers Just For You Today
-            </h2>
-            <p className="text-[12.5px] text-[#666] leading-relaxed mb-8">
-              Unlock exclusive deals and packages for your next getaway at Forrest Vibes. Take advantage of our special offers and make your stay even more memorable.
-            </p>
-            <button className="bg-[#3a6349] text-white text-[11px] font-bold uppercase tracking-widest px-8 py-3 hover:bg-[#2d4f39] transition-colors">
-              Inquire Offer
-            </button>
-          </div>
-        </div>
-      </section>
+// ─── Main Component ───────────────────────────────────────────────────────────
+
+export default function HotelSections() {
+  const [selectedRoom, setSelectedRoom] = useState<Room | null>(null);
+
+  return (
+    <div className="bg-[#f5f3ec] font-sans">
+      {/* Rooms Header */}
+      <div className="text-center pt-16 pb-12 px-4">
+        <p className="text-xs italic text-[#888] mb-2 font-serif">Rooms</p>
+        <h1 className="font-serif text-4xl md:text-5xl text-[#1a1a1a] mb-4 tracking-tight">
+          Explore Our Luxurious Rooms and Suites
+        </h1>
+        <p className="text-sm text-[#666] max-w-md mx-auto leading-relaxed">
+          Browse through our collection and discover your perfect sanctuary for
+          an unforgettable stay at Paradista
+        </p>
+      </div>
+
+      {/* Rooms — alternating layout driven by the rooms array */}
+      <div className="max-w-6xl mx-auto px-4 flex flex-col gap-6 pb-16">
+        {rooms.map((room, index) => (
+          <RoomCard 
+            key={room.id} 
+            room={room} 
+            index={index} 
+            onInquire={() => setSelectedRoom(room)}
+          />
+        ))}
+      </div>
+
+      {/* Dining Section */}
+      <div className="max-w-6xl mx-auto px-4 pb-20">
+        <DiningSection />
+      </div>
 
       {/* Modal */}
-      {activeRoom && (
-        <RoomModal room={activeRoom} onClose={() => setActiveRoom(null)} />
+      {selectedRoom && (
+        <RoomModal room={selectedRoom} onClose={() => setSelectedRoom(null)} />
       )}
-    </>
+    </div>
   );
 }
