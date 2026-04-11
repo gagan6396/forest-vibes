@@ -20,7 +20,7 @@ const milestones = [
 const IMG_1 =
   "about4.webp";
 const IMG_2 =
-  "about.webp";
+  "abt2.png";
 
 export default function HotelLegacy() {
   const sectionRef = useRef<HTMLElement>(null);

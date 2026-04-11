@@ -229,7 +229,7 @@ export default function AboutUs() {
               {/* bottom image — slightly inset to create an asymmetric feel */}
               <div className={`rv-r d2 ${s1.inView ? "on" : ""} img-hover ml-12 border-l-4 border-[#2d5a3d]`}>
                 <img
-                  src="about.webp"
+                  src="pool-abt.webp"
                   alt="Pool terrace"
                   className="w-full h-full object-cover"
                 />
