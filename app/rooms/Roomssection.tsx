@@ -731,7 +731,7 @@ export default function RoomsSection() {
       {/* just above footer */}
       <section className="relative min-h-[580px] overflow-hidden flex items-center animate-offer-section">
         <img
-          src="roombn.png"
+          src="room-page-banner.png"
           alt="Luxury hotel lounge"
           className="absolute inset-0 w-full h-full object-cover animate-image"
         />
