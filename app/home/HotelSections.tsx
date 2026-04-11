@@ -475,7 +475,7 @@ function DiningSection() {
       {/* Image */}
       <div className="flex-1 min-h-[400px] md:min-h-0 overflow-hidden">
         <img
-          src="https://images.unsplash.com/photo-1559339352-11d035aa65de?w=900&q=80"
+          src="dining2.webp"
           alt="Fine dining dish"
           className="w-full h-full object-cover"
           style={{ minHeight: 400 }}

@@ -18,9 +18,9 @@ const milestones = [
 ];
 
 const IMG_1 =
-  "https://images.unsplash.com/photo-1631049307264-da0ec9d70304?w=600&q=80";
+  "about4.webp";
 const IMG_2 =
-  "https://images.unsplash.com/photo-1590073844006-33379778ae09?w=600&q=80";
+  "about.webp";
 
 export default function HotelLegacy() {
   const sectionRef = useRef<HTMLElement>(null);

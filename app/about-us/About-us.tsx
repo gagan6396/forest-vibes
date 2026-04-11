@@ -221,7 +221,7 @@ export default function AboutUs() {
               {/* top image */}
               <div className="img-hover">
                 <img
-                  src="https://images.unsplash.com/photo-1618773928121-c32242e63f39?w=900&q=80"
+                  src="about-us-1.webp"
                   alt="Elegant room"
                   className="w-full h-full object-cover"
                 />
@@ -229,7 +229,7 @@ export default function AboutUs() {
               {/* bottom image — slightly inset to create an asymmetric feel */}
               <div className={`rv-r d2 ${s1.inView ? "on" : ""} img-hover ml-12 border-l-4 border-[#2d5a3d]`}>
                 <img
-                  src="https://images.unsplash.com/photo-1520250497591-112f2f40a3f4?w=900&q=80"
+                  src="about.webp"
                   alt="Pool terrace"
                   className="w-full h-full object-cover"
                 />

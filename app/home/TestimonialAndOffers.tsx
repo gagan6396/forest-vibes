@@ -193,7 +193,7 @@ function SpecialOffersSection() {
   return (
     <section className="relative min-h-[580px] overflow-hidden flex items-center">
       <img
-        src="https://images.unsplash.com/photo-1615874959474-d609969a20ed?w=1600&q=80"
+        src="banner.webp"
         alt="Luxury hotel lounge"
         className="absolute inset-0 w-full h-full object-cover"
       />
