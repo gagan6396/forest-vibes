@@ -138,7 +138,7 @@ export default function AmenitiesShowcase() {
     <section className="relative min-h-[580px] overflow-hidden flex items-center">
       {/* Background image */}
       <img
-        src="forest (1).webp"
+        src="forest3.png"
         alt="Luxury hotel lounge"
         className="absolute inset-0 w-full h-full object-cover"
       />
