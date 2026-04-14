@@ -90,11 +90,9 @@ export default function WelcomeSection() {
     return () => observer.disconnect();
   }, []);
 
-  // Function to handle video load errors
   const handleVideoError = (e: React.SyntheticEvent<HTMLVideoElement>) => {
     const video = e.currentTarget;
     console.log("Video failed to load, trying fallback...");
-    // Try fallback video URL
     if (video.src === "https://commondatastorage.googleapis.com/gtv-videos-bucket/sample/ForBiggerFunflies.mp4") {
       video.src = "https://sample-videos.com/video123/mp4/720/big_buck_bunny_720p_1mb.mp4";
     }
@@ -117,7 +115,6 @@ export default function WelcomeSection() {
         }
       `}</style>
 
-      {/* Section 1 */}
       <section
         ref={section1Ref}
         className="section1-grid bg-[#f0ece0] px-16 py-24 grid grid-cols-2 gap-20 items-center min-h-[700px]"
@@ -144,19 +141,19 @@ export default function WelcomeSection() {
             className="font-playfair text-[#1a1a1a] font-medium leading-[1.2] mb-7"
             style={{ fontSize: "clamp(2.2rem, 3vw, 3rem)" }}
           >
-            Step Into the Forest,
+            More Than a Stay,
             <br />
-            <em className="text-[#2d5a3d]">Leave the World Behind.</em>
+            <em className="text-[#2d5a3d]">A Place That Feels Like Home.</em>
           </h2>
 
           <div ref={s1DivRef} className="w-12 h-px bg-[#2d5a3d] opacity-30 mb-7" />
 
           <p ref={s1P1Ref} className="font-jost text-md font-light leading-[1.9] text-black mb-5">
-            {"At Forrest Vibes, the forest isn't just a backdrop \u2014 it's the whole experience. Wake up to birdsong filtering through pine, breathe air rich with cedar and earth, and feel the stillness that only ancient trees can offer."}
+            {"At Forrest Vibes, we’ve created a space where families, children, and elders can feel truly at ease. Thoughtfully designed with warmth and comfort in mind, every corner invites you to relax, connect, and simply be."}
           </p>
 
           <p ref={s1P2Ref} className="font-jost text-md font-light leading-[1.9] text-black mb-12">
-            {"From the moment you arrive, the canopy wraps around you. Every pathway, every room, every view is woven into the living green that surrounds us \u2014 because we believe nature is the finest luxury of all."}
+            {"Enjoy comforting meals from our in-house restaurant, unwind in the embrace of the forest, and take in an experience that feels both familiar and special. At the end of your stay, contribute what you feel it was worth—no fixed price, just honest value based on your experience."}
           </p>
 
           <a
@@ -168,9 +165,6 @@ export default function WelcomeSection() {
           </a>
         </div>
       </section>
-
-      {/* Section 2 */}
-      
     </>
   );
 }

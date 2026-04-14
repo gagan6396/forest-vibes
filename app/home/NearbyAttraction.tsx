@@ -1,7 +1,6 @@
 "use client";
 
 import { useState } from "react";
-import { motion, AnimatePresence, Variants } from "framer-motion";
 
 const attractions = [
   {
@@ -10,10 +9,8 @@ const attractions = [
     tagline: "Gateway to the Gods",
     distance: "58 km",
     time: "1.5 hrs",
-    description:
-      "One of Hinduism's seven sacred cities, where the Ganga descends to the plains. Witness the mesmerizing Ganga Aarti at Har Ki Pauri.",
     highlights: ["Har Ki Pauri", "Ganga Aarti", "Chandi Devi Temple"],
-    backgroundImage: "https://images.unsplash.com/photo-1602619268551-0fde8cf2d2a0?w=1200&h=400&fit=crop",
+    backgroundImage: "https://images.unsplash.com/photo-1602619268551-0fde8cf2d2a0?w=800&h=400&fit=crop",
   },
   {
     id: 2,
@@ -21,8 +18,6 @@ const attractions = [
     tagline: "Yoga Capital of the World",
     distance: "75 km",
     time: "2 hrs",
-    description:
-      "Nestled in a valley where three mountain ranges meet — from white-water rafting to sunrise yoga, it speaks every language of the soul.",
     highlights: ["Laxman Jhula", "White-water Rafting", "Beatles Ashram"],
     backgroundImage: "/rish2.jpg",
   },
@@ -32,10 +27,8 @@ const attractions = [
     tagline: "Queen of the Hills",
     distance: "95 km",
     time: "2.5 hrs",
-    description:
-      "Perched at 2,000 metres, walk the mall road as mist rolls in from the valleys — time slows here.",
     highlights: ["Kempty Falls", "Gun Hill", "Camel's Back Road"],
-    backgroundImage: "https://images.unsplash.com/photo-1626621341517-bbf3d9990a23?w=1200&h=400&fit=crop",
+    backgroundImage: "https://images.unsplash.com/photo-1626621341517-bbf3d9990a23?w=800&h=400&fit=crop",
   },
   {
     id: 4,
@@ -43,10 +36,8 @@ const attractions = [
     tagline: "Hidden Forest Retreat",
     distance: "12 km",
     time: "20 mins",
-    description:
-      "A quiet forest hamlet on the edge of Rajaji National Park — spot elephants, leopards, and hundreds of bird species.",
     highlights: ["Rajaji National Park", "Elephant Safari", "Bird Watching"],
-    backgroundImage: "https://images.unsplash.com/photo-1542406775-ade58c52d2e4?w=1200&h=400&fit=crop",
+    backgroundImage: "https://images.unsplash.com/photo-1542406775-ade58c52d2e4?w=800&h=400&fit=crop",
   },
   {
     id: 5,
@@ -54,10 +45,8 @@ const attractions = [
     tagline: "The Wild Corridor",
     distance: "18 km",
     time: "30 mins",
-    description:
-      "A UNESCO corridor home to Asian elephants, tigers, leopards, and 400+ bird species.",
     highlights: ["Jeep Safari", "Elephant Sightings", "Chilla Range"],
-    backgroundImage: "https://images.unsplash.com/photo-1499363536502-87642509e31b?w=1200&h=400&fit=crop",
+    backgroundImage: "https://images.unsplash.com/photo-1499363536502-87642509e31b?w=800&h=400&fit=crop",
   },
   {
     id: 6,
@@ -65,29 +54,76 @@ const attractions = [
     tagline: "City in the Doon Valley",
     distance: "35 km",
     time: "55 mins",
-    description:
-      "The capital of Uttarakhand, cradled between the Ganges and Yamuna tributaries.",
     highlights: ["Robber's Cave", "Sahastradhara", "Tapkeshwar Temple"],
-    backgroundImage: "https://images.unsplash.com/photo-1584549783410-cd52f8e74973?w=1200&h=400&fit=crop",
+    backgroundImage: "https://images.unsplash.com/photo-1584549783410-cd52f8e74973?w=800&h=400&fit=crop",
+  },
+  {
+    id: 7,
+    name: "Forrest Orchard Trek",
+    tagline: "Nature's Hidden Trail",
+    distance: "8 km",
+    time: "25 mins",
+    highlights: ["Orchard Walk", "Forest Trail", "Bird Watching", "Nature Photography"],
+    backgroundImage: "https://images.unsplash.com/photo-1441974231531-c622288dbd62?w=800&h=400&fit=crop",
+  },
+  {
+    id: 8,
+    name: "Digu Waterfall",
+    tagline: "Cascading Beauty",
+    distance: "15 km",
+    time: "35 mins",
+    highlights: ["Natural Pool", "Picnic Spot", "Nature Walk", "Photography"],
+    backgroundImage: "https://images.unsplash.com/photo-1432405972618-c60b0225b8f9?w=800&h=400&fit=crop",
+  },
+  {
+    id: 9,
+    name: "Khalanga Memorial",
+    tagline: "Tribute to Valor",
+    distance: "25 km",
+    time: "45 mins",
+    highlights: ["War Memorial", "Historical Museum", "Panoramic Views", "Heritage Walk"],
+    backgroundImage: "https://images.unsplash.com/photo-1562577309-4932fdd64cd2?w=800&h=400&fit=crop",
+  },
+  {
+    id: 10,
+    name: "Malsi Deer Park",
+    tagline: "Wildlife Encounters",
+    distance: "30 km",
+    time: "50 mins",
+    highlights: ["Spotted Deer", "Peacock Sanctuary", "Children's Park", "Nature Trails"],
+    backgroundImage: "https://images.unsplash.com/photo-1549366021-9f761d450615?w=800&h=400&fit=crop",
+  },
+  {
+    id: 11,
+    name: "Sahastradhara",
+    tagline: "Thousand-fold Spring",
+    distance: "38 km",
+    time: "1 hr",
+    highlights: ["Sulfur Springs", "Stalactite Caves", "Cable Car Ride", "Picnic Spots"],
+    backgroundImage: "https://images.unsplash.com/photo-1582653291997-079a1b04e6d1?w=800&h=400&fit=crop",
+  },
+  {
+    id: 12,
+    name: "Robber's Cave",
+    tagline: "Nature's Mystery",
+    distance: "35 km",
+    time: "55 mins",
+    highlights: ["River Cave", "Underground Stream", "Adventure Trek", "Photography"],
+    backgroundImage: "https://images.unsplash.com/photo-1574068468668-a05a11f871da?w=800&h=400&fit=crop",
+  },
+  {
+    id: 13,
+    name: "Dhanaulti",
+    tagline: "Peaceful Mountain Getaway",
+    distance: "85 km",
+    time: "2 hrs",
+    highlights: ["Eco Park", "Apple Orchards", "Sunset Point", "Camping Sites"],
+    backgroundImage: "https://images.unsplash.com/photo-1519681393784-d120267933ba?w=800&h=400&fit=crop",
   },
 ];
 
-const panelVariants: Variants = {
-  hidden: { opacity: 0, y: 10 },
-  visible: { opacity: 1, y: 0, transition: { duration: 0.3, ease: "easeOut" } },
-  exit: { opacity: 0, y: -8, transition: { duration: 0.2 } },
-};
-
-const dropdownVariants: Variants = {
-  hidden: { opacity: 0, height: 0 },
-  visible: { opacity: 1, height: "auto", transition: { duration: 0.3, ease: "easeOut" } },
-  exit: { opacity: 0, height: 0, transition: { duration: 0.2 } },
-};
-
 export default function NearbyAttractions() {
-  const [activeId, setActiveId] = useState<number>(1);
-  const [openMobileId, setOpenMobileId] = useState<number | null>(1);
-  const selected = attractions.find((a) => a.id === activeId) || attractions[0];
+  const [openId, setOpenId] = useState<number | null>(null);
 
   return (
     <section className="w-full py-16 px-4 bg-[#f5f2ed]">
@@ -100,172 +136,57 @@ export default function NearbyAttractions() {
           <div className="w-10 h-0.5 bg-[#4a6741] mx-auto" />
         </div>
 
-        {/* Mobile: Accordion */}
-        <div className="lg:hidden space-y-2">
+        {/* Grid */}
+        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-4">
           {attractions.map((item) => {
-            const isOpen = openMobileId === item.id;
+            const isOpen = openId === item.id;
             return (
               <div
                 key={item.id}
-                className={`bg-white rounded-xl overflow-hidden border transition-all duration-200 ${
-                  isOpen ? "border-[#4a6741]/30 shadow-sm" : "border-[#e8e2d9]"
-                }`}
+                onClick={() => setOpenId(isOpen ? null : item.id)}
+                className="group bg-white rounded-xl overflow-hidden border border-[#e8e2d9] cursor-pointer hover:border-[#c8c0b4] transition-all duration-200"
               >
-                <button
-                  onClick={() => setOpenMobileId(isOpen ? null : item.id)}
-                  className="w-full px-5 py-4 flex justify-between items-center text-left"
-                >
-                  <div>
-                    <p className="font-semibold text-[#2a3424]">{item.name}</p>
-                    <p className="text-xs text-[#9a8e7f] mt-0.5">{item.tagline}</p>
-                  </div>
-                  <div className="flex items-center gap-4">
-                    <div className="text-right">
-                      <p className="text-sm font-medium text-[#4a6741]">{item.distance}</p>
-                      <p className="text-xs text-[#9a8e7f]">{item.time}</p>
-                    </div>
-                    <motion.svg
-                      className="w-4 h-4 text-[#9a8e7f]"
-                      fill="none"
-                      stroke="currentColor"
-                      viewBox="0 0 24 24"
-                      animate={{ rotate: isOpen ? 180 : 0 }}
-                      transition={{ duration: 0.2 }}
-                    >
-                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 9l-7 7-7-7" />
-                    </motion.svg>
-                  </div>
-                </button>
-
-                <AnimatePresence>
-                  {isOpen && (
-                    <motion.div
-                      variants={dropdownVariants}
-                      initial="hidden"
-                      animate="visible"
-                      exit="exit"
-                      className="overflow-hidden"
-                    >
-                      <div className="px-5 pb-5 pt-1">
-                        <p className="text-sm text-[#5c5040] leading-relaxed mb-4">{item.description}</p>
-                        <div className="flex flex-wrap gap-1.5 mb-4">
-                          {item.highlights.map((h) => (
-                            <span key={h} className="text-xs px-3 py-1.5 rounded-full bg-[#edf0ea] text-[#4a6741]">
-                              {h}
-                            </span>
-                          ))}
-                        </div>
-                        <div className="flex gap-2">
-                          <a href="#" className="flex-1 px-2 py-2.5 rounded-lg bg-[#2a3424] text-white text-sm hover:bg-[#3a4a34] transition">
-                            Plan Your Visit
-                          </a>
-                          {/* <button className="px-4 py-2.5 rounded-lg border border-[#d5cfc5] text-[#5c5040] text-sm hover:border-[#b0a898] transition">
-                            Ask Concierge
-                          </button> */}
-                        </div>
-                      </div>
-                    </motion.div>
-                  )}
-                </AnimatePresence>
-              </div>
-            );
-          })}
-        </div>
-
-        {/* Desktop: Split */}
-        <div className="hidden lg:grid lg:grid-cols-5 gap-8">
-
-          {/* Left list */}
-          <div className="lg:col-span-2 space-y-1">
-            {attractions.map((item) => {
-              const isActive = activeId === item.id;
-              return (
-                <button
-                  key={item.id}
-                  onClick={() => setActiveId(item.id)}
-                  className={`w-full text-left px-5 py-4 rounded-xl transition-all duration-200 border ${
-                    isActive
-                      ? "bg-white border-[#d5cfc5] shadow-sm"
-                      : "bg-transparent border-transparent hover:bg-white/60 hover:border-[#e8e2d9]"
-                  }`}
-                >
-                  <div className="flex justify-between items-center">
-                    <div>
-                      <p className={`font-semibold ${isActive ? "text-[#2a3424]" : "text-[#7a6e5f]"}`}>
-                        {item.name}
-                      </p>
-                      <p className="text-xs text-[#9a8e7f] mt-0.5">{item.tagline}</p>
-                    </div>
-                    <div className="text-right">
-                      <p className={`text-sm font-medium ${isActive ? "text-[#4a6741]" : "text-[#9a8e7f]"}`}>
-                        {item.distance}
-                      </p>
-                      <p className="text-xs text-[#9a8e7f]">{item.time}</p>
-                    </div>
-                  </div>
-                </button>
-              );
-            })}
-          </div>
-
-          {/* Right detail */}
-          <div className="lg:col-span-3">
-            <AnimatePresence mode="wait">
-              <motion.div
-                key={selected.id}
-                variants={panelVariants}
-                initial="hidden"
-                animate="visible"
-                exit="exit"
-                className="bg-white rounded-2xl border border-[#e8e2d9] shadow-sm overflow-hidden"
-              >
-                {/* Banner with background image */}
+                {/* Image */}
                 <div
-                  className="h-44 flex items-end p-6 relative overflow-hidden bg-cover bg-center"
-                  style={{ backgroundImage: `url(${selected.backgroundImage})` }}
+                  className="h-36 bg-cover bg-center relative"
+                  style={{ backgroundImage: `url(${item.backgroundImage})` }}
                 >
-                  {/* Dark overlay for text readability */}
-                  <div className="absolute inset-0 bg-black/40" />
-                  
-                  <div className="flex justify-between items-end w-full relative z-10">
-                    <div>
-                      <p className="text-white text-xl font-semibold">{selected.name}</p>
-                      <p className="text-white/80 text-sm mt-0.5 italic">{selected.tagline}</p>
-                    </div>
-                    <div className="text-right bg-black/30 backdrop-blur-sm rounded-lg px-3 py-2">
-                      <p className="text-white font-semibold">{selected.distance}</p>
-                      <p className="text-white/80 text-xs">{selected.time} drive</p>
-                    </div>
+                  <div className="absolute inset-0 bg-black/30" />
+                  <div className="absolute top-3 right-3 bg-black/40 rounded px-2 py-1">
+                    <p className="text-white text-xs font-medium">{item.distance}</p>
                   </div>
                 </div>
 
                 {/* Body */}
-                <div className="p-6">
-                  <p className="text-sm text-[#5c5040] leading-relaxed mb-5">{selected.description}</p>
+                <div className="p-4">
+                  <p className="font-semibold text-[#2a3424] text-sm">{item.name}</p>
+                  <p className="text-xs text-[#9a8e7f] mt-0.5 mb-3 italic">{item.tagline}</p>
 
-                  <p className="text-xs uppercase tracking-widest text-[#9a8e7f] mb-2.5">Highlights</p>
-                  <div className="flex flex-wrap gap-2 mb-6">
-                    {selected.highlights.map((h) => (
-                      <span key={h} className="text-xs px-3 py-1.5 rounded-full bg-[#edf0ea] text-[#4a6741]">
+                  {/* Highlights — always visible, clipped when collapsed */}
+                  <div className={`flex flex-wrap gap-1.5 overflow-hidden transition-all duration-300 ${isOpen ? "max-h-40" : "max-h-6"}`}>
+                    {item.highlights.map((h) => (
+                      <span
+                        key={h}
+                        className="text-xs px-2.5 py-1 rounded-full bg-[#edf0ea] text-[#4a6741] whitespace-nowrap"
+                      >
                         {h}
                       </span>
                     ))}
                   </div>
 
-                  <div className="flex gap-3">
-                    <a href="#" className="flex-1 px-2 py-2.5 rounded-lg bg-[#2a3424] text-white text-sm hover:bg-[#3a4a34] transition">
-                      Plan Your Visit
-                    </a>
-                    {/* <button className="px-5 py-2.5 rounded-lg border border-[#d5cfc5] text-[#5c5040] text-sm hover:border-[#b0a898] transition">
-                      Ask Concierge
-                    </button> */}
+                  {/* Footer row */}
+                  <div className="flex items-center justify-between mt-3 pt-3 border-t border-[#f0ece6]">
+                    <span className="text-xs text-[#9a8e7f]">{item.time} drive</span>
+                    <span className="text-xs text-[#4a6741] font-medium group-hover:underline">
+                      {isOpen ? "Less ↑" : "More ↓"}
+                    </span>
                   </div>
                 </div>
-              </motion.div>
-            </AnimatePresence>
-          </div>
-
+              </div>
+            );
+          })}
         </div>
+
       </div>
     </section>
   );

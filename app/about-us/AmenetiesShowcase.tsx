@@ -4,43 +4,67 @@ import { useState, useEffect } from "react";
 
 const amenities = [
   {
-    id: "spa",
+    id: "restaurant",
     number: "01",
-    label: "Spa & Wellness",
-    description: "An 8,000 sq ft sanctuary of calm. Hot stone therapy, hammam rituals, and bespoke treatments by world-class therapists.",
-    details: ["8 private rooms", "Himalayan salt cave", "Infrared sauna", "6 AM – 11 PM"],
-  },
-  {
-    id: "dining",
-    number: "02",
-  
-    label: "Fine Dining",
-    description: "Michelin-starred Chef Antoine Lefèvre crafts seasonal tasting menus honouring local provenance with refined French technique.",
-    details: ["7-course tasting menu", "800+ wine labels", "Chef's table", "Private dining room"],
+    label: "Restaurant",
+    description: "Experience farm-to-table dining at its finest. Our restaurant serves organic, locally-sourced meals prepared with ingredients from our own farm and poultry.",
+    details: ["Farm-to-table dining", "Organic ingredients", "In-house poultry", "Vegetarian & non-vegetarian options"],
   },
   {
     id: "pool",
+    number: "02",
+    label: "Swimming Pool",
+    description: "Take a refreshing dip in our crystal-clear swimming pool, surrounded by lush greenery and peaceful forest views. Perfect for relaxation and family fun.",
+    details: ["Freshwater pool", "Sun loungers", "Poolside seating", "Lifeguard on duty"],
+  },
+  {
+    id: "treks",
     number: "03",
-  
-    label: "Infinity Pool",
-    description: "A 40-metre rooftop pool with panoramic city views, open sunrise to midnight with poolside sommelier service.",
-    details: ["Level 18 rooftop", "40 metres", "Heated year-round", "Cabana reservations"],
+    label: "Forest Trails & Treks",
+    description: "Explore our curated forest trails that wind through pristine natural landscapes. Perfect for morning walks, bird watching, and connecting with nature.",
+    details: ["Guided treks", "Self-guided trails", "Bird watching spots", "Nature photography"],
   },
   {
-    id: "fitness",
+    id: "birdhouse",
     number: "04",
-   
-    label: "Fitness Centre",
-    description: "State-of-the-art Technogym equipment meets personalised programming with elite trainers available around the clock.",
-    details: ["Technogym equipment", "Yoga & Pilates studio", "Personal training", "Open 24 hours"],
+    label: "Bird House",
+    description: "A dedicated sanctuary for our feathered friends. Observe a variety of native and migratory birds in their natural habitat, right on our property.",
+    details: ["Native bird species", "Migratory birds", "Bird feeding stations", "Photography hides"],
   },
   {
-    id: "concierge",
+    id: "parking",
     number: "05",
-    
-    label: "Concierge",
-    description: "Your dedicated lifestyle manager anticipates every desire — from private jet transfers to after-hours gallery access.",
-    details: ["24/7 dedicated manager", "Private transfers", "Exclusive experiences", "Fully bespoke"],
+    label: "Valet Parking",
+    description: "Hassle-free arrival with our professional valet parking service. Your vehicle will be securely parked while you begin your relaxing getaway.",
+    details: ["24/7 valet service", "Secure parking", "EV charging station", "Luggage assistance"],
+  },
+  {
+    id: "bonfire",
+    number: "06",
+    label: "Bonfire & Outdoor Seating",
+    description: "Gather around our cozy bonfire pit under the starlit sky. Perfect for evening conversations, marshmallow roasting, and creating lasting memories.",
+    details: ["Evening bonfire", "Comfortable seating", "Marshmallow roasting", "Stargazing spot"],
+  },
+  {
+    id: "farm",
+    number: "07",
+    label: "In-House Poultry & Farm",
+    description: "Visit our working farm where we raise happy, healthy poultry and grow fresh produce. Experience sustainable farming practices firsthand.",
+    details: ["Farm tours", "Fresh eggs daily", "Meet the animals", "Sustainable practices"],
+  },
+  {
+    id: "organic",
+    number: "08",
+    label: "Organic Produce",
+    description: "We grow our own organic vegetables, cold-press our own oils, and grind fresh flour in our traditional atta chakki. Taste the difference of truly fresh ingredients.",
+    details: ["Organic vegetables", "Cold-pressed oils", "Fresh atta (flour)", "Traditional chakki"],
+  },
+  {
+    id: "pottery",
+    number: "09",
+    label: "Pottery Setup",
+    description: "Unleash your creativity at our pottery studio. Learn the ancient art of pottery from skilled artisans and create your own unique pieces.",
+    details: ["Pottery wheel", "Hand-building classes", "Expert instructors", "Take home your creation"],
   },
 ];
 
@@ -83,8 +107,6 @@ export default function AmenitiesShowcase() {
                 <span className={`font-light text-[10px] tracking-[0.12em] pt-0.5 transition-colors duration-300 flex-shrink-0 ${hovered === i ? "text-[#7dbfa0]" : "text-[#b8d4c8]"}`}>
                   {a.number}
                 </span>
-
-
 
                 {/* Main content */}
                 <div className="flex-1 min-w-0">
@@ -139,7 +161,7 @@ export default function AmenitiesShowcase() {
       {/* Background image */}
       <img
         src="forest3.png"
-        alt="Luxury hotel lounge"
+        alt="Forest retreat with bonfire"
         className="absolute inset-0 w-full h-full object-cover"
       />
  

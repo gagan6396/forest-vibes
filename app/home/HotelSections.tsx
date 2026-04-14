@@ -34,33 +34,39 @@ interface DiningFeature {
 const rooms: Room[] = [
   {
     id: 1,
-    name: "Deluxe Room",
-    description:
-      "Stay connected with complimentary high-speed Wi-Fi and unwind with your favorite shows on the flat-screen TV, including our king-sized bed, luxurious bathrobes, designer toiletries, and a rejuvenating rainfall shower.",
-    longDescription:
-      "Experience the pinnacle of comfort in our Deluxe Room — a carefully curated sanctuary where every detail has been considered for your pleasure. Sink into our cloud-like king-sized bed dressed in 600-thread-count Egyptian cotton, wake to a rainfall shower that melts the world away, and step into plush monogrammed bathrobes. With floor-to-ceiling windows that flood the room in natural light and a curated minibar stocked with local artisan treats, this is your home away from home — elevated.",
-    pricePerNight: 320,
-    maxGuests: 2,
+    name: "Rose",
+    description: "The Rose Villa is a sprawling 4-bedroom luxury retreat that seamlessly blends elegance with comfort. Each of the four single-bedroom suites has been thoughtfully designed to provide a private sanctuary for guests, featuring plush king-sized beds draped in premium linens, attached bathrooms with luxury toiletries, and private balconies overlooking lush gardens. The villa's spacious living areas create the perfect setting for family gatherings or group celebrations, while still offering quiet corners for solitude. Whether you're enjoying morning coffee on your personal balcony or gathering in the elegant common areas, the Rose Villa promises an unforgettable stay where every detail has been carefully curated for your pleasure.",
+    longDescription: "Step into the Rose Villa and discover a world where luxury meets tranquility. This magnificent 4-bedroom estate spans across two levels, offering ample space for up to 8 guests. Each bedroom suite is a masterpiece of design, featuring floor-to-ceiling windows that flood the space with natural light, custom-designed furniture, and premium mattress toppers for the perfect night's sleep. The attached bathrooms are spa-like retreats complete with rainfall showers, plush towels, and eco-friendly toiletries. Step outside to your private balcony and breathe in the fresh morning air as you plan your day's adventures. The villa also features a fully-equipped modern kitchen, a dining area that seats 10, and a cozy entertainment lounge with a 65-inch Smart TV. Experience the perfect harmony of togetherness and privacy at the Rose Villa.",
+    pricePerNight: 11000,
+    maxGuests: 8,
     maxBeds: 4,
     imageUrl:
       "5.png",
-    imageAlt: "Deluxe Room",
+    imageAlt: "Rose Villa",
     images: [
       "5.png",
       "4.png",
       "6.png",
     ],
-    size: "42 m²",
+    size: "120 m²",
     rating: 4.9,
     reviews: 184,
     features: [
-      "Rainfall shower & deep soaking tub",
-      "Nespresso machine & minibar",
-      "55\" 4K Smart TV",
-      "In-room safe & blackout curtains",
-      "Designer toiletries",
-      "Twice-daily housekeeping",
+      "Comfortable beds & clean linens",
+      "Attached bathroom with toiletries (soap, shampoo, towels)",
+      "Wi-Fi access",
+      "Air conditioning / heating",
+      "Television",
+      "Attached Balconies",
     ],
+    // features: [
+    //   "Rainfall shower & deep soaking tub",
+    //   "Nespresso machine & minibar",
+    //   "55\" 4K Smart TV",
+    //   "In-room safe & blackout curtains",
+    //   "Designer toiletries",
+    //   "Twice-daily housekeeping",
+    // ],
     details: [
       { label: "Room Size", value: "42 m²" },
       { label: "Bed Type", value: "King" },
@@ -70,33 +76,39 @@ const rooms: Room[] = [
   },
   {
     id: 2,
-    name: "Junior Suite",
-    description:
-      "Experience elevated luxury in our Junior Suite, featuring a separate living area, panoramic city views, premium Nespresso machine, marble bathroom with soaking tub, and exclusive access to our executive lounge.",
-    longDescription:
-      "Crafted for the discerning traveler, our Junior Suite offers the perfect blend of comfort and sophistication. The separate living area provides ample space to entertain or relax, while floor-to-ceiling windows frame breathtaking city views. Indulge in the marble bathroom's deep soaking tub, savor a morning espresso from your Nespresso machine, and enjoy exclusive access to our executive lounge with complimentary evening cocktails and canapés.",
-    pricePerNight: 520,
-    maxGuests: 2,
-    maxBeds: 2,
+    name: "Iris",
+    description: "Welcome to the Iris Villa, where contemporary design meets timeless comfort in a stunning 4-bedroom luxury villa. Each single-bedroom suite has been meticulously crafted to offer a unique blend of style and functionality, featuring queen-sized beds with memory foam mattresses, sleek attached bathrooms stocked with premium toiletries, and private balconies that offer breathtaking views of the surrounding landscape. The villa's open-plan layout encourages social interaction while maintaining individual privacy, making it perfect for both intimate family getaways and lively group retreats. From the moment you arrive, you'll be enveloped in an atmosphere of sophisticated relaxation, where every modern convenience has been anticipated and provided.",
+    longDescription: "The Iris Villa represents the pinnacle of contemporary luxury living. Spread across a generous 120 square meters, this 4-bedroom masterpiece accommodates up to 8 guests in unparalleled style. Each bedroom is a private haven, featuring ergonomic queen-sized beds, blackout curtains for undisturbed sleep, and dedicated work desks for those who need to stay connected. The en-suite bathrooms are designed with your comfort in mind, offering hot water on demand, plush bathrobes, and a selection of natural toiletries. Your private balcony becomes your personal observation deck, perfect for sunset watching or stargazing. The villa also boasts a state-of-the-art entertainment system, high-speed Wi-Fi throughout, and a fully stocked kitchenette. Whether you're hosting a dinner party or enjoying a quiet night in, the Iris Villa adapts to your every need.",
+    pricePerNight: 11000,
+    maxGuests: 8,
+    maxBeds: 4,
     imageUrl:
       "8.png",
-    imageAlt: "Junior Suite",
+    imageAlt: "Iris Villa",
     images: [
       "8.png",
       "9.png",
       "7.png",
     ],
-    size: "55 m²",
+    size: "120 m²",
     rating: 4.8,
     reviews: 97,
     features: [
-      "Separate living area",
-      "Executive Lounge access",
-      "Marble bathroom with soaking tub",
-      "Nespresso machine",
-      "Complimentary minibar (non-alcoholic)",
-      "Panoramic city views",
+      "Comfortable beds & clean linens",
+      "Attached bathroom with toiletries (soap, shampoo, towels)",
+      "Wi-Fi access",
+      "Air conditioning / heating",
+      "Television",
+      "Attached Balconies",
     ],
+    // features: [
+    //   "Separate living area",
+    //   "Executive Lounge access",
+    //   "Marble bathroom with soaking tub",
+    //   "Nespresso machine",
+    //   "Complimentary minibar (non-alcoholic)",
+    //   "Panoramic city views",
+    // ],
     details: [
       { label: "Room Size", value: "55 m²" },
       { label: "Bed Type", value: "Queen" },
@@ -106,17 +118,15 @@ const rooms: Room[] = [
   },
   {
     id: 3,
-    name: "Presidential Suite",
-    description:
-      "The pinnacle of indulgence. A sprawling private retreat with a butler, grand piano, private terrace with plunge pool, personalised minibar, and curated art collection — everything arranged to your exact preference before arrival.",
-    longDescription:
-      "Welcome to the zenith of hospitality. The Presidential Suite is not merely a room — it is an experience woven from exceptional craftsmanship, personal service, and panoramic grandeur. Your dedicated butler is available around the clock, anticipating every need before it arises. The private terrace offers sweeping city views best enjoyed with a glass of Champagne at sunset. Inside, hand-selected artworks, a bespoke grand piano, and a private dining room for eight make this the natural choice for heads of state, cultural luminaries, and those who simply refuse to settle.",
-    pricePerNight: 1200,
-    maxGuests: 4,
+    name: "Lily",
+    description: "Experience the epitome of luxury at the Lily Villa, our most prestigious 4-bedroom offering. Each single-bedroom suite has been transformed into a palatial retreat, featuring emperor-sized beds with Egyptian cotton sheets, marble-accented attached bathrooms with premium spa-quality toiletries, and expansive private balconies that seem to float above the landscape. The villa's grand living spaces are designed for both lavish entertaining and intimate family moments, with high ceilings, designer furnishings, and curated artwork adorning every wall. The Lily Villa isn't just accommodation—it's a destination in itself, promising an experience that will be cherished for years to come.",
+    longDescription: "The Lily Villa stands as a testament to uncompromising luxury and attention to detail. This sprawling 4-bedroom estate spans an impressive 120 square meters and can comfortably accommodate up to 8 guests in absolute opulence. Each bedroom is a sanctuary of peace, featuring custom-crafted emperor-sized beds, premium hypoallergenic bedding, and ambient lighting that can be adjusted to suit your mood. The attached bathrooms are reminiscent of Roman spas, complete with deep soaking tubs, rainfall showers, heated floors, and a curated selection of aromatic toiletries. Step onto your private balcony and be greeted by panoramic views that stretch to the horizon. The villa also features a private dining room, a fully equipped gourmet kitchen, a dedicated entertainment zone with a 75-inch 4K television, and a private terrace perfect for morning yoga or evening cocktails. At the Lily Villa, every moment is designed to be extraordinary, from the champagne welcome to the personalized turndown service.",
+    pricePerNight: 11000,
+    maxGuests: 8,
     maxBeds: 4,
     imageUrl:
       "11.png",
-    imageAlt: "Presidential Suite",
+    imageAlt: "Lily Villa",
     images: [
       "11.png",
       "12.png",
@@ -126,13 +136,21 @@ const rooms: Room[] = [
     rating: 5.0,
     reviews: 42,
     features: [
-      "Private wraparound terrace",
-      "24-hour personal butler",
-      "Grand piano & private dining room",
-      "Marble bathroom with plunge tub",
-      "Champagne on arrival",
-      "Airport transfer included",
+      "Comfortable beds & clean linens",
+      "Attached bathroom with toiletries (soap, shampoo, towels)",
+      "Wi-Fi access",
+      "Air conditioning / heating",
+      "Television",
+      "Attached Balconies",
     ],
+    // features: [
+    //   "Private wraparound terrace",
+    //   "24-hour personal butler",
+    //   "Grand piano & private dining room",
+    //   "Marble bathroom with plunge tub",
+    //   "Champagne on arrival",
+    //   "Airport transfer included",
+    // ],
     details: [
       { label: "Room Size", value: "120 m²" },
       { label: "Bed Type", value: "Emperor (2×King)" },
@@ -283,21 +301,6 @@ function RoomModal({ room, onClose }: { room: Room; onClose: () => void }) {
                 </button>
               ))}
             </div>
-
-            {/* Details grid */}
-            <div className="grid grid-cols-2 gap-px bg-[#e8e2d8] border-t border-[#e8e2d8] mt-auto">
-              {(room.details || [
-                { label: "Room Size", value: room.size || "Standard" },
-                { label: "Max Guests", value: `${room.maxGuests} guests` },
-                { label: "Bed Type", value: `${room.maxBeds} beds` },
-                { label: "View", value: "Scenic" },
-              ]).map((d) => (
-                <div key={d.label} className="bg-[#faf8f3] px-4 py-3">
-                  <p className="text-[10px] text-[#a09890] tracking-widest uppercase mb-0.5">{d.label}</p>
-                  <p className="text-[13px] text-[#1e1c19] font-semibold">{d.value}</p>
-                </div>
-              ))}
-            </div>
           </div>
 
           {/* ── Right: Info ── */}
@@ -441,7 +444,7 @@ function RoomCard({ room, index, onInquire }: { room: Room; index: number; onInq
             </div>
           </div>
 
-          <div className="flex gap-5">
+          {/* <div className="flex gap-5">
             <div className="flex flex-col items-center gap-1 text-[#555]">
               <GuestIcon />
               <span className="text-[10px] leading-none">{room.maxGuests}</span>
@@ -452,7 +455,7 @@ function RoomCard({ room, index, onInquire }: { room: Room; index: number; onInq
               <span className="text-[10px] leading-none">{room.maxBeds}</span>
               <span className="text-[10px] text-[#888]">beds</span>
             </div>
-          </div>
+          </div> */}
         </div>
 
         {/* CTAs */}

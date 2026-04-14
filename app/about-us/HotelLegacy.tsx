@@ -4,16 +4,16 @@ import { useEffect, useRef } from "react";
 
 const milestones = [
   {
-    title: "Founding Vision",
-    body: "Founded in 2003, Forrest Vibes began with a vision to redefine luxury hospitality. Our founders envisioned a sanctuary where discerning travelers could immerse themselves in elegance, comfort, and personalized service.",
+    title: "Our Dream",
+    body: "Forrest Vibes is more than just a stay. Our dream is to create a place that feels like home, where children, elderly guests, and families can experience warmth, comfort, with a touch of luxury—just like their own space, but even more special.",
   },
   {
-    title: "Growth and Evolution",
-    body: "Over the years, Forrest Vibes has evolved into a beacon of sophistication and hospitality, earning accolades and recognition for our commitment to excellence.",
+    title: "Your Experience",
+    body: "Come enjoy your stay, with a restaurant catering to all your needs, a forest that speaks to you and a story that connects you to us indefinitely.",
   },
   {
-    title: "Timeless Elegance, Modern Luxury",
-    body: "Our hotel is a blend of timeless elegance and modern luxury, where classic sophistication meets contemporary comfort.",
+    title: "Our Promise",
+    body: "Our unique selling proposition is that guests are invited to enjoy their experience and during the final billing, contribute an amount they feel is appropriate, based on their satisfaction. No strings attached.",
   },
 ];
 
@@ -65,7 +65,7 @@ export default function HotelLegacy() {
           <div className="absolute top-0 left-0 w-[62%] h-[68%] z-10 overflow-hidden rounded-sm shadow-[0_20px_60px_rgba(28,26,23,0.18)] group">
             <img
               src={IMG_1}
-              alt="Hotel room interior"
+              alt="Forest retreat"
               className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105"
             />
           </div>
@@ -74,7 +74,7 @@ export default function HotelLegacy() {
           <div className="absolute bottom-0 right-0 w-[58%] h-[72%] z-20 overflow-hidden rounded-sm shadow-[0_20px_60px_rgba(28,26,23,0.18)] group">
             <img
               src={IMG_2}
-              alt="Hotel lobby with plants"
+              alt="Forest vibes nature"
               className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105"
             />
           </div>
@@ -86,15 +86,15 @@ export default function HotelLegacy() {
           <div className="flex flex-col gap-4">
             <p
               data-reveal
-              className={`font-serif italic font-light text-base text-[#7a756c] tracking-wide ${revealClass} [transition-delay:200ms]`}
+              className={`font-serif italic font-light text-base text-black tracking-wide ${revealClass} [transition-delay:200ms]`}
             >
-              Our Hotel's Journey
+              Welcome to Forrest Vibes
             </p>
             <h2
               data-reveal
-              className={`font-serif italic font-light text-5xl md:text-6xl text-[#1c1a17] leading-[1.1] ${revealClass} [transition-delay:300ms]`}
+              className={`font-serif italic font-light text-5xl md:text-6xl text-black leading-[1.1] ${revealClass} [transition-delay:300ms]`}
             >
-              A Legacy of Excellence
+              More Than Just a Stay
             </h2>
             <div
               data-reveal
@@ -118,7 +118,7 @@ export default function HotelLegacy() {
 
                 {/* Content */}
                 <div>
-                  <h3 className="font-sans font-medium text-sm text-[#1c1a17] tracking-[0.06em] uppercase mb-2">
+                  <h3 className="font-sans font-medium text-sm text-black tracking-[0.06em] uppercase mb-2">
                     {m.title}
                   </h3>
                   <p className="font-sans font-light text-sm text-black leading-relaxed">
