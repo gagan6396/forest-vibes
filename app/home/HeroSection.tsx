@@ -13,6 +13,7 @@ const slides = [
     subtitle: "for the Extraordinary",
     description:
       "Immerse Yourself in Elegance and Comfort at Forrest Vibes. Our Exceptional Accommodations, Impeccable Service, and Unrivaled Hospitality Await Your Arrival. Your Perfect Getaway Starts Here.",
+    mobileOnly: true, // Show only image on mobile
   },
   {
     id: 2,
@@ -23,6 +24,7 @@ const slides = [
     subtitle: "in Perfect Harmony",
     description:
       "Wake up to the sounds of nature and experience unparalleled comfort in our eco-friendly luxury suites. Designed for those who seek tranquility without compromising on modern amenities.",
+    mobileOnly: true,
   },
   {
     id: 3,
@@ -33,6 +35,7 @@ const slides = [
     subtitle: "with Your Loved Ones",
     description:
       "Whether it's a romantic getaway or a family vacation, our curated experiences and world-class service ensure every moment becomes a cherished memory.",
+    mobileOnly: true,
   },
 ];
 
@@ -403,11 +406,10 @@ export default function HeroSection() {
         /* Mobile optimizations */
         @media (max-width: 768px) {
           .hero-title-mobile {
-            font-size: clamp(1.75rem, 5vw, 2.5rem) !important;
+            display: none !important;
           }
           .hero-desc-mobile {
-            font-size: 12px !important;
-            line-height: 1.6 !important;
+            display: none !important;
           }
           .booking-bar-mobile {
             margin-left: 1rem !important;
@@ -415,6 +417,10 @@ export default function HeroSection() {
           }
           .booking-btn-mobile span:last-child {
             font-size: 13px !important;
+          }
+          /* Hide text content on mobile */
+          .mobile-text-hidden {
+            display: none;
           }
         }
       `}</style>
@@ -442,107 +448,100 @@ export default function HeroSection() {
                   style={{
                     backgroundImage: `url(${isMobile ? slide.imageMobile : slide.imageDesktop})`,
                     backgroundSize: "cover",
-                    backgroundPosition: isMobile ? "center 30%" : "center",
+                    backgroundPosition: isMobile ? "center" : "center",
                     transform: index === currentSlide ? "scale(1)" : "scale(1.05)",
                     transition: "transform 7s ease-out",
                   }}
                 />
-                {/* Gradient overlay for better text readability on mobile */}
-                {/* <div className="absolute inset-0 bg-gradient-to-t from-black/50 via-black/20 to-black/10 md:bg-black/30" /> */}
-
-                {/* TEXT CONTENT - Responsive padding and sizing */}
-                <div className="relative z-20 flex flex-col justify-center h-full px-5 md:px-12 lg:px-20">
-                  <div className="max-w-3xl">
-                    <h1
-                      className="text-white leading-[1.2] md:leading-[1.08] mb-3 md:mb-4 anim-fade-up-2 hero-title-mobile"
-                      style={{
-                        fontFamily: "'Playfair Display', serif",
-                        fontSize: "clamp(1.8rem, 4vw, 3.5rem)",
-                        fontWeight: 400,
-                      }}
-                    >
-                      {slide.title}
-                      <br />
-                      <em className="italic text-[#c8e6d9]">{slide.emphasis}</em>
-                      <br />
-                      {slide.subtitle}
-                    </h1>
-
-                    {/* Description - Hide on very small screens or show shorter version */}
-                    <p
-                      className="text-white/90 text-[12px] md:text-[14px] leading-[1.6] md:leading-[1.7] max-w-2xl mb-5 md:mb-7 anim-fade-up-3 hero-desc-mobile hidden sm:block"
-                      style={{ fontWeight: 300 }}
-                    >
-                      {slide.description}
-                    </p>
-                    
-                    {/* Shorter description for mobile */}
-                    <p
-                      className="text-white/90 text-[12px] leading-[1.6] max-w-2xl mb-5 md:mb-7 anim-fade-up-3 block sm:hidden"
-                      style={{ fontWeight: 300 }}
-                    >
-                      {slide.description.length > 120 
-                        ? slide.description.substring(0, 120) + "..." 
-                        : slide.description}
-                    </p>
-
-                    <div className="flex items-center gap-4 md:gap-5 anim-fade-up-4">
-                      <button
-                        className="btn-primary-hero inline-flex items-center gap-2 px-5 py-2.5 md:px-7 md:py-3 bg-[#2d5a3d] text-[#f5f0e8] text-[9px] md:text-[10px] tracking-[0.18em] uppercase font-[400] border-none cursor-pointer transition-colors duration-200 hover:bg-[#1e3f2b]"
-                        style={{ fontFamily: "'Outfit', sans-serif" }}
+                
+                {/* TEXT CONTENT - Hidden on mobile, visible on desktop */}
+                {!isMobile && (
+                  <div className="relative z-20 flex flex-col justify-center h-full px-5 md:px-12 lg:px-20">
+                    <div className="max-w-3xl">
+                      <h1
+                        className="text-white leading-[1.2] md:leading-[1.08] mb-3 md:mb-4 anim-fade-up-2"
+                        style={{
+                          fontFamily: "'Playfair Display', serif",
+                          fontSize: "clamp(1.8rem, 4vw, 3.5rem)",
+                          fontWeight: 400,
+                        }}
                       >
-                        Explore Stays
-                        <svg
-                          className="cta-arrow w-3 h-3 md:w-4 md:h-4"
-                          fill="none"
-                          viewBox="0 0 24 24"
-                          stroke="currentColor"
-                          strokeWidth={1.5}
+                        {slide.title}
+                        <br />
+                        <em className="italic text-[#c8e6d9]">{slide.emphasis}</em>
+                        <br />
+                        {slide.subtitle}
+                      </h1>
+
+                      <p
+                        className="text-white/90 text-[12px] md:text-[14px] leading-[1.6] md:leading-[1.7] max-w-2xl mb-5 md:mb-7 anim-fade-up-3"
+                        style={{ fontWeight: 300 }}
+                      >
+                        {slide.description}
+                      </p>
+
+                      <div className="flex items-center gap-4 md:gap-5 anim-fade-up-4">
+                        <button
+                          className="btn-primary-hero inline-flex items-center gap-2 px-5 py-2.5 md:px-7 md:py-3 bg-[#2d5a3d] text-[#f5f0e8] text-[9px] md:text-[10px] tracking-[0.18em] uppercase font-[400] border-none cursor-pointer transition-colors duration-200 hover:bg-[#1e3f2b]"
+                          style={{ fontFamily: "'Outfit', sans-serif" }}
                         >
-                          <path d="M5 12h14M12 5l7 7-7 7" />
-                        </svg>
-                      </button>
+                          Explore Stays
+                          <svg
+                            className="cta-arrow w-3 h-3 md:w-4 md:h-4"
+                            fill="none"
+                            viewBox="0 0 24 24"
+                            stroke="currentColor"
+                            strokeWidth={1.5}
+                          >
+                            <path d="M5 12h14M12 5l7 7-7 7" />
+                          </svg>
+                        </button>
+                      </div>
                     </div>
                   </div>
-                </div>
+                )}
               </div>
             ))}
           </div>
        
-          {/* Slider Navigation Arrows - Hide on very small screens? */}
-          <button
-            onClick={goToPrevSlide}
-            className="slider-nav-btn absolute left-2 md:left-6 top-1/2 -translate-y-1/2 z-30 w-8 h-8 md:w-10 md:h-10 rounded-full bg-white/20 backdrop-blur-sm border border-white/30 flex items-center justify-center text-white hover:bg-[#2d5a3d] hover:border-[#2d5a3d] transition-all duration-300"
-            aria-label="Previous slide"
-          >
-            <svg
-              className="w-4 h-4 md:w-5 md:h-5"
-              fill="none"
-              viewBox="0 0 24 24"
-              stroke="currentColor"
-              strokeWidth={2}
-            >
-              <path d="M15 19l-7-7 7-7" />
-            </svg>
-          </button>
+          {/* Slider Navigation Arrows - Hide on mobile */}
+          {!isMobile && (
+            <>
+              <button
+                onClick={goToPrevSlide}
+                className="slider-nav-btn absolute left-2 md:left-6 top-1/2 -translate-y-1/2 z-30 w-8 h-8 md:w-10 md:h-10 rounded-full bg-white/20 backdrop-blur-sm border border-white/30 flex items-center justify-center text-white hover:bg-[#2d5a3d] hover:border-[#2d5a3d] transition-all duration-300"
+                aria-label="Previous slide"
+              >
+                <svg
+                  className="w-4 h-4 md:w-5 md:h-5"
+                  fill="none"
+                  viewBox="0 0 24 24"
+                  stroke="currentColor"
+                  strokeWidth={2}
+                >
+                  <path d="M15 19l-7-7 7-7" />
+                </svg>
+              </button>
 
-          <button
-            onClick={goToNextSlide}
-            className="slider-nav-btn absolute right-2 md:right-6 top-1/2 -translate-y-1/2 z-30 w-8 h-8 md:w-10 md:h-10 rounded-full bg-white/20 backdrop-blur-sm border border-white/30 flex items-center justify-center text-white hover:bg-[#2d5a3d] hover:border-[#2d5a3d] transition-all duration-300"
-            aria-label="Next slide"
-          >
-            <svg
-              className="w-4 h-4 md:w-5 md:h-5"
-              fill="none"
-              viewBox="0 0 24 24"
-              stroke="currentColor"
-              strokeWidth={2}
-            >
-              <path d="M9 5l7 7-7 7" />
-            </svg>
-          </button>
+              <button
+                onClick={goToNextSlide}
+                className="slider-nav-btn absolute right-2 md:right-6 top-1/2 -translate-y-1/2 z-30 w-8 h-8 md:w-10 md:h-10 rounded-full bg-white/20 backdrop-blur-sm border border-white/30 flex items-center justify-center text-white hover:bg-[#2d5a3d] hover:border-[#2d5a3d] transition-all duration-300"
+                aria-label="Next slide"
+              >
+                <svg
+                  className="w-4 h-4 md:w-5 md:h-5"
+                  fill="none"
+                  viewBox="0 0 24 24"
+                  stroke="currentColor"
+                  strokeWidth={2}
+                >
+                  <path d="M9 5l7 7-7 7" />
+                </svg>
+              </button>
+            </>
+          )}
 
-          {/* Slider Dots - Mobile friendly */}
+          {/* Slider Dots */}
           <div className="absolute bottom-3 md:bottom-6 left-0 right-0 z-30 flex justify-center gap-2">
             {slides.map((_, index) => (
               <button
@@ -684,7 +683,7 @@ export default function HeroSection() {
         </div>
       </section>
 
-      {/* Booking Modal - Already responsive, keeping as is */}
+      {/* Booking Modal */}
       {isModalOpen && (
         <div
           className="modal-backdrop fixed inset-0 z-[100] bg-black/60 backdrop-blur-sm flex items-center justify-center p-4 overflow-y-auto"

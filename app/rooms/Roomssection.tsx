@@ -35,33 +35,31 @@ const rooms: Room[] = [
     ],
     badge: "Most Popular",
     badgeStyle: "text-[#3b5e45]",
-    name: "Deluxe Room",
-    description:
-      "Stay connected with complimentary Wi-Fi and unwind with your favourite shows on the flat-screen TV, including our king-sized bed, luxurious bathrobes, designer toiletries, and a rejuvenating rainfall shower.",
-    longDescription:
-      "Experience the pinnacle of comfort in our Deluxe Room — a carefully curated sanctuary where every detail has been considered for your pleasure. Sink into our cloud-like king-sized bed dressed in 600-thread-count Egyptian cotton, wake to a rainfall shower that melts the world away, and step into plush monogrammed bathrobes. With floor-to-ceiling windows that flood the room in natural light and a curated minibar stocked with local artisan treats, this is your home away from home — elevated.",
-    price: 320,
-    size: "42 m²",
+    name: "Rose",
+    description: "The Rose Villa is a sprawling 4-bedroom luxury retreat that seamlessly blends elegance with comfort. Each of the four single-bedroom suites has been thoughtfully designed to provide a private sanctuary for guests, featuring plush king-sized beds draped in premium linens, attached bathrooms with luxury toiletries, and private balconies overlooking lush gardens. The villa's spacious living areas create the perfect setting for family gatherings or group celebrations, while still offering quiet corners for solitude. Whether you're enjoying morning coffee on your personal balcony or gathering in the elegant common areas, the Rose Villa promises an unforgettable stay where every detail has been carefully curated for your pleasure.",
+    longDescription: "Step into the Rose Villa and discover a world where luxury meets tranquility. This magnificent 4-bedroom estate spans across two levels, offering ample space for up to 8 guests. Each bedroom suite is a masterpiece of design, featuring floor-to-ceiling windows that flood the space with natural light, custom-designed furniture, and premium mattress toppers for the perfect night's sleep. The attached bathrooms are spa-like retreats complete with rainfall showers, plush towels, and eco-friendly toiletries. Step outside to your private balcony and breathe in the fresh morning air as you plan your day's adventures. The villa also features a fully-equipped modern kitchen, a dining area that seats 10, and a cozy entertainment lounge with a 65-inch Smart TV. Experience the perfect harmony of togetherness and privacy at the Rose Villa.",
+    price: 11000,
+    size: "120 m²",
     rating: 4.9,
     reviews: 184,
     amenities: [
-      { icon: <Users size={20} strokeWidth={1.5} />, label: "4 guest" },
+      { icon: <Users size={20} strokeWidth={1.5} />, label: "8 guest" },
       { icon: <BedDouble size={20} strokeWidth={1.5} />, label: "King bed" },
       { icon: <Wifi size={20} strokeWidth={1.5} />, label: "Wi-Fi" },
     ],
     details: [
-      { label: "Room Size", value: "42 m²" },
+      { label: "Room Size", value: "120 m²" },
       { label: "Bed Type", value: "King" },
       { label: "Floor", value: "4th – 8th" },
       { label: "View", value: "Garden / Pool" },
     ],
     features: [
-      "Rainfall shower & deep soaking tub",
-      "Nespresso machine & minibar",
-      "55\" 4K Smart TV",
-      "In-room safe & blackout curtains",
-      "Designer toiletries",
-      "Twice-daily housekeeping",
+      "Comfortable beds & clean linens",
+      "Attached bathroom with toiletries (soap, shampoo, towels)",
+      "Wi-Fi access",
+      "Air conditioning / heating",
+      "Television",
+      "Attached Balconies",
     ],
   },
   {
@@ -73,33 +71,31 @@ const rooms: Room[] = [
     ],
     badge: "Business",
     badgeStyle: "text-[#8a6a1f]",
-    name: "Executive Room",
-    description:
-      "Executive rooms are designed for business travellers or guests seeking added convenience and luxury. They offer work desks, ergonomic chairs, and exclusive access to our executive lounge and services.",
-    longDescription:
-      "Crafted for the modern professional, our Executive Room merges productivity with indulgence seamlessly. Your dedicated workspace features an ergonomic chair, dual-monitor setup, and ultra-fast fibre connectivity — so you can work at your peak. When the day wraps up, unwind in the lounge chair with a curated local spirit from the complimentary honour bar, or take advantage of your exclusive Executive Lounge access for evening cocktails and canapés. Business travel, reimagined.",
-    price: 280,
-    size: "38 m²",
+    name: "Iris",
+    description: "Welcome to the Iris Villa, where contemporary design meets timeless comfort in a stunning 4-bedroom luxury villa. Each single-bedroom suite has been meticulously crafted to offer a unique blend of style and functionality, featuring queen-sized beds with memory foam mattresses, sleek attached bathrooms stocked with premium toiletries, and private balconies that offer breathtaking views of the surrounding landscape. The villa's open-plan layout encourages social interaction while maintaining individual privacy, making it perfect for both intimate family getaways and lively group retreats. From the moment you arrive, you'll be enveloped in an atmosphere of sophisticated relaxation, where every modern convenience has been anticipated and provided.",
+    longDescription: "The Iris Villa represents the pinnacle of contemporary luxury living. Spread across a generous 120 square meters, this 4-bedroom masterpiece accommodates up to 8 guests in unparalleled style. Each bedroom is a private haven, featuring ergonomic queen-sized beds, blackout curtains for undisturbed sleep, and dedicated work desks for those who need to stay connected. The en-suite bathrooms are designed with your comfort in mind, offering hot water on demand, plush bathrobes, and a selection of natural toiletries. Your private balcony becomes your personal observation deck, perfect for sunset watching or stargazing. The villa also boasts a state-of-the-art entertainment system, high-speed Wi-Fi throughout, and a fully stocked kitchenette. Whether you're hosting a dinner party or enjoying a quiet night in, the Iris Villa adapts to your every need.",
+    price: 11000,
+    size: "120 m²",
     rating: 4.8,
     reviews: 97,
     amenities: [
-      { icon: <Users size={20} strokeWidth={1.5} />, label: "4 guest" },
-      { icon: <BedDouble size={20} strokeWidth={1.5} />, label: "King bed" },
+      { icon: <Users size={20} strokeWidth={1.5} />, label: "8 guest" },
+      { icon: <BedDouble size={20} strokeWidth={1.5} />, label: "Queen bed" },
       { icon: <Monitor size={20} strokeWidth={1.5} />, label: "Work desk" },
     ],
     details: [
-      { label: "Room Size", value: "38 m²" },
-      { label: "Bed Type", value: "King" },
-      { label: "Floor", value: "9th – 12th" },
-      { label: "View", value: "City Skyline" },
+      { label: "Room Size", value: "120 m²" },
+      { label: "Bed Type", value: "Queen" },
+      { label: "Floor", value: "9th – 15th" },
+      { label: "View", value: "City Panoramic" },
     ],
     features: [
-      "Ergonomic workstation & dual monitors",
-      "Executive Lounge access (6–10pm)",
-      "Complimentary pressing of 2 garments",
-      "Fibre optic Wi-Fi (500 Mbps)",
-      "Honour bar with local spirits",
-      "Late checkout on request",
+      "Comfortable beds & clean linens",
+      "Attached bathroom with toiletries (soap, shampoo, towels)",
+      "Wi-Fi access",
+      "Air conditioning / heating",
+      "Television",
+      "Attached Balconies",
     ],
   },
   {
@@ -111,17 +107,15 @@ const rooms: Room[] = [
     ],
     badge: "Suite",
     badgeStyle: "bg-[#3b5e45]/90 text-white",
-    name: "Presidential Suite",
-    description:
-      "Our crown jewel. A sprawling retreat with a private terrace, personal butler service, bespoke décor, and panoramic city views — every detail curated for the most discerning guest.",
-    longDescription:
-      "Welcome to the zenith of hospitality. The Presidential Suite is not merely a room — it is an experience woven from exceptional craftsmanship, personal service, and panoramic grandeur. Your dedicated butler is available around the clock, anticipating every need before it arises. The private terrace offers sweeping city views best enjoyed with a glass of Champagne at sunset. Inside, hand-selected artworks, a bespoke grand piano, and a private dining room for eight make this the natural choice for heads of state, cultural luminaries, and those who simply refuse to settle.",
-    price: 890,
+    name: "Lily",
+    description: "Experience the epitome of luxury at the Lily Villa, our most prestigious 4-bedroom offering. Each single-bedroom suite has been transformed into a palatial retreat, featuring emperor-sized beds with Egyptian cotton sheets, marble-accented attached bathrooms with premium spa-quality toiletries, and expansive private balconies that seem to float above the landscape. The villa's grand living spaces are designed for both lavish entertaining and intimate family moments, with high ceilings, designer furnishings, and curated artwork adorning every wall. The Lily Villa isn't just accommodation—it's a destination in itself, promising an experience that will be cherished for years to come.",
+    longDescription: "The Lily Villa stands as a testament to uncompromising luxury and attention to detail. This sprawling 4-bedroom estate spans an impressive 120 square meters and can comfortably accommodate up to 8 guests in absolute opulence. Each bedroom is a sanctuary of peace, featuring custom-crafted emperor-sized beds, premium hypoallergenic bedding, and ambient lighting that can be adjusted to suit your mood. The attached bathrooms are reminiscent of Roman spas, complete with deep soaking tubs, rainfall showers, heated floors, and a curated selection of aromatic toiletries. Step onto your private balcony and be greeted by panoramic views that stretch to the horizon. The villa also features a private dining room, a fully equipped gourmet kitchen, a dedicated entertainment zone with a 75-inch 4K television, and a private terrace perfect for morning yoga or evening cocktails. At the Lily Villa, every moment is designed to be extraordinary, from the champagne welcome to the personalized turndown service.",
+    price: 11000,
     size: "120 m²",
     rating: 5.0,
     reviews: 42,
     amenities: [
-      { icon: <Users size={20} strokeWidth={1.5} />, label: "6 guest" },
+      { icon: <Users size={20} strokeWidth={1.5} />, label: "8 guest" },
       { icon: <Home size={20} strokeWidth={1.5} />, label: "Terrace" },
       { icon: <Award size={20} strokeWidth={1.5} />, label: "Butler" },
     ],
@@ -132,12 +126,12 @@ const rooms: Room[] = [
       { label: "View", value: "360° Panoramic" },
     ],
     features: [
-      "Private wraparound terrace",
-      "24-hour personal butler",
-      "Grand piano & private dining room",
-      "Marble bathroom with plunge tub",
-      "Champagne on arrival",
-      "Airport transfer included",
+      "Comfortable beds & clean linens",
+      "Attached bathroom with toiletries (soap, shampoo, towels)",
+      "Wi-Fi access",
+      "Air conditioning / heating",
+      "Television",
+      "Attached Balconies",
     ],
   },
 ];
@@ -271,24 +265,14 @@ function RoomModal({ room, onClose }: { room: Room; onClose: () => void }) {
                   <span className="text-[12px] text-[#a09890] ml-1">{room.rating} · {room.reviews} reviews</span>
                 </div>
 
-                {/* Name */}
+                {/* Name & size */}
                 <h2
-                  className="text-[1.8rem] text-[#1e1c19] leading-tight mb-2 pr-8"
+                  className="text-[1.8rem] text-[#1e1c19] leading-tight mb-1 pr-8"
                   style={{ fontFamily: "'Cormorant Garamond', Georgia, serif", fontWeight: 400 }}
                 >
                   {room.name}
                 </h2>
                 <p className="text-[11px] text-[#a09890] tracking-widest uppercase mb-5">{room.size}</p>
-
-                {/* Details grid */}
-                <div className="grid grid-cols-2 gap-3 mb-6">
-                  {room.details.map((d) => (
-                    <div key={d.label} className="bg-[#f0ece0] rounded-lg px-4 py-3">
-                      <p className="text-[10px] text-[#a09890] tracking-widest uppercase mb-0.5">{d.label}</p>
-                      <p className="text-[13px] text-[#1e1c19] font-semibold">{d.value}</p>
-                    </div>
-                  ))}
-                </div>
 
                 {/* Description */}
                 <p className="text-[13.5px] text-[#4a4642] leading-[1.8] mb-7" style={{ fontWeight: 300 }}>
@@ -421,16 +405,6 @@ function RoomModal({ room, onClose }: { room: Room; onClose: () => void }) {
                 >
                   <img src={img} alt="" className="w-full h-full object-cover" />
                 </button>
-              ))}
-            </div>
-
-            {/* Details grid */}
-            <div className="grid grid-cols-2 gap-px bg-[#e8e2d8] border-t border-[#e8e2d8] mt-auto">
-              {room.details.map((d) => (
-                <div key={d.label} className="bg-[#faf8f3] px-4 py-3">
-                  <p className="text-[10px] text-[#a09890] tracking-widest uppercase mb-0.5">{d.label}</p>
-                  <p className="text-[13px] text-[#1e1c19] font-semibold">{d.value}</p>
-                </div>
               ))}
             </div>
           </div>
@@ -629,8 +603,7 @@ export default function RoomsSection() {
             className="text-4xl md:text-[54px] text-[#1e1c19] leading-[1.1] max-w-2xl mx-auto"
             style={{ fontFamily: "'Cormorant Garamond', Georgia, serif", fontWeight: 400 }}
           >
-            Luxury Redefined: Unwind in Our
-            <br />Exquisite Rooms and Suites
+            Explore Our Luxurious Villas
           </h2>
         </div>
 
@@ -666,7 +639,7 @@ export default function RoomsSection() {
                   {room.name}
                 </h3>
                 <p
-                  className="text-[13.5px] text-black leading-relaxed"
+                  className="text-[13.5px] text-black leading-relaxed line-clamp-4"
                   style={{ fontFamily: "'Lato', sans-serif", fontWeight: 300 }}
                 >
                   {room.description}
@@ -695,7 +668,7 @@ export default function RoomsSection() {
                       className="text-[13px] text-[#a09890] ml-1"
                       style={{ fontFamily: "'Lato', sans-serif", fontWeight: 300 }}
                     >
-                      /day
+                      /night
                     </span>
                   </div>
                 </div>
