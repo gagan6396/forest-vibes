@@ -7,7 +7,7 @@ const slides = [
   {
     id: 1,
     imageDesktop: "bann1.webp",
-    imageMobile: "homeM1.jpeg",
+    imageMobile: "home-1.jpeg",
     title: "Your Home Away,",
     emphasis: "Reimagined",
     subtitle: "for the Extraordinary",
@@ -18,7 +18,7 @@ const slides = [
   {
     id: 2,
     imageDesktop: "ban3.webp",
-    imageMobile: "home2.jpeg",
+    imageMobile: "home-2.jpeg",
     title: "Where Nature Meets",
     emphasis: "Luxury",
     subtitle: "in Perfect Harmony",
@@ -29,7 +29,7 @@ const slides = [
   {
     id: 3,
     imageDesktop: "ban4.webp",
-    imageMobile: "ban4.webp",
+    imageMobile: "home-3.jpeg",
     title: "Create Unforgettable",
     emphasis: "Memories",
     subtitle: "with Your Loved Ones",

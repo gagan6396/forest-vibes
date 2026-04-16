@@ -38,7 +38,7 @@ export default function AboutUs() {
         .rv-r.on { opacity:1; transform:none; }
 
         .banner-bg {
-          background-image: url('https://images.unsplash.com/photo-1496417263034-38ec4f0b665a?w=1800&q=85');
+          background-image: url('38.png');
           background-size: cover;
           background-position: center 40%;
         }
@@ -68,12 +68,14 @@ export default function AboutUs() {
       <div className="about-section bg-[#f5f0e8]">
 
         {/* ── BANNER ── */}
-        <div className="relative w-full h-[75vh] sm:h-[85vh] md:h-screen banner-bg">
-          <div className="absolute inset-0 z-10 flex flex-col justify-end px-5 sm:px-10 md:px-16 lg:px-[72px] pb-10 sm:pb-14 md:pb-20">
+        <div className="relative w-full h-[62vh] sm:h-[85vh] md:h-screen banner-bg">
+          {/* On mobile: text sits ~60% down (justify-end with pb); on sm+ it stays centered */}
+          <div className="absolute inset-0 z-10 flex flex-col justify-end sm:justify-center px-5 sm:px-10 md:px-16 lg:px-[72px] pb-8 sm:pb-0">
             <h1
               style={{
                 fontFamily: "'Playfair Display', serif",
-                fontSize: "clamp(2.2rem, 6.5vw, 6rem)",
+                /* Changed: clamp floor 2.2rem → 1.6rem for smaller mobile size */
+                fontSize: "clamp(1.6rem, 6.5vw, 6rem)",
                 fontWeight: 400,
                 lineHeight: 1.05,
                 color: "#f5f0e8",
@@ -84,8 +86,9 @@ export default function AboutUs() {
               — a place called home.
             </h1>
             <p
-              className="mt-6 sm:mt-8 text-[#c9d8cc] leading-[1.8] font-[300] max-w-[420px]"
-              style={{ fontFamily: "'Outfit', sans-serif", fontSize: "clamp(12px, 1.3vw, 14px)" }}
+              className="mt-4 sm:mt-6 text-[#c9d8cc] leading-[1.8] font-[300] max-w-[420px]"
+              /* Changed: clamp floor 12px → 11px for smaller mobile size */
+              style={{ fontFamily: "'Outfit', sans-serif", fontSize: "clamp(11px, 1.3vw, 14px)" }}
             >
               Forrest Vibes is more than just a stay. Our dream is to create a place that feels
               like home, where children, elderly guests, and families can experience warmth,
