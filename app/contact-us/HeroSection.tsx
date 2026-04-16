@@ -11,19 +11,19 @@ export default function ContactHero() {
         className="absolute inset-0 w-full h-full object-cover object-center"
       />
 
-      {/* Light overlay — keeps it bright and airy */}
-      {/* <div className="absolute inset-0 bg-white/30" /> */}
+      {/* Dark overlay for text legibility */}
+      <div className="absolute inset-0 bg-black/50" />
 
       {/* Centered text */}
       <div className="absolute inset-0 flex flex-col items-center justify-center text-center px-6">
-        <p className="font-serif italic text-[12px] text-[#3a6349] tracking-widest mb-4">
+        <p className="font-serif italic text-[12px] text-[#7db896] tracking-widest mb-4">
           Contact Us
         </p>
-        <h1 className="font-serif font-light text-[#1a1a1a] text-[clamp(2.2rem,5vw,3.8rem)] leading-[1.1] tracking-tight">
+        <h1 className="font-serif font-light text-white text-[clamp(2.2rem,5vw,3.8rem)] leading-[1.1] tracking-tight">
           Get in Touch<br />
-          with <em className="italic text-white">Forrest Vibes</em>
+          with <em className="italic text-[#7db896]">Forrest Vibes</em>
         </h1>
-        <div className="w-8 h-px bg-[#3a6349]/40 mt-6" />
+        <div className="w-8 h-px bg-white/30 mt-6" />
       </div>
 
     </section>

@@ -10,7 +10,7 @@ const attractions = [
     distance: "58 km",
     time: "1.5 hrs",
     highlights: ["Har Ki Pauri", "Ganga Aarti", "Chandi Devi Temple"],
-    backgroundImage: "https://images.unsplash.com/photo-1602619268551-0fde8cf2d2a0?w=800&h=400&fit=crop",
+    backgroundImage: "harid.jfif",
   },
   {
     id: 2,
@@ -28,7 +28,7 @@ const attractions = [
     distance: "95 km",
     time: "2.5 hrs",
     highlights: ["Kempty Falls", "Gun Hill", "Camel's Back Road"],
-    backgroundImage: "https://images.unsplash.com/photo-1626621341517-bbf3d9990a23?w=800&h=400&fit=crop",
+    backgroundImage: "mussoorie.jfif",
   },
   {
     id: 4,
@@ -37,7 +37,7 @@ const attractions = [
     distance: "12 km",
     time: "20 mins",
     highlights: ["Rajaji National Park", "Elephant Safari", "Bird Watching"],
-    backgroundImage: "https://images.unsplash.com/photo-1542406775-ade58c52d2e4?w=800&h=400&fit=crop",
+    backgroundImage: "thano.jfif",
   },
   {
     id: 5,
@@ -46,7 +46,7 @@ const attractions = [
     distance: "18 km",
     time: "30 mins",
     highlights: ["Jeep Safari", "Elephant Sightings", "Chilla Range"],
-    backgroundImage: "https://images.unsplash.com/photo-1499363536502-87642509e31b?w=800&h=400&fit=crop",
+    backgroundImage: "rajaji.webp",
   },
   {
     id: 6,
@@ -55,17 +55,17 @@ const attractions = [
     distance: "35 km",
     time: "55 mins",
     highlights: ["Robber's Cave", "Sahastradhara", "Tapkeshwar Temple"],
-    backgroundImage: "https://images.unsplash.com/photo-1584549783410-cd52f8e74973?w=800&h=400&fit=crop",
+    backgroundImage: "ddn.jpg",
   },
-  {
-    id: 7,
-    name: "Forrest Orchard Trek",
-    tagline: "Nature's Hidden Trail",
-    distance: "8 km",
-    time: "25 mins",
-    highlights: ["Orchard Walk", "Forest Trail", "Bird Watching", "Nature Photography"],
-    backgroundImage: "https://images.unsplash.com/photo-1441974231531-c622288dbd62?w=800&h=400&fit=crop",
-  },
+  // {
+  //   id: 7,
+  //   name: "Forrest Orchard Trek",
+  //   tagline: "Nature's Hidden Trail",
+  //   distance: "8 km",
+  //   time: "25 mins",
+  //   highlights: ["Orchard Walk", "Forest Trail", "Bird Watching", "Nature Photography"],
+  //   backgroundImage: "https://images.unsplash.com/photo-1441974231531-c622288dbd62?w=800&h=400&fit=crop",
+  // },
   {
     id: 8,
     name: "Digu Waterfall",
@@ -73,7 +73,7 @@ const attractions = [
     distance: "15 km",
     time: "35 mins",
     highlights: ["Natural Pool", "Picnic Spot", "Nature Walk", "Photography"],
-    backgroundImage: "https://images.unsplash.com/photo-1432405972618-c60b0225b8f9?w=800&h=400&fit=crop",
+    backgroundImage: "diggu.jfif",
   },
   {
     id: 9,
@@ -82,7 +82,7 @@ const attractions = [
     distance: "25 km",
     time: "45 mins",
     highlights: ["War Memorial", "Historical Museum", "Panoramic Views", "Heritage Walk"],
-    backgroundImage: "https://images.unsplash.com/photo-1562577309-4932fdd64cd2?w=800&h=400&fit=crop",
+    backgroundImage: "khal.jfif",
   },
   {
     id: 10,
@@ -91,7 +91,7 @@ const attractions = [
     distance: "30 km",
     time: "50 mins",
     highlights: ["Spotted Deer", "Peacock Sanctuary", "Children's Park", "Nature Trails"],
-    backgroundImage: "https://images.unsplash.com/photo-1549366021-9f761d450615?w=800&h=400&fit=crop",
+    backgroundImage: "malsi.jfif",
   },
   {
     id: 11,
@@ -100,7 +100,7 @@ const attractions = [
     distance: "38 km",
     time: "1 hr",
     highlights: ["Sulfur Springs", "Stalactite Caves", "Cable Car Ride", "Picnic Spots"],
-    backgroundImage: "https://images.unsplash.com/photo-1582653291997-079a1b04e6d1?w=800&h=400&fit=crop",
+    backgroundImage: "shas.jpg",
   },
   {
     id: 12,
@@ -109,7 +109,7 @@ const attractions = [
     distance: "35 km",
     time: "55 mins",
     highlights: ["River Cave", "Underground Stream", "Adventure Trek", "Photography"],
-    backgroundImage: "https://images.unsplash.com/photo-1574068468668-a05a11f871da?w=800&h=400&fit=crop",
+    backgroundImage: "robbers.jpg",
   },
   {
     id: 13,
@@ -118,7 +118,7 @@ const attractions = [
     distance: "85 km",
     time: "2 hrs",
     highlights: ["Eco Park", "Apple Orchards", "Sunset Point", "Camping Sites"],
-    backgroundImage: "https://images.unsplash.com/photo-1519681393784-d120267933ba?w=800&h=400&fit=crop",
+    backgroundImage: "dhanaulti.jfif",
   },
 ];
 

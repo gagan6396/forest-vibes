@@ -35,14 +35,14 @@ const rooms: Room[] = [
   {
     id: 1,
     name: "Rose",
-    description: "The Rose Villa is a sprawling 4-bedroom luxury retreat that seamlessly blends elegance with comfort. Each of the four single-bedroom suites has been thoughtfully designed to provide a private sanctuary for guests, featuring plush king-sized beds draped in premium linens, attached bathrooms with luxury toiletries, and private balconies overlooking lush gardens. The villa's spacious living areas create the perfect setting for family gatherings or group celebrations, while still offering quiet corners for solitude. Whether you're enjoying morning coffee on your personal balcony or gathering in the elegant common areas, the Rose Villa promises an unforgettable stay where every detail has been carefully curated for your pleasure.",
-    longDescription: "Step into the Rose Villa and discover a world where luxury meets tranquility. This magnificent 4-bedroom estate spans across two levels, offering ample space for up to 8 guests. Each bedroom suite is a masterpiece of design, featuring floor-to-ceiling windows that flood the space with natural light, custom-designed furniture, and premium mattress toppers for the perfect night's sleep. The attached bathrooms are spa-like retreats complete with rainfall showers, plush towels, and eco-friendly toiletries. Step outside to your private balcony and breathe in the fresh morning air as you plan your day's adventures. The villa also features a fully-equipped modern kitchen, a dining area that seats 10, and a cozy entertainment lounge with a 65-inch Smart TV. Experience the perfect harmony of togetherness and privacy at the Rose Villa.",
+    description: "The Rose Room is a sprawling 4-bedroom luxury retreat that seamlessly blends elegance with comfort. Each of the four single-bedroom suites has been thoughtfully designed to provide a private sanctuary for guests, featuring plush king-sized beds draped in premium linens, attached bathrooms with luxury toiletries, and private balconies overlooking lush gardens. The room's spacious living areas create the perfect setting for family gatherings or group celebrations, while still offering quiet corners for solitude. Whether you're enjoying morning coffee on your personal balcony or gathering in the elegant common areas, the Rose Room promises an unforgettable stay where every detail has been carefully curated for your pleasure.",
+    longDescription: "Step into the Rose Room and discover a world where luxury meets tranquility. This magnificent 4-bedroom suite spans across two levels, offering ample space for up to 8 guests. Each bedroom suite is a masterpiece of design, featuring floor-to-ceiling windows that flood the space with natural light, custom-designed furniture, and premium mattress toppers for the perfect night's sleep. The attached bathrooms are spa-like retreats complete with rainfall showers, plush towels, and eco-friendly toiletries. Step outside to your private balcony and breathe in the fresh morning air as you plan your day's adventures. The room also features a fully-equipped modern kitchen, a dining area that seats 10, and a cozy entertainment lounge with a 65-inch Smart TV. Experience the perfect harmony of togetherness and privacy at the Rose Room.",
     pricePerNight: 11000,
     maxGuests: 8,
     maxBeds: 4,
     imageUrl:
       "5.png",
-    imageAlt: "Rose Villa",
+    imageAlt: "Rose Room",
     images: [
       "5.png",
       "4.png",
@@ -59,14 +59,6 @@ const rooms: Room[] = [
       "Television",
       "Attached Balconies",
     ],
-    // features: [
-    //   "Rainfall shower & deep soaking tub",
-    //   "Nespresso machine & minibar",
-    //   "55\" 4K Smart TV",
-    //   "In-room safe & blackout curtains",
-    //   "Designer toiletries",
-    //   "Twice-daily housekeeping",
-    // ],
     details: [
       { label: "Room Size", value: "42 m²" },
       { label: "Bed Type", value: "King" },
@@ -77,14 +69,14 @@ const rooms: Room[] = [
   {
     id: 2,
     name: "Iris",
-    description: "Welcome to the Iris Villa, where contemporary design meets timeless comfort in a stunning 4-bedroom luxury villa. Each single-bedroom suite has been meticulously crafted to offer a unique blend of style and functionality, featuring queen-sized beds with memory foam mattresses, sleek attached bathrooms stocked with premium toiletries, and private balconies that offer breathtaking views of the surrounding landscape. The villa's open-plan layout encourages social interaction while maintaining individual privacy, making it perfect for both intimate family getaways and lively group retreats. From the moment you arrive, you'll be enveloped in an atmosphere of sophisticated relaxation, where every modern convenience has been anticipated and provided.",
-    longDescription: "The Iris Villa represents the pinnacle of contemporary luxury living. Spread across a generous 120 square meters, this 4-bedroom masterpiece accommodates up to 8 guests in unparalleled style. Each bedroom is a private haven, featuring ergonomic queen-sized beds, blackout curtains for undisturbed sleep, and dedicated work desks for those who need to stay connected. The en-suite bathrooms are designed with your comfort in mind, offering hot water on demand, plush bathrobes, and a selection of natural toiletries. Your private balcony becomes your personal observation deck, perfect for sunset watching or stargazing. The villa also boasts a state-of-the-art entertainment system, high-speed Wi-Fi throughout, and a fully stocked kitchenette. Whether you're hosting a dinner party or enjoying a quiet night in, the Iris Villa adapts to your every need.",
+    description: "Welcome to the Iris Room, where contemporary design meets timeless comfort in a stunning 4-bedroom luxury suite. Each single-bedroom suite has been meticulously crafted to offer a unique blend of style and functionality, featuring queen-sized beds with memory foam mattresses, sleek attached bathrooms stocked with premium toiletries, and private balconies that offer breathtaking views of the surrounding landscape. The room's open-plan layout encourages social interaction while maintaining individual privacy, making it perfect for both intimate family getaways and lively group retreats. From the moment you arrive, you'll be enveloped in an atmosphere of sophisticated relaxation, where every modern convenience has been anticipated and provided.",
+    longDescription: "The Iris Room represents the pinnacle of contemporary luxury living. Spread across a generous 120 square meters, this 4-bedroom suite accommodates up to 8 guests in unparalleled style. Each bedroom is a private haven, featuring ergonomic queen-sized beds, blackout curtains for undisturbed sleep, and dedicated work desks for those who need to stay connected. The en-suite bathrooms are designed with your comfort in mind, offering hot water on demand, plush bathrobes, and a selection of natural toiletries. Your private balcony becomes your personal observation deck, perfect for sunset watching or stargazing. The room also boasts a state-of-the-art entertainment system, high-speed Wi-Fi throughout, and a fully stocked kitchenette. Whether you're hosting a dinner party or enjoying a quiet night in, the Iris Room adapts to your every need.",
     pricePerNight: 11000,
     maxGuests: 8,
     maxBeds: 4,
     imageUrl:
       "8.png",
-    imageAlt: "Iris Villa",
+    imageAlt: "Iris Room",
     images: [
       "8.png",
       "9.png",
@@ -101,14 +93,6 @@ const rooms: Room[] = [
       "Television",
       "Attached Balconies",
     ],
-    // features: [
-    //   "Separate living area",
-    //   "Executive Lounge access",
-    //   "Marble bathroom with soaking tub",
-    //   "Nespresso machine",
-    //   "Complimentary minibar (non-alcoholic)",
-    //   "Panoramic city views",
-    // ],
     details: [
       { label: "Room Size", value: "55 m²" },
       { label: "Bed Type", value: "Queen" },
@@ -119,14 +103,14 @@ const rooms: Room[] = [
   {
     id: 3,
     name: "Lily",
-    description: "Experience the epitome of luxury at the Lily Villa, our most prestigious 4-bedroom offering. Each single-bedroom suite has been transformed into a palatial retreat, featuring emperor-sized beds with Egyptian cotton sheets, marble-accented attached bathrooms with premium spa-quality toiletries, and expansive private balconies that seem to float above the landscape. The villa's grand living spaces are designed for both lavish entertaining and intimate family moments, with high ceilings, designer furnishings, and curated artwork adorning every wall. The Lily Villa isn't just accommodation—it's a destination in itself, promising an experience that will be cherished for years to come.",
-    longDescription: "The Lily Villa stands as a testament to uncompromising luxury and attention to detail. This sprawling 4-bedroom estate spans an impressive 120 square meters and can comfortably accommodate up to 8 guests in absolute opulence. Each bedroom is a sanctuary of peace, featuring custom-crafted emperor-sized beds, premium hypoallergenic bedding, and ambient lighting that can be adjusted to suit your mood. The attached bathrooms are reminiscent of Roman spas, complete with deep soaking tubs, rainfall showers, heated floors, and a curated selection of aromatic toiletries. Step onto your private balcony and be greeted by panoramic views that stretch to the horizon. The villa also features a private dining room, a fully equipped gourmet kitchen, a dedicated entertainment zone with a 75-inch 4K television, and a private terrace perfect for morning yoga or evening cocktails. At the Lily Villa, every moment is designed to be extraordinary, from the champagne welcome to the personalized turndown service.",
+    description: "Experience the epitome of luxury at the Lily Room, our most prestigious 4-bedroom suite. Each single-bedroom suite has been transformed into a palatial retreat, featuring emperor-sized beds with Egyptian cotton sheets, marble-accented attached bathrooms with premium spa-quality toiletries, and expansive private balconies that seem to float above the landscape. The room's grand living spaces are designed for both lavish entertaining and intimate family moments, with high ceilings, designer furnishings, and curated artwork adorning every wall. The Lily Room isn't just accommodation—it's a destination in itself, promising an experience that will be cherished for years to come.",
+    longDescription: "The Lily Room stands as a testament to uncompromising luxury and attention to detail. This sprawling 4-bedroom suite spans an impressive 120 square meters and can comfortably accommodate up to 8 guests in absolute opulence. Each bedroom is a sanctuary of peace, featuring custom-crafted emperor-sized beds, premium hypoallergenic bedding, and ambient lighting that can be adjusted to suit your mood. The attached bathrooms are reminiscent of Roman spas, complete with deep soaking tubs, rainfall showers, heated floors, and a curated selection of aromatic toiletries. Step onto your private balcony and be greeted by panoramic views that stretch to the horizon. The room also features a private dining room, a fully equipped gourmet kitchen, a dedicated entertainment zone with a 75-inch 4K television, and a private terrace perfect for morning yoga or evening cocktails. At the Lily Room, every moment is designed to be extraordinary, from the champagne welcome to the personalized turndown service.",
     pricePerNight: 11000,
     maxGuests: 8,
     maxBeds: 4,
     imageUrl:
       "11.png",
-    imageAlt: "Lily Villa",
+    imageAlt: "Lily Room",
     images: [
       "11.png",
       "12.png",
@@ -143,14 +127,40 @@ const rooms: Room[] = [
       "Television",
       "Attached Balconies",
     ],
-    // features: [
-    //   "Private wraparound terrace",
-    //   "24-hour personal butler",
-    //   "Grand piano & private dining room",
-    //   "Marble bathroom with plunge tub",
-    //   "Champagne on arrival",
-    //   "Airport transfer included",
-    // ],
+    details: [
+      { label: "Room Size", value: "120 m²" },
+      { label: "Bed Type", value: "Emperor (2×King)" },
+      { label: "Floor", value: "Penthouse" },
+      { label: "View", value: "360° Panoramic" },
+    ],
+  },
+  {
+    id: 4,
+    name: "Daisy",
+    description: "Experience the epitome of luxury at the Daisy Room, our most prestigious 4-bedroom suite. Each single-bedroom suite has been transformed into a palatial retreat, featuring emperor-sized beds with Egyptian cotton sheets, marble-accented attached bathrooms with premium spa-quality toiletries, and expansive private balconies that seem to float above the landscape. The room's grand living spaces are designed for both lavish entertaining and intimate family moments, with high ceilings, designer furnishings, and curated artwork adorning every wall. The Daisy Room isn't just accommodation—it's a destination in itself, promising an experience that will be cherished for years to come.",
+    longDescription: "The Daisy Room stands as a testament to uncompromising luxury and attention to detail. This sprawling 4-bedroom suite spans an impressive 120 square meters and can comfortably accommodate up to 8 guests in absolute opulence. Each bedroom is a sanctuary of peace, featuring custom-crafted emperor-sized beds, premium hypoallergenic bedding, and ambient lighting that can be adjusted to suit your mood. The attached bathrooms are reminiscent of Roman spas, complete with deep soaking tubs, rainfall showers, heated floors, and a curated selection of aromatic toiletries. Step onto your private balcony and be greeted by panoramic views that stretch to the horizon. The room also features a private dining room, a fully equipped gourmet kitchen, a dedicated entertainment zone with a 75-inch 4K television, and a private terrace perfect for morning yoga or evening cocktails. At the Daisy Room, every moment is designed to be extraordinary, from the champagne welcome to the personalized turndown service.",
+    pricePerNight: 11000,
+    maxGuests: 8,
+    maxBeds: 4,
+    imageUrl:
+      "11.png",
+    imageAlt: "Daisy Room",
+    images: [
+      "11.png",
+      "12.png",
+      "10.png",
+    ],
+    size: "120 m²",
+    rating: 5.0,
+    reviews: 42,
+    features: [
+      "Comfortable beds & clean linens",
+      "Attached bathroom with toiletries (soap, shampoo, towels)",
+      "Wi-Fi access",
+      "Air conditioning / heating",
+      "Television",
+      "Attached Balconies",
+    ],
     details: [
       { label: "Room Size", value: "120 m²" },
       { label: "Bed Type", value: "Emperor (2×King)" },
@@ -385,10 +395,10 @@ function RoomModal({ room, onClose }: { room: Room; onClose: () => void }) {
                 </div>
               </div>
 
-              <button className="flex items-center gap-2 bg-[#3a6349] hover:bg-[#2e4a36] text-white text-[11px] tracking-[0.16em] uppercase font-bold px-7 py-4 rounded-lg transition-all duration-200 hover:-translate-y-0.5 active:translate-y-0">
+              {/* <button className="flex items-center gap-2 bg-[#3a6349] hover:bg-[#2e4a36] text-white text-[11px] tracking-[0.16em] uppercase font-bold px-7 py-4 rounded-lg transition-all duration-200 hover:-translate-y-0.5 active:translate-y-0">
                 Book This Room
                 <ChevronRight size={14} />
-              </button>
+              </button> */}
             </div>
           </div>
         </div>
@@ -464,7 +474,7 @@ function RoomCard({ room, index, onInquire }: { room: Room; index: number; onInq
             onClick={onInquire}
             className="bg-[#3a6349] text-white text-xs font-bold uppercase tracking-widest px-6 py-3 hover:bg-[#2d4f39] transition-colors duration-200"
           >
-            Inquire Now
+            View More
           </button>
         </div>
       </div>

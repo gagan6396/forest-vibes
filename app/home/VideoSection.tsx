@@ -127,7 +127,7 @@ export default function BannerVideo() {
             href="/rooms"
             className="font-jost self-start text-[11px] font-semibold tracking-[0.2em] uppercase text-[#2d5a3d] bg-[#f0ece0] px-9 py-4 rounded-sm hover:bg-white transition-colors duration-200"
           >
-            Inquire Now
+            Rooms
           </a>
         </div>
       </section>

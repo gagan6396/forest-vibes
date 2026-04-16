@@ -55,9 +55,10 @@ export default function HeroSection() {
   const intervalRef = useRef<NodeJS.Timeout | null>(null);
 
   const roomTypes = [
-    { id: "deluxe", name: "Deluxe Room", price: 320, maxGuests: 2 },
-    { id: "junior", name: "Junior Suite", price: 520, maxGuests: 2 },
-    { id: "presidential", name: "Presidential Suite", price: 1200, maxGuests: 4 },
+    { id: "lily", name: "Lily Room", price: 11000, maxGuests: 8 },
+    { id: "daisy", name: "Daisy Room", price: 11000, maxGuests: 8 },
+    { id: "rose", name: "Rose Room", price: 11000, maxGuests: 8 },
+    { id: "iris", name: "Iris Room", price: 11000, maxGuests: 8 },
   ];
 
   // Check for mobile viewport
@@ -240,10 +241,31 @@ export default function HeroSection() {
       alert("Please select a room type");
       return;
     }
+    
     const selectedRoomData = roomTypes.find((room) => room.id === selectedRoom);
-    alert(
-      `Booking Confirmed!\n\nRoom: ${selectedRoomData?.name}\nArrival: ${arrivalDate}\nDeparture: ${departureDate}\nGuests: ${people}\nSpecial Requests: ${specialRequests || "None"}`
-    );
+    const totalPrice = calculateNights * (selectedRoomData?.price || 0);
+    
+    // Format message for WhatsApp
+    const message = `*New Booking Request*%0A%0A` +
+      `*Guest Details:*%0A` +
+      `${people} ${parseInt(people) === 1 ? "Guest" : "Guests"}%0A%0A` +
+      `*Stay Details:*%0A` +
+      `Arrival: ${new Date(arrivalDate).toLocaleDateString("en-US", { weekday: "short", month: "short", day: "numeric", year: "numeric" })}%0A` +
+      `Departure: ${new Date(departureDate).toLocaleDateString("en-US", { weekday: "short", month: "short", day: "numeric", year: "numeric" })}%0A` +
+      `Nights: ${calculateNights} nights%0A%0A` +
+      `*Room Selection:*%0A` +
+      `${selectedRoomData?.name}%0A` +
+      `Rate: ₹${selectedRoomData?.price}/night%0A` +
+      `Total: ₹${totalPrice}%0A%0A` +
+      `*Special Requests:*%0A${specialRequests || "None"}`;
+    
+    // WhatsApp number (without + or spaces)
+    const phoneNumber = "917500131319";
+    
+    // Open WhatsApp
+    window.open(`https://wa.me/${phoneNumber}?text=${message}`, "_blank");
+    
+    // Close modal and reset form
     setIsModalOpen(false);
     setArrivalDate("");
     setDepartureDate("");

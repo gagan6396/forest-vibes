@@ -22,7 +22,7 @@ export default function LocationSection() {
         </svg>
       ),
       stat: "45 mins",
-      sub: "From Mussoorie railway station",
+      sub: "From railway station",
       label: "Railway",
       highlight: true,
     },

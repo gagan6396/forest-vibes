@@ -208,7 +208,7 @@ function SpecialOffersSection() {
             Unlock exclusive deals and packages for your next getaway at Forrest Vibes. Take advantage of our special offers and make your stay even more memorable.
           </p>
           <button className="bg-[#3a6349] text-white text-[11px] font-bold uppercase tracking-widest px-8 py-3 hover:bg-[#2d4f39] transition-colors">
-            Inquire Now
+            Contact Us
           </button>
         </div>
       </div>

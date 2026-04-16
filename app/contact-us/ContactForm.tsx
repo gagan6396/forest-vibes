@@ -5,11 +5,38 @@ import { useState } from "react";
 export default function ContactForm() {
   const [focused, setFocused] = useState<string | null>(null);
   const [submitted, setSubmitted] = useState(false);
+  const [formData, setFormData] = useState({
+    firstName: "",
+    lastName: "",
+    email: "",
+    phone: "",
+    message: ""
+  });
 
   const field = (name: string) =>
     `w-full bg-transparent border-b py-4 text-[15px] font-light text-black placeholder:text-[#888] outline-none transition-colors duration-300 ${
       focused === name ? "border-[#3a6349]" : "border-[#ccc]"
     }`;
+
+  const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
+    const { name, value } = e.target;
+    setFormData(prev => ({ ...prev, [name]: value }));
+  };
+
+  const handleSubmit = (e: React.FormEvent) => {
+    e.preventDefault();
+    
+    // Format message for WhatsApp
+    const message = `*New Contact Form Submission*%0A%0A*First Name:* ${formData.firstName}%0A*Last Name:* ${formData.lastName}%0A*Email:* ${formData.email}%0A*Phone:* ${formData.phone}%0A*Message:* ${formData.message}`;
+    
+    // WhatsApp number (without + or spaces)
+    const phoneNumber = "917500131319";
+    
+    // Open WhatsApp
+    window.open(`https://wa.me/${phoneNumber}?text=${message}`, "_blank");
+    
+    setSubmitted(true);
+  };
 
   return (
     <section className="bg-[#f5f2eb] px-6 py-24 md:px-20 md:py-18">
@@ -43,41 +70,98 @@ export default function ContactForm() {
                 <p className="text-[14px] text-black font-light leading-relaxed">
                   We've received your message and will be in touch shortly.
                 </p>
+                <button
+                  onClick={() => {
+                    setSubmitted(false);
+                    setFormData({
+                      firstName: "",
+                      lastName: "",
+                      email: "",
+                      phone: "",
+                      message: ""
+                    });
+                  }}
+                  className="mt-4 text-[11px] uppercase tracking-[0.2em] text-[#3a6349] hover:text-[#2d4f39] transition-colors"
+                >
+                  Send Another Message
+                </button>
               </div>
             ) : (
-              <form
-                className="space-y-9"
-                onSubmit={(e) => { e.preventDefault(); setSubmitted(true); }}
-              >
+              <form className="space-y-9" onSubmit={handleSubmit}>
                 <div className="grid grid-cols-2 gap-8">
                   <div>
                     <label className="text-[10px] uppercase tracking-[0.2em] text-black font-light block mb-1">First Name</label>
-                    <input type="text" placeholder="First Name" className={field("first")}
-                      onFocus={() => setFocused("first")} onBlur={() => setFocused(null)} />
+                    <input 
+                      type="text" 
+                      name="firstName"
+                      value={formData.firstName}
+                      onChange={handleChange}
+                      placeholder="First Name" 
+                      className={field("first")}
+                      onFocus={() => setFocused("first")} 
+                      onBlur={() => setFocused(null)}
+                      required
+                    />
                   </div>
                   <div>
                     <label className="text-[10px] uppercase tracking-[0.2em] text-black font-light block mb-1">Last Name</label>
-                    <input type="text" placeholder="Last Name" className={field("last")}
-                      onFocus={() => setFocused("last")} onBlur={() => setFocused(null)} />
+                    <input 
+                      type="text" 
+                      name="lastName"
+                      value={formData.lastName}
+                      onChange={handleChange}
+                      placeholder="Last Name" 
+                      className={field("last")}
+                      onFocus={() => setFocused("last")} 
+                      onBlur={() => setFocused(null)}
+                      required
+                    />
                   </div>
                 </div>
 
                 <div>
                   <label className="text-[10px] uppercase tracking-[0.2em] text-black font-light block mb-1">Email Address</label>
-                  <input type="email" placeholder="username@gmail.com" className={field("email")}
-                    onFocus={() => setFocused("email")} onBlur={() => setFocused(null)} />
+                  <input 
+                    type="email" 
+                    name="email"
+                    value={formData.email}
+                    onChange={handleChange}
+                    placeholder="username@gmail.com" 
+                    className={field("email")}
+                    onFocus={() => setFocused("email")} 
+                    onBlur={() => setFocused(null)}
+                    required
+                  />
                 </div>
 
                 <div>
                   <label className="text-[10px] uppercase tracking-[0.2em] text-black font-light block mb-1">Phone Number</label>
-                  <input type="tel" placeholder="Your number here..." className={field("phone")}
-                    onFocus={() => setFocused("phone")} onBlur={() => setFocused(null)} />
+                  <input 
+                    type="tel" 
+                    name="phone"
+                    value={formData.phone}
+                    onChange={handleChange}
+                    placeholder="Your number here..." 
+                    className={field("phone")}
+                    onFocus={() => setFocused("phone")} 
+                    onBlur={() => setFocused(null)}
+                    required
+                  />
                 </div>
 
                 <div>
                   <label className="text-[10px] uppercase tracking-[0.2em] text-black font-light block mb-1">Your Message</label>
-                  <textarea rows={5} placeholder="How can we help you?" className={`${field("msg")} resize-none`}
-                    onFocus={() => setFocused("msg")} onBlur={() => setFocused(null)} />
+                  <textarea 
+                    rows={5} 
+                    name="message"
+                    value={formData.message}
+                    onChange={handleChange}
+                    placeholder="How can we help you?" 
+                    className={`${field("msg")} resize-none`}
+                    onFocus={() => setFocused("msg")} 
+                    onBlur={() => setFocused(null)}
+                    required
+                  />
                 </div>
 
                 <button
@@ -97,7 +181,7 @@ export default function ContactForm() {
             <div className="flex-1" style={{ minHeight: "380px" }}>
               <iframe
                 title="Forrest Vibes Location"
-                src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3113.2!2d-9.1523!3d38.7223!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0xd1933a6e6f6f6f7%3A0x0!2sAvenida+Miguel+Bombarda%2C+Lisboa!5e0!3m2!1sen!2spt!4v1"
+                src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3443.500319459191!2d78.10797629999999!3d30.336727800000002!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x390929078a97851b%3A0xcb105f6510d2c922!2sFORREST%20VIBES!5e0!3m2!1sen!2sin!4v1776322226763!5m2!1sen!2sin"
                 width="100%"
                 height="100%"
                 style={{ border: 0, display: "block", minHeight: "380px" }}
