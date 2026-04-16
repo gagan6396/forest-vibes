@@ -38,7 +38,7 @@ export default function AboutUs() {
         .rv-r.on { opacity:1; transform:none; }
 
         .banner-bg {
-          background-image: url('abbt.png');
+          background-image: url('38.png');
           background-size: cover;
           background-position: center 40%;
         }
@@ -56,8 +56,6 @@ export default function AboutUs() {
             rgba(10,14,10,0.18) 100%
           );
         }
-
-        
 
         .img-hover { overflow:hidden; border-radius: 12px; }
         .img-hover img {
