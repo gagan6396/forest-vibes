@@ -7,7 +7,7 @@ export default function HotelBanner() {
 
       <section className="relative w-full h-[500px] overflow-hidden">
         <img
-          src="https://images.unsplash.com/photo-1631049307264-da0ec9d70304?w=1400&q=80"
+          src="rooms.jpeg"
           alt="Hotel room"
           className="w-full h-full object-cover object-center"
         />
