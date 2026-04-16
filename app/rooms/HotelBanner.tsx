@@ -28,12 +28,12 @@ export default function HotelBanner() {
           >
             Forrest Vibes isn't just a place to sleep — it's where you exhale. Come as a guest, leave as a regular.
           </p>
-          <button
+          {/* <button
             className="w-fit px-7 py-3 bg-[#3b5e45] text-white text-[11px] tracking-[0.16em] uppercase font-bold rounded-md"
             style={{ fontFamily: "'Lato', sans-serif" }}
           >
             Book Now
-          </button>
+          </button> */}
         </div>
       </section>
     </>

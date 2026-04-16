@@ -2,6 +2,7 @@
 
 import { useState, useEffect } from "react";
 import { Users, BedDouble, Wifi, Monitor, Award, Home, X, ChevronRight, Star, Bath, Coffee, Tv, Wind } from "lucide-react";
+import Link from "next/link";
 
 type Amenity = {
   icon: React.ReactNode;
@@ -754,9 +755,11 @@ export default function RoomsSection() {
             <p className="text-[12.5px] text-[#666] leading-relaxed mb-8">
               Unlock exclusive deals and packages for your next getaway at Forrest Vibes. Take advantage of our special offers and make your stay even more memorable.
             </p>
+            <Link href="/contact-us">
             <button className="bg-[#3a6349] text-white text-[11px] font-bold uppercase tracking-widest px-8 py-3 hover:bg-[#2d4f39] transition-colors">
               Contact Us
             </button>
+            </Link>
           </div>
         </div>
       </section>

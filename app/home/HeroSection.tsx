@@ -1,5 +1,6 @@
 "use client";
 
+import Link from "next/link";
 import { useState, useCallback, useMemo, useEffect, useRef } from "react";
 
 // Slide data with mobile and desktop images
@@ -503,11 +504,12 @@ export default function HeroSection() {
                       </p>
 
                       <div className="flex items-center gap-4 md:gap-5 anim-fade-up-4">
-                        <button
+                       <Link href="/rooms">
+                       <button
                           className="btn-primary-hero inline-flex items-center gap-2 px-5 py-2.5 md:px-7 md:py-3 bg-[#2d5a3d] text-[#f5f0e8] text-[9px] md:text-[10px] tracking-[0.18em] uppercase font-[400] border-none cursor-pointer transition-colors duration-200 hover:bg-[#1e3f2b]"
                           style={{ fontFamily: "'Outfit', sans-serif" }}
                         >
-                          Explore Stays
+                          Explore Rooms
                           <svg
                             className="cta-arrow w-3 h-3 md:w-4 md:h-4"
                             fill="none"
@@ -518,6 +520,7 @@ export default function HeroSection() {
                             <path d="M5 12h14M12 5l7 7-7 7" />
                           </svg>
                         </button>
+                       </Link>
                       </div>
                     </div>
                   </div>
