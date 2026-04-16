@@ -57,6 +57,8 @@ export default function AboutUs() {
           );
         }
 
+        
+
         .img-hover { overflow:hidden; border-radius: 12px; }
         .img-hover img {
           display:block; width:100%; height:100%; object-fit:cover;
