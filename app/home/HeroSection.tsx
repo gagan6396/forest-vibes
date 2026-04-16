@@ -7,7 +7,7 @@ const slides = [
   {
     id: 1,
     imageDesktop: "bann1.webp",
-    imageMobile: "home-1.jpeg",
+    imageMobile: "home2.jpeg",
     title: "Your Home Away,",
     emphasis: "Reimagined",
     subtitle: "for the Extraordinary",
