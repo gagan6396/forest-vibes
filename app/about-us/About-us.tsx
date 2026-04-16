@@ -38,7 +38,7 @@ export default function AboutUs() {
         .rv-r.on { opacity:1; transform:none; }
 
         .banner-bg {
-          background-image: url('42.jpg');
+          background-image: url('abt2.webp');
           background-size: cover;
           background-position: center 40%;
         }
