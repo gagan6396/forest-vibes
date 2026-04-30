@@ -27,7 +27,30 @@ export default function RootLayout({
       lang="en"
       className={`${geistSans.variable} ${geistMono.variable} h-full antialiased`}
     >
-      <body className="min-h-full bg-white flex flex-col">{children}</body>
+      <body className="min-h-full bg-white flex flex-col">
+        {children}
+
+        {/* WhatsApp Sticky Button */}
+        <a
+          href="https://wa.me/917500131319" // 🔁 Replace with your WhatsApp number
+          target="_blank"
+          rel="noopener noreferrer"
+          aria-label="Chat on WhatsApp"
+          className="fixed bottom-6 right-6 z-50 flex items-center justify-center w-14 h-14 rounded-full shadow-lg transition-transform duration-200 hover:scale-110 active:scale-95"
+          style={{ backgroundColor: "#25D366" }}
+        >
+          {/* WhatsApp SVG Icon */}
+          <svg
+            xmlns="http://www.w3.org/2000/svg"
+            viewBox="0 0 32 32"
+            width="30"
+            height="30"
+            fill="white"
+          >
+            <path d="M16 0C7.164 0 0 7.163 0 16c0 2.824.737 5.478 2.027 7.788L0 32l8.468-2.004A15.93 15.93 0 0 0 16 32c8.836 0 16-7.163 16-16S24.836 0 16 0zm0 29.333a13.27 13.27 0 0 1-6.784-1.858l-.486-.29-5.026 1.19 1.215-4.898-.317-.502A13.26 13.26 0 0 1 2.667 16C2.667 8.637 8.637 2.667 16 2.667S29.333 8.637 29.333 16 23.363 29.333 16 29.333zm7.27-9.878c-.398-.2-2.355-1.162-2.72-1.294-.366-.133-.632-.2-.898.2-.266.398-1.031 1.294-1.264 1.56-.232.266-.465.3-.863.1-.398-.2-1.68-.619-3.2-1.974-1.183-1.055-1.981-2.357-2.213-2.755-.232-.398-.025-.613.174-.811.18-.178.398-.465.598-.698.2-.233.266-.399.398-.665.133-.266.067-.499-.033-.698-.1-.2-.898-2.164-1.23-2.963-.324-.778-.655-.673-.898-.685-.232-.011-.499-.014-.765-.014-.266 0-.698.1-1.064.499-.366.398-1.397 1.365-1.397 3.329s1.43 3.862 1.629 4.128c.2.266 2.814 4.297 6.818 6.027.953.411 1.697.657 2.277.841.956.304 1.828.261 2.516.158.768-.114 2.355-.963 2.688-1.893.333-.93.333-1.727.232-1.893-.099-.166-.365-.266-.763-.466z" />
+          </svg>
+        </a>
+      </body>
     </html>
   );
 }
