@@ -13,8 +13,8 @@ const geistMono = Geist_Mono({
 });
 
 export const metadata: Metadata = {
-  title: "Forrest Vibes",
-  description: "Forrest Vibes",
+  title: "Forrest Vibes | Luxury Nature Resort & Stay",
+  description: " Looking for the best nature retreat? Forrest Vibes offers luxury cottages, organic dining, and scenic forest trails. Perfect for families, couples, and nature lovers.",
 };
 
 export default function RootLayout({
@@ -27,6 +27,7 @@ export default function RootLayout({
       lang="en"
       className={`${geistSans.variable} ${geistMono.variable} h-full antialiased`}
     >
+       <link rel="canonical" href="https://forrestvibes.com/" />
       <body className="min-h-full bg-white flex flex-col">
         {children}
 
