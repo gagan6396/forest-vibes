@@ -16,7 +16,14 @@ export const metadata: Metadata = {
   title: "Forrest Vibes | Luxury Nature Resort & Stay",
   description: " Looking for the best nature retreat? Forrest Vibes offers luxury cottages, organic dining, and scenic forest trails. Perfect for families, couples, and nature lovers.",
 };
-
+const schemaData = {
+  "@context": "https://schema.org",
+  "@type": "LodgingBusiness",
+  name: "Forrest Vibes",
+  url: "https://forrestvibes.com",
+  telephone: "+917500131319",
+  description: "Luxury nature resort with cottages, organic dining, and forest trails.",
+}
 export default function RootLayout({
   children,
 }: Readonly<{
@@ -27,6 +34,10 @@ export default function RootLayout({
       lang="en"
       className={`${geistSans.variable} ${geistMono.variable} h-full antialiased`}
     >
+       <script
+    type="application/ld+json"
+    dangerouslySetInnerHTML={{ __html: JSON.stringify(schemaData) }}
+  />
        <link rel="canonical" href="https://forrestvibes.com/" />
       <body className="min-h-full bg-white flex flex-col">
         {children}
