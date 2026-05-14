@@ -24,7 +24,7 @@ const quickLinks = [
 const contactInfo = {
   address: "Moza Bajhet, Khasra no- 51, Bajhet, Raipur PO:Raipur, DIST: Dehradun, Uttarakhand - 248008",
   phone: "+91 7500131319",
-  email: "stay@forestvibes.in",
+  email: "forrestvibesuk@gmail.com",
 };
 
 const socials = [

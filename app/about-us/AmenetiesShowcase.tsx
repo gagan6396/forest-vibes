@@ -68,9 +68,127 @@ const amenities = [
   },
 ];
 
+// Set to an empty array to show "stay tuned" state, or populate with offers
+const offers: { title: string; badge: string; description: string; validity: string }[] = [
+  // Example — uncomment to test the offers state:
+  // {
+  //   title: "Weekend Escape",
+  //   badge: "15% Off",
+  //   description: "Book any weekend stay and enjoy 15% off your entire booking, including meals.",
+  //   validity: "Valid till 30 June 2025",
+  // },
+];
+
+function OffersModal({ onClose }: { onClose: () => void }) {
+  useEffect(() => {
+    const handleKey = (e: KeyboardEvent) => { if (e.key === "Escape") onClose(); };
+    document.addEventListener("keydown", handleKey);
+    document.body.style.overflow = "hidden";
+    return () => {
+      document.removeEventListener("keydown", handleKey);
+      document.body.style.overflow = "";
+    };
+  }, [onClose]);
+
+  return (
+    <div
+      className="fixed inset-0 z-50 flex items-center justify-center px-4"
+      style={{ backgroundColor: "rgba(10, 22, 16, 0.6)", backdropFilter: "blur(4px)" }}
+      onClick={onClose}
+    >
+      <div
+        className="relative bg-[#f5f8f6] w-full max-w-lg shadow-2xl"
+        style={{ borderRadius: "2px", maxHeight: "90vh", overflowY: "auto" }}
+        onClick={(e) => e.stopPropagation()}
+      >
+        {/* Modal header */}
+        <div className="bg-[#2d4a3e] px-8 py-7 flex items-start justify-between">
+          <div>
+            <p className="text-[9px] font-[400] tracking-[0.25em] uppercase text-[#7dbfa0] mb-2">
+              Forrest Vibes 
+            </p>
+            <h3
+              className="text-white text-[1.4rem] font-light leading-[1.2]"
+              style={{ fontFamily: "'Georgia', serif" }}
+            >
+              Special <em className="italic">Offers</em>
+            </h3>
+          </div>
+          <button
+            onClick={onClose}
+            className="text-[#7dbfa0] hover:text-white transition-colors duration-200 mt-1 text-[18px] leading-none"
+            aria-label="Close"
+          >
+            ✕
+          </button>
+        </div>
+
+        {/* Modal body */}
+        <div className="px-8 py-8">
+          {offers.length === 0 ? (
+            /* Empty state */
+            <div className="flex flex-col items-center text-center py-8">
+              <div className="text-[44px] mb-5">🌿</div>
+              <p
+                className="text-[#2d4a3e] text-[1.15rem] font-light leading-[1.3] mb-3"
+                style={{ fontFamily: "'Georgia', serif" }}
+              >
+                Something exciting is <em className="italic">coming soon</em>
+              </p>
+              <div className="w-8 h-px bg-[#c2ddd3] mb-4" />
+              <p className="text-[12px] font-light text-[#7a9e90] leading-[1.8] max-w-xs">
+                We're crafting exclusive offers tailored just for you. Stay tuned — great deals are on their way.
+              </p>
+              <div
+                className="mt-8 px-6 py-3 border border-[#c2ddd3] text-[9px] tracking-[0.2em] uppercase text-[#2d4a3e] font-light cursor-default"
+                style={{ borderRadius: "1px" }}
+              >
+                Check Back Soon
+              </div>
+            </div>
+          ) : (
+            /* Offers list */
+            <div className="space-y-4">
+              {offers.map((offer, i) => (
+                <div
+                  key={i}
+                  className="bg-white border border-[#dceee7] px-6 py-5"
+                  style={{ borderRadius: "2px" }}
+                >
+                  <div className="flex items-start justify-between gap-4 mb-2">
+                    <p
+                      className="text-[#2d4a3e] text-[1rem] font-light"
+                      style={{ fontFamily: "'Georgia', serif" }}
+                    >
+                      {offer.title}
+                    </p>
+                    <span className="flex-shrink-0 bg-[#2d4a3e] text-white text-[9px] tracking-[0.15em] uppercase px-2.5 py-1 font-light">
+                      {offer.badge}
+                    </span>
+                  </div>
+                  <p className="text-[12px] font-light text-[#7a9e90] leading-[1.75] mb-3">
+                    {offer.description}
+                  </p>
+                  <div className="flex items-center gap-2">
+                    <div className="w-3 h-px bg-[#7dbfa0]" />
+                    <span className="text-[10px] font-light tracking-[0.12em] text-[#a8c4b8]">
+                      {offer.validity}
+                    </span>
+                  </div>
+                </div>
+              ))}
+            </div>
+          )}
+        </div>
+      </div>
+    </div>
+  );
+}
+
 export default function AmenitiesShowcase() {
   const [hovered, setHovered] = useState<number | null>(null);
   const [visible, setVisible] = useState(false);
+  const [showOffers, setShowOffers] = useState(false);
 
   useEffect(() => {
     const t = setTimeout(() => setVisible(true), 80);
@@ -79,128 +197,116 @@ export default function AmenitiesShowcase() {
 
   return (
     <>
-   <section className="bg-[#f0f7f4] px-6 py-12 md:px-24 md:py-16">
-      <div className="max-w-3xl mx-auto">
+      {showOffers && <OffersModal onClose={() => setShowOffers(false)} />}
 
-        {/* Header */}
-        <div className={`mb-10 transition-all duration-700 ${visible ? "opacity-100 translate-y-0" : "opacity-0 translate-y-4"}`}>
-          <p className="font-light text-[10px] tracking-[0.22em] uppercase text-[#7a9e90] mb-3">
-            Crafted for You
-          </p>
-          <h2 className="font-serif italic font-light text-[#2d4a3e] text-4xl md:text-5xl leading-[1.08]">
-            Our Amenities
-          </h2>
-        </div>
+      <section className="bg-[#f0f7f4] px-6 py-12 md:px-24 md:py-16">
+        <div className="max-w-3xl mx-auto">
 
-        {/* List */}
-        <div className={`transition-all duration-700 delay-200 ${visible ? "opacity-100" : "opacity-0"}`}>
-          {amenities.map((a, i) => (
-            <div
-              key={a.id}
-              onMouseEnter={() => setHovered(i)}
-              onMouseLeave={() => setHovered(null)}
-              className="group border-t border-[#c2ddd3] py-5 cursor-default"
-            >
-              <div className="flex items-start gap-6">
+          {/* Header */}
+          <div className={`mb-10 transition-all duration-700 ${visible ? "opacity-100 translate-y-0" : "opacity-0 translate-y-4"}`}>
+            <p className="font-light text-[10px] tracking-[0.22em] uppercase text-[#7a9e90] mb-3">
+              Crafted for You
+            </p>
+            <h2 className="font-serif italic font-light text-[#2d4a3e] text-4xl md:text-5xl leading-[1.08]">
+              Our Amenities
+            </h2>
+          </div>
 
-                {/* Number */}
-                <span className={`font-light text-[10px] tracking-[0.12em] pt-0.5 transition-colors duration-300 flex-shrink-0 ${hovered === i ? "text-[#7dbfa0]" : "text-[#b8d4c8]"}`}>
-                  {a.number}
-                </span>
+          {/* List */}
+          <div className={`transition-all duration-700 delay-200 ${visible ? "opacity-100" : "opacity-0"}`}>
+            {amenities.map((a, i) => (
+              <div
+                key={a.id}
+                onMouseEnter={() => setHovered(i)}
+                onMouseLeave={() => setHovered(null)}
+                className="group border-t border-[#c2ddd3] py-5 cursor-default"
+              >
+                <div className="flex items-start gap-6">
 
-                {/* Main content */}
-                <div className="flex-1 min-w-0">
-                  <div className="flex items-baseline justify-between gap-4 mb-2">
-                    <div>
-                      <span className={`font-serif italic font-light text-xl md:text-2xl transition-colors duration-300 ${hovered === i ? "text-[#2d4a3e]" : "text-[#4a7060]"}`}>
-                        {a.label}
+                  {/* Number */}
+                  <span className={`font-light text-[10px] tracking-[0.12em] pt-0.5 transition-colors duration-300 flex-shrink-0 ${hovered === i ? "text-[#7dbfa0]" : "text-[#b8d4c8]"}`}>
+                    {a.number}
+                  </span>
+
+                  {/* Main content */}
+                  <div className="flex-1 min-w-0">
+                    <div className="flex items-baseline justify-between gap-4 mb-2">
+                      <div>
+                        <span className={`font-serif italic font-light text-xl md:text-2xl transition-colors duration-300 ${hovered === i ? "text-[#2d4a3e]" : "text-[#4a7060]"}`}>
+                          {a.label}
+                        </span>
+                      </div>
+                      <span className={`font-light text-xs transition-all duration-300 flex-shrink-0 ${hovered === i ? "text-[#7dbfa0] translate-x-1" : "text-[#c2ddd3] translate-x-0"}`}>
+                        →
                       </span>
                     </div>
-                    {/* Arrow */}
-                    <span className={`font-light text-xs transition-all duration-300 flex-shrink-0 ${hovered === i ? "text-[#7dbfa0] translate-x-1" : "text-[#c2ddd3] translate-x-0"}`}>
-                      →
-                    </span>
-                  </div>
 
-                  {/* Description — reveals on hover */}
-                  <div className={`overflow-hidden transition-all duration-500 ease-in-out ${hovered === i ? "max-h-32 opacity-100" : "max-h-0 opacity-0"}`}>
-                    <p className="font-light text-xs leading-[1.8] text-[#7a9e90] mb-3">
-                      {a.description}
-                    </p>
-                    <div className="flex flex-wrap gap-x-5 gap-y-1">
-                      {a.details.map((d) => (
-                        <span key={d} className="flex items-center gap-1.5 font-light text-[10px] text-[#7a9e90]">
-                          <span className="w-[2px] h-[2px] rounded-full bg-[#7dbfa0] flex-shrink-0" />
-                          {d}
-                        </span>
-                      ))}
+                    <div className={`overflow-hidden transition-all duration-500 ease-in-out ${hovered === i ? "max-h-32 opacity-100" : "max-h-0 opacity-0"}`}>
+                      <p className="font-light text-xs leading-[1.8] text-[#7a9e90] mb-3">
+                        {a.description}
+                      </p>
+                      <div className="flex flex-wrap gap-x-5 gap-y-1">
+                        {a.details.map((d) => (
+                          <span key={d} className="flex items-center gap-1.5 font-light text-[10px] text-[#7a9e90]">
+                            <span className="w-[2px] h-[2px] rounded-full bg-[#7dbfa0] flex-shrink-0" />
+                            {d}
+                          </span>
+                        ))}
+                      </div>
                     </div>
                   </div>
+
                 </div>
-
               </div>
-            </div>
-          ))}
-          <div className="border-t border-[#c2ddd3]" />
-        </div>
+            ))}
+            <div className="border-t border-[#c2ddd3]" />
+          </div>
 
-        {/* Footer */}
-        <div className={`mt-10 flex items-center justify-between transition-all duration-700 delay-500 ${visible ? "opacity-100" : "opacity-0"}`}>
-          <span className="font-light text-[9px] tracking-[0.22em] uppercase text-[#a8c4b8]">
-            Forrest Vibes Hotel
-          </span>
-          <button className="group flex items-center gap-3 font-light text-[9px] tracking-[0.2em] uppercase text-[#2d4a3e] hover:text-[#7dbfa0] transition-colors duration-300">
-            Reserve a Stay
-            <span className="w-5 h-px bg-current group-hover:w-8 transition-all duration-500" />
-          </button>
-        </div>
+          {/* Footer */}
+          <div className={`mt-10 flex items-center justify-between transition-all duration-700 delay-500 ${visible ? "opacity-100" : "opacity-0"}`}>
+            <span className="font-light text-[9px] tracking-[0.22em] uppercase text-[#a8c4b8]">
+              Forrest Vibes Hotel
+            </span>
+            <button className="group flex items-center gap-3 font-light text-[9px] tracking-[0.2em] uppercase text-[#2d4a3e] hover:text-[#7dbfa0] transition-colors duration-300">
+              Reserve a Stay
+              <span className="w-5 h-px bg-current group-hover:w-8 transition-all duration-500" />
+            </button>
+          </div>
 
-      </div>
-    </section>
-    <section className="relative min-h-[580px] overflow-hidden flex items-center">
-      {/* Background image */}
-      <img
-        src="forest3.png"
-        alt="Forest retreat with bonfire"
-        className="absolute inset-0 w-full h-full object-cover"
-      />
- 
-      {/* Very light dark veil — matches the page's subtle overlays */}
-      <div className="absolute inset-0 bg-black/25" />
- 
-      {/* Floating card — bottom-left, matching screenshot exactly */}
-      <div className="relative z-10 w-full px-8 md:px-16 py-14 flex items-end min-h-[580px]">
-        <div className="bg-white w-full max-w-[360px] px-9 py-10 shadow-sm">
- 
-          {/* Eyebrow */}
-          <p className="font-serif italic text-[11px] text-[#999] tracking-wide mb-4">
-            Crafted for You
-          </p>
- 
-          {/* Heading — matches "A decade of making people feel at home" style */}
-          <h2 className="font-serif font-light text-[#1a1a1a] text-[1.75rem] leading-[1.25] tracking-tight mb-4">
-            Discover Special Offers{" "}
-            <em className="italic text-[#3a6349]">Just For You</em>{" "}
-            Today
-          </h2>
- 
-          {/* Thin divider */}
-          <div className="w-8 h-px bg-[#c8ddd3] mb-5" />
- 
-          {/* Body */}
-          <p className="text-[12px] text-[#888] leading-[1.85] mb-8 font-light">
-            Unlock exclusive deals and packages for your next getaway at Forrest Vibes.
-            Take advantage of our special offers and make your stay even more memorable.
-          </p>
- 
-          {/* CTA — matches "EXPLORE OFFER" button from the page */}
-          <button className="bg-[#3a6349] text-white text-[10px] font-semibold uppercase tracking-[0.2em] px-8 py-3 hover:bg-[#2d4f39] transition-colors duration-300">
-            Explore Offer
-          </button>
- 
         </div>
-      </div>
-    </section>
+      </section>
+
+      <section className="relative min-h-[580px] overflow-hidden flex items-center">
+        <img
+          src="forest3.png"
+          alt="Forest retreat with bonfire"
+          className="absolute inset-0 w-full h-full object-cover"
+        />
+        <div className="absolute inset-0 bg-black/25" />
+        <div className="relative z-10 w-full px-8 md:px-16 py-14 flex items-end min-h-[580px]">
+          <div className="bg-white w-full max-w-[360px] px-9 py-10 shadow-sm">
+            <p className="font-serif italic text-[11px] text-[#999] tracking-wide mb-4">
+              Crafted for You
+            </p>
+            <h2 className="font-serif font-light text-[#1a1a1a] text-[1.75rem] leading-[1.25] tracking-tight mb-4">
+              Discover Special Offers{" "}
+              <em className="italic text-[#3a6349]">Just For You</em>{" "}
+              Today
+            </h2>
+            <div className="w-8 h-px bg-[#c8ddd3] mb-5" />
+            <p className="text-[12px] text-[#888] leading-[1.85] mb-8 font-light">
+              Unlock exclusive deals and packages for your next getaway at Forrest Vibes.
+              Take advantage of our special offers and make your stay even more memorable.
+            </p>
+            <button
+              onClick={() => setShowOffers(true)}
+              className="bg-[#3a6349] text-white text-[10px] font-semibold uppercase tracking-[0.2em] px-8 py-3 hover:bg-[#2d4f39] transition-colors duration-300"
+            >
+              Explore Offer
+            </button>
+          </div>
+        </div>
+      </section>
     </>
   );
 }
