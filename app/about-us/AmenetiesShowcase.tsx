@@ -24,13 +24,13 @@ const amenities = [
     description: "Explore our curated forest trails that wind through pristine natural landscapes. Perfect for morning walks, bird watching, and connecting with nature.",
     details: ["Guided treks", "Self-guided trails", "Bird watching spots", "Nature photography"],
   },
-  {
-    id: "birdhouse",
-    number: "04",
-    label: "Bird House",
-    description: "A dedicated sanctuary for our feathered friends. Observe a variety of native and migratory birds in their natural habitat, right on our property.",
-    details: ["Native bird species", "Migratory birds", "Bird feeding stations", "Photography hides"],
-  },
+  // {
+  //   id: "birdhouse",
+  //   number: "04",
+  //   label: "Bird House",
+  //   description: "A dedicated sanctuary for our feathered friends. Observe a variety of native and migratory birds in their natural habitat, right on our property.",
+  //   details: ["Native bird species", "Migratory birds", "Bird feeding stations", "Photography hides"],
+  // },
   {
     id: "parking",
     number: "05",
@@ -52,13 +52,13 @@ const amenities = [
     description: "Visit our working farm where we raise happy, healthy poultry and grow fresh produce. Experience sustainable farming practices firsthand.",
     details: ["Farm tours", "Fresh eggs daily", "Meet the animals", "Sustainable practices"],
   },
-  {
-    id: "organic",
-    number: "08",
-    label: "Organic Produce",
-    description: "We grow our own organic vegetables, cold-press our own oils, and grind fresh flour in our traditional atta chakki. Taste the difference of truly fresh ingredients.",
-    details: ["Organic vegetables", "Cold-pressed oils", "Fresh atta (flour)", "Traditional chakki"],
-  },
+  // {
+  //   id: "organic",
+  //   number: "08",
+  //   label: "Organic Produce",
+  //   description: "We grow our own organic vegetables, cold-press our own oils, and grind fresh flour in our traditional atta chakki. Taste the difference of truly fresh ingredients.",
+  //   details: ["Organic vegetables", "Cold-pressed oils", "Fresh atta (flour)", "Traditional chakki"],
+  // },
   {
     id: "pottery",
     number: "09",
