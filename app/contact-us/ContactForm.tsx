@@ -197,7 +197,7 @@ export default function ContactForm() {
               <div className="space-y-6">
                 {[
                   { label: "Address", value: "Moza Bajhet, Khasra no- 51, Bajhet, Raipur PO:Raipur, DIST: Dehradun, Uttarakhand - 248008" },
-                  { label: "Email", value: "username@gmail.com" },
+                  { label: "Email", value: "forrestvibesuk@gmail.com" },
                   { label: "Phone", value: "+91 7500131319" },
                   // { label: "Reception", value: "Open 24 / 7" },
                 ].map((item) => (

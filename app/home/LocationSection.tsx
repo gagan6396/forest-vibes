@@ -21,7 +21,7 @@ export default function LocationSection() {
           <path d="M16 7V5a2 2 0 0 0-4 0v2M8 11h8M8 15h5"/>
         </svg>
       ),
-      stat: "45 mins",
+      stat: "31 mins",
       sub: "From railway station",
       label: "Railway",
       highlight: true,
@@ -32,7 +32,7 @@ export default function LocationSection() {
           <path d="M21 16v-2l-8-5V3.5a1.5 1.5 0 0 0-3 0V9l-8 5v2l8-2.5V19l-2 1.5V22l3.5-1 3.5 1v-1.5L13 19v-5.5l8 2.5z"/>
         </svg>
       ),
-      stat: "75 mins",
+      stat: "45 mins",
       sub: "From Jolly Grant Airport, Dehradun",
       label: "Airport",
       highlight: false,

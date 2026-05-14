@@ -188,6 +188,22 @@ export default function PoolSection() {
                 </div>
               </div>
 
+              {/* Changing rooms note — standalone highlighted block */}
+              <div
+                className="flex items-start gap-3 px-4 py-4 border-l-[3px] border-[#2d5a3d] bg-white"
+                style={{ borderRadius: "2px", boxShadow: "0 6px 24px rgba(30,50,30,0.06)" }}
+              >
+                <span className="text-[20px] flex-shrink-0 mt-0.5">🚿</span>
+                <div>
+                  <p className="text-[10px] font-[500] tracking-[0.18em] uppercase text-[#2d5a3d] mb-1">
+                    Important Info
+                  </p>
+                  <p className="text-[13px] font-[400] text-[#3a3530] leading-[1.6]">
+                    Changing and shower rooms are available poolside.
+                  </p>
+                </div>
+              </div>
+
               {/* Complimentary note */}
               <div
                 className="bg-[#2d5a3d] px-5 py-5"
