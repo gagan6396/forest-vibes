@@ -141,10 +141,10 @@ export default function AboutUs() {
                 {/* Stats */}
                 <div className={`rv d3 ${s1.inView ? "on" : ""} grid grid-cols-2 sm:grid-cols-4 gap-y-6 gap-x-4 border-t border-[#2d5a3d]/[0.14] pt-7`}>
                   {[
-                    { n: "48",   l: "Properties" },
-                    { n: "19",   l: "Destinations" },
-                    { n: "12K+", l: "Stays" },
-                    { n: "11",   l: "Team members" },
+                    { n: "4",   l: "Rooms" },
+                    { n: "24/7",   l: "Personalized Service" },
+                    { n: "4.9★", l: "Average Rating" },
+                    { n: "∞",   l: "Memories" },
                   ].map((s) => (
                     <div key={s.l} className="flex flex-col gap-1">
                       <span
