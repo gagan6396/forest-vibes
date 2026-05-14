@@ -4,7 +4,7 @@ import { useState } from "react";
 
 // ─── Config — edit these to customise ────────────────────────────────────────
 
-const SITE_NAME = "Forest Vibes";
+const SITE_NAME = "Forrest Vibes";
 const SITE_TAGLINE =
   "A sanctuary nestled in nature. Where every breath of fresh air and every rustle of leaves reminds you that you belong here.";
 
@@ -234,7 +234,7 @@ export default function Footer() {
       <div className="border-t border-[#d8d4c8]">
         <div className="max-w-6xl mx-auto px-6 py-5 flex flex-col sm:flex-row items-center justify-between gap-3">
           <p className="text-[11.5px] text-[#999]">
-            © {new Date().getFullYear()} Forest Vibes. All rights reserved.
+            © {new Date().getFullYear()} Forrest Vibes. All rights reserved.
           </p>
           <div className="flex gap-6">
             {["Privacy Policy", "Terms of Service", "Cookie Policy"].map((item) => (
