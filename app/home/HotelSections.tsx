@@ -107,7 +107,7 @@ const rooms: Room[] = [
   {
     id: 3,
     name: "Lily",
-    description: "Experience the epitome of luxury at the Lily Room, our most prestigious single room that comfortably accommodates a maximum of 3 guests. This room has been transformed into a palatial retreat, featuring an emperor-sized bed with Egyptian cotton sheets, a marble-accented attached bathroom with premium spa-quality toiletries, and an expansive private balcony that seems to float above the landscape. The Lily Room isn't just accommodation—it's a destination in itself, promising an experience that will be cherished for years to come for you and up to 2 companions.",
+    description: "Experience the epitome of luxury at the Lily Room, our most prestigious single room that comfortably accommodates a maximum of 3 guests. This room has been transformed into a palatial retreat, featuring an emperor-sized bed with Egyptian cotton sheets, a marble-accented attached bathroom with premium spa-quality toiletries, and an expansive private balcony that seems to float above the landscape. The Lily Room isn't just accommodation—it's a destination in itself, promising an experience that will be cherished for years to come for you and up to 3 companions.",
     longDescription: "The Lily Room stands as a testament to uncompromising luxury and attention to detail. This magnificent single room can comfortably accommodate up to 3 guests in absolute opulence. The room is a sanctuary of peace, featuring a custom-crafted emperor-sized bed, premium hypoallergenic bedding, and ambient lighting that can be adjusted to suit your mood. The attached bathroom is reminiscent of Roman spas, complete with a deep soaking tub, rainfall shower, heated floors, and a curated selection of aromatic toiletries. Step onto your private balcony and be greeted by panoramic views that stretch to the horizon. The room also features a private dining area, a fully equipped gourmet kitchenette, a dedicated entertainment zone with a 65-inch 4K television, and a private terrace perfect for morning yoga or evening cocktails. At the Lily Room, every moment is designed to be extraordinary, perfect for up to 3 guests maximum.",
     pricePerNight: 11000,
     maxGuests: 3,
@@ -149,12 +149,12 @@ const rooms: Room[] = [
     maxGuests: 3,
     maxBeds: 1,
     imageUrl:
-      "11.png",
+      "15.jpg",
     imageAlt: "Daisy Room",
     images: [
-      "11.png",
-      "12.png",
-      "10.png",
+      "15.jpg",
+      "13.jpg",
+      "14.jpg",
     ],
     size: "120 m²",
     rating: 5.0,

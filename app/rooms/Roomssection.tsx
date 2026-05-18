@@ -102,6 +102,46 @@ const rooms: Room[] = [
       "Maximum 3 guests",
     ],
   },
+  
+  {
+    image: "15.jpg",
+    images: [
+      "15.jpg",
+      "13.jpg",
+      "14.jpg",
+    ],
+    badge: "Luxury",
+    badgeStyle: "bg-[#3b5e45]/90 text-[#3b5e45]",
+    name: "Daisy",
+    description: "Experience the epitome of luxury at the Daisy Room, our most prestigious single room that comfortably accommodates a maximum of 3 guests. This room has been transformed into a palatial retreat, featuring an emperor-sized bed with Egyptian cotton sheets, a marble-accented attached bathroom with premium spa-quality toiletries, and an expansive private balcony that seems to float above the landscape. The Daisy Room isn't just accommodation—it's a destination in itself, promising an experience that will be cherished for years to come for you and up to 2 other guests.",
+    longDescription: "The Daisy Room stands as a testament to uncompromising luxury and attention to detail. This magnificent single room can comfortably accommodate up to 3 guests in absolute opulence. The room is a sanctuary of peace, featuring a custom-crafted emperor-sized bed, premium hypoallergenic bedding, and ambient lighting that can be adjusted to suit your mood. The attached bathroom is reminiscent of Roman spas, complete with a deep soaking tub, rainfall shower, heated floors, and a curated selection of aromatic toiletries. Step onto your private balcony and be greeted by panoramic views that stretch to the horizon. The room also features a private dining area, a fully equipped gourmet kitchenette, a dedicated entertainment zone with a 65-inch 4K television, and a private terrace perfect for morning yoga or evening cocktails. At the Daisy Room, every moment is designed to be extraordinary, welcoming a maximum of 3 guests.",
+    price: 11000,
+    size: "120 m²",
+    rating: 5.0,
+    reviews: 42,
+    amenities: [
+      { icon: <Users size={20} strokeWidth={1.5} />, label: "3 max guests" },
+      { icon: <Home size={20} strokeWidth={1.5} />, label: "Terrace" },
+      { icon: <Award size={20} strokeWidth={1.5} />, label: "Butler" },
+    ],
+    details: [
+      { label: "Room Size", value: "120 m²" },
+      { label: "Bed Type", value: "Emperor" },
+      { label: "Floor", value: "Penthouse" },
+      { label: "View", value: "360° Panoramic" },
+      { label: "Max Guests", value: "3" },
+    ],
+    features: [
+      "Comfortable beds & clean linens",
+      "Attached bathroom with toiletries (soap, shampoo, towels)",
+      "Wi-Fi access",
+      "Air conditioning / heating",
+      "Television",
+      "Attached Balcony",
+      "Maximum 3 guests",
+    ],
+  },
+  
   {
     image: "11.png",
     images: [
@@ -140,44 +180,7 @@ const rooms: Room[] = [
       "Maximum 3 guests",
     ],
   },
-  {
-    image: "11.png",
-    images: [
-      "11.png",
-      "12.png",
-      "10.png",
-    ],
-    badge: "Luxury",
-    badgeStyle: "bg-[#3b5e45]/90 text-[#3b5e45]",
-    name: "Daisy",
-    description: "Experience the epitome of luxury at the Daisy Room, our most prestigious single room that comfortably accommodates a maximum of 3 guests. This room has been transformed into a palatial retreat, featuring an emperor-sized bed with Egyptian cotton sheets, a marble-accented attached bathroom with premium spa-quality toiletries, and an expansive private balcony that seems to float above the landscape. The Daisy Room isn't just accommodation—it's a destination in itself, promising an experience that will be cherished for years to come for you and up to 2 other guests.",
-    longDescription: "The Daisy Room stands as a testament to uncompromising luxury and attention to detail. This magnificent single room can comfortably accommodate up to 3 guests in absolute opulence. The room is a sanctuary of peace, featuring a custom-crafted emperor-sized bed, premium hypoallergenic bedding, and ambient lighting that can be adjusted to suit your mood. The attached bathroom is reminiscent of Roman spas, complete with a deep soaking tub, rainfall shower, heated floors, and a curated selection of aromatic toiletries. Step onto your private balcony and be greeted by panoramic views that stretch to the horizon. The room also features a private dining area, a fully equipped gourmet kitchenette, a dedicated entertainment zone with a 65-inch 4K television, and a private terrace perfect for morning yoga or evening cocktails. At the Daisy Room, every moment is designed to be extraordinary, welcoming a maximum of 3 guests.",
-    price: 11000,
-    size: "120 m²",
-    rating: 5.0,
-    reviews: 42,
-    amenities: [
-      { icon: <Users size={20} strokeWidth={1.5} />, label: "3 max guests" },
-      { icon: <Home size={20} strokeWidth={1.5} />, label: "Terrace" },
-      { icon: <Award size={20} strokeWidth={1.5} />, label: "Butler" },
-    ],
-    details: [
-      { label: "Room Size", value: "120 m²" },
-      { label: "Bed Type", value: "Emperor" },
-      { label: "Floor", value: "Penthouse" },
-      { label: "View", value: "360° Panoramic" },
-      { label: "Max Guests", value: "3" },
-    ],
-    features: [
-      "Comfortable beds & clean linens",
-      "Attached bathroom with toiletries (soap, shampoo, towels)",
-      "Wi-Fi access",
-      "Air conditioning / heating",
-      "Television",
-      "Attached Balcony",
-      "Maximum 3 guests",
-    ],
-  },
+  
 ];
 
 // Set to an empty array to show "stay tuned" state, or populate with offers
