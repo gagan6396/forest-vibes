@@ -37,7 +37,7 @@ const rooms: Room[] = [
     name: "Rose",
     description: "The Rose Room is a luxury single room that seamlessly blends elegance with comfort, accommodating a maximum of 3 guests. This thoughtfully designed room provides a private sanctuary for guests, featuring a plush king-sized bed draped in premium linens, an attached bathroom with luxury toiletries, and a private balcony overlooking lush gardens. Whether you're enjoying morning coffee on your personal balcony or unwinding in the elegant interiors, the Rose Room promises an unforgettable stay where every detail has been carefully curated for your pleasure.",
     longDescription: "Step into the Rose Room and discover a world where luxury meets tranquility. This magnificent single room accommodates a maximum of 3 guests and features floor-to-ceiling windows that flood the space with natural light, custom-designed furniture, and premium mattress toppers for the perfect night's sleep. The attached bathroom is a spa-like retreat complete with a rainfall shower, plush towels, and eco-friendly toiletries. Step outside to your private balcony and breathe in the fresh morning air as you plan your day's adventures. The room also features a modern kitchenette, a cozy dining area, and a 55-inch Smart TV. Experience the perfect harmony of comfort and elegance at the Rose Room, perfect for up to 3 guests.",
-    pricePerNight: 11000,
+    pricePerNight: 8000,
     maxGuests: 3,
     maxBeds: 1,
     imageUrl:
@@ -73,7 +73,7 @@ const rooms: Room[] = [
     name: "Iris",
     description: "Welcome to the Iris Room, where contemporary design meets timeless comfort in a stunning single room that accommodates a maximum of 3 guests. This meticulously crafted room offers a unique blend of style and functionality, featuring a queen-sized bed with memory foam mattress, a sleek attached bathroom stocked with premium toiletries, and a private balcony that offers breathtaking views of the surrounding landscape. From the moment you arrive, you'll be enveloped in an atmosphere of sophisticated relaxation, where every modern convenience has been anticipated and provided for you and up to 2 other guests.",
     longDescription: "The Iris Room represents the pinnacle of contemporary luxury living. This generous single room accommodates up to 3 guests in unparalleled style. The room is a private haven, featuring an ergonomic queen-sized bed, blackout curtains for undisturbed sleep, and a dedicated work desk for those who need to stay connected. The en-suite bathroom is designed with your comfort in mind, offering hot water on demand, plush bathrobes, and a selection of natural toiletries. Your private balcony becomes your personal observation deck, perfect for sunset watching or stargazing. The room also boasts a state-of-the-art entertainment system, high-speed Wi-Fi, and a fully stocked kitchenette. Whether you're enjoying a quiet night in or preparing for a day of adventure, the Iris Room adapts to your every need and welcomes up to 3 guests maximum.",
-    pricePerNight: 11000,
+    pricePerNight: 8000,
     maxGuests: 3,
     maxBeds: 1,
     imageUrl:
@@ -109,7 +109,7 @@ const rooms: Room[] = [
     name: "Lily",
     description: "Experience the epitome of luxury at the Lily Room, our most prestigious single room that comfortably accommodates a maximum of 3 guests. This room has been transformed into a palatial retreat, featuring an emperor-sized bed with Egyptian cotton sheets, a marble-accented attached bathroom with premium spa-quality toiletries, and an expansive private balcony that seems to float above the landscape. The Lily Room isn't just accommodation—it's a destination in itself, promising an experience that will be cherished for years to come for you and up to 3 companions.",
     longDescription: "The Lily Room stands as a testament to uncompromising luxury and attention to detail. This magnificent single room can comfortably accommodate up to 3 guests in absolute opulence. The room is a sanctuary of peace, featuring a custom-crafted emperor-sized bed, premium hypoallergenic bedding, and ambient lighting that can be adjusted to suit your mood. The attached bathroom is reminiscent of Roman spas, complete with a deep soaking tub, rainfall shower, heated floors, and a curated selection of aromatic toiletries. Step onto your private balcony and be greeted by panoramic views that stretch to the horizon. The room also features a private dining area, a fully equipped gourmet kitchenette, a dedicated entertainment zone with a 65-inch 4K television, and a private terrace perfect for morning yoga or evening cocktails. At the Lily Room, every moment is designed to be extraordinary, perfect for up to 3 guests maximum.",
-    pricePerNight: 11000,
+    pricePerNight: 8000,
     maxGuests: 3,
     maxBeds: 1,
     imageUrl:
@@ -145,7 +145,7 @@ const rooms: Room[] = [
     name: "Daisy",
     description: "Experience the epitome of luxury at the Daisy Room, our most prestigious single room that comfortably accommodates a maximum of 3 guests. This room has been transformed into a palatial retreat, featuring an emperor-sized bed with Egyptian cotton sheets, a marble-accented attached bathroom with premium spa-quality toiletries, and an expansive private balcony that seems to float above the landscape. The Daisy Room isn't just accommodation—it's a destination in itself, promising an experience that will be cherished for years to come for you and up to 2 other guests.",
     longDescription: "The Daisy Room stands as a testament to uncompromising luxury and attention to detail. This magnificent single room can comfortably accommodate up to 3 guests in absolute opulence. The room is a sanctuary of peace, featuring a custom-crafted emperor-sized bed, premium hypoallergenic bedding, and ambient lighting that can be adjusted to suit your mood. The attached bathroom is reminiscent of Roman spas, complete with a deep soaking tub, rainfall shower, heated floors, and a curated selection of aromatic toiletries. Step onto your private balcony and be greeted by panoramic views that stretch to the horizon. The room also features a private dining area, a fully equipped gourmet kitchenette, a dedicated entertainment zone with a 65-inch 4K television, and a private terrace perfect for morning yoga or evening cocktails. At the Daisy Room, every moment is designed to be extraordinary, welcoming a maximum of 3 guests.",
-    pricePerNight: 11000,
+    pricePerNight: 8000,
     maxGuests: 3,
     maxBeds: 1,
     imageUrl:
