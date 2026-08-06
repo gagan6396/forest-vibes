@@ -56,10 +56,10 @@ export default function HeroSection() {
   const intervalRef = useRef<NodeJS.Timeout | null>(null);
 
   const roomTypes = [
-    { id: "lily", name: "Lily Room", price: 11000, maxGuests: 3 },
-    { id: "daisy", name: "Daisy Room", price: 11000, maxGuests: 3 },
-    { id: "rose", name: "Rose Room", price: 11000, maxGuests: 3 },
-    { id: "iris", name: "Iris Room", price: 11000, maxGuests: 3 },
+    { id: "lily", name: "Lily Room", price: 8000, maxGuests: 3 },
+    { id: "daisy", name: "Daisy Room", price: 8000, maxGuests: 3 },
+    { id: "rose", name: "Rose Room", price: 8000, maxGuests: 3 },
+    { id: "iris", name: "Iris Room", price: 8000, maxGuests: 3 },
   ];
 
   // Check for mobile viewport
