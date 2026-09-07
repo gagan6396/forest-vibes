@@ -1,0 +1,258 @@
+.page {
+  --fv-forest: #1f3a2c;
+  --fv-forest-light: #2e5741;
+  --fv-sage: #8fae8a;
+  --fv-cream: #f6f1e4;
+  --fv-ink: #202920;
+  --fv-muted: #6f7768;
+  --fv-line: #e4ddc9;
+  font-family: "Jost", "Segoe UI", sans-serif;
+  color: var(--fv-ink);
+}
+
+.header {
+  margin-bottom: 28px;
+}
+
+.header h1 {
+  font-family: "Playfair Display", Georgia, serif;
+  font-weight: 500;
+  font-size: 1.8rem;
+  margin: 0 0 4px;
+  color: var(--fv-forest);
+}
+
+.header p {
+  margin: 0;
+  color: var(--fv-muted);
+  font-size: 0.92rem;
+}
+
+/* ---------------- Stat cards ---------------- */
+
+.statsGrid {
+  display: grid;
+  grid-template-columns: repeat(5, minmax(0, 1fr));
+  gap: 16px;
+  margin-bottom: 28px;
+}
+
+.statCard {
+  background: #fff;
+  border: 1px solid var(--fv-line);
+  border-radius: 10px;
+  padding: 18px;
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+}
+
+.statTop {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  gap: 8px;
+}
+
+.statLabel {
+  font-size: 0.82rem;
+  color: var(--fv-muted);
+}
+
+.statIcon {
+  width: 30px;
+  height: 30px;
+  border-radius: 7px;
+  background: var(--fv-cream);
+  color: var(--fv-forest);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+}
+
+.statValue {
+  font-family: "Playfair Display", Georgia, serif;
+  font-size: 1.7rem;
+  color: var(--fv-forest);
+}
+
+.statSub {
+  font-size: 0.78rem;
+  color: var(--fv-forest-light);
+  font-weight: 500;
+}
+
+/* ---------------- Panels ---------------- */
+
+.panelsGrid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 20px;
+}
+
+.panel {
+  background: #fff;
+  border: 1px solid var(--fv-line);
+  border-radius: 10px;
+  overflow: hidden;
+}
+
+.panelHeader {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 16px 20px;
+  border-bottom: 1px solid var(--fv-line);
+}
+
+.panelHeader h2 {
+  font-family: "Playfair Display", Georgia, serif;
+  font-weight: 500;
+  font-size: 1.05rem;
+  margin: 0;
+  color: var(--fv-forest);
+}
+
+.panelHeader a {
+  font-size: 0.82rem;
+  color: var(--fv-forest-light);
+  text-decoration: none;
+}
+
+.panelHeader a:hover {
+  text-decoration: underline;
+}
+
+.panelBody {
+  display: flex;
+  flex-direction: column;
+}
+
+/* Messages */
+
+.messageRow {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  padding: 14px 20px;
+  border-bottom: 1px solid var(--fv-line);
+}
+
+.messageRow:last-child {
+  border-bottom: none;
+}
+
+.unreadDot {
+  width: 7px;
+  height: 7px;
+  border-radius: 50%;
+  background: #c99a3f;
+  flex-shrink: 0;
+}
+
+.messageText {
+  display: flex;
+  flex-direction: column;
+  flex: 1;
+  min-width: 0;
+}
+
+.messageName {
+  font-size: 0.9rem;
+  font-weight: 600;
+}
+
+.messagePreview {
+  font-size: 0.82rem;
+  color: var(--fv-muted);
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.messageTime {
+  font-size: 0.78rem;
+  color: var(--fv-muted);
+  white-space: nowrap;
+}
+
+/* Blog posts */
+
+.postRow {
+  padding: 14px 20px;
+  border-bottom: 1px solid var(--fv-line);
+}
+
+.postRow:last-child {
+  border-bottom: none;
+}
+
+.postTop {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  gap: 12px;
+  margin-bottom: 8px;
+}
+
+.postTitle {
+  font-size: 0.88rem;
+  font-weight: 600;
+  line-height: 1.4;
+}
+
+.postDate {
+  font-size: 0.78rem;
+  color: var(--fv-muted);
+  white-space: nowrap;
+  flex-shrink: 0;
+}
+
+.postStatus {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  background: rgba(143, 174, 138, 0.2);
+  color: var(--fv-forest-light);
+  font-size: 0.76rem;
+  font-weight: 500;
+  padding: 4px 10px;
+  border-radius: 5px;
+}
+
+.statusDot {
+  width: 6px;
+  height: 6px;
+  border-radius: 50%;
+  background: var(--fv-forest-light);
+}
+
+/* ---------------- Responsive ---------------- */
+
+@media (max-width: 1200px) {
+  .statsGrid {
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+  }
+}
+
+@media (max-width: 900px) {
+  .panelsGrid {
+    grid-template-columns: 1fr;
+  }
+}
+
+@media (max-width: 640px) {
+  .statsGrid {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+  .header h1 {
+    font-size: 1.5rem;
+  }
+}
+
+@media (max-width: 400px) {
+  .statsGrid {
+    grid-template-columns: 1fr;
+  }
+}
