@@ -1,0 +1,24 @@
+# robots.txt for forrestvibes.com
+# https://www.forrestvibes.com/robots.txt
+
+User-agent: *
+Allow: /
+
+# Block Next.js internals
+Disallow: /_next/
+Disallow: /api/
+
+# Block common admin/private paths
+Disallow: /admin/
+Disallow: /dashboard/
+Disallow: /private/
+Disallow: /.env
+Disallow: /404
+Disallow: /500
+
+# Allow static assets (Next.js image optimization)
+Allow: /_next/static/
+Allow: /_next/image
+
+# Sitemap
+Sitemap: https://www.forrestvibes.com/sitemap.xml
