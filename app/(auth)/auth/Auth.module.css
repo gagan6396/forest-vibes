@@ -1,0 +1,510 @@
+/* ============================================================
+   Forrest Vibes — Auth pages shared styles
+   Tokens pulled from the live site:
+   forest dark green (buttons/nav), cream background,
+   serif display type for headlines, clean sans body.
+   ============================================================ */
+
+.page {
+  --fv-forest: #1f3a2c;
+  --fv-forest-light: #2e5741;
+  --fv-sage: #8fae8a;
+  --fv-cream: #f6f1e4;
+  --fv-cream-deep: #ece4d1;
+  --fv-ink: #202920;
+  --fv-muted: #6f7768;
+  --fv-line: #ddd4bd;
+  --fv-error: #b3452f;
+
+  min-height: 100vh;
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) minmax(0, 1fr);
+  background: var(--fv-cream);
+  font-family: "Jost", "Segoe UI", sans-serif;
+  color: var(--fv-ink);
+}
+
+/* ---------------- Left / brand panel ---------------- */
+
+.showcase {
+  position: relative;
+  overflow: hidden;
+  background: linear-gradient(160deg, #14261c 0%, var(--fv-forest) 46%, var(--fv-forest-light) 100%);
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  padding: 48px 56px;
+}
+
+.showcaseTrees {
+  position: absolute;
+  inset: 0;
+  opacity: 0.35;
+  pointer-events: none;
+}
+
+.showcaseTrees svg {
+  width: 100%;
+  height: 100%;
+}
+
+.brandMark {
+  position: relative;
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  z-index: 1;
+}
+
+.brandMark .leaf {
+  width: 34px;
+  height: 34px;
+  color: var(--fv-sage);
+}
+
+.brandName {
+  font-family: "Playfair Display", Georgia, serif;
+  font-size: 1.35rem;
+  letter-spacing: 0.04em;
+  color: #f4f1e6;
+}
+
+.brandNameSub {
+  display: block;
+  font-family: "Jost", sans-serif;
+  font-size: 0.6rem;
+  letter-spacing: 0.28em;
+  color: var(--fv-sage);
+  margin-top: 2px;
+}
+
+.showcaseCopy {
+  position: relative;
+  z-index: 1;
+}
+
+.showcaseCopy h1 {
+  font-family: "Playfair Display", Georgia, serif;
+  font-weight: 500;
+  font-size: clamp(1.9rem, 2.6vw, 2.6rem);
+  line-height: 1.18;
+  color: #f7f4ea;
+  margin: 0 0 18px;
+}
+
+.showcaseCopy h1 em {
+  font-style: italic;
+  color: var(--fv-sage);
+}
+
+.showcaseCopy p {
+  font-size: 0.98rem;
+  line-height: 1.65;
+  color: #d8dcd0;
+  margin: 0;
+}
+
+.showcaseFooter {
+  position: relative;
+  z-index: 1;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  font-size: 0.8rem;
+  color: #b9c2ae;
+}
+
+.showcaseFooter span:not(:last-child)::after {
+  content: "•";
+  margin-left: 10px;
+  color: var(--fv-sage);
+}
+
+/* ---------------- Right / form panel ---------------- */
+
+.formSide {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 48px 32px;
+}
+
+.formShell {
+  width: 100%;
+  max-width: 400px;
+}
+
+.mobileBrand {
+  display: none;
+}
+
+.formHeader {
+  margin-bottom: 34px;
+}
+
+.eyebrow {
+  font-size: 0.72rem;
+  letter-spacing: 0.18em;
+  color: var(--fv-forest-light);
+  margin: 0 0 10px;
+}
+
+.formHeader h2 {
+  font-family: "Playfair Display", Georgia, serif;
+  font-weight: 500;
+  font-size: 2rem;
+  margin: 0 0 10px;
+  color: var(--fv-ink);
+}
+
+.formHeader p {
+  margin: 0;
+  color: var(--fv-muted);
+  font-size: 0.95rem;
+  line-height: 1.55;
+}
+
+.formHeader p a {
+  color: var(--fv-forest-light);
+  text-decoration: underline;
+  text-underline-offset: 3px;
+  font-weight: 500;
+}
+
+.form {
+  display: flex;
+  flex-direction: column;
+  gap: 18px;
+}
+
+.row {
+  display: flex;
+  gap: 14px;
+}
+
+.row .field {
+  flex: 1;
+  min-width: 0;
+}
+
+.field {
+  display: flex;
+  flex-direction: column;
+  gap: 7px;
+}
+
+.field label {
+  font-size: 0.78rem;
+  letter-spacing: 0.03em;
+  color: var(--fv-ink);
+}
+
+.inputWrap {
+  position: relative;
+  display: flex;
+  align-items: center;
+}
+
+.inputWrap input {
+  width: 100%;
+  padding: 12px 14px;
+  border: 1px solid var(--fv-line);
+  background: #fffdf8;
+  border-radius: 3px;
+  font-family: inherit;
+  font-size: 0.95rem;
+  color: var(--fv-ink);
+  transition: border-color 150ms ease, box-shadow 150ms ease;
+}
+
+.inputWrap input::placeholder {
+  color: #a9a290;
+}
+
+.inputWrap input:focus {
+  outline: none;
+  border-color: var(--fv-forest-light);
+  box-shadow: 0 0 0 3px rgba(46, 87, 65, 0.14);
+}
+
+.inputWrap input[aria-invalid="true"] {
+  border-color: var(--fv-error);
+}
+
+.toggleVisibility {
+  position: absolute;
+  right: 10px;
+  background: none;
+  border: none;
+  padding: 4px;
+  color: var(--fv-muted);
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+}
+
+.toggleVisibility:focus-visible,
+.submit:focus-visible,
+.inputWrap input:focus-visible,
+.linkBtn:focus-visible {
+  outline: 2px solid var(--fv-forest-light);
+  outline-offset: 2px;
+}
+
+.errorText {
+  font-size: 0.78rem;
+  color: var(--fv-error);
+  margin: 0;
+}
+
+.rowBetween {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  font-size: 0.85rem;
+  margin-top: -4px;
+}
+
+.checkboxLabel {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  color: var(--fv-muted);
+  cursor: pointer;
+}
+
+.checkboxLabel input {
+  accent-color: var(--fv-forest-light);
+  width: 15px;
+  height: 15px;
+}
+
+.linkBtn {
+  background: none;
+  border: none;
+  padding: 0;
+  color: var(--fv-forest-light);
+  font-size: 0.85rem;
+  cursor: pointer;
+  text-decoration: underline;
+  text-underline-offset: 3px;
+}
+
+.submit {
+  margin-top: 6px;
+  padding: 13px 18px;
+  border: none;
+  border-radius: 3px;
+  background: var(--fv-forest);
+  color: #f4f1e6;
+  font-family: inherit;
+  font-size: 0.82rem;
+  letter-spacing: 0.14em;
+  cursor: pointer;
+  transition: background 150ms ease, transform 150ms ease;
+}
+
+.submit:hover {
+  background: var(--fv-forest-light);
+}
+
+.submit:disabled {
+  opacity: 0.6;
+  cursor: not-allowed;
+}
+
+.formFooterNote {
+  margin-top: 8px;
+  font-size: 0.72rem;
+  line-height: 1.5;
+  color: var(--fv-muted);
+}
+
+.formFooterNote a {
+  color: var(--fv-forest-light);
+}
+
+.divider {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  margin: 26px 0 20px;
+  color: var(--fv-muted);
+  font-size: 0.75rem;
+  letter-spacing: 0.08em;
+}
+
+.divider::before,
+.divider::after {
+  content: "";
+  flex: 1;
+  height: 1px;
+  background: var(--fv-line);
+}
+
+.socialRow {
+  display: flex;
+  gap: 12px;
+}
+
+.socialBtn {
+  flex: 1;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  padding: 10px 12px;
+  border: 1px solid var(--fv-line);
+  background: #fffdf8;
+  border-radius: 3px;
+  font-family: inherit;
+  font-size: 0.85rem;
+  color: var(--fv-ink);
+  cursor: pointer;
+  transition: border-color 150ms ease, background 150ms ease;
+}
+
+.socialBtn:hover {
+  border-color: var(--fv-forest-light);
+  background: #fff;
+}
+
+.strengthTrack {
+  height: 4px;
+  border-radius: 2px;
+  background: var(--fv-line);
+  overflow: hidden;
+  margin-top: 4px;
+}
+
+.strengthFill {
+  height: 100%;
+  border-radius: 2px;
+  background: var(--fv-forest-light);
+  transition: width 200ms ease, background 200ms ease;
+}
+
+.strengthLabel {
+  font-size: 0.72rem;
+  color: var(--fv-muted);
+  margin-top: 4px;
+}
+
+.successBanner {
+  border: 1px solid var(--fv-forest-light);
+  background: #eef3ea;
+  color: var(--fv-forest);
+  padding: 12px 14px;
+  border-radius: 3px;
+  font-size: 0.85rem;
+  margin-bottom: 18px;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .submit,
+  .socialBtn,
+  .inputWrap input,
+  .strengthFill {
+    transition: none;
+  }
+}
+
+/* ---------------- Responsive breakpoints ---------------- */
+
+/* Large desktop / wide screens: give the showcase a bit more room */
+@media (min-width: 1440px) {
+  .showcase {
+    padding: 64px 80px;
+  }
+  .formShell {
+    max-width: 440px;
+  }
+}
+
+/* Tablets landscape */
+@media (max-width: 1024px) {
+  .showcase {
+    padding: 40px 44px;
+  }
+  .showcaseCopy h1 {
+    font-size: 1.7rem;
+  }
+  .formSide {
+    padding: 40px 28px;
+  }
+}
+
+/* Tablets portrait / small laptops: collapse to single column */
+@media (max-width: 860px) {
+  .page {
+    grid-template-columns: 1fr;
+  }
+  .showcase {
+    min-height: 220px;
+    padding: 28px 32px;
+  }
+  .showcaseCopy {
+    max-width: 40ch;
+  }
+  .showcaseCopy h1 {
+    font-size: 1.5rem;
+  }
+  .showcaseCopy p {
+    display: none;
+  }
+  .showcaseFooter {
+    display: none;
+  }
+  .formSide {
+    padding: 36px 24px 56px;
+  }
+}
+
+/* Mobile phones */
+@media (max-width: 560px) {
+  .showcase {
+    display: none;
+  }
+  .mobileBrand {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    margin-bottom: 30px;
+  }
+  .mobileBrand .leaf {
+    width: 28px;
+    height: 28px;
+    color: var(--fv-forest-light);
+  }
+  .mobileBrand .brandName {
+    color: var(--fv-forest);
+    font-size: 1.15rem;
+  }
+  .mobileBrand .brandNameSub {
+    color: var(--fv-forest-light);
+  }
+  .formSide {
+    padding: 32px 20px 48px;
+    align-items: flex-start;
+  }
+  .formHeader h2 {
+    font-size: 1.6rem;
+  }
+  .row {
+    flex-direction: column;
+    gap: 18px;
+  }
+  .socialRow {
+    flex-direction: column;
+  }
+}
+
+/* Very small phones */
+@media (max-width: 360px) {
+  .formHeader h2 {
+    font-size: 1.4rem;
+  }
+  .submit {
+    padding: 14px 16px;
+  }
+}
