@@ -38,12 +38,6 @@ const LAYOUT_LABELS: Record<ImageLayout, string> = { single: "Single", "two-col"
 const CALLOUT_VARIANTS: CalloutVariant[] = ["info", "tip", "success", "warning", "danger"];
 const CALLOUT_ICONS: Record<CalloutVariant, string> = { info: "ℹ️", tip: "💡", success: "✅", warning: "⚠️", danger: "🚨" };
 
-const CATEGORY_OPTIONS = [
-  "Digital Marketing", "SEO", "Social Media", "Web Development", "AI", "Branding",
-  "Yoga Teacher Training", "Yoga", "Ayurveda", "Yoga Retreats", "Lifestyle", "Health",
-  "Meditation", "Philosophy", "Nutrition",
-];
-
 const CODE_LANGUAGES = ["plaintext", "javascript", "typescript", "python", "html", "css", "json", "bash", "sql", "php", "java", "go", "rust"];
 
 const BLOCK_GROUPS = [
@@ -84,7 +78,7 @@ export default function EditBlogPage() {
   const blockDragIdx = useRef<number | null>(null);
 
   const [form, setForm] = useState<BlogFormValues>({
-    title: "", slug: "", excerpt: "", date: "", author: "", authorRole: "", category: "",
+    title: "", slug: "", excerpt: "", date: "", author: "", authorRole: "",
     coverImage: "", tags: [], content: [],
     metaTitle: "", metaDescription: "", metaKeywords: [],
     status: "Draft",
@@ -137,7 +131,6 @@ export default function EditBlogPage() {
           date: raw.date ? new Date(raw.date).toISOString().slice(0, 10) : "",
           author: raw.author ?? "",
           authorRole: raw.authorRole ?? "",
-          category: raw.category ?? "",
           coverImage: resolveImage(raw.coverImage),
           tags: raw.tags ?? [],
           content: normalisedContent,
@@ -315,7 +308,6 @@ export default function EditBlogPage() {
     if (!form.slug.trim()) e.slug = "Slug is required";
     if (!form.excerpt.trim()) e.excerpt = "Excerpt is required";
     if (!form.date.trim()) e.date = "Date is required";
-    if (!form.category) e.category = "Category is required";
     if (!form.coverImage.trim()) e.coverImage = "Cover image is required";
     if (form.content.length === 0) e.content = "Add at least one content block";
     setErrors(e);
@@ -440,7 +432,13 @@ export default function EditBlogPage() {
             {errors.excerpt && <p className={styles.errorMsg}>⚠ {errors.excerpt}</p>}
           </div>
 
-          <div className={styles.threeCol}>
+          <div
+            style={{
+              display: "grid",
+              gridTemplateColumns: "1fr 1fr",
+              gap: "1rem",
+            }}
+          >
             <div className={styles.fieldGroup}>
               <label className={styles.label}><span className={styles.labelIcon}>✦</span>Date<span className={styles.required}>*</span></label>
               <div className={`${styles.inputWrap} ${errors.date ? styles.inputError : ""} ${form.date ? styles.inputSuccess : ""}`}>
@@ -453,18 +451,6 @@ export default function EditBlogPage() {
               <div className={`${styles.inputWrap} ${form.author ? styles.inputSuccess : ""}`}>
                 <input type="text" className={styles.input} value={form.author} maxLength={80} onChange={(e) => set("author", e.target.value)} />
               </div>
-            </div>
-            <div className={styles.fieldGroup}>
-              <label className={styles.label}><span className={styles.labelIcon}>✦</span>Category<span className={styles.required}>*</span></label>
-              <div className={`${styles.inputWrap} ${errors.category ? styles.inputError : ""} ${form.category ? styles.inputSuccess : ""}`} style={{ position: "relative" }}>
-                <select className={styles.input} style={{ cursor: "pointer", appearance: "none", paddingRight: "2rem" }}
-                  value={form.category} onChange={(e) => set("category", e.target.value)}>
-                  <option value="">— Select —</option>
-                  {CATEGORY_OPTIONS.map((c) => <option key={c} value={c}>{c}</option>)}
-                </select>
-                <span className={styles.selectArrow}>▾</span>
-              </div>
-              {errors.category && <p className={styles.errorMsg}>⚠ {errors.category}</p>}
             </div>
           </div>
 

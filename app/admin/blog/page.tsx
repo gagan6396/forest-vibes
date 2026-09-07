@@ -39,7 +39,6 @@ function normalise(raw: Blog): BlogListItem {
         })
       : "",
     author: raw.author ?? "",
-    category: raw.category ?? "",
     image: resolveImage(raw.coverImage),
     tags: raw.tags ?? [],
     sectionCount: Array.isArray(raw.content) ? raw.content.length : 0,
@@ -249,7 +248,7 @@ export default function BlogListPage() {
             <p className={styles.blogTitle}>{b.title}</p>
             <p className={styles.blogExcerpt}>{b.excerpt}</p>
             <div className={styles.cardMeta}>
-              <span className={styles.categoryChip}>{b.category}</span>
+              <span className={styles.categoryChip}>{b.slug || "—"}</span>
               <span className={styles.sectionCountBadge}>📄 {b.sectionCount} blocks</span>
               <Status b={b} />
             </div>
@@ -280,7 +279,7 @@ export default function BlogListPage() {
           <tr>
             <th>Cover</th>
             <th>Title</th>
-            <th>Category</th>
+            <th>Slug</th>
             <th>Status</th>
             <th>Actions</th>
           </tr>
@@ -307,7 +306,7 @@ export default function BlogListPage() {
                 <p className={styles.blogExcerpt}>{b.excerpt}</p>
               </td>
               <td>
-                <span className={styles.categoryChip}>{b.category}</span>
+                <span className={styles.categoryChip}>{b.slug || "—"}</span>
               </td>
               <td className={styles.tdCenter}>
                 <Status b={b} />
@@ -339,7 +338,7 @@ export default function BlogListPage() {
           <tr>
             <th>Cover</th>
             <th>Title / Excerpt</th>
-            <th>Category</th>
+            <th>Slug</th>
             {width >= 1024 && <th>Author</th>}
             {width >= 1024 && <th>Date</th>}
             {width >= 1024 && <th>Blocks</th>}
@@ -369,7 +368,7 @@ export default function BlogListPage() {
                 <p className={styles.blogExcerpt}>{b.excerpt}</p>
               </td>
               <td>
-                <span className={styles.categoryChip}>{b.category}</span>
+                <span className={styles.categoryChip}>{b.slug || "—"}</span>
               </td>
               {width >= 1024 && (
                 <td>

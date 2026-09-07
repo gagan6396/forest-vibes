@@ -83,24 +83,6 @@ const CALLOUT_ICONS: Record<CalloutVariant, string> = {
   danger: "🚨",
 };
 
-const CATEGORY_OPTIONS = [
-  "Digital Marketing",
-  "SEO",
-  "Social Media",
-  "Web Development",
-  "AI",
-  "Branding",
-  "Yoga Teacher Training",
-  "Yoga",
-  "Ayurveda",
-  "Yoga Retreats",
-  "Lifestyle",
-  "Health",
-  "Meditation",
-  "Philosophy",
-  "Nutrition",
-];
-
 const CODE_LANGUAGES = [
   "plaintext",
   "javascript",
@@ -197,7 +179,6 @@ export default function AddBlogPage() {
     date: "",
     author: "",
     authorRole: "",
-    category: "",
     coverImage: "",
     tags: [],
     content: [],
@@ -440,7 +421,6 @@ export default function AddBlogPage() {
     if (!form.slug.trim()) e.slug = "Slug is required";
     if (!form.excerpt.trim()) e.excerpt = "Excerpt is required";
     if (!form.date.trim()) e.date = "Date is required";
-    if (!form.category) e.category = "Category is required";
     if (!form.coverImage.trim()) e.coverImage = "Cover image is required";
     if (form.content.length === 0) e.content = "Add at least one content block";
     setErrors(e);
@@ -610,7 +590,13 @@ export default function AddBlogPage() {
             )}
           </div>
 
-          <div className={styles.threeCol}>
+          <div
+            style={{
+              display: "grid",
+              gridTemplateColumns: "1fr 1fr",
+              gap: "1rem",
+            }}
+          >
             <div className={styles.fieldGroup}>
               <label className={styles.label}>
                 <span className={styles.labelIcon}>✦</span>Date
@@ -646,38 +632,6 @@ export default function AddBlogPage() {
                   onChange={(e) => set("author", e.target.value)}
                 />
               </div>
-            </div>
-            <div className={styles.fieldGroup}>
-              <label className={styles.label}>
-                <span className={styles.labelIcon}>✦</span>Category
-                <span className={styles.required}>*</span>
-              </label>
-              <div
-                className={`${styles.inputWrap} ${errors.category ? styles.inputError : ""} ${form.category ? styles.inputSuccess : ""}`}
-                style={{ position: "relative" }}
-              >
-                <select
-                  className={styles.input}
-                  style={{
-                    cursor: "pointer",
-                    appearance: "none",
-                    paddingRight: "2rem",
-                  }}
-                  value={form.category}
-                  onChange={(e) => set("category", e.target.value)}
-                >
-                  <option value="">— Select —</option>
-                  {CATEGORY_OPTIONS.map((c) => (
-                    <option key={c} value={c}>
-                      {c}
-                    </option>
-                  ))}
-                </select>
-                <span className={styles.selectArrow}>▾</span>
-              </div>
-              {errors.category && (
-                <p className={styles.errorMsg}>⚠ {errors.category}</p>
-              )}
             </div>
           </div>
 

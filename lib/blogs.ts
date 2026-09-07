@@ -146,7 +146,6 @@ export interface PublicBlogCard {
   slug: string;
   title: string;
   excerpt: string;
-  category: string;
   date: string;
   readTime: string;
   author: string;
@@ -157,7 +156,6 @@ export interface PublicBlogCard {
 export interface PublicBlogDetail {
   slug: string;
   title: string;
-  category: string;
   excerpt: string;
   date: string;
   readTime: string;
@@ -172,12 +170,11 @@ function toPublicCard(blog: Blog): PublicBlogCard {
     slug: blog.slug,
     title: blog.title,
     excerpt: blog.excerpt,
-    category: blog.category,
     date: blog.date,
     readTime: estimateReadTime(blog.content),
     author: blog.author || "Forrest Vibes",
     coverImage: resolveImage(blog.coverImage),
-    accent: accentFor(blog.category || blog.slug),
+    accent: accentFor(blog.slug),
   };
 }
 
@@ -198,12 +195,11 @@ export async function getPublishedBlogBySlug(slug: string): Promise<PublicBlogDe
     return {
       slug: blog.slug,
       title: blog.title,
-      category: blog.category,
       excerpt: blog.excerpt,
       date: blog.date,
       readTime: estimateReadTime(blog.content),
       author: blog.author || "Forrest Vibes",
-      accent: accentFor(blog.category || blog.slug),
+      accent: accentFor(blog.slug),
       coverImage: resolveImage(blog.coverImage),
       content: blog.content,
     };

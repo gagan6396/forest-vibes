@@ -109,7 +109,6 @@ export default function BlogGrid({ allPosts }: { allPosts: PublicBlogCard[] }) {
                         <LeafMark />
                       </div>
                     )}
-                    <span className={styles.category}>{post.category}</span>
                   </div>
                   <div className={styles.cardBody}>
                     <h2>{post.title}</h2>

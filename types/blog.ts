@@ -84,7 +84,6 @@ export interface BlogFormValues {
   date: string;
   author: string;
   authorRole: string;
-  category: string;
   coverImage: string;
   tags: string[];
   content: BlogSection[];
@@ -105,7 +104,6 @@ export interface BlogFormErrors {
   slug?: string;
   excerpt?: string;
   date?: string;
-  category?: string;
   coverImage?: string;
   content?: string;
 }
@@ -131,7 +129,6 @@ export interface BlogListItem {
   excerpt: string;
   date: string;
   author: string;
-  category: string;
   image: string;
   tags: string[];
   sectionCount: number;

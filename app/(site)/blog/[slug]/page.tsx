@@ -80,7 +80,6 @@ export default async function SingleBlogPage({ params }: PageProps) {
           </Link>
 
           <div className={styles.heroContent}>
-            <span className={styles.category}>{post.category}</span>
             <h1>{post.title}</h1>
             {post.excerpt && <p className={styles.heroExcerpt}>{post.excerpt}</p>}
 
@@ -132,7 +131,6 @@ export default async function SingleBlogPage({ params }: PageProps) {
                         className={styles.relatedImg}
                       />
                     )}
-                    <span className={styles.relatedTag}>{related.category}</span>
                   </div>
                   <div className={styles.relatedInfo}>
                     <h4>{related.title}</h4>
