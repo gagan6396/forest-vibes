@@ -9,6 +9,7 @@
     "lint": "eslint"
   },
   "dependencies": {
+    "axois": "^0.0.1-security",
     "framer-motion": "^12.38.0",
     "jodit-react": "^5.5.3",
     "lucide-react": "^1.7.0",
