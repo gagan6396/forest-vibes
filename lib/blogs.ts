@@ -103,7 +103,8 @@ export async function getSingleBlog(id: string) {
 // Admin list needs every post regardless of status, so ask for a high limit.
 export async function getAllBlogsAdmin(): Promise<Blog[]> {
   const res = await api.get("/blog", { params: { limit: 1000 } });
-  return res.data.data as Blog[];
+  const blogs = res.data?.data;
+  return Array.isArray(blogs) ? (blogs as Blog[]) : [];
 }
 
 export async function updateBlogStatus(id: string, status: BlogStatus) {
@@ -179,10 +180,22 @@ function toPublicCard(blog: Blog): PublicBlogCard {
 }
 
 // All published posts, newest first (backend already sorts by date desc).
+// Defensive: if the API is unreachable at build time, or returns an
+// unexpected shape, this returns [] instead of throwing — so the
+// static build/ISR revalidation never crashes the whole page.
 export async function getPublishedBlogs(): Promise<PublicBlogCard[]> {
-  const res = await api.get("/blog", { params: { status: "Published", limit: 100 } });
-  const blogs = res.data.data as Blog[];
-  return blogs.map(toPublicCard);
+  try {
+    const res = await api.get("/blog", { params: { status: "Published", limit: 100 } });
+    const blogs = res.data?.data;
+    if (!Array.isArray(blogs)) {
+      console.error("getPublishedBlogs: unexpected response shape:", res.data);
+      return [];
+    }
+    return blogs.map(toPublicCard);
+  } catch (err) {
+    console.error("getPublishedBlogs: request failed:", err);
+    return [];
+  }
 }
 
 // Single published post by slug. Returns null on 404 or if it's a draft
@@ -190,8 +203,8 @@ export async function getPublishedBlogs(): Promise<PublicBlogCard[]> {
 export async function getPublishedBlogBySlug(slug: string): Promise<PublicBlogDetail | null> {
   try {
     const res = await api.get(`/blog/${slug}`);
-    const blog = res.data.data as Blog;
-    if (blog.status !== "Published") return null;
+    const blog = res.data?.data as Blog | undefined;
+    if (!blog || blog.status !== "Published") return null;
     return {
       slug: blog.slug,
       title: blog.title,
