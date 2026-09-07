@@ -1,30 +1,34 @@
 import Link from "next/link";
 import { notFound } from "next/navigation";
 import styles from "./SingleBlog.module.css";
-import { getBlogBySlug, getOtherBlogs, getAllBlogs, BlogPost } from "@/lib/blog-data";
+import { getPublishedBlogBySlug, getOtherPublishedBlogs, BlogAccent } from "@/lib/blogs";
+import BlogContent from "./BlogContent";
 
 interface PageProps {
-  // Next.js 15: params is a Promise now, must be awaited.
   params: Promise<{ slug: string }>;
 }
 
-// Pre-render every known slug at build time. Remove this if your blog
-// data comes from an API and you'd rather render on-demand.
-export function generateStaticParams() {
-  return getAllBlogs().map((post) => ({ slug: post.slug }));
-}
+export const revalidate = 60;
 
 export async function generateMetadata({ params }: PageProps) {
   const { slug } = await params;
-  const post = getBlogBySlug(slug);
+  const post = await getPublishedBlogBySlug(slug);
   if (!post) return { title: "Story not found — Forrest Vibes" };
+
+  const description = post.excerpt ?? post.title;
+
   return {
     title: `${post.title} — Forrest Vibes`,
-    description: post.excerpt,
+    description,
+    openGraph: {
+      title: post.title,
+      description,
+      images: post.coverImage ? [post.coverImage] : undefined,
+    },
   };
 }
 
-const heroClass: Record<BlogPost["accent"], string> = {
+const heroClass: Record<BlogAccent, string> = {
   green: styles.heroGreen,
   clay: styles.heroClay,
   sand: styles.heroSand,
@@ -49,66 +53,98 @@ function initials(name: string) {
 }
 
 export default async function SingleBlogPage({ params }: PageProps) {
-  // Swap for a fetch to your API by slug if blogs are served dynamically:
-  // const post = await fetch(`${process.env.API_URL}/api/blogs/${slug}`).then(r => r.json());
   const { slug } = await params;
-  const post = getBlogBySlug(slug);
+  const post = await getPublishedBlogBySlug(slug);
 
   if (!post) {
     notFound();
   }
 
-  const otherPosts = getOtherBlogs(post.slug, 3);
+  const otherPosts = await getOtherPublishedBlogs(post.slug, 3);
 
   return (
     <div className={styles.page} data-navbar-theme="dark">
-      <div className={styles.backBar}>
-        <Link href="/blog" className={styles.backLink}>
-          ← Back to all stories
-        </Link>
-      </div>
-
+      {/* ─── Hero ─────────────────────────────────────────── */}
       <div className={`${styles.hero} ${heroClass[post.accent]}`}>
-        <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-          <path d="M4 20C4 11 10 4 20 4C20 14 13 20 4 20Z" stroke="currentColor" strokeWidth="1.2" />
-          <path d="M4 20C8 15 12 11 18 6" stroke="currentColor" strokeWidth="1.2" />
-        </svg>
-        <div className={styles.heroOverlay}>
-          <span className={styles.category}>{post.category}</span>
-          <h1>{post.title}</h1>
+        <div className={styles.heroOverlay} />
+        {post.coverImage && (
+          <img
+            src={post.coverImage}
+            alt={post.title}
+            className={styles.heroBg}
+          />
+        )}
+        <div className={styles.heroInner}>
+          <Link href="/blog" className={styles.backLink}>
+            <span className={styles.backArrow}>←</span> Back to Blog
+          </Link>
+
+          <div className={styles.heroContent}>
+            <span className={styles.category}>{post.category}</span>
+            <h1>{post.title}</h1>
+            {post.excerpt && <p className={styles.heroExcerpt}>{post.excerpt}</p>}
+
+            <div className={styles.heroFooter}>
+              <div className={styles.author}>
+                <div className={styles.avatar}>{initials(post.author)}</div>
+                <div>
+                  <span className={styles.authorName}>{post.author}</span>
+                  <span className={styles.authorRole}>Writer</span>
+                </div>
+              </div>
+              <div className={styles.heroMeta}>
+                <span>{formatDate(post.date)}</span>
+                <span className={styles.dot}>·</span>
+                <span>{post.readTime}</span>
+              </div>
+            </div>
+          </div>
         </div>
       </div>
 
+      {/* ─── Article — full width, no floating card ────────── */}
       <article className={styles.article}>
-        <div className={styles.meta}>
-          <span className={styles.authorAvatar}>{initials(post.author)}</span>
-          <span>{post.author}</span>
-          <span>{formatDate(post.date)}</span>
-          <span>{post.readTime}</span>
-        </div>
-
         <div className={styles.content}>
-          {post.content.map((paragraph, index) => (
-            <p key={index}>{paragraph}</p>
-          ))}
+          <BlogContent content={post.content} />
         </div>
 
+        {/* ─── Related Posts ────────────────────────────── */}
         {otherPosts.length > 0 && (
-          <>
-            <div className={styles.divider} />
-            <section className={styles.relatedSection}>
-              <h3>More from the blog</h3>
-              <div className={styles.relatedGrid}>
-                {otherPosts.map((related) => (
-                  <Link key={related.slug} href={`/blog/${related.slug}`} className={styles.relatedCard}>
-                    <div className={`${styles.relatedThumb} ${heroClass[related.accent]}`} />
+          <section className={styles.related}>
+            <div className={styles.relatedHeader}>
+              <h3>You might also like</h3>
+              <Link href="/blog" className={styles.viewAll}>
+                View all →
+              </Link>
+            </div>
+            <div className={styles.relatedGrid}>
+              {otherPosts.map((related) => (
+                <Link
+                  key={related.slug}
+                  href={`/blog/${related.slug}`}
+                  className={styles.relatedCard}
+                >
+                  <div className={`${styles.relatedThumb} ${heroClass[related.accent]}`}>
+                    {related.coverImage && (
+                      <img
+                        src={related.coverImage}
+                        alt={related.title}
+                        className={styles.relatedImg}
+                      />
+                    )}
+                    <span className={styles.relatedTag}>{related.category}</span>
+                  </div>
+                  <div className={styles.relatedInfo}>
                     <h4>{related.title}</h4>
-                    <span className={styles.relatedMeta}>{related.readTime}</span>
-                  </Link>
-                ))}
-              </div>
-            </section>
-          </>
+                    <p>{related.excerpt}</p>
+                    <span className={styles.relatedDate}>
+                      {formatDate(related.date)}
+                    </span>
+                  </div>
+                </Link>
+              ))}
+            </div>
+          </section>
         )}
       </article>
     </div>

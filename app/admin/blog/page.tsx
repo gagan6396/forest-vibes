@@ -9,7 +9,7 @@ import {
   updateBlogStatus,
   deleteBlog,
   resolveImage,
-} from "@/lib/api/blogs";
+} from "@/lib/blogs";
 
 const ITEMS_PER_PAGE = 10;
 

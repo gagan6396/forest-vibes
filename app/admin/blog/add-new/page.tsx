@@ -14,7 +14,7 @@ import {
   BlogFormValues,
   BlogFormErrors,
 } from "@/types/blog";
-import { createBlog } from "@/lib/api/blogs";
+import { createBlog } from "@/lib/blogs";
 
 const JoditEditor = dynamic(() => import("jodit-react"), { ssr: false });
 
