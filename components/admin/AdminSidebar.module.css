@@ -106,9 +106,7 @@
   flex-shrink: 0;
 }
 
-.navItem:hover {
-  background: rgba(143, 174, 138, 0.16);
-}
+
 
 .navItemActive {
   background: var(--fv-forest);
