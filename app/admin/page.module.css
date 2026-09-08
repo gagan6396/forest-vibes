@@ -6,15 +6,22 @@
   --fv-ink: #202920;
   --fv-muted: #6f7768;
   --fv-line: #e4ddc9;
+  --fv-draft: #b0793f;
+  --fv-draft-bg: rgba(176, 121, 63, 0.14);
   font-family: "Jost", "Segoe UI", sans-serif;
   color: var(--fv-ink);
 }
 
 .header {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  gap: 16px;
+  flex-wrap: wrap;
   margin-bottom: 28px;
 }
 
-.header h1 {
+.headerText h1 {
   font-family: "Playfair Display", Georgia, serif;
   font-weight: 500;
   font-size: 1.8rem;
@@ -22,17 +29,42 @@
   color: var(--fv-forest);
 }
 
-.header p {
+.headerText p {
   margin: 0;
   color: var(--fv-muted);
   font-size: 0.92rem;
+}
+
+.newPostBtn {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  background: var(--fv-forest);
+  color: #fff;
+  font-size: 0.86rem;
+  font-weight: 500;
+  padding: 10px 18px;
+  border-radius: 999px;
+  text-decoration: none;
+  white-space: nowrap;
+  transition: background 0.15s ease, transform 0.15s ease;
+}
+
+.newPostBtn:hover {
+  background: var(--fv-forest-light);
+  transform: translateY(-1px);
+}
+
+.newPostPlus {
+  font-size: 1rem;
+  line-height: 1;
 }
 
 /* ---------------- Stat cards ---------------- */
 
 .statsGrid {
   display: grid;
-  grid-template-columns: repeat(5, minmax(0, 1fr));
+  grid-template-columns: repeat(3, minmax(0, 1fr));
   gap: 16px;
   margin-bottom: 28px;
 }
@@ -83,13 +115,7 @@
   font-weight: 500;
 }
 
-/* ---------------- Panels ---------------- */
-
-.panelsGrid {
-  display: grid;
-  grid-template-columns: 1fr 1fr;
-  gap: 20px;
-}
+/* ---------------- Panel (single, full width) ---------------- */
 
 .panel {
   background: #fff;
@@ -129,63 +155,35 @@
   flex-direction: column;
 }
 
-/* Messages */
-
-.messageRow {
-  display: flex;
-  align-items: center;
-  gap: 12px;
-  padding: 14px 20px;
-  border-bottom: 1px solid var(--fv-line);
-}
-
-.messageRow:last-child {
-  border-bottom: none;
-}
-
-.unreadDot {
-  width: 7px;
-  height: 7px;
-  border-radius: 50%;
-  background: #c99a3f;
-  flex-shrink: 0;
-}
-
-.messageText {
-  display: flex;
-  flex-direction: column;
-  flex: 1;
-  min-width: 0;
-}
-
-.messageName {
-  font-size: 0.9rem;
-  font-weight: 600;
-}
-
-.messagePreview {
-  font-size: 0.82rem;
+.emptyState {
+  padding: 28px 20px;
+  text-align: center;
   color: var(--fv-muted);
-  overflow: hidden;
-  text-overflow: ellipsis;
-  white-space: nowrap;
+  font-size: 0.88rem;
 }
 
-.messageTime {
-  font-size: 0.78rem;
-  color: var(--fv-muted);
-  white-space: nowrap;
+.emptyState a {
+  color: var(--fv-forest-light);
+  font-weight: 500;
 }
 
 /* Blog posts */
 
 .postRow {
+  display: block;
   padding: 14px 20px;
   border-bottom: 1px solid var(--fv-line);
+  text-decoration: none;
+  color: inherit;
+  transition: background 0.15s ease;
 }
 
 .postRow:last-child {
   border-bottom: none;
+}
+
+.postRow:hover {
+  background: var(--fv-cream);
 }
 
 .postTop {
@@ -213,46 +211,54 @@
   display: inline-flex;
   align-items: center;
   gap: 6px;
-  background: rgba(143, 174, 138, 0.2);
-  color: var(--fv-forest-light);
   font-size: 0.76rem;
   font-weight: 500;
   padding: 4px 10px;
   border-radius: 5px;
 }
 
+.statusPublished {
+  background: rgba(143, 174, 138, 0.2);
+  color: var(--fv-forest-light);
+}
+
+.statusPublished .statusDot {
+  background: var(--fv-forest-light);
+}
+
+.statusDraft {
+  background: var(--fv-draft-bg);
+  color: var(--fv-draft);
+}
+
+.statusDraft .statusDot {
+  background: var(--fv-draft);
+}
+
 .statusDot {
   width: 6px;
   height: 6px;
   border-radius: 50%;
-  background: var(--fv-forest-light);
 }
 
 /* ---------------- Responsive ---------------- */
 
-@media (max-width: 1200px) {
+@media (max-width: 900px) {
   .statsGrid {
     grid-template-columns: repeat(3, minmax(0, 1fr));
   }
 }
 
-@media (max-width: 900px) {
-  .panelsGrid {
-    grid-template-columns: 1fr;
-  }
-}
-
 @media (max-width: 640px) {
   .statsGrid {
-    grid-template-columns: repeat(2, minmax(0, 1fr));
+    grid-template-columns: 1fr;
   }
-  .header h1 {
+  .header h1,
+  .headerText h1 {
     font-size: 1.5rem;
   }
-}
-
-@media (max-width: 400px) {
-  .statsGrid {
-    grid-template-columns: 1fr;
+  .newPostBtn {
+    width: 100%;
+    justify-content: center;
   }
 }

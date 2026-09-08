@@ -14,8 +14,10 @@ const LOGO_IMAGE_URL: string | null = "/logo-nobg.webp"; // e.g. "/logo.png" or 
 const quickLinks = [
   { label: "Home", href: "/" },
   { label: "About", href: "/about-us" },
+  { label: "Blog", href: "/blog" },
   { label: "Contact", href: "contact-us" },
   { label: "Gallery", href: "#" },
+
   // { label: "Rooms & Suites", href: "#" },
   // { label: "Restaurant", href: "#" },
   // { label: "Blog", href: "#" },

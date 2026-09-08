@@ -245,10 +245,11 @@ export default function BlogListPage() {
             <div className={styles.cardImgEmpty}>🖼</div>
           )}
           <div className={styles.cardBody}>
-            <p className={styles.blogTitle}>{b.title}</p>
+            <p className={styles.blogTitle} title={b.title}>
+              {b.title}
+            </p>
             <p className={styles.blogExcerpt}>{b.excerpt}</p>
             <div className={styles.cardMeta}>
-              <span className={styles.categoryChip}>{b.slug || "—"}</span>
               <span className={styles.sectionCountBadge}>📄 {b.sectionCount} blocks</span>
               <Status b={b} />
             </div>
@@ -271,7 +272,6 @@ export default function BlogListPage() {
         <colgroup>
           <col style={{ width: 80 }} />
           <col />
-          <col style={{ width: 110 }} />
           <col style={{ width: 100 }} />
           <col style={{ width: 130 }} />
         </colgroup>
@@ -279,7 +279,6 @@ export default function BlogListPage() {
           <tr>
             <th>Cover</th>
             <th>Title</th>
-            <th>Slug</th>
             <th>Status</th>
             <th>Actions</th>
           </tr>
@@ -302,11 +301,10 @@ export default function BlogListPage() {
                 )}
               </td>
               <td className={styles.titleCell}>
-                <p className={styles.blogTitle}>{b.title}</p>
+                <p className={styles.blogTitle} title={b.title}>
+                  {b.title}
+                </p>
                 <p className={styles.blogExcerpt}>{b.excerpt}</p>
-              </td>
-              <td>
-                <span className={styles.categoryChip}>{b.slug || "—"}</span>
               </td>
               <td className={styles.tdCenter}>
                 <Status b={b} />
@@ -327,7 +325,6 @@ export default function BlogListPage() {
         <colgroup>
           <col style={{ width: 80 }} />
           <col />
-          <col style={{ width: 150 }} />
           {width >= 1024 && <col style={{ width: 120 }} />}
           {width >= 1024 && <col style={{ width: 100 }} />}
           {width >= 1024 && <col style={{ width: 90 }} />}
@@ -338,7 +335,6 @@ export default function BlogListPage() {
           <tr>
             <th>Cover</th>
             <th>Title / Excerpt</th>
-            <th>Slug</th>
             {width >= 1024 && <th>Author</th>}
             {width >= 1024 && <th>Date</th>}
             {width >= 1024 && <th>Blocks</th>}
@@ -364,11 +360,10 @@ export default function BlogListPage() {
                 )}
               </td>
               <td className={styles.titleCell}>
-                <p className={styles.blogTitle}>{b.title}</p>
+                <p className={styles.blogTitle} title={b.title}>
+                  {b.title}
+                </p>
                 <p className={styles.blogExcerpt}>{b.excerpt}</p>
-              </td>
-              <td>
-                <span className={styles.categoryChip}>{b.slug || "—"}</span>
               </td>
               {width >= 1024 && (
                 <td>
