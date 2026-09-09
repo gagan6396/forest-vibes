@@ -9,33 +9,28 @@ const slides = [
     id: 1,
     imageDesktop: "bann1.webp",
     imageMobile: "home2.jpeg",
-    title: "Your Home Away,",
-    emphasis: "Reimagined",
-    subtitle: "for the Extraordinary",
+    title: "Forrest Vibes – Couple Getaway Resort in Raipur, Dehradun",
     description:
-      "Immerse Yourself in Elegance and Comfort at Forrest Vibes. Our Exceptional Accommodations, Impeccable Service, and Unrivaled Hospitality Await Your Arrival. Your Perfect Getaway Starts Here.",
+      "Escape to Forrest Vibes, a luxury resort in Raipur, Dehradun offering a perfect couple getaway with organic food, forest views, pool & cozy cottages.",
     mobileOnly: true, // Show only image on mobile
   },
   {
     id: 2,
     imageDesktop: "ban3.webp",
     imageMobile: "home-2.jpeg",
-    title: "Where Nature Meets",
-    emphasis: "Luxury",
-    subtitle: "in Perfect Harmony",
+    title: "Create Unforgettable Memories at Our Resort in Raipur, Dehradun",
     description:
-      "Wake up to the sounds of nature and experience unparalleled comfort in our eco-friendly luxury suites. Designed for those who seek tranquility without compromising on modern amenities.",
+      "Whether it's a couple getaway resort experience in Dehradun or a family vacation, enjoy organic food, forest views & world-class service at Forrest Vibes.",
     mobileOnly: true,
   },
   {
     id: 3,
     imageDesktop: "ban4.webp",
     imageMobile: "home-3.jpeg",
-    title: "Create Unforgettable",
-    emphasis: "Memories",
-    subtitle: "with Your Loved Ones",
+    title: "Where Nature Meets Luxury at Our Resort in Raipur, Dehradun",
+   
     description:
-      "Whether it's a romantic getaway or a family vacation, our curated experiences and world-class service ensure every moment becomes a cherished memory.",
+      "Wake up to eco-friendly luxury at this couple getaway resort in Dehradun, with organic food and tranquil forest views -comfort without compromise.",
     mobileOnly: true,
   },
 ];
@@ -482,7 +477,7 @@ export default function HeroSection() {
                   <div className="relative z-20 flex flex-col justify-center h-full px-5 md:px-12 lg:px-20">
                     <div className="max-w-3xl">
                       <h1
-                        className="text-white leading-[1.2] md:leading-[1.08] mb-3 md:mb-4 anim-fade-up-2"
+                        className="text-white leading-[1.2] md:leading-[1.08] mb-5 md:mb-4 anim-fade-up-2"
                         style={{
                           fontFamily: "'Playfair Display', serif",
                           fontSize: "clamp(1.8rem, 4vw, 3.5rem)",
@@ -491,9 +486,7 @@ export default function HeroSection() {
                       >
                         {slide.title}
                         <br />
-                        <em className="italic text-[#c8e6d9]">{slide.emphasis}</em>
-                        <br />
-                        {slide.subtitle}
+                        
                       </h1>
 
                       <p

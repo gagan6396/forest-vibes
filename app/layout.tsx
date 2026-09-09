@@ -13,8 +13,8 @@ const geistMono = Geist_Mono({
 });
 
 export const metadata: Metadata = {
-  title: "Forrest Vibes | Luxury Nature Resort & Stay",
-  description: " Looking for the best nature retreat? Forrest Vibes offers luxury cottages, organic dining, and scenic forest trails. Perfect for families, couples, and nature lovers.",
+  title: "Forrest Vibes | Luxury Resort in Raipur, Dehradun",
+  description: "Escape to Forrest Vibes, a couple getaway resort in Raipur, Dehradun with organic food, luxury cottages & forest trails. Book your nature retreat today.",
 };
 
 const schemaData = {
